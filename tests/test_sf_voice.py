@@ -117,3 +117,12 @@ def test_only_cast_id_recasts_that_voice_and_its_lines(tmp_path):
     assert [c["voice"]["profile_id"] for c in story["cast"]] == ["p1", "p11"]
     assert {call["profile_id"] for call in vs.calls} == {"p11"}
 
+
+def test_clone_voice_with_missing_ref_audio_needs_human(tmp_path):
+    story = make_story()
+    story["cast"][0]["voice"] = {"source": "clone", "ref_audio": "library/ghost.wav", "ref_text": "hi", "profile_id": None}
+    project = write_project(tmp_path, story)
+    summary, code = sf_voice.run(project, config=CONFIG, client=FakeVS(), root=tmp_path)
+    assert code == 2
+    assert any(item.startswith("narrator: reference audio") for item in summary["needs_human"])
+    assert summary["done"] == ["L002", "L003"]

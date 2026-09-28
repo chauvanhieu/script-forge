@@ -7,6 +7,7 @@ import json
 import os
 import sys
 import tempfile
+import traceback
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Callable, Iterator, NoReturn
@@ -119,4 +120,10 @@ def main_wrapper(run: Callable[..., tuple[dict, int]], description: str) -> NoRe
             summary, code = run(args.project_dir, args.only)
     except LockedError as exc:
         _emit({"errors": [str(exc)]}, EXIT_HUMAN)
+    except Exception as exc:
+        if args.project_dir.is_dir():
+            log(args.project_dir, Path(sys.argv[0]).stem, traceback.format_exc())
+        else:
+            sys.stderr.write(traceback.format_exc())
+        _emit({"errors": [f"{type(exc).__name__}: {exc}"]}, EXIT_BUG)
     _emit(summary, code)

@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from fixtures import make_story, prepare_media
@@ -49,3 +51,15 @@ def test_missing_assets_need_human(tmp_path):
     summary, code = sf_render.run(project, size=SMALL)
     assert code == 2
     assert summary["needs_human"] == ["S02: image missing", "captions are not built; run sf_captions"]
+
+
+def test_corrupt_clip_manifest_is_rebuilt(tmp_path):
+    story = make_story()
+    story["brief"]["captions"]["mode"] = "none"
+    project = prepare_media(tmp_path, story, [1000, 700, 1300])
+    sf_render.run(project, size=SMALL)
+    (project / "clips/manifest.json").write_text("{not json")
+    summary, code = sf_render.run(project, size=SMALL)
+    assert code == 0 and summary["rendered"] == ["S01", "S02"]
+    assert set(json.loads((project / "clips/manifest.json").read_text())) == {"S01", "S02"}
+    assert [p.name for p in (project / "clips").iterdir() if p.name.endswith(".tmp")] == []

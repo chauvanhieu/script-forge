@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import wave
 from pathlib import Path
 
@@ -80,7 +81,10 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
     clips = project_dir / "clips"
     clips.mkdir(exist_ok=True)
     manifest_path = clips / "manifest.json"
-    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    try:
+        manifest = json.loads(manifest_path.read_text())
+    except (OSError, ValueError):
+        manifest = {}  # missing or corrupt: every clip is re-checked and rebuilt
     slides = {slide["id"]: slide for slide in story["slides"]}
     for span in timeline.slides:
         slide = slides[span.slide_id]
@@ -98,7 +102,9 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
                     "-pix_fmt", "yuv420p", "-r", str(FPS), str(clip)])
         manifest[span.slide_id] = clip_hash
         summary["rendered"].append(span.slide_id)
-    manifest_path.write_text(json.dumps(manifest, indent=2))
+    manifest_tmp = manifest_path.with_suffix(".json.tmp")
+    manifest_tmp.write_text(json.dumps(manifest, indent=2))
+    os.replace(manifest_tmp, manifest_path)
     (clips / "concat.txt").write_text("".join(f"file '{span.slide_id}.mp4'\n" for span in timeline.slides))
     _write_timeline_wav(story, timeline, project_dir, clips / "timeline.wav")
     (project_dir / "out").mkdir(exist_ok=True)

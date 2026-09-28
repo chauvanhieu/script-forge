@@ -55,3 +55,29 @@ def test_load_config_honors_env_override(tmp_path, monkeypatch):
     cfg.write_text("image:\n  provider: fake\n", encoding="utf-8")
     monkeypatch.setenv("SF_CONFIG", str(cfg))
     assert load_config()["image"]["provider"] == "fake"
+
+
+def _main(monkeypatch, capsys, argv, run):
+    from sflib.project import main_wrapper
+    monkeypatch.setattr("sys.argv", ["sf_demo.py", *argv])
+    with pytest.raises(SystemExit) as exit_info:
+        main_wrapper(run, "demo")
+    captured = capsys.readouterr()
+    out = captured.out.splitlines()
+    assert len(out) == 1
+    return exit_info.value.code, json.loads(out[0]), captured.err
+
+
+def test_main_wrapper_turns_a_crash_into_one_json_line_and_logs_the_traceback(tmp_path, monkeypatch, capsys):
+    def run(project_dir, only):
+        raise RuntimeError("ffmpeg failed:\nboom")
+    code, summary, _ = _main(monkeypatch, capsys, [str(tmp_path)], run)
+    assert code == 1 and summary == {"ok": False, "errors": ["RuntimeError: ffmpeg failed:\nboom"]}
+    assert "Traceback" in (tmp_path / "logs" / "sf_demo.log").read_text()
+    assert not (tmp_path / ".sf.lock").exists()
+
+
+def test_main_wrapper_reports_a_missing_project_dir(tmp_path, monkeypatch, capsys):
+    code, summary, err = _main(monkeypatch, capsys, [str(tmp_path / "nope")], lambda project_dir, only: ({}, 0))
+    assert code == 1 and summary["errors"][0].startswith("FileNotFoundError:")
+    assert "Traceback" in err and not (tmp_path / "nope").exists()

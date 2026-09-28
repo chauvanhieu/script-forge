@@ -70,7 +70,11 @@ def _ensure_profiles(story: dict, vs, root: Path, project_dir: Path, summary: di
             voice["instruct"] = parsed.get("instruct", "")
             voice["profile_id"] = vs.create_design_profile(name, parsed.get("attrs", {}), voice["instruct"], language)
         else:
-            voice["profile_id"] = vs.create_clone_profile(name, root / voice["ref_audio"], voice.get("ref_text", ""), language)
+            ref_audio = root / voice["ref_audio"]
+            if not ref_audio.is_file():
+                summary["needs_human"].append(f"{member['id']}: reference audio {ref_audio} is missing")
+                continue
+            voice["profile_id"] = vs.create_clone_profile(name, ref_audio, voice.get("ref_text", ""), language)
             voice["instruct"] = ""
         summary["profiles"].append(member["id"])
         save_story(project_dir, story)
