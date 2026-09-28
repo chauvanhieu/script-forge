@@ -5,7 +5,7 @@ from __future__ import annotations
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from sflib.project import EXIT_HUMAN, EXIT_OK, ProviderError, load_config, load_story, main_wrapper, save_story, wanted
+from sflib.project import EXIT_HUMAN, EXIT_OK, EXIT_PROVIDER, ProviderError, load_config, load_story, main_wrapper, save_story, wanted
 from sflib.text import clusters, norm, tokens, uses_clusters
 from sflib.voicestudio import VoiceStudio
 
@@ -88,7 +88,7 @@ def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int
 def run(project_dir: Path, only: set[str] | None = None, config: dict | None = None, client=None) -> tuple[dict, int]:
     story = load_story(project_dir)
     language = story["brief"]["language"]
-    summary: dict = {"aligned": [], "skipped": 0, "needs_human": [], "approx_ratio": 0.0}
+    summary: dict = {"aligned": [], "skipped": 0, "needs_human": [], "errors": [], "approx_ratio": 0.0}
     vs = client
     for line in story["lines"]:
         if not wanted(line["id"], only):
@@ -106,7 +106,11 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
                 vs = VoiceStudio((config or load_config())["voice"]["base_url"])
             try:
                 asr_words = vs.transcribe_words(project_dir / audio["path"], language.split("-")[0])
-            except ProviderError:
+            except ProviderError as exc:
+                if exc.code in ("quota", "auth"):
+                    save_story(project_dir, story)
+                    summary["errors"].append(f"{exc.code}: {exc.message}")
+                    return summary, EXIT_PROVIDER
                 asr_words = []
         line["words"] = align_line(tokens(line["text"], language), asr_words, audio["duration_ms"], language)
         line["words_hash"] = audio["input_hash"]

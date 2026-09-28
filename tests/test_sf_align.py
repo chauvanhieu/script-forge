@@ -70,3 +70,61 @@ def test_run_reports_lines_without_audio(tmp_path):
     project = write_project(tmp_path, make_story())
     summary, code = sf_align.run(project)
     assert code == 2 and summary["needs_human"] == ["L001 has no audio", "L002 has no audio", "L003 has no audio"]
+
+
+def test_run_handles_auth_error_and_persists_prior_alignments(tmp_path):
+    from sflib.project import ProviderError
+    story = make_story()
+    text_tokens_l1 = tokens(story["lines"][0]["text"], "en")
+    text_tokens_l2 = tokens(story["lines"][1]["text"], "en")
+    # L001: has stored asr_words (will be aligned without calling client)
+    story["lines"][0]["audio"].update(
+        status="done", path=f"audio/L001.wav", duration_ms=1000, input_hash="h-L001",
+        asr_words=[_w(t, i * 0.2, i * 0.2 + 0.2) for i, t in enumerate(text_tokens_l1)]
+    )
+    # L002: no asr_words (will trigger client call and fail)
+    story["lines"][1]["audio"].update(status="done", path=f"audio/L002.wav", duration_ms=1000, input_hash="h-L002")
+    # L003: no audio at all (will skip)
+    story["lines"][2]["audio"].update(status="done", duration_ms=0)
+    project = write_project(tmp_path, story)
+
+    class FakeClient:
+        def transcribe_words(self, path, language):
+            raise ProviderError("auth", "nope")
+
+    summary, code = sf_align.run(project, client=FakeClient())
+    assert code == 3 and summary["errors"] == ["auth: nope"]
+    # Check that L001 was aligned before the failure
+    stored = load_story(project)["lines"][0]
+    assert [w["text"] for w in stored.get("words", [])] == list(text_tokens_l1)
+
+
+def test_run_handles_transient_error_with_approx_fallback(tmp_path):
+    from sflib.project import ProviderError
+    story = make_story()
+    # L001: has stored asr_words
+    text_tokens_l1 = tokens(story["lines"][0]["text"], "en")
+    story["lines"][0]["audio"].update(
+        status="done", path=f"audio/L001.wav", duration_ms=1000, input_hash="h-L001",
+        asr_words=[_w(t, i * 0.2, i * 0.2 + 0.2) for i, t in enumerate(text_tokens_l1)]
+    )
+    # L002: triggers transient error (should fallback to approx)
+    story["lines"][1]["audio"].update(status="done", path=f"audio/L002.wav", duration_ms=1000, input_hash="h-L002")
+    # L003: has audio, no asr_words (to complete the run)
+    story["lines"][2]["audio"].update(status="done", path=f"audio/L003.wav", duration_ms=1000, input_hash="h-L003")
+    project = write_project(tmp_path, story)
+
+    class FakeClient:
+        def __init__(self):
+            self.call_count = 0
+        def transcribe_words(self, path, language):
+            self.call_count += 1
+            raise ProviderError("transient", "try again")
+
+    fake = FakeClient()
+    summary, code = sf_align.run(project, client=fake)
+    # All three lines should align despite transient errors (fallback to approx)
+    assert code == 0 and summary["aligned"] == ["L001", "L002", "L003"]
+    # L002's words should all be approx=True (fallback to length-weighted split)
+    stored = load_story(project)["lines"][1]
+    assert all(w["approx"] for w in stored["words"])
