@@ -80,7 +80,9 @@ yt/
 │   ├── sf_align.py
 │   ├── sf_captions.py
 │   ├── sf_contact_sheet.py
-│   └── sf_render.py
+│   ├── sf_render.py
+│   ├── sf_qc.py                     # deterministic measurements → out/qc.json
+│   └── sflib/                       # shared helpers (project IO, text, timeline, media, VoiceStudio client)
 ├── tests/                           # one small test file per script + fixtures
 ├── schemas/story.schema.json        # the production data contract
 ├── config/
@@ -231,7 +233,7 @@ Automatic regeneration for quality (voice retakes, image retries) is capped at
       "voice": { "source": "library", "library_ref": "mara", "design_prompt": "…", "profile_id": "…" },
       "caption_color": "#FFD166",
       "plates": {
-        "face": { "path": null, "input_hash": null, "status": "pending", "attempts": 0 },
+        "face": { "prompt": "…", "path": null, "input_hash": null, "status": "pending", "attempts": 0 },
         "half": { "…": "…" },
         "full": { "…": "…" }
       }
@@ -241,7 +243,7 @@ Automatic regeneration for quality (voice retakes, image retries) is capped at
     {
       "id": "LOC01", "canon_id": "skerry-light", "name": "Skerry Light",
       "appearance": "…",
-      "plate": { "path": null, "input_hash": null, "status": "pending", "attempts": 0 }
+      "plate": { "prompt": "…", "path": null, "input_hash": null, "status": "pending", "attempts": 0 }
     }
   ],
   "slides": [
@@ -273,8 +275,14 @@ Automatic regeneration for quality (voice retakes, image retries) is capped at
       "whisper": false,                                    // true → adds OmniVoice `whisper` style for this line
       "pause_after_ms": 250,
       "claim_ids": [],                                     // factual only
-      "audio": { "path": null, "duration_ms": null, "input_hash": null, "status": "pending", "attempts": 0 },
-      "words": []                                          // [{ "text", "start_ms", "end_ms", "approx" }]
+      "audio": {
+        "path": null, "duration_ms": null, "seed": null, "input_hash": null,
+        "status": "pending", "attempts": 0,
+        "qc": null,                                        // { "cer", "cps" } from the transcribe-back check
+        "asr_words": null                                  // raw ASR words kept for sf_align
+      },
+      "words": [],                                         // [{ "text", "start_ms", "end_ms", "approx" }], relative to line start
+      "words_hash": null                                   // audio.input_hash the words were aligned against
     }
   ],
   "research": null,       // factual: { "notes": [...], "claims": [...] } using the Story Skills research note fields
@@ -448,7 +456,7 @@ image:
 **Image command contract** (the user's wrapper implements it):
 
 ```text
-<command> --prompt-file <p.txt> --aspect <9:16|16:9> [--ref <a.png> ...] --out <S07.png>
+<command> --prompt-file <p.txt> --aspect <1:1|3:4|9:16|16:9> [--ref <a.png> ...] [--seed <n>] --out <S07.png>
 success: exit 0 and a PNG at --out
 failure: exit ≠ 0, stderr = {"error": "quota|auth|content_blocked|transient|invalid", "message": "…"}
 ```
@@ -489,7 +497,11 @@ whole pipeline can run without spending quota.
   - Unmatched tokens are interpolated between matched neighbors. A line with no
     usable match falls back to a character-length-weighted split, flagged
     `approx: true`.
-  - Offsets every word by the line's start on the global timeline.
+  - Stores word times **relative to the line start**, so changing one line
+    never invalidates another line's words. Captions and render add the
+    line's start from the timeline.
+- **Plate aspects:** face `1:1`, half `3:4`, full `9:16`; location plates use
+  the production aspect.
 - **`sf_captions`**: builds `captions.ass` from the named style preset:
   - `karaoke`: `\kf` tags per token.
   - `plain`: one cue per line chunk.
@@ -505,7 +517,7 @@ whole pipeline can run without spending quota.
   - Audio: concatenate the line WAVs with pauses; resample to 48 kHz; `loudnorm`.
   - Output: burn `captions.ass`; H.264 yuv420p, 30 fps, AAC 48 kHz.
 
-### 8.4 QC (`sf-finishing`, writes `out/qc.json`)
+### 8.4 QC (`sf_qc.py` measures and writes `out/qc.json`; `sf-finishing` interprets and acts)
 
 - Every line has audio and every slide has an image (`done`).
 - Final duration equals audio timeline ±1 frame.
