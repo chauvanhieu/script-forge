@@ -1,3 +1,5 @@
+import re
+
 from fixtures import make_story, write_project
 import sf_captions
 from sflib.project import ROOT, load_story
@@ -55,6 +57,39 @@ def test_mode_none_writes_nothing(tmp_path):
     assert code == 0 and summary["cues"] == 0
     assert not (project / "out/captions.ass").exists()
     assert load_story(project)["output"]["captions"] is None
+
+
+def test_split_lines_never_exceeds_max_chars(tmp_path):
+    """A cue whose best-balanced 2-way split still overflows one row must be re-chunked
+    instead of shipping an over-length row (regression for the smoke-test run: "short blue
+    wavelengths much more" balances to a 10/21 split, and 21 > the 18-char 9:16 limit)."""
+    story = make_story()
+    words = ["short", "blue", "wavelengths", "much", "more"]
+    cursor = 0
+    word_dicts = []
+    for word in words:
+        word_dicts.append({"text": word, "start_ms": cursor, "end_ms": cursor + 300, "approx": False})
+        cursor += 300
+    story["lines"] = [story["lines"][0]]
+    story["slides"] = [story["slides"][0]]
+    story["slides"][0]["line_ids"] = ["L001"]
+    line = story["lines"][0]
+    line["id"] = "L001"
+    line["text"] = "short blue wavelengths much more"
+    line["audio"].update(status="done", duration_ms=cursor, input_hash="h-L001")
+    line["words"] = word_dicts
+    line["words_hash"] = "h-L001"
+    project = write_project(tmp_path, story)
+    summary, code = sf_captions.run(project, styles_dir=STYLES)
+    assert code == 0
+    ass = (project / "out/captions.ass").read_text(encoding="utf-8")
+    max_chars = 18
+    for raw in ass.splitlines():
+        if not raw.startswith("Dialogue:"):
+            continue
+        text = raw.split(",", 9)[-1]
+        for row in re.sub(r"\{[^}]*\}", "", text).split("\\N"):
+            assert len(row) <= max_chars, f"row too long ({len(row)} > {max_chars}): {row!r}"
 
 
 def test_stale_words_need_alignment(tmp_path):

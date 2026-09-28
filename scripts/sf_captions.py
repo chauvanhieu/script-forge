@@ -39,10 +39,23 @@ def _joined_len(words: list[dict], spaced: bool) -> int:
     return sum(len(w["text"]) for w in words) + (len(words) - 1 if spaced else 0)
 
 
-def _chunk(words: list[dict], limit: int, spaced: bool) -> list[list[dict]]:
+def _split_lines(cue: list[dict], max_chars: int, spaced: bool) -> list[list[dict]]:
+    if _joined_len(cue, spaced) <= max_chars or len(cue) == 1:
+        return [cue]
+    best = min(range(1, len(cue)), key=lambda k: abs(_joined_len(cue[:k], spaced) - _joined_len(cue[k:], spaced)))
+    return [cue[:best], cue[best:]]
+
+
+def _fits(cue: list[dict], max_chars: int, spaced: bool) -> bool:
+    """Whether cue renders (as a single row, or the best 2-way split) with every row <= max_chars."""
+    return all(_joined_len(row, spaced) <= max_chars for row in _split_lines(cue, max_chars, spaced))
+
+
+def _chunk(words: list[dict], max_chars: int, max_lines: int, spaced: bool) -> list[list[dict]]:
+    limit = max_chars * max_lines
     cues, current = [], []
     for word in words:
-        if current and _joined_len(current + [word], spaced) > limit:
+        if current and not _fits(current + [word], max_chars, spaced):
             cues.append(current)
             current = []
         current.append(word)
@@ -52,13 +65,6 @@ def _chunk(words: list[dict], limit: int, spaced: bool) -> list[list[dict]]:
     if current:
         cues.append(current)
     return cues
-
-
-def _split_lines(cue: list[dict], max_chars: int, spaced: bool) -> list[list[dict]]:
-    if _joined_len(cue, spaced) <= max_chars or len(cue) == 1:
-        return [cue]
-    best = min(range(1, len(cue)), key=lambda k: abs(_joined_len(cue[:k], spaced) - _joined_len(cue[k:], spaced)))
-    return [cue[:best], cue[best:]]
 
 
 def _cue_text(rows: list[list[dict]], karaoke: bool, spaced: bool) -> str:
@@ -122,7 +128,7 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
         start = timeline.line_start_ms[line["id"]]
         where = placement[line["id"]]
         margin_v = round(style["margin_v_pct"][aspect][where] * height)
-        for cue in _chunk(line["words"], max_chars * style["max_lines"], spaced):
+        for cue in _chunk(line["words"], max_chars, style["max_lines"], spaced):
             rows = _split_lines(cue, max_chars, spaced)
             cue_start = start + cue[0]["start_ms"]
             cue_end = max(start + cue[-1]["end_ms"], cue_start + 10)
