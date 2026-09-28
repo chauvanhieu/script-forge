@@ -171,7 +171,7 @@ Findings go into `script.md` under "Checks" so Gate 1 shows them.
 ### 4.4 Resume, cache, redo
 
 - Every line and slide carries `status` and `input_hash`.
-  - Line hash: text, speaker voice profile, delivery, language, engine, seed.
+  - Line hash: text, speaker voice profile, whisper, language, engine, seed.
   - Slide hash: prompt, reference plate hashes, aspect, provider, seed.
 - `/story-run` skips items whose status is `done` and whose hash still matches.
   Changing one line regenerates that line's audio, its captions, and the render.
@@ -269,8 +269,8 @@ Automatic regeneration for quality (voice retakes, image retries) is capped at
   ],
   "lines": [
     {
-      "id": "L001", "speaker": "narrator", "text": "…",
-      "delivery": "quiet, tense",                          // → VoiceStudio `instruct`
+      "id": "L001", "speaker": "narrator", "text": "…",   // may contain allowed expressive tags (§6.1 sf-audio)
+      "whisper": false,                                    // true → adds OmniVoice `whisper` style for this line
       "pause_after_ms": 250,
       "claim_ids": [],                                     // factual only
       "audio": { "path": null, "duration_ms": null, "input_hash": null, "status": "pending", "attempts": 0 },
@@ -298,7 +298,9 @@ Automatic regeneration for quality (voice retakes, image retries) is capped at
 - **`sf_validate` checks:** schema; every line belongs to exactly one slide;
   every `speaker` and slide character exists in `cast`; every slide `location`
   exists in `locations`; enums (`motion`, `shot`, `beat`, `text_placement`,
-  `captions.mode`); `factual` lines with factual assertions carry `claim_ids`
+  `captions.mode`); bracket tags in `text` are only the allowed expressive tags
+  (§6.1 `sf-audio`) or `[[written|spoken]]` overrides (the pipe form is
+  required so captions can show the written word); `factual` lines with factual assertions carry `claim_ids`
   that resolve; `adaptation` has `source_work.rights_basis`; `canon.path`
   exists and each `source` scene id exists in canon.
 
@@ -352,11 +354,27 @@ when the brief needs it.
 - `content_blocked` rewrite policy; translating Gate 2 feedback into prompt edits.
 
 **`sf-audio`**, voices.
-- Casting order: `library/cast/<ref>` → voice design from description (canon
-  character voice, age, `voice-words` register) → clone from a user-supplied
-  clip.
-- Maps `delivery` → VoiceStudio `instruct`; picks `seed`; syncs canon
-  `pronunciation` fields into VoiceStudio's `/pronunciation` dictionary.
+- Casting order: `library/cast/<ref>` → voice design → clone from a
+  user-supplied clip.
+  - **Design:** a free-text description from the canon character (gender, age,
+    pitch, accent) goes to `POST /design/describe`, which returns `attrs` and a
+    validator-safe `instruct`. Then `POST /profiles` with `kind=design`,
+    `vd_states=<attrs JSON>`, `instruct`, `language` returns the profile `id`.
+  - **Clone:** `POST /profiles` with `kind=clone` and `ref_audio`. The clip's
+    delivery is cloned along with its timbre, so an animated reference gives an
+    animated voice. This is the strongest expressive control available.
+- **Expressive controls OmniVoice actually supports** (anything else is spoken
+  as literal text):
+  - punctuation (ellipses, dashes, exclamations, short fragments);
+  - `[pause]`, `[pause 500ms]`, `[pause 1.5s]` inside `text`;
+  - the 13 non-verbal tags `[laughter]`, `[sigh]`, `[confirmation-en]`,
+    `[question-en|ah|oh|ei|yi]`, `[surprise-ah|oh|wa|yo]`,
+    `[dissatisfaction-hnn]` (only `[laughter]` and `[sigh]` are broadly useful);
+  - `whisper: true` on a line, which appends `whisper` to the `instruct`.
+  - Free-form emotion words in `instruct` are rejected by VoiceStudio (400).
+- Picks `seed`; syncs canon `pronunciation` fields into VoiceStudio's
+  `/pronunciation` dictionary, or uses inline `[[written|spoken]]` overrides
+  (VoiceStudio speaks `spoken`; captions show `written`).
 - Retake policy and audio QC thresholds (§8.3).
 
 **`sf-finishing`**, captions, render, QC.
@@ -444,7 +462,11 @@ whole pipeline can run without spending quota.
 - **`sf_voice`**:
   - Checks `GET /health`, creates missing profiles, then calls
     `POST /generate` per pending line (`text`, `language`, `profile_id`,
-    `instruct`, `seed`, `engine`).
+    `seed`, `engine`, and `instruct` only when `whisper` is true).
+  - The response body is the WAV; `X-Audio-Duration` and `X-Seed` headers are
+    recorded. `503` with `X-OmniVoice-Retryable: true` maps to `transient`;
+    `409 model_not_downloaded` maps to `auth` (a setup problem that stops the
+    run); `400` maps to `invalid`.
   - Saves the WAV and measures duration with ffprobe.
   - QC per line: transcribe back via `POST /transcribe`, compute the character
     error rate against `text`, and check the speaking rate against the language
@@ -461,7 +483,9 @@ whole pipeline can run without spending quota.
     that shape; if word times are absent, every line takes the approx
     fallback and QC reports it.
   - Aligns ASR tokens to the **script's** tokens with difflib and transfers the
-    times. Captions always show script text, never ASR text.
+    times. Captions always show script text, never ASR text. Script tokens
+    are the line's display text: expressive tags removed and each
+    `[[written|spoken]]` override replaced by its `written` half.
   - Unmatched tokens are interpolated between matched neighbors. A line with no
     usable match falls back to a character-length-weighted split, flagged
     `approx: true`.
