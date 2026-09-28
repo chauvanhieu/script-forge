@@ -142,8 +142,9 @@ yt/
 | 9 | **render** | `sf_render` | `out/final.mp4` |
 | 10 | **QC** | `sf-finishing` | `out/qc.json`; auto-fixes allowed fixes, reports the rest |
 
-Stages 6 and 7 are independent and may run in either order or concurrently
-once stage 5 is done.
+Stages 6 and 7 are independent and may run in either order once stage 5 is
+done (not concurrently: each script holds the project lock and rewrites the
+whole `story.json`).
 
 ### 4.3 Pre-gate checks (stage 4)
 
@@ -552,7 +553,7 @@ Everything else is reported.
   - `captions`: snapshot of the generated ASS for karaoke and plain.
   - `render`: fake images + synthetic sine WAVs → MP4 whose duration matches
     the audio timeline within one frame.
-- **Smoke run:** `projects/_smoke` through the whole pipeline with the `fake`
+- **Smoke run:** `projects/smoke-test` through the whole pipeline with the `fake`
   image provider and real VoiceStudio.
 
 ## 11. Out of scope for v1
