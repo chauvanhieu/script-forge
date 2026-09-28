@@ -111,6 +111,37 @@ def test_inline_silence_without_a_pause_tag_fails(tmp_path):
     assert code == 2 and summary["failed"] == ["silence"]
 
 
+def test_silence_straddling_a_lines_end_uses_its_pause_after_ms(tmp_path):
+    import io
+    import wave
+    from fixtures import sine_wav_bytes
+    story = make_story()
+    story["lines"][0]["pause_after_ms"] = 300  # so pause_after_ms + 0.1s (0.4s) clearly beats the 0.3s grace alone
+    project = prepare_media(tmp_path, story, [1000, 700, 1300])
+    # L001's own 50ms-trim residue: its last 40ms are silent, i.e. the gap starts 40ms before its own end.
+    with wave.open(io.BytesIO(sine_wav_bytes(960))) as tone:
+        lead = tone.readframes(tone.getnframes())
+    with wave.open(str(project / "audio/L001.wav"), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(24000)
+        wav.writeframes(lead + b"\x00\x00" * round(24000 * 40 / 1000))
+    # L002's own leading trim residue: 60ms of silence before its tone starts.
+    # Combined: 40ms (L001 tail) + 300ms (real pause_after_ms) + 60ms (L002 head) = 400ms = pause_after_ms + 0.1s,
+    # straddling L001's end -- it must be judged as L001's inter-line gap, not an in-line silence.
+    with wave.open(io.BytesIO(sine_wav_bytes(640))) as tone:
+        rest = tone.readframes(tone.getnframes())
+    with wave.open(str(project / "audio/L002.wav"), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(24000)
+        wav.writeframes(b"\x00\x00" * round(24000 * 60 / 1000) + rest)
+    sf_captions.run(project, styles_dir=STYLES)
+    sf_render.run(project, size=SMALL)
+    summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
+    assert code == 0, summary
+
+
 def test_silence_is_measured_against_its_own_lines_pause(tmp_path):
     import io
     import wave

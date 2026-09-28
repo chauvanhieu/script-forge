@@ -100,7 +100,7 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
                 # the silence belongs to the last line that started before it (its tail plus its pause)
                 owner = [line for line in story["lines"] if timeline.line_start_ms[line["id"]] <= start_s * 1000] or story["lines"][:1]
                 owner_line = owner[-1]
-                if start_s * 1000 < timeline.line_end_ms[owner_line["id"]]:
+                if (start_s + gap) * 1000 <= timeline.line_end_ms[owner_line["id"]]:
                     # in-line silence: inside the line's own audio span, e.g. a rendered [pause] tag
                     pauses = pause_durations_ms(owner_line["text"])
                     allowed = max(pauses) / 1000 + SPAN_EDGE_PAD_S + SILENCE_GRACE_S if pauses else SILENCE_GRACE_S
