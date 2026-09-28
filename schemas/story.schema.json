@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StoryForge production (story.json)",
+  "type": "object",
+  "required": ["schema_version", "slug", "canon", "brief", "state", "style_bible", "cast", "locations", "slides", "lines", "research", "source_work", "output"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "canon": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["path", "chapters"],
+          "properties": {
+            "path": {"type": "string", "minLength": 1},
+            "chapters": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^chapter-[0-9]{2,}$"}}
+          }
+        }
+      ]
+    },
+    "brief": {
+      "type": "object",
+      "required": ["idea", "language", "aspect", "content_type", "genre", "target_seconds", "captions", "review_mode"],
+      "properties": {
+        "idea": {"type": "string", "minLength": 1},
+        "language": {"type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"},
+        "aspect": {"enum": ["9:16", "16:9"]},
+        "content_type": {"enum": ["fiction", "factual", "adaptation"]},
+        "genre": {"type": "string", "minLength": 1},
+        "target_seconds": {"type": "integer", "minimum": 5},
+        "captions": {
+          "type": "object",
+          "required": ["mode", "style"],
+          "properties": {
+            "mode": {"enum": ["karaoke", "plain", "none"]},
+            "style": {"type": "string", "pattern": "^[a-z0-9-]+$"}
+          }
+        },
+        "review_mode": {"const": "gated"}
+      }
+    },
+    "state": {
+      "type": "object",
+      "required": ["stage", "gates"],
+      "properties": {
+        "stage": {"enum": ["brief", "idea", "canon", "research", "adapt", "checks", "gate1", "cast", "voice", "images", "gate2", "captions", "render", "qc", "done"]},
+        "gates": {
+          "type": "object",
+          "required": ["script", "images"],
+          "properties": {"script": {"$ref": "#/$defs/gate"}, "images": {"$ref": "#/$defs/gate"}}
+        }
+      }
+    },
+    "style_bible": {
+      "type": "object",
+      "required": ["medium", "palette", "lighting", "composition", "avoid"],
+      "properties": {
+        "medium": {"type": "string"},
+        "palette": {"type": "array", "items": {"type": "string"}},
+        "lighting": {"type": "string"},
+        "composition": {"type": "string"},
+        "avoid": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "cast": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/cast_member"}},
+    "locations": {"type": "array", "items": {"$ref": "#/$defs/location"}},
+    "slides": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/slide"}},
+    "lines": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/line"}},
+    "research": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/research"}]},
+    "source_work": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/source_work"}]},
+    "learnings_applied": {"type": "array", "items": {"type": "string"}},
+    "output": {
+      "type": "object",
+      "required": ["video", "captions", "contact_sheet", "qc"],
+      "properties": {
+        "video": {"type": ["string", "null"]},
+        "captions": {"type": ["string", "null"]},
+        "contact_sheet": {"type": ["string", "null"]},
+        "qc": {"type": ["string", "null"]}
+      }
+    }
+  },
+  "$defs": {
+    "gate": {"type": "object", "required": ["approved_at"], "properties": {"approved_at": {"type": ["string", "null"]}}},
+    "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "asset": {
+      "type": "object",
+      "required": ["path", "input_hash", "status", "attempts"],
+      "properties": {
+        "path": {"type": ["string", "null"]},
+        "input_hash": {"type": ["string", "null"]},
+        "status": {"enum": ["pending", "done", "failed", "needs_human"]},
+        "attempts": {"type": "integer", "minimum": 0},
+        "last_error": {"type": ["string", "null"]}
+      }
+    },
+    "plate": {
+      "allOf": [
+        {"$ref": "#/$defs/asset"},
+        {"type": "object", "required": ["prompt"], "properties": {"prompt": {"type": "string", "minLength": 1}}}
+      ]
+    },
+    "voice": {
+      "type": "object",
+      "required": ["source", "profile_id"],
+      "properties": {
+        "source": {"enum": ["library", "design", "clone"]},
+        "profile_id": {"type": ["string", "null"]},
+        "library_ref": {"type": "string"},
+        "design_prompt": {"type": "string"},
+        "instruct": {"type": "string"},
+        "ref_audio": {"type": "string"},
+        "ref_text": {"type": "string"}
+      },
+      "allOf": [
+        {"if": {"properties": {"source": {"const": "library"}}}, "then": {"required": ["library_ref"]}},
+        {"if": {"properties": {"source": {"const": "design"}}}, "then": {"required": ["design_prompt"]}},
+        {"if": {"properties": {"source": {"const": "clone"}}}, "then": {"required": ["ref_audio"]}}
+      ]
+    },
+    "cast_member": {
+      "type": "object",
+      "required": ["id", "canon_id", "name", "role", "voice", "caption_color"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(narrator|C[0-9]{2,})$"},
+        "canon_id": {"type": ["string", "null"]},
+        "name": {"type": "string", "minLength": 1},
+        "role": {"enum": ["narrator", "protagonist", "antagonist", "deuteragonist", "supporting", "minor"]},
+        "appearance": {"type": "string"},
+        "pronunciation": {"type": "string"},
+        "voice": {"$ref": "#/$defs/voice"},
+        "caption_color": {"$ref": "#/$defs/color"},
+        "plates": {
+          "type": "object",
+          "required": ["face", "half", "full"],
+          "properties": {
+            "face": {"$ref": "#/$defs/plate"},
+            "half": {"$ref": "#/$defs/plate"},
+            "full": {"$ref": "#/$defs/plate"}
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["id", "canon_id", "name", "appearance", "plate"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^LOC[0-9]{2,}$"},
+        "canon_id": {"type": ["string", "null"]},
+        "name": {"type": "string", "minLength": 1},
+        "appearance": {"type": "string", "minLength": 1},
+        "plate": {"$ref": "#/$defs/plate"}
+      }
+    },
+    "slide": {
+      "type": "object",
+      "required": ["id", "source", "line_ids", "brief", "visual", "image"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^S[0-9]{2,}$"},
+        "source": {"type": ["string", "null"]},
+        "line_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^L[0-9]{3,}$"}},
+        "brief": {
+          "type": "object",
+          "required": ["moment", "characters", "location", "must_show", "must_not_show", "continuity", "beat"],
+          "properties": {
+            "moment": {"type": "string", "minLength": 1},
+            "characters": {"type": "array", "items": {"type": "string"}},
+            "location": {"type": ["string", "null"]},
+            "must_show": {"type": "array", "items": {"type": "string"}},
+            "must_not_show": {"type": "array", "items": {"type": "string"}},
+            "continuity": {"type": "array", "items": {"type": "string"}},
+            "beat": {"enum": ["setup", "question", "reveal", "reversal", "emotional", "resolution"]}
+          }
+        },
+        "visual": {
+          "type": "object",
+          "required": ["prompt", "shot", "motion", "text_placement"],
+          "properties": {
+            "prompt": {"type": "string", "minLength": 1},
+            "shot": {"enum": ["extreme-close", "close-up", "medium", "wide", "extreme-wide"]},
+            "motion": {"enum": ["static", "push_in", "pull_out", "pan_left", "pan_right"]},
+            "text_placement": {"enum": ["lower_third", "center", "upper_third"]}
+          }
+        },
+        "image": {
+          "allOf": [
+            {"$ref": "#/$defs/asset"},
+            {"type": "object", "required": ["seed"], "properties": {"seed": {"type": ["integer", "null"]}}}
+          ]
+        }
+      }
+    },
+    "word": {
+      "type": "object",
+      "required": ["text", "start_ms", "end_ms", "approx"],
+      "properties": {
+        "text": {"type": "string"},
+        "start_ms": {"type": "integer", "minimum": 0},
+        "end_ms": {"type": "integer", "minimum": 0},
+        "approx": {"type": "boolean"}
+      }
+    },
+    "line": {
+      "type": "object",
+      "required": ["id", "speaker", "text", "whisper", "pause_after_ms", "claim_ids", "audio", "words", "words_hash"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^L[0-9]{3,}$"},
+        "speaker": {"type": "string"},
+        "text": {"type": "string", "minLength": 1},
+        "whisper": {"type": "boolean"},
+        "pause_after_ms": {"type": "integer", "minimum": 0, "maximum": 10000},
+        "claim_ids": {"type": "array", "items": {"type": "string"}},
+        "audio": {
+          "allOf": [
+            {"$ref": "#/$defs/asset"},
+            {
+              "type": "object",
+              "required": ["duration_ms", "seed", "qc", "asr_words"],
+              "properties": {
+                "duration_ms": {"type": ["integer", "null"], "minimum": 1},
+                "seed": {"type": ["integer", "null"]},
+                "used_seed": {"type": ["integer", "null"]},
+                "qc": {"type": ["object", "null"]},
+                "asr_words": {"type": ["array", "null"]}
+              }
+            }
+          ]
+        },
+        "words": {"type": "array", "items": {"$ref": "#/$defs/word"}},
+        "words_hash": {"type": ["string", "null"]}
+      }
+    },
+    "research": {
+      "type": "object",
+      "required": ["notes", "claims"],
+      "properties": {
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "sources", "status"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^R[0-9]{2,}$"},
+              "title": {"type": "string"},
+              "sources": {"type": "array", "items": {"type": "string"}},
+              "status": {"enum": ["open", "verified", "disputed"]},
+              "accuracy": {"enum": ["must-be-accurate", "blended", "invented"]},
+              "confidence": {"enum": ["high", "medium", "low"]},
+              "checked_on": {"type": ["string", "null"]},
+              "risk": {"type": "array", "items": {"enum": ["legal", "medical", "weapons", "safety", "cultural", "defamation", "technical"]}}
+            }
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "text", "status", "note_ids"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^CL[0-9]{2,}$"},
+              "text": {"type": "string"},
+              "status": {"enum": ["verified", "unverified", "interpretation"]},
+              "note_ids": {"type": "array", "items": {"type": "string"}},
+              "limitations": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "source_work": {
+      "type": "object",
+      "required": ["title", "author", "rights_basis", "translation_used"],
+      "properties": {
+        "title": {"type": "string"},
+        "author": {"type": "string"},
+        "rights_basis": {"type": "string"},
+        "translation_used": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
