@@ -19,6 +19,7 @@ from sflib.project import (
 SIZES = {"1:1": (1024, 1024), "3:4": (768, 1024), "9:16": (1080, 1920), "16:9": (1920, 1080)}
 PLATE_ASPECT = {"face": "1:1", "half": "3:4", "full": "9:16"}
 TRANSIENT_RETRIES = 3
+QUALITY_RETRIES = 2
 ERROR_CODES = {"quota", "auth", "content_blocked", "transient", "invalid"}
 
 
@@ -53,16 +54,13 @@ class CommandProvider:
         prompt_file = self.prompt_dir / f"{out.stem}.txt"
         prompt_file.write_text(prompt, encoding="utf-8")
         out.parent.mkdir(parents=True, exist_ok=True)
-        # Pass relative path from project root for cleaner test filtering
-        project_dir = self.prompt_dir.parent
-        rel_out = out.relative_to(project_dir)
-        cmd = [*self.command, "--prompt-file", str(prompt_file), "--aspect", aspect, "--out", str(rel_out)]
+        cmd = [*self.command, "--prompt-file", str(prompt_file), "--aspect", aspect, "--out", str(out)]
         for ref in refs:
             cmd += ["--ref", str(ref)]
         if seed is not None:
             cmd += ["--seed", str(seed)]
         try:
-            proc = subprocess.run(cmd, capture_output=True, text=True, timeout=self.timeout_s, cwd=project_dir)
+            proc = subprocess.run(cmd, capture_output=True, text=True, timeout=self.timeout_s)
         except subprocess.TimeoutExpired as exc:
             raise ProviderError("transient", f"timed out after {self.timeout_s}s") from exc
         if proc.returncode != 0:
@@ -174,20 +172,36 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
         if entry.get("input_hash") != new_hash:
             entry["attempts"] = 0
         out = project_dir / rel_path
-        try:
-            _generate_with_retries(provider, prompt, aspect, [project_dir / ref for ref in refs], seed, out, sleep)
-            check_image(out, aspect)
-        except ProviderError as exc:
-            if exc.code in ("quota", "auth", "invalid"):
-                raise
-            entry.update(status="needs_human", input_hash=new_hash, last_error=f"{exc.code}: {exc.message}")
-            summary["needs_human"].append(item)
-        except QualityError as exc:
-            entry.update(status="needs_human", input_hash=new_hash, last_error=str(exc))
-            summary["needs_human"].append(item)
-        else:
-            entry.update(status="done", path=rel_path, input_hash=new_hash, last_error=None)
-            summary["done"].append(item)
+        last_quality_error = None
+        for quality_attempt in range(QUALITY_RETRIES + 1):
+            try:
+                _generate_with_retries(provider, prompt, aspect, [project_dir / ref for ref in refs], seed, out, sleep)
+                check_image(out, aspect)
+                # Success: mark as done
+                entry.update(status="done", path=rel_path, input_hash=new_hash, last_error=None)
+                summary["done"].append(item)
+                entry["attempts"] = entry.get("attempts", 0) + 1
+                log(project_dir, "sf_image", f"{item}: {entry['status']} (attempt {entry['attempts']})")
+                save_story(project_dir, story)
+                return
+            except ProviderError as exc:
+                if exc.code in ("quota", "auth", "invalid"):
+                    raise
+                # content_blocked or transient exhausted: mark needs_human immediately
+                entry.update(status="needs_human", input_hash=new_hash, last_error=f"{exc.code}: {exc.message}")
+                summary["needs_human"].append(item)
+                entry["attempts"] = entry.get("attempts", 0) + 1
+                log(project_dir, "sf_image", f"{item}: {entry['status']} (attempt {entry['attempts']})")
+                save_story(project_dir, story)
+                return
+            except QualityError as exc:
+                last_quality_error = str(exc)
+                if quality_attempt < QUALITY_RETRIES:
+                    entry["attempts"] = entry.get("attempts", 0) + 1
+                    continue
+        # All quality retries exhausted
+        entry.update(status="needs_human", input_hash=new_hash, last_error=last_quality_error)
+        summary["needs_human"].append(item)
         entry["attempts"] = entry.get("attempts", 0) + 1
         log(project_dir, "sf_image", f"{item}: {entry['status']} (attempt {entry['attempts']})")
         save_story(project_dir, story)

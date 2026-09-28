@@ -14,12 +14,12 @@ FAKE = {"image": {"provider": "fake", "max_refs": 4}}
 def _command_config(tmp_path, fail_when: str, error: str) -> dict:
     script = tmp_path / "provider.py"
     script.write_text(textwrap.dedent(f"""
-        import json, sys
+        import json, sys, os
         from PIL import Image
         args = sys.argv[1:]
         out = args[args.index("--out") + 1]
         aspect = args[args.index("--aspect") + 1]
-        if {fail_when!r} in out:
+        if {fail_when!r} in os.path.basename(out):
             print(json.dumps({{"error": {error!r}, "message": "refused"}}), file=sys.stderr)
             sys.exit(1)
         sizes = {{"1:1": (64, 64), "3:4": (48, 64), "9:16": (36, 64), "16:9": (64, 36)}}
@@ -91,4 +91,32 @@ def test_wrong_aspect_marks_needs_human(tmp_path):
     assert code == 2
     assert "LOC01" in summary["needs_human"]
     assert "expected aspect 9:16" in load_story(project)["locations"][0]["plate"]["last_error"]
+    assert load_story(project)["locations"][0]["plate"]["attempts"] == 3
     assert summary["blocked"] == ["S01 waits for LOC01", "S02 waits for LOC01"]
+
+
+def test_quality_failure_is_regenerated_then_passes(tmp_path):
+    script = tmp_path / "provider.py"
+    script.write_text(textwrap.dedent("""
+        import json, sys, os
+        from pathlib import Path
+        from PIL import Image
+        args = sys.argv[1:]
+        out = args[args.index("--out") + 1]
+        aspect = args[args.index("--aspect") + 1]
+        sizes = {"1:1": (64, 64), "3:4": (48, 64), "9:16": (36, 64), "16:9": (64, 36)}
+        # Track calls: first call writes wrong size, second call writes correct size
+        counter_file = Path(out).parent / ".call_count"
+        call_num = int(counter_file.read_text()) if counter_file.exists() else 0
+        counter_file.write_text(str(call_num + 1))
+        if call_num == 0:
+            Image.new("RGB", (50, 64), "gray").save(out)
+        else:
+            Image.new("RGB", sizes[aspect], "gray").save(out)
+    """), encoding="utf-8")
+    config = {"image": {"provider": "command", "command": [sys.executable, str(script)], "timeout_s": 30, "max_refs": 4}}
+    project = write_project(tmp_path, make_story())
+    summary, code = sf_image.run(project, config=config)
+    assert code == 0
+    assert summary["done"] == ["C01_face", "C01_half", "C01_full", "LOC01", "S01", "S02"]
+    assert load_story(project)["cast"][1]["plates"]["face"]["attempts"] == 2
