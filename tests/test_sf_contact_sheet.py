@@ -1,0 +1,25 @@
+from PIL import Image
+
+from fixtures import make_story, write_project
+import sf_contact_sheet
+import sf_image
+from sflib.project import load_story
+
+
+def test_contact_sheet_has_every_plate_and_slide(tmp_path):
+    project = write_project(tmp_path, make_story())
+    sf_image.run(project, config={"image": {"provider": "fake", "max_refs": 4}})
+    summary, code = sf_contact_sheet.run(project)
+    assert code == 0
+    assert summary == {"tiles": 6, "missing": []}
+    sheet = Image.open(project / "out/contact_sheet.png")
+    # 6 tiles in one row of 6 columns: width = 6*270 + 7*12, height = 480 + 56 + 2*12
+    assert sheet.size == (6 * 270 + 7 * 12, 480 + 56 + 2 * 12)
+    assert load_story(project)["output"]["contact_sheet"] == "out/contact_sheet.png"
+
+
+def test_missing_images_are_reported(tmp_path):
+    project = write_project(tmp_path, make_story())
+    summary, code = sf_contact_sheet.run(project)
+    assert code == 2
+    assert summary["missing"] == ["C01_face", "C01_half", "C01_full", "LOC01", "S01", "S02"]
