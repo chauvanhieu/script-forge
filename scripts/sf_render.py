@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""Render out/final.mp4: per-slide motion clips, a sample-exact audio timeline, and burned-in captions."""
+from __future__ import annotations
+
+import json
+import wave
+from pathlib import Path
+
+from sflib.media import decode_pcm, has_filter, run_ffmpeg
+from sflib.project import EXIT_HUMAN, EXIT_OK, file_hash, input_hash, load_story, main_wrapper, save_story
+from sflib.timeline import FPS, build_timeline
+
+SIZE = {"9:16": (1080, 1920), "16:9": (1920, 1080)}
+ZOOM = 0.08
+RATE = 48000
+
+
+def motion_filter(motion: str, frames: int, width: int, height: int) -> str:
+    n = frames
+    center_x, center_y = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+    if motion == "static":
+        z, x, y = "1", center_x, center_y
+    elif motion == "push_in":
+        z, x, y = f"1+{ZOOM}*on/{n}", center_x, center_y
+    elif motion == "pull_out":
+        z, x, y = f"{1 + ZOOM}-{ZOOM}*on/{n}", center_x, center_y
+    elif motion == "pan_left":
+        z, x, y = f"{1 + ZOOM}", f"(iw-iw/zoom)*(1-on/{n})", center_y
+    elif motion == "pan_right":
+        z, x, y = f"{1 + ZOOM}", f"(iw-iw/zoom)*on/{n}", center_y
+    else:
+        raise ValueError(f"unknown motion {motion!r}")
+    return (f"scale={width * 2}:{height * 2}:force_original_aspect_ratio=increase,crop={width * 2}:{height * 2},"
+            f"zoompan=z='{z}':x='{x}':y='{y}':d={n}:s={width}x{height}:fps={FPS},setsar=1,format=yuv420p")
+
+
+def _missing(story: dict, project_dir: Path) -> list[str]:
+    missing = []
+    for slide in story["slides"]:
+        image = slide["image"]
+        if image.get("status") != "done" or not (project_dir / (image.get("path") or "")).is_file():
+            missing.append(f"{slide['id']}: image missing")
+    for line in story["lines"]:
+        audio = line["audio"]
+        if audio.get("status") != "done" or not (project_dir / (audio.get("path") or "")).is_file():
+            missing.append(f"{line['id']}: audio missing")
+    return missing
+
+
+def _write_timeline_wav(story: dict, timeline, project_dir: Path, out: Path) -> None:
+    buffer = bytearray(round(timeline.total_ms * RATE / 1000) * 2)
+    for line in story["lines"]:
+        pcm = decode_pcm(project_dir / line["audio"]["path"], RATE)
+        offset = round(timeline.line_start_ms[line["id"]] * RATE / 1000) * 2
+        end = min(offset + len(pcm), len(buffer))
+        buffer[offset:end] = pcm[: end - offset]
+    with wave.open(str(out), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(RATE)
+        wav.writeframes(bytes(buffer))
+
+
+def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] | None = None) -> tuple[dict, int]:
+    story = load_story(project_dir)
+    summary: dict = {"video": None, "frames": 0, "duration_ms": 0, "rendered": [], "cached": 0, "needs_human": []}
+    missing = _missing(story, project_dir)
+    captions = None
+    if story["brief"]["captions"]["mode"] != "none":
+        captions = story["output"].get("captions")
+        if not captions or not (project_dir / captions).is_file():
+            missing.append("captions are not built; run sf_captions")
+        elif not has_filter("ass"):
+            missing.append("ffmpeg has no 'ass' filter; install an ffmpeg build with libass")
+    if missing:
+        summary["needs_human"] = missing
+        return summary, EXIT_HUMAN
+    width, height = size or SIZE[story["brief"]["aspect"]]
+    timeline = build_timeline(story)
+    clips = project_dir / "clips"
+    clips.mkdir(exist_ok=True)
+    manifest_path = clips / "manifest.json"
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    slides = {slide["id"]: slide for slide in story["slides"]}
+    for span in timeline.slides:
+        slide = slides[span.slide_id]
+        if span.frames < 1:
+            raise ValueError(f"{span.slide_id} spans {span.frames} frames; its lines are too short")
+        image = project_dir / slide["image"]["path"]
+        clip = clips / f"{span.slide_id}.mp4"
+        clip_hash = input_hash({"image": file_hash(image), "motion": slide["visual"]["motion"],
+                                "frames": span.frames, "size": [width, height]})
+        if manifest.get(span.slide_id) == clip_hash and clip.is_file() and (only is None or span.slide_id not in only):
+            summary["cached"] += 1
+            continue
+        run_ffmpeg(["-i", str(image), "-vf", motion_filter(slide["visual"]["motion"], span.frames, width, height),
+                    "-frames:v", str(span.frames), "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+                    "-pix_fmt", "yuv420p", "-r", str(FPS), str(clip)])
+        manifest[span.slide_id] = clip_hash
+        summary["rendered"].append(span.slide_id)
+    manifest_path.write_text(json.dumps(manifest, indent=2))
+    (clips / "concat.txt").write_text("".join(f"file '{span.slide_id}.mp4'\n" for span in timeline.slides))
+    _write_timeline_wav(story, timeline, project_dir, clips / "timeline.wav")
+    (project_dir / "out").mkdir(exist_ok=True)
+    args = ["-f", "concat", "-safe", "0", "-i", "clips/concat.txt", "-i", "clips/timeline.wav"]
+    if captions:
+        args += ["-vf", f"ass={captions}"]
+    args += ["-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+             "-pix_fmt", "yuv420p", "-r", str(FPS), "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
+             "-ar", str(RATE), "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", "out/final.mp4"]
+    run_ffmpeg(args, cwd=project_dir)
+    story["output"]["video"] = "out/final.mp4"
+    save_story(project_dir, story)
+    summary.update(video="out/final.mp4", frames=timeline.total_frames, duration_ms=timeline.total_ms)
+    return summary, EXIT_OK
+
+
+if __name__ == "__main__":
+    main_wrapper(run, __doc__)

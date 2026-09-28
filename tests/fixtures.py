@@ -164,3 +164,24 @@ def sine_wav_bytes(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
         wav.setframerate(rate)
         wav.writeframes(frames)
     return buffer.getvalue()
+
+
+def prepare_media(root: Path, story: dict, durations: list[int]) -> Path:
+    """Write the project, fake images for every plate/slide, sine WAVs, and approx words for every line."""
+    import sf_align
+    import sf_image
+    from sflib.project import load_story, save_story
+    from sflib.text import tokens
+
+    project = write_project(root, story)
+    sf_image.run(project, config={"image": {"provider": "fake", "max_refs": 4}})
+    story = load_story(project)
+    (project / "audio").mkdir(exist_ok=True)
+    for line, ms in zip(story["lines"], durations):
+        rel = f"audio/{line['id']}.wav"
+        (project / rel).write_bytes(sine_wav_bytes(ms))
+        line["audio"].update(status="done", path=rel, duration_ms=ms, input_hash=f"h-{line['id']}")
+        line["words"] = sf_align.align_line(tokens(line["text"], story["brief"]["language"]), [], ms, story["brief"]["language"])
+        line["words_hash"] = f"h-{line['id']}"
+    save_story(project, story)
+    return project
