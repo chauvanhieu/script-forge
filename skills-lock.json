@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "skills": {
+    "adaptation": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/adaptation/SKILL.md",
+      "computedHash": "49100ceea28f648a977019ac32ebd9bc3490ab25e1bb1696431357a1e601eac0"
+    },
+    "chapter-writing": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/chapter-writing/SKILL.md",
+      "computedHash": "f6bdb65ee1ab97872d79741a1e15ad9dae15ad27c0213f5a4d41efb1c4372dd3"
+    },
+    "character-management": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/character-management/SKILL.md",
+      "computedHash": "8eb8bfe42d4587477e7d25452f7a2fb1fd860047f654165ef2618abacbe1c57a"
+    },
+    "discovery-drafting": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/discovery-drafting/SKILL.md",
+      "computedHash": "8e10d8a1bb0bbbcd030a831d26d97e1c7c1aa209602b0ee5503677eb167430b4"
+    },
+    "editorial-review": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/editorial-review/SKILL.md",
+      "computedHash": "f786c56383ecc2c6478e02a733f7197793976a70d8ee5af19063b4ceab219ec3"
+    },
+    "feedback-triage": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/feedback-triage/SKILL.md",
+      "computedHash": "97c6d647ee684c8f4b173b3946c5cf79291e87015e22f4295983eca572175478"
+    },
+    "genre-craft": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/genre-craft/SKILL.md",
+      "computedHash": "dc779ce0a0bd8c55c20c1b6cdf8816ab62af169bc16a5659c262f8d4e326db6d"
+    },
+    "line-editing": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/line-editing/SKILL.md",
+      "computedHash": "13479e794ca683216a07e29dfc631f7719bbb05df6bcfb3e2e5f3678e385cd56"
+    },
+    "plot-structure": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/plot-structure/SKILL.md",
+      "computedHash": "9fcd9495536290e8553e9111c1b815a4310cff010b862f23a384630c48e9f464"
+    },
+    "premise-workshop": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/premise-workshop/SKILL.md",
+      "computedHash": "7a9664927488110b394577ca6b2d325f5e50c38deabf3fe441d09cb1a1356621"
+    },
+    "publishing": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/publishing/SKILL.md",
+      "computedHash": "5ae0e3d25316dcf8c14c6ed9f2b964e948a5b6662fac7245d74c85367683d6be"
+    },
+    "research": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/research/SKILL.md",
+      "computedHash": "5b061fa52a05b9ac5a4615d21d6c9c02a7badcb485ad3a458b4b1e63d4b80cf0"
+    },
+    "revision-continuity": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/revision-continuity/SKILL.md",
+      "computedHash": "076841c5b83e3f2c3c3b9bf898eaa1b60cf1c8dcdf4fe7445ce79ef9a0f04909"
+    },
+    "scene-craft": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/scene-craft/SKILL.md",
+      "computedHash": "f6178799987579312c6f955126ca2d9367e0bd18962e863e15a6d05a7d16767c"
+    },
+    "series-continuity": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/series-continuity/SKILL.md",
+      "computedHash": "2e41833a8ff3cb99cd0998e7a3401ed40f5571abd12c12fb3642156249a5f801"
+    },
+    "story-init": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-init/SKILL.md",
+      "computedHash": "1e3f420cb13e50b330ec5eeed91beb979878596e6dc7dcb3a75d90c2861a185b"
+    },
+    "story-maintenance": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/story-maintenance/SKILL.md",
+      "computedHash": "033ca07b86c6aa12ba0e8416f69f38dbc50107bb18cff939ca35a30a812215d0"
+    },
+    "submission": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/submission/SKILL.md",
+      "computedHash": "7d21dfee9fc139a75b053b35b23885aa09601a724a12b1f56fe3dbb7d2208702"
+    },
+    "theme-craft": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/theme-craft/SKILL.md",
+      "computedHash": "8b76bdbef06a27c23cab9e68ed0c411fa548177f363832794bd7a3602211ed23"
+    },
+    "verse-craft": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/verse-craft/SKILL.md",
+      "computedHash": "dedfca8301916eb53b229412f53c16ec877794a91bfe0a229a543c4800bdf3ae"
+    },
+    "voice-style": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/voice-style/SKILL.md",
+      "computedHash": "3743c92ae741e132eeae960ea94aefc056c02b7d2d4cd435bfb222ec9ce7a8e1"
+    },
+    "worldbuilding": {
+      "source": "danjdewhurst/story-skills",
+      "sourceType": "github",
+      "skillPath": "skills/worldbuilding/SKILL.md",
+      "computedHash": "84bf04951971db6f7fb54a73790d13381dfe2eb216e06577af9813d1404642d8"
+    }
+  }
+}
