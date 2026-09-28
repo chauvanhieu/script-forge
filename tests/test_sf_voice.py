@@ -105,3 +105,15 @@ def test_retake_seed_stays_in_int32(tmp_path):
     assert audio["used_seed"] == (2_147_483_646 + sf_voice.RETAKE_SEED_STEP) % 2_147_483_647
     assert all(0 <= call["seed"] < 2 ** 31 for call in vs.calls)
 
+
+def test_only_cast_id_recasts_that_voice_and_its_lines(tmp_path):
+    project = write_project(tmp_path, make_story())
+    sf_voice.run(project, config=CONFIG, client=FakeVS(), root=tmp_path)
+    vs = FakeVS()
+    vs.profiles = 10
+    summary, code = sf_voice.run(project, only={"C01"}, config=CONFIG, client=vs, root=tmp_path)
+    assert code == 0 and summary["profiles"] == ["C01"] and summary["done"] == ["L002", "L003"]
+    story = load_story(project)
+    assert [c["voice"]["profile_id"] for c in story["cast"]] == ["p1", "p11"]
+    assert {call["profile_id"] for call in vs.calls} == {"p11"}
+

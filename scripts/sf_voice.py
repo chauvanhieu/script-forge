@@ -50,11 +50,11 @@ def _with_retries(call: Callable, sleep: Callable[[float], None]):
             sleep(2 ** attempt)
 
 
-def _ensure_profiles(story: dict, vs, root: Path, project_dir: Path, summary: dict) -> None:
+def _ensure_profiles(story: dict, vs, root: Path, project_dir: Path, summary: dict, recast: set[str]) -> None:
     language = story["brief"]["language"].split("-")[0]
     for member in story["cast"]:
         voice = member["voice"]
-        if voice.get("profile_id"):
+        if voice.get("profile_id") and member["id"] not in recast:
             continue
         name = f"{story['slug']}-{member['id']}"
         if voice["source"] == "library":
@@ -107,11 +107,12 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
     language = story["brief"]["language"].split("-")[0]
     engine = voice_cfg.get("engine")
     cast = {member["id"]: member for member in story["cast"]}
+    recast = set(cast) & (only or set())  # --only C01 re-creates C01's profile and re-voices all its lines
     try:
         vs.health()
-        _ensure_profiles(story, vs, root, project_dir, summary)
+        _ensure_profiles(story, vs, root, project_dir, summary, recast)
         for line in story["lines"]:
-            if not wanted(line["id"], only):
+            if not (wanted(line["id"], only) or line["speaker"] in recast):
                 continue
             member = cast[line["speaker"]]
             profile_id = member["voice"].get("profile_id")
