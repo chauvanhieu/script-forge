@@ -29,6 +29,19 @@ def test_creates_profiles_and_synthesizes_every_line(tmp_path):
     assert vs.calls[0]["instruct"] is None and vs.calls[0]["language"] == "en"
 
 
+def test_tag_only_line_reaches_done(tmp_path):
+    story = make_story()
+    story["lines"][1]["text"] = "[sigh] [pause 300ms]"  # nothing to speak: display text is empty
+    project = write_project(tmp_path, story)
+    vs = FakeVS()
+    summary, code = sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    assert code == 0
+    assert summary["done"] == ["L001", "L002", "L003"]
+    audio = load_story(project)["lines"][1]["audio"]
+    assert audio["status"] == "done" and audio["qc"]["reasons"] == []
+    assert audio["qc"]["cps"] is None and audio["qc"]["cer"] is None
+
+
 def test_second_run_skips_everything(tmp_path):
     project = write_project(tmp_path, make_story())
     sf_voice.run(project, config=CONFIG, client=FakeVS(), root=tmp_path)

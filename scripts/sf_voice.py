@@ -82,18 +82,20 @@ def _ensure_profiles(story: dict, vs, root: Path, project_dir: Path, summary: di
 
 def _quality(vs, wav: Path, line: dict, language: str, duration_ms: int, meta: dict, qc_cfg: dict) -> tuple[dict, list | None]:
     shown = display_text(line["text"])
-    cps = len("".join(norm(shown).split())) / max(duration_ms / 1000, 0.001)
-    qc: dict = {"cps": round(cps, 2), "cer": None, "asr": "ok", "reasons": []}
+    qc: dict = {"cps": None, "cer": None, "asr": "ok", "reasons": []}
     if meta.get("dropped_chunks"):
         qc["reasons"].append("VoiceStudio dropped part of the text")
-    if not qc_cfg["min_cps"] <= cps <= qc_cfg["max_cps"]:
-        qc["reasons"].append(f"speaking rate {cps:.1f} chars/s outside [{qc_cfg['min_cps']}, {qc_cfg['max_cps']}]")
+    if shown:  # a tag-only line (e.g. "[sigh]") has nothing to clock a speaking rate against
+        cps = len("".join(norm(shown).split())) / max(duration_ms / 1000, 0.001)
+        qc["cps"] = round(cps, 2)
+        if not qc_cfg["min_cps"] <= cps <= qc_cfg["max_cps"]:
+            qc["reasons"].append(f"speaking rate {cps:.1f} chars/s outside [{qc_cfg['min_cps']}, {qc_cfg['max_cps']}]")
     words = None
     try:
         words = vs.transcribe_words(wav, language)
     except ProviderError as exc:
         qc["asr"] = f"skipped: {exc.code}: {exc.message}"
-    if words is not None:
+    if words is not None and shown:  # an empty reference makes CER meaningless (0 or 1 on ASR noise alone)
         error = cer(shown, " ".join(word["text"] for word in words))
         qc["cer"] = round(error, 3)
         if error > qc_cfg["max_cer"]:

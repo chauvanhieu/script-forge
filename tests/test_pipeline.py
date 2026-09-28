@@ -39,3 +39,14 @@ def test_revoiced_line_rebuilds_words_and_captions(tmp_path):
     assert line["words"][-1]["end_ms"] == 2500
     ass = (project / "out/captions.ass").read_text(encoding="utf-8")
     assert "Dialogue: 0,0:00:00.00,0:00:02.50,narrator," in ass
+
+
+def test_tag_only_line_flows_through_the_whole_pipeline(tmp_path):
+    story = make_story()
+    story["lines"][2]["text"] = "[sigh] [pause 300ms]"  # nothing to speak: legal per spec, empty display text
+    project = write_project(tmp_path, story)
+    sf_image.run(project, config={"image": {"provider": "fake", "max_refs": 4}})
+    summary, code = _chain(project, tmp_path, FakeVS())
+    assert code == 0, summary
+    line = load_story(project)["lines"][2]
+    assert line["audio"]["status"] == "done" and line["words"] == []
