@@ -8,7 +8,10 @@ from pathlib import Path
 
 
 def _probe(args: list[str]) -> dict:
-    proc = subprocess.run(["ffprobe", "-v", "error", *args, "-of", "json"], capture_output=True, text=True, check=True)
+    proc = subprocess.run(["ffprobe", "-v", "error", *args, "-of", "json"], capture_output=True, text=True)
+    if proc.returncode != 0:
+        path_arg = next((arg for arg in args if not arg.startswith("-")), "unknown")
+        raise RuntimeError(f"ffprobe failed on {path_arg}: {proc.stderr.strip()}")
     return json.loads(proc.stdout)
 
 
@@ -42,7 +45,10 @@ def run_ffmpeg(args: list[str], cwd: Path | None = None) -> None:
 
 def decode_pcm(path: Path, rate: int = 48000) -> bytes:
     proc = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", str(path),
-                           "-f", "s16le", "-ac", "1", "-ar", str(rate), "-"], capture_output=True, check=True)
+                           "-f", "s16le", "-ac", "1", "-ar", str(rate), "-"], capture_output=True, text=False)
+    if proc.returncode != 0:
+        stderr = proc.stderr.decode("utf-8", errors="replace") if isinstance(proc.stderr, bytes) else proc.stderr
+        raise RuntimeError(f"ffmpeg decode failed on {path}: {stderr.strip()}")
     return proc.stdout
 
 
@@ -50,4 +56,6 @@ def silences(path: Path, noise_db: int = -45, min_s: float = 0.3) -> list[float]
     proc = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af",
                            f"silencedetect=noise={noise_db}dB:d={min_s}", "-f", "null", "-"],
                           capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg silence detection failed on {path}: {proc.stderr.strip()}")
     return [float(v) for v in re.findall(r"silence_duration: ([0-9.]+)", proc.stderr)]

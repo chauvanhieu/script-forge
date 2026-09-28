@@ -71,21 +71,56 @@ def test_health_unreachable_is_auth():
     assert "open the VoiceStudio app" in info.value.message
 
 
-def test_transcribe_words_flattens_segment_words(tmp_path):
+def test_transcribe_words_reads_verbose_json_words(tmp_path):
     wav = tmp_path / "a.wav"
     wav.write_bytes(sine_wav_bytes(300))
 
     def handler(request: httpx.Request) -> httpx.Response:
-        assert b'name="mode"' in request.content and b"accurate" in request.content
-        return httpx.Response(200, json={"segments": [
-            {"text": "Every night", "words": [{"word": " Every", "start": 0.0, "end": 0.3}, {"word": "night", "start": 0.3, "end": 0.6}]},
-            {"text": "for 11", "words": [{"word": "for", "start": 0.6, "end": 0.8}, {"word": "11"}]},
+        assert request.url.path == "/v1/audio/transcriptions"
+        assert b'name="response_format"' in request.content and b"verbose_json" in request.content
+        assert b'name="timestamp_granularities[]"' in request.content and b"word" in request.content
+        return httpx.Response(200, json={"text": "Every night for", "words": [
+            {"word": " Every", "start": 0.0, "end": 0.3},
+            {"word": "night", "start": 0.3, "end": 0.6},
+            {"word": " ", "start": 0.6, "end": 0.7},
+            {"word": "for", "start": 0.7, "end": 0.9},
         ]})
 
     words = _client(handler).transcribe_words(wav, "en")
     assert words == [
         {"text": "Every", "start": 0.0, "end": 0.3},
         {"text": "night", "start": 0.3, "end": 0.6},
-        {"text": "for", "start": 0.6, "end": 0.8},
-        {"text": "11", "start": None, "end": None},
+        {"text": "for", "start": 0.7, "end": 0.9},
     ]
+
+
+def test_transcribe_words_handles_missing_words_key(tmp_path):
+    wav = tmp_path / "a.wav"
+    wav.write_bytes(sine_wav_bytes(100))
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.path == "/v1/audio/transcriptions"
+        return httpx.Response(200, json={"text": "something"})
+
+    words = _client(handler).transcribe_words(wav, "en")
+    assert words == []
+
+
+def test_probe_duration_ms_raises_on_invalid_file(tmp_path):
+    from sflib.media import probe_duration_ms
+    bad_file = tmp_path / "x.wav"
+    bad_file.write_text("not media")
+    with pytest.raises(RuntimeError) as exc_info:
+        probe_duration_ms(bad_file)
+    assert "ffprobe failed" in str(exc_info.value)
+    assert "x.wav" in str(exc_info.value)
+
+
+def test_silences_raises_on_invalid_file(tmp_path):
+    from sflib.media import silences
+    bad_file = tmp_path / "x.wav"
+    bad_file.write_text("not media")
+    with pytest.raises(RuntimeError) as exc_info:
+        silences(bad_file)
+    assert "ffmpeg silence detection failed" in str(exc_info.value)
+    assert "x.wav" in str(exc_info.value)

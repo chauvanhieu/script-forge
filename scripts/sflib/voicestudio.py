@@ -81,12 +81,12 @@ class VoiceStudio:
 
     def transcribe_words(self, wav: Path, language: str) -> list[dict]:
         with wav.open("rb") as fh:
-            response = self._request("POST", "/transcribe", data={"language": language, "mode": "accurate"},
-                                     files={"audio": (wav.name, fh, "audio/wav")})
+            response = self._request("POST", "/v1/audio/transcriptions",
+                                     data={"language": language, "response_format": "verbose_json", "timestamp_granularities[]": "word"},
+                                     files={"file": (wav.name, fh, "audio/wav")})
         words = []
-        for segment in response.json().get("segments", []):
-            for word in segment.get("words") or []:
-                text = (word.get("word") or word.get("text") or "").strip()
-                if text:
-                    words.append({"text": text, "start": word.get("start"), "end": word.get("end")})
+        for word in response.json().get("words", []):
+            text = (word.get("word") or "").strip()
+            if text:
+                words.append({"text": text, "start": word.get("start"), "end": word.get("end")})
         return words
