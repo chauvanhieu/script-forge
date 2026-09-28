@@ -2,7 +2,11 @@
 from __future__ import annotations
 
 import copy
+import io
 import json
+import math
+import struct
+import wave
 from pathlib import Path
 
 
@@ -148,3 +152,15 @@ def write_project(root: Path, story: dict) -> Path:
     project.mkdir(parents=True, exist_ok=True)
     (project / "story.json").write_text(json.dumps(story, ensure_ascii=False, indent=2), encoding="utf-8")
     return project
+
+
+def sine_wav_bytes(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
+    count = round(rate * ms / 1000)
+    frames = b"".join(struct.pack("<h", int(8000 * math.sin(2 * math.pi * freq * i / rate))) for i in range(count))
+    buffer = io.BytesIO()
+    with wave.open(buffer, "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(rate)
+        wav.writeframes(frames)
+    return buffer.getvalue()
