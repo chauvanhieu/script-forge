@@ -1,43 +1,8 @@
-from fixtures import make_story, sine_wav_bytes, write_project
+from fixtures import FakeVS, make_story, write_project
 import sf_voice
-from sflib.project import ProviderError, load_story
-from sflib.text import display_text
+from sflib.project import load_story
 
 CONFIG = {"voice": {"base_url": "http://vs.local", "engine": None, "qc": {"max_cer": 0.25, "min_cps": 2, "max_cps": 30}}}
-
-
-class FakeVS:
-    def __init__(self, bad_transcripts: int = 0, fail_generate: str | None = None):
-        self.calls: list[dict] = []
-        self.bad_left = bad_transcripts
-        self.fail_generate = fail_generate
-        self.profiles = 0
-
-    def health(self):
-        return None
-
-    def describe(self, description):
-        return {"attrs": {"Gender": "female"}, "instruct": "female"}
-
-    def create_design_profile(self, name, attrs, instruct, language):
-        self.profiles += 1
-        return f"p{self.profiles}"
-
-    def create_clone_profile(self, name, ref_audio, ref_text, language):
-        raise AssertionError("not used")
-
-    def generate(self, *, text, language, profile_id, seed, engine=None, instruct=None):
-        self.calls.append({"text": text, "seed": seed, "instruct": instruct, "profile_id": profile_id, "language": language})
-        if self.fail_generate:
-            raise ProviderError(self.fail_generate, "refused")
-        return sine_wav_bytes(1000), {"seed": str(seed), "duration_s": "1.0", "dropped_chunks": None}
-
-    def transcribe_words(self, wav, language):
-        if self.bad_left > 0:
-            self.bad_left -= 1
-            return [{"text": "zzz qqq", "start": 0.0, "end": 0.5}]
-        words = display_text(self.calls[-1]["text"]).split()
-        return [{"text": w, "start": i * 0.2, "end": i * 0.2 + 0.2} for i, w in enumerate(words)]
 
 
 def test_cer():
@@ -105,3 +70,38 @@ def test_library_voice_missing_needs_human(tmp_path):
     assert code == 2
     assert any("library voice" in item for item in summary["needs_human"])
     assert "L001" not in summary["done"]
+
+
+def test_failed_redo_keeps_the_old_take_consistent_with_story(tmp_path):
+    from sflib.media import probe_duration_ms
+    project = write_project(tmp_path, make_story())
+    sf_voice.run(project, config=CONFIG, client=FakeVS(), root=tmp_path)
+    vs = FakeVS(bad_transcripts=1, fail_generate="quota", fail_after=1, durations={"Every night for eleven years.": 3000})
+    summary, code = sf_voice.run(project, only={"L001"}, config=CONFIG, client=vs, root=tmp_path)
+    assert code == 3 and len(vs.calls) == 2
+    audio = load_story(project)["lines"][0]["audio"]
+    assert probe_duration_ms(project / audio["path"]) == audio["duration_ms"] == 1000
+    assert sorted(p.name for p in (project / "audio").iterdir()) == ["L001.wav", "L002.wav", "L003.wav"]
+
+
+def test_new_audio_invalidates_aligned_words(tmp_path):
+    project = write_project(tmp_path, make_story())
+    sf_voice.run(project, config=CONFIG, client=FakeVS(), root=tmp_path)
+    import sf_align
+    sf_align.run(project)
+    sf_voice.run(project, only={"L001"}, config=CONFIG, client=FakeVS(), root=tmp_path)
+    lines = load_story(project)["lines"]
+    assert lines[0]["words"] == [] and lines[0]["words_hash"] is None
+    assert lines[1]["words_hash"] == lines[1]["audio"]["input_hash"]
+
+
+def test_retake_seed_stays_in_int32(tmp_path):
+    story = make_story()
+    story["lines"][0]["audio"]["seed"] = 2_147_483_646
+    project = write_project(tmp_path, story)
+    vs = FakeVS(bad_transcripts=1)
+    sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    audio = load_story(project)["lines"][0]["audio"]
+    assert audio["used_seed"] == (2_147_483_646 + sf_voice.RETAKE_SEED_STEP) % 2_147_483_647
+    assert all(0 <= call["seed"] < 2 ** 31 for call in vs.calls)
+

@@ -100,3 +100,19 @@ def test_stale_words_need_alignment(tmp_path):
     save_story(project, story)
     summary, code = sf_captions.run(project, styles_dir=STYLES)
     assert code == 2 and summary["needs_human"] == ["L002: words are missing or stale; run sf_align"]
+
+
+def test_tag_only_line_is_aligned_once_and_captioned(tmp_path):
+    import sf_align
+    project = _project(tmp_path)
+    story = load_story(project)
+    story["lines"][2]["text"] = "[sigh]"
+    story["lines"][2].update(words=[], words_hash=None)
+    story["lines"][2]["audio"].update(path="audio/L003.wav", asr_words=[])
+    from sflib.project import save_story
+    save_story(project, story)
+    sf_align.run(project)
+    summary, _ = sf_align.run(project)
+    assert summary["aligned"] == [] and summary["skipped"] == 3
+    summary, code = sf_captions.run(project, styles_dir=STYLES)
+    assert code == 0 and summary["cues"] == 2

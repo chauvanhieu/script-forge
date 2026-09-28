@@ -97,7 +97,7 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
         if audio.get("status") != "done" or not audio.get("duration_ms"):
             summary["needs_human"].append(f"{line['id']} has no audio")
             continue
-        if only is None and line.get("words") and line.get("words_hash") == audio["input_hash"]:
+        if only is None and line.get("words_hash") == audio["input_hash"]:  # a tag-only line aligns to []
             summary["skipped"] += 1
             continue
         asr_words = audio.get("asr_words")

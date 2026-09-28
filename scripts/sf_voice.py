@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import time
 from pathlib import Path
 from typing import Callable
@@ -131,17 +132,23 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
             rel_path = f"audio/{line['id']}.wav"
             wav = project_dir / rel_path
             wav.parent.mkdir(exist_ok=True)
-            for take in range(MAX_RETAKES + 1):
-                seed = base_seed + take * RETAKE_SEED_STEP
-                data, meta = _with_retries(lambda: vs.generate(text=line["text"], language=language, profile_id=profile_id,
-                                                                seed=seed, engine=engine, instruct=instruct), sleep)
-                wav.write_bytes(data)
-                duration = probe_duration_ms(wav)
-                qc, words = _quality(vs, wav, line, language, duration, meta, voice_cfg["qc"])
-                audio["attempts"] = audio.get("attempts", 0) + 1
-                if not qc["reasons"]:
-                    break
+            take_wav = wav.with_suffix(".take.wav")  # the old take stays in place until this line is finished
+            try:
+                for take in range(MAX_RETAKES + 1):
+                    seed = (base_seed + take * RETAKE_SEED_STEP) % 2_147_483_647
+                    data, meta = _with_retries(lambda: vs.generate(text=line["text"], language=language, profile_id=profile_id,
+                                                                    seed=seed, engine=engine, instruct=instruct), sleep)
+                    take_wav.write_bytes(data)
+                    duration = probe_duration_ms(take_wav)
+                    qc, words = _quality(vs, take_wav, line, language, duration, meta, voice_cfg["qc"])
+                    audio["attempts"] = audio.get("attempts", 0) + 1
+                    if not qc["reasons"]:
+                        break
+                os.replace(take_wav, wav)
+            finally:
+                take_wav.unlink(missing_ok=True)
             passed = not qc["reasons"]
+            line["words"], line["words_hash"] = [], None  # new audio: sf_align must re-time this line
             audio.update(path=rel_path, duration_ms=duration, seed=base_seed, used_seed=seed, input_hash=new_hash,
                          status="done" if passed else "needs_human", qc=qc, asr_words=words,
                          last_error=None if passed else "; ".join(qc["reasons"]))

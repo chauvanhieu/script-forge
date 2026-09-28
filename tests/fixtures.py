@@ -166,6 +166,52 @@ def sine_wav_bytes(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
     return buffer.getvalue()
 
 
+class FakeVS:
+    """In-memory VoiceStudio: sine WAVs (1000 ms unless durations[text] says otherwise), transcripts echo the text."""
+
+    def __init__(self, bad_transcripts: int = 0, fail_generate: str | None = None, fail_after: int = 0,
+                 durations: dict[str, int] | None = None):
+        self.calls: list[dict] = []
+        self.bad_left = bad_transcripts
+        self.fail_generate = fail_generate
+        self.fail_after = fail_after
+        self.durations = durations or {}
+        self.profiles = 0
+
+    def health(self):
+        return None
+
+    def describe(self, description):
+        return {"attrs": {"Gender": "female"}, "instruct": "female"}
+
+    def create_design_profile(self, name, attrs, instruct, language):
+        self.profiles += 1
+        return f"p{self.profiles}"
+
+    def create_clone_profile(self, name, ref_audio, ref_text, language):
+        Path(ref_audio).read_bytes()
+        self.profiles += 1
+        return f"p{self.profiles}"
+
+    def generate(self, *, text, language, profile_id, seed, engine=None, instruct=None):
+        self.calls.append({"text": text, "seed": seed, "instruct": instruct, "profile_id": profile_id, "language": language})
+        if self.fail_generate and len(self.calls) > self.fail_after:
+            from sflib.project import ProviderError
+            raise ProviderError(self.fail_generate, "refused")
+        ms = self.durations.get(text, 1000)
+        return sine_wav_bytes(ms), {"seed": str(seed), "duration_s": str(ms / 1000), "dropped_chunks": None}
+
+    def transcribe_words(self, wav, language):
+        from sflib.text import display_text
+        if self.bad_left > 0:
+            self.bad_left -= 1
+            return [{"text": "zzz qqq", "start": 0.0, "end": 0.5}]
+        text = self.calls[-1]["text"]
+        words = display_text(text).split()
+        step = self.durations.get(text, 1000) / 1000 / max(len(words), 1)
+        return [{"text": w, "start": i * step, "end": (i + 1) * step} for i, w in enumerate(words)]
+
+
 def prepare_media(root: Path, story: dict, durations: list[int]) -> Path:
     """Write the project, fake images for every plate/slide, sine WAVs, and approx words for every line."""
     import sf_align

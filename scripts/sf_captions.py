@@ -113,7 +113,7 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
         save_story(project_dir, story)
         return {"mode": mode, "cues": 0, "needs_human": []}, EXIT_OK
     stale = [f"{line['id']}: words are missing or stale; run sf_align" for line in story["lines"]
-             if not line.get("words") or line.get("words_hash") != line["audio"].get("input_hash")]
+             if line.get("words_hash") is None or line["words_hash"] != line["audio"].get("input_hash")]
     if stale:
         return {"mode": mode, "cues": 0, "needs_human": stale}, EXIT_HUMAN
     style = load_style(story["brief"]["captions"]["style"], styles_dir)
