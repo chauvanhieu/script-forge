@@ -476,7 +476,7 @@ whole pipeline can run without spending quota.
     `409 model_not_downloaded` maps to `auth` (a setup problem that stops the
     run); `400` maps to `invalid`.
   - Saves the WAV and measures duration with ffprobe.
-  - QC per line: transcribe back via `POST /transcribe`, compute the character
+  - QC per line: transcribe back via `POST /v1/audio/transcriptions` (`response_format=verbose_json`, `timestamp_granularities[]=word`), compute the character
     error rate against `text`, and check the speaking rate against the language
     band. On failure, retake with a new seed (max 2).
 - **`sf_image`**: builds each plate or slide request (prompt file + references),
@@ -485,9 +485,7 @@ whole pipeline can run without spending quota.
 - **`sf_contact_sheet`**: grid of plates then slides, labeled with ids and the
   first words of each slide's lines.
 - **`sf_align`**:
-  - Per line, sends the WAV to `POST /transcribe` with `mode=accurate`
-    (WhisperX with forced alignment) and reads word times from the raw
-    `segments[].words` it returns. A startup probe on the first line checks
+  - Per line, sends the WAV to `POST /v1/audio/transcriptions` (`response_format=verbose_json`, `timestamp_granularities[]=word`) and reads word times from the top-level `words` list it returns. A startup probe on the first line checks
     that shape; if word times are absent, every line takes the approx
     fallback and QC reports it.
   - Aligns ASR tokens to the **script's** tokens with difflib and transfers the

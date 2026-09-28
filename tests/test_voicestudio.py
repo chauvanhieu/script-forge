@@ -112,8 +112,28 @@ def test_probe_duration_ms_raises_on_invalid_file(tmp_path):
     bad_file.write_text("not media")
     with pytest.raises(RuntimeError) as exc_info:
         probe_duration_ms(bad_file)
-    assert "ffprobe failed" in str(exc_info.value)
-    assert "x.wav" in str(exc_info.value)
+    message = str(exc_info.value)
+    assert message.startswith(f"ffprobe failed on {bad_file}")
+
+
+def test_probe_video_raises_on_invalid_file(tmp_path):
+    from sflib.media import probe_video
+    bad_file = tmp_path / "x.wav"
+    bad_file.write_text("not media")
+    with pytest.raises(RuntimeError) as exc_info:
+        probe_video(bad_file)
+    message = str(exc_info.value)
+    assert message.startswith(f"ffprobe failed on {bad_file}")
+
+
+def test_probe_audio_ms_raises_on_invalid_file(tmp_path):
+    from sflib.media import probe_audio_ms
+    bad_file = tmp_path / "x.wav"
+    bad_file.write_text("not media")
+    with pytest.raises(RuntimeError) as exc_info:
+        probe_audio_ms(bad_file)
+    message = str(exc_info.value)
+    assert message.startswith(f"ffprobe failed on {bad_file}")
 
 
 def test_silences_raises_on_invalid_file(tmp_path):

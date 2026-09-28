@@ -7,27 +7,26 @@ import subprocess
 from pathlib import Path
 
 
-def _probe(args: list[str]) -> dict:
-    proc = subprocess.run(["ffprobe", "-v", "error", *args, "-of", "json"], capture_output=True, text=True)
+def _probe(path: Path, args: list[str]) -> dict:
+    proc = subprocess.run(["ffprobe", "-v", "error", *args, "-of", "json", str(path)], capture_output=True, text=True)
     if proc.returncode != 0:
-        path_arg = next((arg for arg in args if not arg.startswith("-")), "unknown")
-        raise RuntimeError(f"ffprobe failed on {path_arg}: {proc.stderr.strip()}")
+        raise RuntimeError(f"ffprobe failed on {path}: {proc.stderr.strip()}")
     return json.loads(proc.stdout)
 
 
 def probe_duration_ms(path: Path) -> int:
-    data = _probe(["-show_entries", "format=duration", str(path)])
+    data = _probe(path, ["-show_entries", "format=duration"])
     return round(float(data["format"]["duration"]) * 1000)
 
 
 def probe_video(path: Path) -> dict:
-    data = _probe(["-count_frames", "-select_streams", "v:0", "-show_entries", "stream=width,height,nb_read_frames", str(path)])
+    data = _probe(path, ["-count_frames", "-select_streams", "v:0", "-show_entries", "stream=width,height,nb_read_frames"])
     stream = data["streams"][0]
     return {"width": int(stream["width"]), "height": int(stream["height"]), "frames": int(stream["nb_read_frames"])}
 
 
 def probe_audio_ms(path: Path) -> int:
-    data = _probe(["-select_streams", "a:0", "-show_entries", "stream=duration", str(path)])
+    data = _probe(path, ["-select_streams", "a:0", "-show_entries", "stream=duration"])
     return round(float(data["streams"][0]["duration"]) * 1000)
 
 
