@@ -154,9 +154,16 @@ def write_project(root: Path, story: dict) -> Path:
     return project
 
 
-def sine_wav_bytes(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
+def _tone_frames(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
     count = round(rate * ms / 1000)
-    frames = b"".join(struct.pack("<h", int(8000 * math.sin(2 * math.pi * freq * i / rate))) for i in range(count))
+    return b"".join(struct.pack("<h", int(8000 * math.sin(2 * math.pi * freq * i / rate))) for i in range(count))
+
+
+def _silence_frames(ms: int, rate: int = 24000) -> bytes:
+    return b"\x00\x00" * round(rate * ms / 1000)
+
+
+def _wav_bytes(frames: bytes, rate: int = 24000) -> bytes:
     buffer = io.BytesIO()
     with wave.open(buffer, "wb") as wav:
         wav.setnchannels(1)
@@ -166,16 +173,31 @@ def sine_wav_bytes(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
     return buffer.getvalue()
 
 
+def sine_wav_bytes(ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
+    return _wav_bytes(_tone_frames(ms, rate, freq), rate)
+
+
+def silence_wav_bytes(ms: int, rate: int = 24000) -> bytes:
+    return _wav_bytes(_silence_frames(ms, rate), rate)
+
+
+def padded_tone_wav_bytes(lead_ms: int, tone_ms: int, trail_ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
+    """tone_ms of audible tone flanked by lead_ms/trail_ms of silence -- simulates an untrimmed VoiceStudio take."""
+    frames = _silence_frames(lead_ms, rate) + _tone_frames(tone_ms, rate, freq) + _silence_frames(trail_ms, rate)
+    return _wav_bytes(frames, rate)
+
+
 class FakeVS:
     """In-memory VoiceStudio: sine WAVs (1000 ms unless durations[text] says otherwise), transcripts echo the text."""
 
     def __init__(self, bad_transcripts: int = 0, fail_generate: str | None = None, fail_after: int = 0,
-                 durations: dict[str, int] | None = None):
+                 durations: dict[str, int] | None = None, padded: dict[str, tuple[int, int]] | None = None):
         self.calls: list[dict] = []
         self.bad_left = bad_transcripts
         self.fail_generate = fail_generate
         self.fail_after = fail_after
         self.durations = durations or {}
+        self.padded = padded or {}  # text -> (lead_ms, trail_ms) of silence around the tone, for trim tests
         self.profiles = 0
         self.design_ref_texts: list[str] = []
 
@@ -201,7 +223,9 @@ class FakeVS:
             from sflib.project import ProviderError
             raise ProviderError(self.fail_generate, "refused")
         ms = self.durations.get(text, 1000)
-        return sine_wav_bytes(ms), {"seed": str(seed), "duration_s": str(ms / 1000), "dropped_chunks": None}
+        lead, trail = self.padded.get(text, (0, 0))
+        data = padded_tone_wav_bytes(lead, ms, trail) if lead or trail else sine_wav_bytes(ms)
+        return data, {"seed": str(seed), "duration_s": str((lead + ms + trail) / 1000), "dropped_chunks": None}
 
     def transcribe_words(self, wav, language):
         from sflib.text import display_text

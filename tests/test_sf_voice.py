@@ -69,6 +69,17 @@ def test_tag_only_line_reaches_done(tmp_path):
     assert audio["qc"]["cps"] is None and audio["qc"]["cer"] is None
 
 
+def test_take_edges_are_trimmed_before_duration_is_measured(tmp_path):
+    project = write_project(tmp_path, make_story())
+    # 1000ms tone flanked by 300ms of silence each side; trim_silence's default 50ms pad
+    # should shrink that to ~1100ms once the edges are cut.
+    vs = FakeVS(padded={"Every night for eleven years.": (300, 300)})
+    summary, code = sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    assert code == 0, summary
+    audio = load_story(project)["lines"][0]["audio"]
+    assert abs(audio["duration_ms"] - 1100) <= 5
+
+
 def test_second_run_skips_everything(tmp_path):
     project = write_project(tmp_path, make_story())
     sf_voice.run(project, config=CONFIG, client=FakeVS(), root=tmp_path)

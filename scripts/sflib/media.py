@@ -1,10 +1,16 @@
 """Thin wrappers around ffmpeg and ffprobe."""
 from __future__ import annotations
 
+import array
 import json
 import re
 import subprocess
+import sys
+import wave
 from pathlib import Path
+
+TRIM_NOISE_DB = -45  # matches sf_qc's silencedetect threshold
+TRIM_PAD_MS = 50
 
 
 def _probe(path: Path, args: list[str]) -> dict:
@@ -49,6 +55,37 @@ def decode_pcm(path: Path, rate: int = 48000) -> bytes:
         stderr = proc.stderr.decode("utf-8", errors="replace") if isinstance(proc.stderr, bytes) else proc.stderr
         raise RuntimeError(f"ffmpeg decode failed on {path}: {stderr.strip()}")
     return proc.stdout
+
+
+def trim_silence(path: Path, noise_db: int = TRIM_NOISE_DB, pad_ms: int = TRIM_PAD_MS) -> None:
+    """Rewrite a 16-bit PCM WAV in place, keeping pad_ms of audio before the first and after the
+    last sample (any channel) whose magnitude exceeds noise_db dBFS. Never extends past the file;
+    an all-silent file is left unchanged."""
+    with wave.open(str(path), "rb") as wav:
+        channels, sampwidth, rate, nframes = wav.getnchannels(), wav.getsampwidth(), wav.getframerate(), wav.getnframes()
+        raw = wav.readframes(nframes)
+    if sampwidth != 2:
+        raise RuntimeError(f"trim_silence only supports 16-bit PCM, got sampwidth={sampwidth} bytes for {path}")
+    samples = array.array("h")
+    samples.frombytes(raw)
+    if sys.byteorder == "big":
+        samples.byteswap()
+    threshold = 32768 * (10 ** (noise_db / 20))
+    loud_frames = [i for i in range(nframes)
+                   if any(abs(samples[i * channels + c]) > threshold for c in range(channels))]
+    if not loud_frames:
+        return
+    pad_frames = round(rate * pad_ms / 1000)
+    start = max(0, loud_frames[0] - pad_frames)
+    end = min(nframes, loud_frames[-1] + 1 + pad_frames)
+    trimmed = samples[start * channels:end * channels]
+    if sys.byteorder == "big":
+        trimmed.byteswap()
+    with wave.open(str(path), "wb") as out:
+        out.setnchannels(channels)
+        out.setsampwidth(2)
+        out.setframerate(rate)
+        out.writeframes(trimmed.tobytes())
 
 
 def silences(path: Path, noise_db: int = -45, min_s: float = 0.3) -> list[tuple[float, float]]:

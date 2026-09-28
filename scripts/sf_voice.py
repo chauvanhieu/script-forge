@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 from typing import Callable
 
-from sflib.media import probe_duration_ms
+from sflib.media import probe_duration_ms, trim_silence
 from sflib.project import (
     EXIT_BUG, EXIT_HUMAN, EXIT_OK, EXIT_PROVIDER, ROOT, ProviderError, input_hash, load_config,
     load_story, log, main_wrapper, needs_work, save_story, wanted,
@@ -149,6 +149,7 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
                     data, meta = _with_retries(lambda: vs.generate(text=line["text"], language=language, profile_id=profile_id,
                                                                     seed=seed, engine=engine, instruct=instruct), sleep)
                     take_wav.write_bytes(data)
+                    trim_silence(take_wav)  # cut VoiceStudio's lead/trail padding so pause_after_ms is the audible gap
                     duration = probe_duration_ms(take_wav)
                     qc, words = _quality(vs, take_wav, line, language, duration, meta, voice_cfg["qc"])
                     audio["attempts"] = audio.get("attempts", 0) + 1

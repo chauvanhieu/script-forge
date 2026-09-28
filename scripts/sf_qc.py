@@ -9,11 +9,17 @@ from pathlib import Path
 from sf_captions import SIZE, STYLES_DIR, load_style
 from sflib.media import probe_audio_ms, probe_video, silences
 from sflib.project import EXIT_HUMAN, EXIT_OK, load_story, main_wrapper, save_story
+from sflib.text import pause_durations_ms
 from sflib.timeline import FPS, build_timeline
 
 AUDIO_TOLERANCE_MS = 60 + round(1000 / FPS)
 OVERLAP_TOLERANCE_MS = 10
 SILENCE_GRACE_S = 0.3
+# ponytail: engine calibration value, not a spec constant -- VoiceStudio renders an in-line
+# [pause] by synthesizing the spans around it separately and stitching them back together, so
+# each of the pause's two span edges adds its own bit of silence on top of the pause itself.
+# Retune this if VoiceStudio's span-edge padding changes.
+SPAN_EDGE_PAD_S = 0.4
 _DIALOGUE = re.compile(r"^Dialogue: \d+,([^,]+),([^,]+),[^,]*,([^,]*),[^,]*,[^,]*,[^,]*,[^,]*,(.*)$")
 
 
@@ -93,9 +99,15 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
             for start_s, gap in silences(video_path):
                 # the silence belongs to the last line that started before it (its tail plus its pause)
                 owner = [line for line in story["lines"] if timeline.line_start_ms[line["id"]] <= start_s * 1000] or story["lines"][:1]
-                allowed = owner[-1].get("pause_after_ms", 0) / 1000 + SILENCE_GRACE_S
+                owner_line = owner[-1]
+                if start_s * 1000 < timeline.line_end_ms[owner_line["id"]]:
+                    # in-line silence: inside the line's own audio span, e.g. a rendered [pause] tag
+                    pauses = pause_durations_ms(owner_line["text"])
+                    allowed = max(pauses) / 1000 + SPAN_EDGE_PAD_S + SILENCE_GRACE_S if pauses else SILENCE_GRACE_S
+                else:
+                    allowed = owner_line.get("pause_after_ms", 0) / 1000 + SILENCE_GRACE_S
                 if gap > allowed:
-                    long_gaps.append(f"{owner[-1]['id']}: {gap:.2f}s > {allowed:.2f}s")
+                    long_gaps.append(f"{owner_line['id']}: {gap:.2f}s > {allowed:.2f}s")
             checks.append(_check("silence", not long_gaps, f"silences over pause_after_ms + {SILENCE_GRACE_S}s: {long_gaps}" if long_gaps else "ok"))
         else:
             checks.append(_check("silence", False, "not rendered"))

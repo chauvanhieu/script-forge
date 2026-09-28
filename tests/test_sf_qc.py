@@ -74,6 +74,43 @@ def test_cue_past_its_own_line_fails_caption_timing(tmp_path):
     assert "L001" in next(c["detail"] for c in report["checks"] if c["name"] == "caption_timing")
 
 
+def _wav_with_inline_gap(project, line_id, lead_ms, gap_ms, trail_ms):
+    import io
+    import wave
+    from fixtures import sine_wav_bytes
+    with wave.open(io.BytesIO(sine_wav_bytes(lead_ms))) as tone:
+        lead = tone.readframes(tone.getnframes())
+    with wave.open(io.BytesIO(sine_wav_bytes(trail_ms))) as tone:
+        trail = tone.readframes(tone.getnframes())
+    silence = b"\x00\x00" * round(24000 * gap_ms / 1000)
+    with wave.open(str(project / f"audio/{line_id}.wav"), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(24000)
+        wav.writeframes(lead + silence + trail)
+
+
+def test_inline_silence_within_a_lines_pause_tag_allowance_passes(tmp_path):
+    story = make_story()
+    story["lines"][1]["text"] = "Every single. [pause 300ms] night."
+    project = prepare_media(tmp_path, story, [1000, 1700, 1300])
+    _wav_with_inline_gap(project, "L002", 500, 700, 500)  # 500 + 700 + 500 = 1700ms, matches duration_ms
+    sf_captions.run(project, styles_dir=STYLES)
+    sf_render.run(project, size=SMALL)
+    summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
+    assert code == 0, summary
+
+
+def test_inline_silence_without_a_pause_tag_fails(tmp_path):
+    story = make_story()  # L002's text has no [pause] tag
+    project = prepare_media(tmp_path, story, [1000, 1700, 1300])
+    _wav_with_inline_gap(project, "L002", 500, 700, 500)  # same 0.7s in-line gap as above
+    sf_captions.run(project, styles_dir=STYLES)
+    sf_render.run(project, size=SMALL)
+    summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
+    assert code == 2 and summary["failed"] == ["silence"]
+
+
 def test_silence_is_measured_against_its_own_lines_pause(tmp_path):
     import io
     import wave

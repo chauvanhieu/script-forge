@@ -485,7 +485,10 @@ whole pipeline can run without spending quota.
     recorded. `503` with `X-OmniVoice-Retryable: true` maps to `transient`;
     `409 model_not_downloaded` maps to `auth` (a setup problem that stops the
     run); `400` maps to `invalid`.
-  - Saves the WAV and measures duration with ffprobe.
+  - Saves the WAV, trims its take edges to 50 ms of padding around the audible
+    audio (VoiceStudio leaves ~150-200 ms of silence on each edge), and
+    measures duration with ffprobe, so `pause_after_ms` is the actual audible
+    gap between lines rather than pause_after_ms plus untrimmed take padding.
   - QC per line: transcribe back via `POST /v1/audio/transcriptions` (`response_format=verbose_json`, `timestamp_granularities[]=word`), compute the character
     error rate against `text`, and check the speaking rate against the language
     band. On failure, retake with a new seed (max 2).
@@ -531,7 +534,11 @@ whole pipeline can run without spending quota.
 - Final duration equals audio timeline ±1 frame.
 - No caption cue ends after its line or overlaps the next speaker's cue.
 - No caption runs outside its safe zone (line length vs preset limits).
-- No silence gap longer than `pause_after_ms` + 300 ms; no clipped final line.
+- No silence gap longer than `pause_after_ms` + 300 ms; a silence that instead
+  falls inside a line's own audio span (e.g. a rendered in-line `[pause]` tag)
+  is allowed up to that tag's duration + 300 ms + a 400 ms engine-calibration
+  allowance for VoiceStudio's per-span synthesis padding. No clipped final
+  line.
 - Output resolution matches `aspect`.
 
 Auto-fixable: caption re-wrapping, re-render after a regenerated asset.
