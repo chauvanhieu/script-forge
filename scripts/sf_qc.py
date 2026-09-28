@@ -14,7 +14,7 @@ from sflib.timeline import FPS, build_timeline
 AUDIO_TOLERANCE_MS = 60 + round(1000 / FPS)
 OVERLAP_TOLERANCE_MS = 10
 SILENCE_GRACE_S = 0.3
-_DIALOGUE = re.compile(r"^Dialogue: \d+,([^,]+),([^,]+),[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,(.*)$")
+_DIALOGUE = re.compile(r"^Dialogue: \d+,([^,]+),([^,]+),[^,]*,([^,]*),[^,]*,[^,]*,[^,]*,[^,]*,(.*)$")
 
 
 def _ms(ass_time: str) -> int:
@@ -27,7 +27,18 @@ def _check(name: str, ok: bool, detail: str) -> dict:
     return {"name": name, "ok": bool(ok), "detail": detail}
 
 
-def _caption_checks(story: dict, project_dir: Path, total_ms: int, styles_dir: Path) -> list[dict]:
+def _cue_problem(start: int, end: int, line_id: str, timeline) -> str | None:
+    if end <= start:
+        return f"cue at {start} ms ends at {end} ms"
+    if line_id not in timeline.line_start_ms:
+        return f"cue at {start} ms names unknown line {line_id!r}"
+    line_start, line_end = timeline.line_start_ms[line_id], timeline.line_end_ms[line_id]
+    if start < line_start - OVERLAP_TOLERANCE_MS or end > line_end + OVERLAP_TOLERANCE_MS:
+        return f"{line_id} cue {start}-{end} ms falls outside its line {line_start}-{line_end} ms"
+    return None
+
+
+def _caption_checks(story: dict, project_dir: Path, timeline, styles_dir: Path) -> list[dict]:
     captions = story["output"].get("captions")
     if story["brief"]["captions"]["mode"] == "none" or not captions:
         return [_check("caption_timing", True, "no captions"), _check("caption_line_length", True, "no captions")]
@@ -35,14 +46,14 @@ def _caption_checks(story: dict, project_dir: Path, total_ms: int, styles_dir: P
     for raw in (project_dir / captions).read_text(encoding="utf-8").splitlines():
         match = _DIALOGUE.match(raw)
         if match:
-            events.append((_ms(match.group(1)), _ms(match.group(2)), match.group(3)))
+            events.append((_ms(match.group(1)), _ms(match.group(2)), match.group(3), match.group(4)))
     events.sort()
-    timing_problems = [f"cue at {s} ms ends at {e} ms" for s, e, _ in events if e <= s or e > total_ms + OVERLAP_TOLERANCE_MS]
+    timing_problems = [problem for s, e, line_id, _ in events if (problem := _cue_problem(s, e, line_id, timeline))]
     timing_problems += [f"cue at {events[i + 1][0]} ms overlaps the cue ending at {events[i][1]} ms"
                         for i in range(len(events) - 1) if events[i + 1][0] < events[i][1] - OVERLAP_TOLERANCE_MS]
     style = load_style(story["brief"]["captions"]["style"], styles_dir)
     max_chars = style["max_chars_per_line"][story["brief"]["aspect"]]
-    long_rows = [row for _, _, text in events for row in re.sub(r"\{[^}]*\}", "", text).split("\\N") if len(row) > max_chars]
+    long_rows = [row for _, _, _, text in events for row in re.sub(r"\{[^}]*\}", "", text).split("\\N") if len(row) > max_chars]
     return [
         _check("caption_timing", not timing_problems, "; ".join(timing_problems) or f"{len(events)} cues ok"),
         _check("caption_line_length", not long_rows, f"rows over {max_chars} chars: {long_rows}" if long_rows else "ok"),
@@ -76,11 +87,16 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
                                  f"{video['width']}x{video['height']}, expected {expected_size[0]}x{expected_size[1]}"))
         else:
             checks += [_check(name, False, f"{video_path.name} not rendered") for name in ("frames_match", "audio_duration", "resolution")]
-        checks += _caption_checks(story, project_dir, timeline.total_ms, styles_dir)
+        checks += _caption_checks(story, project_dir, timeline, styles_dir)
         if video_path.is_file():
-            allowed = max(line.get("pause_after_ms", 0) for line in story["lines"]) / 1000 + SILENCE_GRACE_S
-            long_gaps = [round(gap, 2) for gap in silences(video_path) if gap > allowed]
-            checks.append(_check("silence", not long_gaps, f"silences over {allowed:.2f}s: {long_gaps}" if long_gaps else "ok"))
+            long_gaps = []
+            for start_s, gap in silences(video_path):
+                # the silence belongs to the last line that started before it (its tail plus its pause)
+                owner = [line for line in story["lines"] if timeline.line_start_ms[line["id"]] <= start_s * 1000] or story["lines"][:1]
+                allowed = owner[-1].get("pause_after_ms", 0) / 1000 + SILENCE_GRACE_S
+                if gap > allowed:
+                    long_gaps.append(f"{owner[-1]['id']}: {gap:.2f}s > {allowed:.2f}s")
+            checks.append(_check("silence", not long_gaps, f"silences over pause_after_ms + {SILENCE_GRACE_S}s: {long_gaps}" if long_gaps else "ok"))
         else:
             checks.append(_check("silence", False, "not rendered"))
     words = [word for line in story["lines"] for word in line.get("words") or []]

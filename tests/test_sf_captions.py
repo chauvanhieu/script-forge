@@ -38,9 +38,9 @@ def test_karaoke_ass(tmp_path):
     assert "PlayResX: 1080\nPlayResY: 1920" in ass
     assert "Style: narrator,Arial,78,&H00FFFFFF,&H009A9A9A,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,0,2,60,60,0,1" in ass
     assert "Style: C01,Arial,78,&H0066D1FF,&H009A9A9A," in ass
-    assert ("Dialogue: 0,0:00:00.00,0:00:01.50,narrator,,0,0,422,,"
+    assert ("Dialogue: 0,0:00:00.00,0:00:01.50,narrator,L001,0,0,422,,"
             "{\\an2}{\\kf30}Every {\\kf30}night {\\kf20}for\\N{\\kf40}eleven {\\kf30}years.") in ass
-    assert "Dialogue: 0,0:00:02.65,0:00:03.95,C01,,0,0,422,,{\\an2}{\\kf60}No. {\\kf30}Not {\\kf40}again." in ass
+    assert "Dialogue: 0,0:00:02.65,0:00:03.95,C01,L003,0,0,422,,{\\an2}{\\kf60}No. {\\kf30}Not {\\kf40}again." in ass
     assert load_story(project)["output"]["captions"] == "out/captions.ass"
 
 
@@ -48,7 +48,7 @@ def test_plain_ass(tmp_path):
     project = _project(tmp_path, mode="plain", style="subtitle-clean")
     sf_captions.run(project, styles_dir=STYLES)
     ass = (project / "out/captions.ass").read_text(encoding="utf-8")
-    assert "Dialogue: 0,0:00:00.00,0:00:01.50,narrator,,0,0,384,,{\\an2}Every night for\\Neleven years." in ass
+    assert "Dialogue: 0,0:00:00.00,0:00:01.50,narrator,L001,0,0,384,,{\\an2}Every night for\\Neleven years." in ass
 
 
 def test_mode_none_writes_nothing(tmp_path):

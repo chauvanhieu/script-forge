@@ -51,10 +51,12 @@ def decode_pcm(path: Path, rate: int = 48000) -> bytes:
     return proc.stdout
 
 
-def silences(path: Path, noise_db: int = -45, min_s: float = 0.3) -> list[float]:
+def silences(path: Path, noise_db: int = -45, min_s: float = 0.3) -> list[tuple[float, float]]:
+    """(start_s, duration_s) of every silence ffmpeg detects."""
     proc = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af",
                            f"silencedetect=noise={noise_db}dB:d={min_s}", "-f", "null", "-"],
                           capture_output=True, text=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg silence detection failed on {path}: {proc.stderr.strip()}")
-    return [float(v) for v in re.findall(r"silence_duration: ([0-9.]+)", proc.stderr)]
+    found = re.findall(r"silence_end: (-?[0-9.]+) \| silence_duration: ([0-9.]+)", proc.stderr)
+    return [(float(end) - float(duration), float(duration)) for end, duration in found]

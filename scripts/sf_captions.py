@@ -133,7 +133,7 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
             cue_start = start + cue[0]["start_ms"]
             cue_end = max(start + cue[-1]["end_ms"], cue_start + 10)
             text = f"{{\\an{ALIGNMENT[where]}}}" + _cue_text(rows, mode == "karaoke", spaced)
-            events.append(f"Dialogue: 0,{ass_time(cue_start)},{ass_time(cue_end)},{line['speaker']},,0,0,{margin_v},,{text}")
+            events.append(f"Dialogue: 0,{ass_time(cue_start)},{ass_time(cue_end)},{line['speaker']},{line['id']},0,0,{margin_v},,{text}")
     out = project_dir / "out" / "captions.ass"
     out.parent.mkdir(exist_ok=True)
     out.write_text(_header(story, style) + "\n" + "\n".join(events) + "\n", encoding="utf-8")
