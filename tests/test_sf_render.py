@@ -7,7 +7,7 @@ import sf_captions
 import sf_render
 from sflib.media import probe_audio_ms, probe_video
 from sflib.project import ROOT, load_story
-from sflib.timeline import build_timeline
+from sflib.timeline import FPS, build_timeline
 
 SMALL = (360, 640)
 
@@ -31,7 +31,7 @@ def test_render_matches_the_timeline_and_caches_clips(tmp_path):
     video = probe_video(project / "out/final.mp4")
     assert (video["width"], video["height"]) == SMALL
     assert video["frames"] == timeline.total_frames == summary["frames"]
-    assert abs(probe_audio_ms(project / "out/final.mp4") - timeline.total_ms) <= 60
+    assert abs(probe_audio_ms(project / "out/final.mp4") - timeline.total_ms) <= round(1000 / FPS)  # spec §8.4: ±1 frame
     assert load_story(project)["output"]["video"] == "out/final.mp4"
     summary, _ = sf_render.run(project, size=SMALL)
     assert summary["rendered"] == [] and summary["cached"] == 2

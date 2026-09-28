@@ -113,7 +113,8 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
         args += ["-vf", f"ass={captions}"]
     args += ["-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
              "-pix_fmt", "yuv420p", "-r", str(FPS), "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
-             "-ar", str(RATE), "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", "out/final.mp4"]
+             "-ar", str(RATE), "-c:a", "aac", "-b:a", "192k", "-t", f"{timeline.total_ms / 1000:.3f}",
+             "-movflags", "+faststart", "out/final.mp4"]
     run_ffmpeg(args, cwd=project_dir)
     story["output"]["video"] = "out/final.mp4"
     save_story(project_dir, story)
