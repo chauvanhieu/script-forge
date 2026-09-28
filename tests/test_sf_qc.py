@@ -46,3 +46,18 @@ def test_overlapping_cues_fail_caption_timing(tmp_path):
     ass.write_text(ass.read_text().replace("0:00:01.95,0:00:03.25", "0:00:00.50,0:00:03.25"), encoding="utf-8")
     summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
     assert code == 2 and summary["failed"] == ["caption_timing"]
+
+
+def test_missing_audio_fails_gracefully_without_a_timeline(tmp_path):
+    project = prepare_media(tmp_path, make_story(), [1000, 700, 1300])
+    story = load_story(project)
+    story["lines"][0]["audio"]["status"] = "pending"
+    story["lines"][0]["audio"]["duration_ms"] = None
+    save_story(project, story)
+    summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
+    assert code == 2
+    assert "assets_done" in summary["failed"]
+    report = json.loads((project / "out/qc.json").read_text())
+    assert [c["name"] for c in report["checks"]] == [
+        "assets_done", "frames_match", "audio_duration", "resolution", "caption_timing", "caption_line_length", "silence"]
+    assert load_story(project)["output"]["qc"] == "out/qc.json"

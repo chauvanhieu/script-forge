@@ -56,26 +56,33 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
     not_done += [slide["id"] for slide in story["slides"] if slide["image"].get("status") != "done"]
     checks = [_check("assets_done", not not_done, f"not done: {not_done}" if not_done else "ok")]
     video_path = project_dir / (story["output"].get("video") or "out/final.mp4")
-    timeline = build_timeline(story)
-    if video_path.is_file():
-        video = probe_video(video_path)
-        audio_ms = probe_audio_ms(video_path)
-        expected_size = size or SIZE[story["brief"]["aspect"]]
-        checks.append(_check("frames_match", abs(video["frames"] - timeline.total_frames) <= 1,
-                             f"video {video['frames']} frames, timeline {timeline.total_frames}"))
-        checks.append(_check("audio_duration", abs(audio_ms - timeline.total_ms) <= AUDIO_TOLERANCE_MS,
-                             f"audio {audio_ms} ms, timeline {timeline.total_ms} ms"))
-        checks.append(_check("resolution", (video["width"], video["height"]) == tuple(expected_size),
-                             f"{video['width']}x{video['height']}, expected {expected_size[0]}x{expected_size[1]}"))
-    else:
-        checks += [_check(name, False, f"{video_path.name} not rendered") for name in ("frames_match", "audio_duration", "resolution")]
-    checks += _caption_checks(story, project_dir, timeline.total_ms, styles_dir)
-    if video_path.is_file():
-        allowed = max(line.get("pause_after_ms", 0) for line in story["lines"]) / 1000 + SILENCE_GRACE_S
-        long_gaps = [round(gap, 2) for gap in silences(video_path) if gap > allowed]
-        checks.append(_check("silence", not long_gaps, f"silences over {allowed:.2f}s: {long_gaps}" if long_gaps else "ok"))
-    else:
-        checks.append(_check("silence", False, "not rendered"))
+    try:
+        timeline = build_timeline(story)
+    except ValueError as exc:
+        reason = f"timeline unavailable: {exc}"
+        checks += [_check(name, False, reason) for name in
+                  ("frames_match", "audio_duration", "resolution", "caption_timing", "caption_line_length", "silence")]
+        timeline = None
+    if timeline is not None:
+        if video_path.is_file():
+            video = probe_video(video_path)
+            audio_ms = probe_audio_ms(video_path)
+            expected_size = size or SIZE[story["brief"]["aspect"]]
+            checks.append(_check("frames_match", abs(video["frames"] - timeline.total_frames) <= 1,
+                                 f"video {video['frames']} frames, timeline {timeline.total_frames}"))
+            checks.append(_check("audio_duration", abs(audio_ms - timeline.total_ms) <= AUDIO_TOLERANCE_MS,
+                                 f"audio {audio_ms} ms, timeline {timeline.total_ms} ms"))
+            checks.append(_check("resolution", (video["width"], video["height"]) == tuple(expected_size),
+                                 f"{video['width']}x{video['height']}, expected {expected_size[0]}x{expected_size[1]}"))
+        else:
+            checks += [_check(name, False, f"{video_path.name} not rendered") for name in ("frames_match", "audio_duration", "resolution")]
+        checks += _caption_checks(story, project_dir, timeline.total_ms, styles_dir)
+        if video_path.is_file():
+            allowed = max(line.get("pause_after_ms", 0) for line in story["lines"]) / 1000 + SILENCE_GRACE_S
+            long_gaps = [round(gap, 2) for gap in silences(video_path) if gap > allowed]
+            checks.append(_check("silence", not long_gaps, f"silences over {allowed:.2f}s: {long_gaps}" if long_gaps else "ok"))
+        else:
+            checks.append(_check("silence", False, "not rendered"))
     words = [word for line in story["lines"] for word in line.get("words") or []]
     approx_ratio = round(sum(word["approx"] for word in words) / len(words), 3) if words else 0.0
     report = {"checks": checks, "approx_ratio": approx_ratio}
