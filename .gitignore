@@ -5,3 +5,15 @@ __pycache__/
 *.pyc
 .worktrees/
 .superpowers/
+
+# production media and run state
+projects/*/audio/
+projects/*/images/
+projects/*/plates/
+projects/*/clips/
+projects/*/out/
+projects/*/logs/
+projects/*/prompts/
+projects/*/.sf.lock
+projects/*/.story.*.tmp
+.pytest_cache/

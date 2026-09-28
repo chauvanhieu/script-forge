@@ -1,0 +1,13 @@
+# StoryForge provider settings. Scripts read this file; set SF_CONFIG=<path> to use another.
+voice:
+  base_url: http://localhost:3900
+  engine: null            # null = VoiceStudio's active engine (OmniVoice by default)
+  qc:
+    max_cer: 0.25         # transcribe-back character error rate allowed per line
+    min_cps: 2            # speaking-rate band in characters per second (display text, no spaces)
+    max_cps: 30
+image:
+  provider: fake          # fake | command
+  # command: ["node", "/absolute/path/to/generate-image.js"]
+  timeout_s: 1200
+  max_refs: 4
