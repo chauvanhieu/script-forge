@@ -68,7 +68,10 @@ def _ensure_profiles(story: dict, vs, root: Path, project_dir: Path, summary: di
         elif voice["source"] == "design":
             parsed = vs.describe(voice["design_prompt"])
             voice["instruct"] = parsed.get("instruct", "")
-            voice["profile_id"] = vs.create_design_profile(name, parsed.get("attrs", {}), voice["instruct"], language)
+            ref_text = next((shown for line in story["lines"] if line["speaker"] == member["id"]
+                             and (shown := display_text(line["text"]))), "")
+            voice["profile_id"] = vs.create_design_profile(name, parsed.get("attrs", {}), voice["instruct"], language,
+                                                            ref_text)
         else:
             ref_audio = root / voice["ref_audio"]
             if not ref_audio.is_file():

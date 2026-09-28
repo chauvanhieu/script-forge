@@ -51,10 +51,13 @@ class VoiceStudio:
     def describe(self, description: str) -> dict:
         return self._request("POST", "/design/describe", json={"description": description}).json()
 
-    def create_design_profile(self, name: str, attrs: dict, instruct: str, language: str) -> str:
-        response = self._request("POST", "/profiles", data={
+    def create_design_profile(self, name: str, attrs: dict, instruct: str, language: str, ref_text: str = "") -> str:
+        data = {
             "name": name, "kind": "design", "vd_states": json.dumps(attrs), "instruct": instruct, "language": language,
-        })
+        }
+        if ref_text:
+            data["ref_text"] = ref_text
+        response = self._request("POST", "/profiles", data=data)
         return response.json()["id"]
 
     def create_clone_profile(self, name: str, ref_audio: Path, ref_text: str, language: str) -> str:

@@ -29,6 +29,33 @@ def test_creates_profiles_and_synthesizes_every_line(tmp_path):
     assert vs.calls[0]["instruct"] is None and vs.calls[0]["language"] == "en"
 
 
+def test_design_profiles_use_speakers_first_spoken_line_as_ref_text(tmp_path):
+    project = write_project(tmp_path, make_story())
+    vs = FakeVS()
+    sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    # narrator's first line is L001, C01's first line is L002 (both plain, no tags)
+    assert vs.design_ref_texts == ["Every night for eleven years.", "Every single night."]
+
+
+def test_design_profile_ref_text_strips_tags_and_shows_written_half(tmp_path):
+    story = make_story()
+    story["lines"][1]["text"] = "No. [[y'know|you know]] [sigh] fine."
+    project = write_project(tmp_path, story)
+    vs = FakeVS()
+    sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    assert vs.design_ref_texts[1] == "No. y'know fine."
+
+
+def test_design_profile_ref_text_empty_when_speaker_has_no_spoken_line(tmp_path):
+    story = make_story()
+    story["lines"][1]["text"] = "[sigh]"
+    story["lines"][2]["text"] = "[pause 300ms]"
+    project = write_project(tmp_path, story)
+    vs = FakeVS()
+    sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    assert vs.design_ref_texts == ["Every night for eleven years.", ""]
+
+
 def test_tag_only_line_reaches_done(tmp_path):
     story = make_story()
     story["lines"][1]["text"] = "[sigh] [pause 300ms]"  # nothing to speak: display text is empty

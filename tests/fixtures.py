@@ -177,6 +177,7 @@ class FakeVS:
         self.fail_after = fail_after
         self.durations = durations or {}
         self.profiles = 0
+        self.design_ref_texts: list[str] = []
 
     def health(self):
         return None
@@ -184,8 +185,9 @@ class FakeVS:
     def describe(self, description):
         return {"attrs": {"Gender": "female"}, "instruct": "female"}
 
-    def create_design_profile(self, name, attrs, instruct, language):
+    def create_design_profile(self, name, attrs, instruct, language, ref_text=""):
         self.profiles += 1
+        self.design_ref_texts.append(ref_text)
         return f"p{self.profiles}"
 
     def create_clone_profile(self, name, ref_audio, ref_text, language):

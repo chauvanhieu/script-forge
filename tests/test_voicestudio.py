@@ -1,4 +1,5 @@
 import json
+from urllib.parse import parse_qs
 
 import httpx
 import pytest
@@ -30,6 +31,23 @@ def test_design_profile_flow_sends_form_fields():
     profile = vs.create_design_profile("demo-C01", parsed["attrs"], parsed["instruct"], "en")
     assert profile == "ab12cd34"
     assert "kind=design" in seen["body"] and "vd_states=" in seen["body"] and "language=en" in seen["body"]
+    assert "ref_text" not in parse_qs(seen["body"])
+
+
+def test_design_profile_flow_sends_ref_text_when_provided():
+    seen = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/profiles":
+            seen["body"] = request.content.decode()
+            return httpx.Response(200, json={"id": "ab12cd34", "name": "x"})
+        return httpx.Response(404)
+
+    vs = _client(handler)
+    profile = vs.create_design_profile("demo-C01", {"Gender": "female"}, "female", "en",
+                                        ref_text="Every night for eleven years.")
+    assert profile == "ab12cd34"
+    assert parse_qs(seen["body"])["ref_text"] == ["Every night for eleven years."]
 
 
 def test_generate_returns_wav_and_header_metadata(tmp_path):

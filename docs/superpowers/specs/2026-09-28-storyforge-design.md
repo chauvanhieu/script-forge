@@ -472,6 +472,15 @@ whole pipeline can run without spending quota.
   - Checks `GET /health`, creates missing profiles, then calls
     `POST /generate` per pending line (`text`, `language`, `profile_id`,
     `seed`, `engine`, and `instruct` only when `whisper` is true).
+  - A `design` profile's `POST /profiles` call includes `ref_text`: the
+    display text (tags stripped, `[[written|spoken]]` shown as written) of
+    the speaker's first line with non-empty display text, or omitted if none.
+    VoiceStudio renders its preview from this text and stores it as the
+    profile's reference audio; without `ref_text` it falls back to its own
+    sample script, so the transcript that OmniVoice needs at every later
+    `/generate` call isn't known and must be auto-transcribed — which fails
+    outright for some design voices (e.g. no usable speech, or ASR silently
+    returns empty) if no fallback ASR model is installed.
   - The response body is the WAV; `X-Audio-Duration` and `X-Seed` headers are
     recorded. `503` with `X-OmniVoice-Retryable: true` maps to `transient`;
     `409 model_not_downloaded` maps to `auth` (a setup problem that stops the
