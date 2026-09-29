@@ -1,4 +1,5 @@
 from fixtures import make_story, write_project
+import json
 import sf_validate
 
 
@@ -101,3 +102,11 @@ def test_adaptation_requires_rights_basis(tmp_path):
     story["source_work"] = {"title": "The Snow Queen", "author": "H. C. Andersen", "rights_basis": "", "translation_used": None}
     errors, _ = _errors(tmp_path, story)
     assert "adaptation requires source_work.rights_basis" in errors
+
+
+def test_review_mode_accepts_auto_and_rejects_unknown(tmp_path):
+    story = make_story()
+    story["brief"]["review_mode"] = "auto"
+    assert sf_validate.schema_errors(story) == []
+    story["brief"]["review_mode"] = "yolo"
+    assert sf_validate.schema_errors(story) != []

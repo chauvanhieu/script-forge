@@ -81,3 +81,26 @@ def test_main_wrapper_reports_a_missing_project_dir(tmp_path, monkeypatch, capsy
     code, summary, err = _main(monkeypatch, capsys, [str(tmp_path / "nope")], lambda project_dir, only: ({}, 0))
     assert code == 1 and summary["errors"][0].startswith("FileNotFoundError:")
     assert "Traceback" in err and not (tmp_path / "nope").exists()
+
+
+def test_main_wrapper_appends_one_runs_jsonl_line_per_invocation(tmp_path, monkeypatch, capsys):
+    def run(project_dir, only):
+        return {"done": ["L001", "L002"], "skipped": 0, "needs_human": []}, 0
+    _main(monkeypatch, capsys, [str(tmp_path)], run)
+    _main(monkeypatch, capsys, [str(tmp_path)], run)
+    lines = (tmp_path / "logs" / "runs.jsonl").read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 2
+    entry = json.loads(lines[0])
+    assert entry["script"] == "sf_demo" and entry["exit"] == 0
+    assert entry["counts"] == {"done": 2, "needs_human": 0}
+    assert entry["elapsed_s"] >= 0 and entry["started"].endswith("+00:00")
+
+
+def test_main_wrapper_records_crashes_but_not_missing_projects(tmp_path, monkeypatch, capsys):
+    def boom(project_dir, only):
+        raise RuntimeError("x")
+    _main(monkeypatch, capsys, [str(tmp_path)], boom)
+    entry = json.loads((tmp_path / "logs" / "runs.jsonl").read_text(encoding="utf-8"))
+    assert entry["exit"] == 1 and entry["counts"] == {"errors": 1}
+    _main(monkeypatch, capsys, [str(tmp_path / "nope")], lambda project_dir, only: ({}, 0))
+    assert not (tmp_path / "nope").exists()

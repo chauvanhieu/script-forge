@@ -37,7 +37,7 @@
             "style": {"type": "string", "pattern": "^[a-z0-9-]+$"}
           }
         },
-        "review_mode": {"const": "gated"}
+        "review_mode": {"enum": ["gated", "auto"]}
       }
     },
     "state": {

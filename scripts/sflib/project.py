@@ -7,8 +7,10 @@ import json
 import os
 import sys
 import tempfile
+import time
 import traceback
 from contextlib import contextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Iterator, NoReturn
 
@@ -113,8 +115,26 @@ def _emit(summary: dict, code: int) -> NoReturn:
     sys.exit(code)
 
 
+def _record_run(project_dir: Path, script: str, started: str, elapsed_s: float, code: int, summary: dict) -> None:
+    """Append one measurement line for sf_learn; never let logging break a run."""
+    if not project_dir.is_dir():
+        return
+    counts = {key: len(value) for key, value in summary.items() if isinstance(value, list)}
+    entry = {"script": script, "started": started, "elapsed_s": round(elapsed_s, 3), "exit": code, "counts": counts}
+    try:
+        logs = project_dir / "logs"
+        logs.mkdir(exist_ok=True)
+        with (logs / "runs.jsonl").open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    except OSError:
+        pass
+
+
 def main_wrapper(run: Callable[..., tuple[dict, int]], description: str) -> NoReturn:
     args = _parse_args(description)
+    script = Path(sys.argv[0]).stem
+    started = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    clock = time.monotonic()
     try:
         with project_lock(args.project_dir):
             summary, code = run(args.project_dir, args.only)
@@ -122,8 +142,9 @@ def main_wrapper(run: Callable[..., tuple[dict, int]], description: str) -> NoRe
         _emit({"errors": [str(exc)]}, EXIT_HUMAN)
     except Exception as exc:
         if args.project_dir.is_dir():
-            log(args.project_dir, Path(sys.argv[0]).stem, traceback.format_exc())
+            log(args.project_dir, script, traceback.format_exc())
         else:
             sys.stderr.write(traceback.format_exc())
-        _emit({"errors": [f"{type(exc).__name__}: {exc}"]}, EXIT_BUG)
+        summary, code = {"errors": [f"{type(exc).__name__}: {exc}"]}, EXIT_BUG
+    _record_run(args.project_dir, script, started, time.monotonic() - clock, code, summary)
     _emit(summary, code)
