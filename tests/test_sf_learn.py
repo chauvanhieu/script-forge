@@ -107,3 +107,52 @@ def test_run_id_guard_prevents_double_write(tmp_path):
     summary2, code = sf_learn.run(project, library_dir=library)
     assert code == 0 and summary2["recorded"] is False and summary2["run_id"] == summary1["run_id"]
     assert json.loads((library / "calibration.json").read_text()) == cal_before
+
+
+GOOD_TASTE = """# Taste rules
+
+- T001 [global · brief] Default to Vietnamese, 9:16, 60 seconds, karaoke-bold captions.
+  ← den-ong-sao · 2026-09-29 · "mặc định tiếng Việt, shorts 1 phút"
+"""
+GOOD_CHECKS = """# Objective checks
+
+- K001 [image] Moon scenes: state the count in the prompt ("exactly one full moon").  hits: 1 · den-ong-sao/S05
+- K002 [audio · vi] Vietnamese ASR word timings are untrusted; expect approx karaoke.  hits: 16 · den-ong-sao/L001
+"""
+
+
+def _library(tmp_path, taste=GOOD_TASTE, checks=GOOD_CHECKS):
+    library = tmp_path / "library"
+    library.mkdir(exist_ok=True)
+    (library / "taste.md").write_text(taste, encoding="utf-8")
+    (library / "checks.md").write_text(checks, encoding="utf-8")
+    return library
+
+
+def test_check_library_accepts_valid_files_and_missing_files(tmp_path):
+    assert sf_learn.check_library(_library(tmp_path)) == []
+    assert sf_learn.check_library(tmp_path / "empty") == []
+
+
+def test_check_library_rejects_malformed_entries(tmp_path):
+    bad_taste = GOOD_TASTE + "- T001 [global] Duplicate id.\n  ← x · 2026-09-29 · \"y\"\n- T002 [global] Missing source line.\n"
+    bad_checks = GOOD_CHECKS + "- K003 [pictures] Unknown scope.  hits: 1 · x/S01\n- K004 no brackets\n"
+    problems = sf_learn.check_library(_library(tmp_path, bad_taste, bad_checks))
+    assert any("T001" in p and "duplicate" in p for p in problems)
+    assert any("T002" in p and "source" in p for p in problems)
+    assert any("K003" in p and "scope" in p for p in problems)
+    assert any("K004" in p or "no brackets" in p for p in problems)
+
+
+def test_check_library_enforces_the_per_scope_cap(tmp_path):
+    many = "".join(f"- K{i:03d} [image] Check {i}.  hits: 1 · x/S01\n" for i in range(1, 32))
+    problems = sf_learn.check_library(_library(tmp_path, checks=many))
+    assert any("image" in p and "30" in p for p in problems)
+
+
+def test_library_problems_make_sf_learn_exit_2(tmp_path):
+    project = _voiced(tmp_path)
+    _log(project, VOICE)
+    library = _library(tmp_path, checks="- K001 [pictures] x.  hits: 1 · a/S01\n")
+    summary, code = sf_learn.run(project, library_dir=library)
+    assert code == 2 and summary["library_problems"]

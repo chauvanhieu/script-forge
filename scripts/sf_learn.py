@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import tempfile
 from datetime import date
 from pathlib import Path
@@ -15,13 +16,69 @@ LIBRARY = ROOT / "library"
 ALPHA = 0.2  # EWMA weight of each new line's speaking rate
 STAGES = {"sf_image": ("image", "done"), "sf_voice": ("voice_line", "done"), "sf_render": ("render", None)}
 
+CHECK_SCOPES = {"script", "image", "audio", "captions"}
+CHECK_CAP = 30
+_TASTE_TAGS = {"global", "brief", "script", "visual", "audio", "captions", "9:16", "16:9"}
+_TASTE = re.compile(r"^- (T\d{3,}) \[([^\]]+)\] (\S.*)$")
+_SOURCE = re.compile(r'^  ← \S+ · \d{4}-\d{2}-\d{2} · ".+"$')
+_CHECK = re.compile(r"^- (K\d{3,}) \[([^\]]+)\] (\S.*?)  hits: (\d+) · \S+$")
+
 
 def speech_chars(text: str) -> int:
     return len("".join(norm(display_text(text)).split()))
 
 
+def _taste_problems(lines: list[str]) -> list[str]:
+    problems, seen = [], set()
+    for index, raw in enumerate(lines):
+        if not raw.startswith("- "):
+            continue
+        match = _TASTE.match(raw)
+        if not match:
+            problems.append(f"taste.md line {index + 1}: not '- T### [scope] rule': {raw!r}")
+            continue
+        rule_id, tags = match.group(1), [tag.strip() for tag in match.group(2).split("·")]
+        if rule_id in seen:
+            problems.append(f"taste.md {rule_id}: duplicate id")
+        seen.add(rule_id)
+        bad = [tag for tag in tags if tag not in _TASTE_TAGS and not re.fullmatch(r"[a-z][a-z0-9-]*", tag)]
+        if bad:
+            problems.append(f"taste.md {rule_id}: unknown scope tags {bad}")
+        nxt = lines[index + 1] if index + 1 < len(lines) else ""
+        if not _SOURCE.match(nxt):
+            problems.append(f"taste.md {rule_id}: missing source line '  ← <slug> · YYYY-MM-DD · \"<user words>\"'")
+    return problems
+
+
+def _check_problems(lines: list[str]) -> list[str]:
+    problems, seen, per_scope = [], set(), {}
+    for index, raw in enumerate(lines):
+        if not raw.startswith("- "):
+            continue
+        match = _CHECK.match(raw)
+        if not match:
+            problems.append(f"checks.md line {index + 1}: not '- K### [scope] check.  hits: N · slug/id': {raw!r}")
+            continue
+        check_id, tags = match.group(1), [tag.strip() for tag in match.group(2).split("·")]
+        if check_id in seen:
+            problems.append(f"checks.md {check_id}: duplicate id")
+        seen.add(check_id)
+        if tags[0] not in CHECK_SCOPES or len(tags) > 2 or (len(tags) == 2 and not re.fullmatch(r"[a-z]{2,3}", tags[1])):
+            problems.append(f"checks.md {check_id}: scope must be one of {sorted(CHECK_SCOPES)} optionally '· <lang>'")
+            continue
+        per_scope[tags[0]] = per_scope.get(tags[0], 0) + 1
+    problems += [f"checks.md: {scope} has {count} checks, cap is {CHECK_CAP}; drop the fewest-hit, oldest ones"
+                 for scope, count in per_scope.items() if count > CHECK_CAP]
+    return problems
+
+
 def check_library(library_dir: Path) -> list[str]:
-    return []  # implemented in Task 3
+    problems = []
+    for name, checker in (("taste.md", _taste_problems), ("checks.md", _check_problems)):
+        path = library_dir / name
+        if path.exists():
+            problems += checker(path.read_text(encoding="utf-8").splitlines())
+    return problems
 
 
 def _read_json(path: Path, default):
