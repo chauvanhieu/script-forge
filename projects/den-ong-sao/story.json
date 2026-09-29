@@ -1,0 +1,3565 @@
+{
+  "schema_version": "1.0",
+  "slug": "den-ong-sao",
+  "canon": {
+    "path": "stories/den-ong-sao",
+    "chapters": [
+      "chapter-01"
+    ]
+  },
+  "brief": {
+    "idea": "Chiếc đèn ông sao: a poor boy in a riverside Mekong village secretly builds a star lantern from scraps for his little sister; on Mid-Autumn night the candle dies in the river wind, and she relights it with a candle she had saved for him.",
+    "language": "vi",
+    "aspect": "9:16",
+    "content_type": "fiction",
+    "genre": "childrens-drama",
+    "target_seconds": 60,
+    "captions": {
+      "mode": "karaoke",
+      "style": "karaoke-bold"
+    },
+    "review_mode": "gated"
+  },
+  "state": {
+    "stage": "cast",
+    "gates": {
+      "script": {
+        "approved_at": "2026-09-29"
+      },
+      "images": {
+        "approved_at": null
+      }
+    }
+  },
+  "style_bible": {
+    "medium": "warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture",
+    "palette": [
+      "lantern red",
+      "candle amber",
+      "moonlit indigo",
+      "river teal",
+      "warm cream"
+    ],
+    "lighting": "dusk and moonlit night; warm candle and oil-lamp glow against cool blue moonlight",
+    "composition": "one clear focal subject in the upper two thirds, calm uncluttered lower third kept clear for captions, vertical 9:16 framing",
+    "avoid": [
+      "generated text",
+      "letters or signage",
+      "logos",
+      "watermarks",
+      "photorealism",
+      "extra fingers or distorted hands",
+      "plastic or electric lanterns in the main characters' hands",
+      "scary or gloomy mood"
+    ]
+  },
+  "cast": [
+    {
+      "id": "narrator",
+      "canon_id": null,
+      "name": "Người kể chuyện",
+      "role": "narrator",
+      "voice": {
+        "source": "design",
+        "design_prompt": "female, middle-aged, low pitch",
+        "profile_id": "cd3f14ad",
+        "instruct": "female, middle-aged, low pitch"
+      },
+      "caption_color": "#FFFFFF"
+    },
+    {
+      "id": "C01",
+      "canon_id": "ti",
+      "name": "Tí",
+      "role": "protagonist",
+      "appearance": "a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot",
+      "voice": {
+        "source": "design",
+        "design_prompt": "male, child, moderate pitch",
+        "profile_id": "a9f9adcc",
+        "instruct": "male, child, moderate pitch"
+      },
+      "caption_color": "#FFD166",
+      "plates": {
+        "face": {
+          "path": "plates/C01_face.png",
+          "input_hash": "5720519d1848bd7c",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, head-and-shoulders portrait of a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot, gentle friendly expression, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "half": {
+          "path": "plates/C01_half.png",
+          "input_hash": "178b1973fafc5fdf",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, half-body view from the waist up of a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot, arms relaxed at the sides, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "full": {
+          "path": "plates/C01_full.png",
+          "input_hash": "6c9fbad18e252548",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, full-body view of a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot, standing upright, whole figure visible from head to bare feet, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "canon_id": "bong",
+      "name": "Bống",
+      "role": "deuteragonist",
+      "appearance": "a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot",
+      "voice": {
+        "source": "design",
+        "design_prompt": "female, child, high pitch",
+        "profile_id": "69cb9445",
+        "instruct": "female, child, high pitch"
+      },
+      "caption_color": "#8EE3F5",
+      "plates": {
+        "face": {
+          "path": "plates/C02_face.png",
+          "input_hash": "eb24b6a861ae01e4",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, head-and-shoulders portrait of a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot, gentle friendly expression, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "half": {
+          "path": "plates/C02_half.png",
+          "input_hash": "9dce1457a8a0687a",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, half-body view from the waist up of a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot, arms relaxed at the sides, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "full": {
+          "path": "plates/C02_full.png",
+          "input_hash": "7fe900053f3e36c1",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, full-body view of a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot, standing upright, whole figure visible from head to bare feet, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        }
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "LOC01",
+      "canon_id": "nha-san-ben-song",
+      "name": "Nhà sàn bên sông",
+      "appearance": "a small weathered wooden stilt house with a thatched palm-leaf roof and a narrow bamboo veranda, standing on stilts over a wide calm river, banana trees beside it",
+      "plate": {
+        "path": "plates/LOC01.png",
+        "input_hash": "d9f639e2628e0431",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, a small weathered wooden stilt house with a thatched palm-leaf roof and a narrow bamboo veranda, standing on stilts over a wide calm river, banana trees beside it, a dirt path running along the riverbank in front of it, soft dusk light, no people, vertical 9:16 composition, no text, no letters, no logos, no watermarks."
+      }
+    },
+    {
+      "id": "LOC02",
+      "canon_id": "bo-song",
+      "name": "Bờ sông đêm rằm",
+      "appearance": "a dirt village path along the riverbank lined with bamboo groves and banana trees, a big full moon over the wide calm river",
+      "plate": {
+        "path": "plates/LOC02.png",
+        "input_hash": "90cc476a7e907d71",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, a dirt village path along the riverbank lined with bamboo groves and banana trees, a big full moon over the wide calm river, the moon reflected on the water, cool moonlit night, no people, vertical 9:16 composition, no text, no letters, no logos, no watermarks."
+      }
+    }
+  ],
+  "slides": [
+    {
+      "id": "S01",
+      "source": "chapter-01-scene-01",
+      "line_ids": [
+        "L001",
+        "L002"
+      ],
+      "brief": {
+        "moment": "At dusk Bống sits hugging her knees on the veranda, empty-handed, watching village kids pass with glowing lanterns; Tí stands beside her",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "distant children carrying glowing lanterns",
+          "Bống's empty hands"
+        ],
+        "must_not_show": [
+          "star lantern"
+        ],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot"
+        ],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, at dusk a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot sits hugging her knees on the narrow bamboo veranda of a small weathered wooden stilt house with a thatched palm-leaf roof and a narrow bamboo veranda, standing on stilts over a wide calm river, banana trees beside it, her hands empty, gazing wistfully at distant village children walking along the riverside dirt path carrying glowing carp-shaped and round paper lanterns; beside her stands a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot, looking at her with concern, lavender dusk sky with small warm lantern glows in the distance, wide shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S01.png",
+        "input_hash": "eefcba6809949be8",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2101
+      }
+    },
+    {
+      "id": "S02",
+      "source": "chapter-01-scene-01",
+      "line_ids": [
+        "L003",
+        "L004"
+      ],
+      "brief": {
+        "moment": "Tí turns out his empty patched pocket, then nods firmly to his little sister",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "empty pocket turned inside out",
+          "Tí's determined face"
+        ],
+        "must_not_show": [
+          "money",
+          "star lantern"
+        ],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot"
+        ],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot pulls the patched left pocket of his shirt inside out to show it is empty, his face set in a small determined smile as he nods; a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot looks up at him hopefully from beside him, on the bamboo veranda of a small wooden stilt house, warm last light of dusk, close up shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S02.png",
+        "input_hash": "b799d98921099e41",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2102
+      }
+    },
+    {
+      "id": "S03",
+      "source": "chapter-01-scene-02",
+      "line_ids": [
+        "L005",
+        "L006"
+      ],
+      "brief": {
+        "moment": "Late at night Tí secretly splits bamboo into thin strips by a small oil lamp in the corner of the back veranda; a small cut on his finger",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "oil lamp",
+          "bamboo strips",
+          "machete",
+          "small cut on finger"
+        ],
+        "must_not_show": [
+          "red cellophane",
+          "finished lantern"
+        ],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot",
+          "Bống only half-hidden in the background, peeking"
+        ],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, late at night a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot kneels alone in the corner of the back bamboo veranda of a small wooden stilt house, carefully splitting a green bamboo pole into thin strips with a small machete beside a tiny flickering oil lamp, a small cut on one finger, thin bamboo strips curving into star points around him; in the shadowy background a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot peeks out, half-hidden behind a woven bamboo screen, deep indigo night with a single warm amber lamp glow, medium shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "medium",
+        "motion": "pan_left",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S03.png",
+        "input_hash": "5f437784b9a45ef9",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2103
+      }
+    },
+    {
+      "id": "S04",
+      "source": "chapter-01-scene-02",
+      "line_ids": [
+        "L007"
+      ],
+      "brief": {
+        "moment": "Close on the materials: small hands smoothing an old crumpled red candy cellophane over the bamboo star frame, a stubby candle end and a matchbox beside it",
+        "characters": [
+          "C01"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "crumpled red cellophane",
+          "short candle stub",
+          "matchbox",
+          "bamboo star frame"
+        ],
+        "must_not_show": [
+          "lit candle",
+          "Bống"
+        ],
+        "continuity": [
+          "star frame: five points, bamboo strips tied with thread"
+        ],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, close on the small sun-tanned hands of a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot smoothing a crumpled old red candy cellophane wrapper flat over a five-pointed star frame of thin bamboo strips tied with thread, a very short stubby half-burned white candle and a small worn matchbox lying beside it on rough wooden floorboards, warm amber oil-lamp light, extreme close shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "extreme-close",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S04.png",
+        "input_hash": "f47500a89b714374",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2104
+      }
+    },
+    {
+      "id": "S05",
+      "source": "chapter-01-scene-03",
+      "line_ids": [
+        "L008",
+        "L009"
+      ],
+      "brief": {
+        "moment": "Full-moon evening: Tí holds out the red star lantern; Bống's face lights up with joy",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "red star lantern held out",
+          "Bống's delighted face",
+          "full moon"
+        ],
+        "must_not_show": [
+          "lit candle inside lantern",
+          "riverbank"
+        ],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot",
+          "star lantern: five points, red cellophane, bamboo strips, slightly lopsided, long bamboo stick"
+        ],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, on a full-moon evening on the bamboo veranda of a small weathered wooden stilt house with a thatched palm-leaf roof and a narrow bamboo veranda, standing on stilts over a wide calm river, banana trees beside it, a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot proudly holds out a handmade five-pointed star lantern made of thin bamboo strips covered in translucent red cellophane, slightly lopsided on one side, mounted on a long bamboo stick toward a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot, who clasps her hands under her chin with a huge delighted smile and sparkling eyes, round full moon rising behind them, medium shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks, exactly one round full moon in the sky and no crescent moon.",
+        "shot": "medium",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S05.png",
+        "input_hash": "56ae17ffffa99292",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2155
+      }
+    },
+    {
+      "id": "S06",
+      "source": "chapter-01-scene-04",
+      "line_ids": [
+        "L010",
+        "L011"
+      ],
+      "brief": {
+        "moment": "On the windy riverbank the candle has just gone out: the star lantern is dark, a thin wisp of smoke rising; Tí looks down, sorry",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "dark unlit star lantern",
+          "thin wisp of smoke",
+          "bamboo bent by wind"
+        ],
+        "must_not_show": [
+          "pink candle",
+          "glowing lantern"
+        ],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot",
+          "star lantern: five points, red cellophane, bamboo strips, slightly lopsided, long bamboo stick"
+        ],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, on a dirt village path along the riverbank lined with bamboo groves and banana trees, a big full moon over the wide calm river, strong wind bends the bamboo and tugs at their clothes; a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot holds up a handmade five-pointed star lantern made of thin bamboo strips covered in translucent red cellophane, slightly lopsided on one side, mounted on a long bamboo stick, now dark and unlit with a thin wisp of smoke rising from inside it; a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot stands beside her with his head down and an apologetic, sad face, cold blue moonlight, no warm glow, wide shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "pan_right",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S06.png",
+        "input_hash": "5de16ceb0aa75c9d",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2106
+      }
+    },
+    {
+      "id": "S07",
+      "source": "chapter-01-scene-05",
+      "line_ids": [
+        "L012",
+        "L013"
+      ],
+      "brief": {
+        "moment": "Bống, not crying, holds out a small crooked pink candle on her open palm to her brother",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "small crooked pink candle on Bống's palm",
+          "Tí's moved, teary face"
+        ],
+        "must_not_show": [
+          "lit lantern"
+        ],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot",
+          "pink candle: small, crooked"
+        ],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot holds out a small crooked pink candle on her open palm toward her brother with a gentle brave smile; a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot looks at it, surprised and teary-eyed; the dark red star lantern rests on its bamboo stick in the crook of her arm, soft silver moonlight on their faces, the calm river and bamboo softly blurred behind them, close up shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S07.png",
+        "input_hash": "b59dc7e95a515717",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2107
+      }
+    },
+    {
+      "id": "S08",
+      "source": "chapter-01-scene-06",
+      "line_ids": [
+        "L014",
+        "L015",
+        "L016"
+      ],
+      "brief": {
+        "moment": "The two siblings walk along the moonlit riverbank, the red star lantern glowing brightly above them, its red light reflected in the river beside the moon",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "glowing red star lantern",
+          "red reflection on the river",
+          "full moon"
+        ],
+        "must_not_show": [],
+        "continuity": [
+          "C01: faded blue short-sleeved shirt with patched left pocket, brown shorts, barefoot, short messy black hair",
+          "C02: light yellow floral blouse, black trousers, two short pigtails tied with red yarn, barefoot",
+          "star lantern: five points, red cellophane, bamboo strips, slightly lopsided, long bamboo stick"
+        ],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "Warm Vietnamese watercolor storybook illustration, soft ink outlines, gentle paper texture, palette of lantern red, candle amber, moonlit indigo, river teal and warm cream, a thin 10-year-old Vietnamese boy with sun-tanned skin and short messy black hair, wearing a faded blue short-sleeved shirt with a patched left pocket and brown shorts, barefoot and a small 6-year-old Vietnamese girl with round cheeks and black hair in two short pigtails tied with red yarn, wearing a light yellow floral blouse and black trousers, barefoot walk side by side along a dirt village path along the riverbank lined with bamboo groves and banana trees, a big full moon over the wide calm river, she holds up a handmade five-pointed star lantern made of thin bamboo strips covered in translucent red cellophane, slightly lopsided on one side, mounted on a long bamboo stick, now glowing bright warm red from a candle inside, its red light and the full moon both reflected on the smooth river, both children smiling, peaceful warm glow against the deep indigo night, wide shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S08.png",
+        "input_hash": "b3805c14b14a7ffe",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 2108
+      }
+    }
+  ],
+  "lines": [
+    {
+      "id": "L001",
+      "speaker": "narrator",
+      "text": "Cả xóm ven sông, đứa nào cũng có đèn Trung thu. Chỉ riêng bé Bống là không.",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L001.wav",
+        "duration_ms": 4197,
+        "seed": 617434405,
+        "input_hash": "cf2bcef41b16be33",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.34,
+          "cer": 0.018,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Cả",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "xóm",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "ven",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "sông,",
+            "start": 0.221,
+            "end": 0.322
+          },
+          {
+            "text": "đứa",
+            "start": 0.342,
+            "end": 0.402
+          },
+          {
+            "text": "nào",
+            "start": 0.422,
+            "end": 0.482
+          },
+          {
+            "text": "cũng",
+            "start": 0.503,
+            "end": 0.583
+          },
+          {
+            "text": "có",
+            "start": 0.603,
+            "end": 0.643
+          },
+          {
+            "text": "đèn",
+            "start": 0.663,
+            "end": 0.724
+          },
+          {
+            "text": "trung",
+            "start": 0.744,
+            "end": 0.844
+          },
+          {
+            "text": "thu,",
+            "start": 0.864,
+            "end": 0.945
+          },
+          {
+            "text": "chỉ",
+            "start": 0.965,
+            "end": 1.025
+          },
+          {
+            "text": "riêng",
+            "start": 1.045,
+            "end": 1.146
+          },
+          {
+            "text": "bé",
+            "start": 1.166,
+            "end": 1.206
+          },
+          {
+            "text": "bóng",
+            "start": 1.226,
+            "end": 1.307
+          },
+          {
+            "text": "là",
+            "start": 1.327,
+            "end": 1.367
+          },
+          {
+            "text": "không.",
+            "start": 1.387,
+            "end": 1.508
+          }
+        ],
+        "used_seed": 617434405
+      },
+      "words": [
+        {
+          "text": "Cả",
+          "start_ms": 0,
+          "end_ms": 150,
+          "approx": true
+        },
+        {
+          "text": "xóm",
+          "start_ms": 150,
+          "end_ms": 375,
+          "approx": true
+        },
+        {
+          "text": "ven",
+          "start_ms": 375,
+          "end_ms": 600,
+          "approx": true
+        },
+        {
+          "text": "sông,",
+          "start_ms": 600,
+          "end_ms": 899,
+          "approx": true
+        },
+        {
+          "text": "đứa",
+          "start_ms": 899,
+          "end_ms": 1124,
+          "approx": true
+        },
+        {
+          "text": "nào",
+          "start_ms": 1124,
+          "end_ms": 1349,
+          "approx": true
+        },
+        {
+          "text": "cũng",
+          "start_ms": 1349,
+          "end_ms": 1649,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 1649,
+          "end_ms": 1799,
+          "approx": true
+        },
+        {
+          "text": "đèn",
+          "start_ms": 1799,
+          "end_ms": 2024,
+          "approx": true
+        },
+        {
+          "text": "Trung",
+          "start_ms": 2024,
+          "end_ms": 2398,
+          "approx": true
+        },
+        {
+          "text": "thu.",
+          "start_ms": 2398,
+          "end_ms": 2623,
+          "approx": true
+        },
+        {
+          "text": "Chỉ",
+          "start_ms": 2623,
+          "end_ms": 2848,
+          "approx": true
+        },
+        {
+          "text": "riêng",
+          "start_ms": 2848,
+          "end_ms": 3223,
+          "approx": true
+        },
+        {
+          "text": "bé",
+          "start_ms": 3223,
+          "end_ms": 3373,
+          "approx": true
+        },
+        {
+          "text": "Bống",
+          "start_ms": 3373,
+          "end_ms": 3672,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 3672,
+          "end_ms": 3822,
+          "approx": true
+        },
+        {
+          "text": "không.",
+          "start_ms": 3822,
+          "end_ms": 4197,
+          "approx": true
+        }
+      ],
+      "words_hash": "cf2bcef41b16be33"
+    },
+    {
+      "id": "L002",
+      "speaker": "C02",
+      "text": "Anh Tí ơi, mai rằm rồi. Em có đèn không hả anh?",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L002.wav",
+        "duration_ms": 2543,
+        "seed": 428660187,
+        "input_hash": "4620d1f7c2ff028a",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 12.98,
+          "cer": 0.03,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Anh",
+            "start": 0.0,
+            "end": 0.061
+          },
+          {
+            "text": "Tía",
+            "start": 0.081,
+            "end": 0.141
+          },
+          {
+            "text": "ơi,",
+            "start": 0.161,
+            "end": 0.222
+          },
+          {
+            "text": "mai",
+            "start": 0.242,
+            "end": 0.303
+          },
+          {
+            "text": "rằm",
+            "start": 0.323,
+            "end": 0.383
+          },
+          {
+            "text": "rồi,",
+            "start": 0.404,
+            "end": 0.484
+          },
+          {
+            "text": "em",
+            "start": 0.504,
+            "end": 0.545
+          },
+          {
+            "text": "có",
+            "start": 0.565,
+            "end": 0.605
+          },
+          {
+            "text": "đèn",
+            "start": 0.626,
+            "end": 0.686
+          },
+          {
+            "text": "không",
+            "start": 0.706,
+            "end": 0.807
+          },
+          {
+            "text": "hả",
+            "start": 0.827,
+            "end": 0.868
+          },
+          {
+            "text": "anh?",
+            "start": 0.888,
+            "end": 0.969
+          }
+        ],
+        "used_seed": 428660187
+      },
+      "words": [
+        {
+          "text": "Anh",
+          "start_ms": 0,
+          "end_ms": 227,
+          "approx": true
+        },
+        {
+          "text": "Tí",
+          "start_ms": 227,
+          "end_ms": 378,
+          "approx": true
+        },
+        {
+          "text": "ơi,",
+          "start_ms": 378,
+          "end_ms": 529,
+          "approx": true
+        },
+        {
+          "text": "mai",
+          "start_ms": 529,
+          "end_ms": 756,
+          "approx": true
+        },
+        {
+          "text": "rằm",
+          "start_ms": 756,
+          "end_ms": 983,
+          "approx": true
+        },
+        {
+          "text": "rồi.",
+          "start_ms": 983,
+          "end_ms": 1210,
+          "approx": true
+        },
+        {
+          "text": "Em",
+          "start_ms": 1457,
+          "end_ms": 1585,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 1585,
+          "end_ms": 1713,
+          "approx": true
+        },
+        {
+          "text": "đèn",
+          "start_ms": 1713,
+          "end_ms": 1904,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 1904,
+          "end_ms": 2224,
+          "approx": true
+        },
+        {
+          "text": "hả",
+          "start_ms": 2224,
+          "end_ms": 2351,
+          "approx": true
+        },
+        {
+          "text": "anh?",
+          "start_ms": 2351,
+          "end_ms": 2543,
+          "approx": true
+        }
+      ],
+      "words_hash": "4620d1f7c2ff028a"
+    },
+    {
+      "id": "L003",
+      "speaker": "narrator",
+      "text": "Tí lục túi áo. Trống trơn. Vậy mà cậu vẫn gật đầu thật mạnh.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L003.wav",
+        "duration_ms": 3322,
+        "seed": 11777192,
+        "input_hash": "8b6fdbab6c1c17a8",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.25,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Tí",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "lục",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "túi",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "áo,",
+            "start": 0.221,
+            "end": 0.282
+          },
+          {
+            "text": "trống",
+            "start": 0.302,
+            "end": 0.403
+          },
+          {
+            "text": "trơn,",
+            "start": 0.423,
+            "end": 0.523
+          },
+          {
+            "text": "vậy",
+            "start": 0.543,
+            "end": 0.604
+          },
+          {
+            "text": "mà",
+            "start": 0.624,
+            "end": 0.664
+          },
+          {
+            "text": "cậu",
+            "start": 0.684,
+            "end": 0.745
+          },
+          {
+            "text": "vẫn",
+            "start": 0.765,
+            "end": 0.825
+          },
+          {
+            "text": "gật",
+            "start": 0.845,
+            "end": 0.906
+          },
+          {
+            "text": "đầu",
+            "start": 0.926,
+            "end": 0.986
+          },
+          {
+            "text": "thật",
+            "start": 1.006,
+            "end": 1.087
+          },
+          {
+            "text": "mạnh.",
+            "start": 1.107,
+            "end": 1.208
+          }
+        ],
+        "used_seed": 11777192
+      },
+      "words": [
+        {
+          "text": "Tí",
+          "start_ms": 0,
+          "end_ms": 151,
+          "approx": true
+        },
+        {
+          "text": "lục",
+          "start_ms": 151,
+          "end_ms": 378,
+          "approx": true
+        },
+        {
+          "text": "túi",
+          "start_ms": 378,
+          "end_ms": 604,
+          "approx": true
+        },
+        {
+          "text": "áo.",
+          "start_ms": 604,
+          "end_ms": 755,
+          "approx": true
+        },
+        {
+          "text": "Trống",
+          "start_ms": 755,
+          "end_ms": 1132,
+          "approx": true
+        },
+        {
+          "text": "trơn.",
+          "start_ms": 1132,
+          "end_ms": 1434,
+          "approx": true
+        },
+        {
+          "text": "Vậy",
+          "start_ms": 1434,
+          "end_ms": 1661,
+          "approx": true
+        },
+        {
+          "text": "mà",
+          "start_ms": 1661,
+          "end_ms": 1812,
+          "approx": true
+        },
+        {
+          "text": "cậu",
+          "start_ms": 1812,
+          "end_ms": 2038,
+          "approx": true
+        },
+        {
+          "text": "vẫn",
+          "start_ms": 2038,
+          "end_ms": 2265,
+          "approx": true
+        },
+        {
+          "text": "gật",
+          "start_ms": 2265,
+          "end_ms": 2492,
+          "approx": true
+        },
+        {
+          "text": "đầu",
+          "start_ms": 2492,
+          "end_ms": 2718,
+          "approx": true
+        },
+        {
+          "text": "thật",
+          "start_ms": 2718,
+          "end_ms": 3020,
+          "approx": true
+        },
+        {
+          "text": "mạnh.",
+          "start_ms": 3020,
+          "end_ms": 3322,
+          "approx": true
+        }
+      ],
+      "words_hash": "8b6fdbab6c1c17a8"
+    },
+    {
+      "id": "L004",
+      "speaker": "C01",
+      "text": "Có chứ! Anh hứa mà.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L004.wav",
+        "duration_ms": 1694,
+        "seed": 1071744979,
+        "input_hash": "93e1491b7b05ba0e",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 7.67,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Có",
+            "start": 0.0,
+            "end": 0.042
+          },
+          {
+            "text": "chứ.",
+            "start": 0.063,
+            "end": 0.146
+          },
+          {
+            "text": "Anh",
+            "start": 0.52,
+            "end": 0.581
+          },
+          {
+            "text": "hứa",
+            "start": 0.602,
+            "end": 0.663
+          },
+          {
+            "text": "mà.",
+            "start": 0.684,
+            "end": 0.745
+          }
+        ],
+        "used_seed": 1071744979
+      },
+      "words": [
+        {
+          "text": "Có",
+          "start_ms": 0,
+          "end_ms": 211,
+          "approx": true
+        },
+        {
+          "text": "chứ!",
+          "start_ms": 211,
+          "end_ms": 527,
+          "approx": true
+        },
+        {
+          "text": "Anh",
+          "start_ms": 967,
+          "end_ms": 1240,
+          "approx": true
+        },
+        {
+          "text": "hứa",
+          "start_ms": 1240,
+          "end_ms": 1512,
+          "approx": true
+        },
+        {
+          "text": "mà.",
+          "start_ms": 1512,
+          "end_ms": 1694,
+          "approx": true
+        }
+      ],
+      "words_hash": "93e1491b7b05ba0e"
+    },
+    {
+      "id": "L005",
+      "speaker": "narrator",
+      "text": "Đêm ấy, chờ cả nhà ngủ say, Tí lén ra hiên chẻ tre dưới ngọn đèn dầu.",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L005.wav",
+        "duration_ms": 3847,
+        "seed": 1338287675,
+        "input_hash": "acf62340066cc3d6",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.0,
+          "cer": 0.02,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Đêm",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "ấy,",
+            "start": 0.08,
+            "end": 0.141
+          },
+          {
+            "text": "chờ",
+            "start": 0.161,
+            "end": 0.221
+          },
+          {
+            "text": "cả",
+            "start": 0.241,
+            "end": 0.282
+          },
+          {
+            "text": "nhà",
+            "start": 0.302,
+            "end": 0.362
+          },
+          {
+            "text": "ngủ",
+            "start": 0.382,
+            "end": 0.442
+          },
+          {
+            "text": "say,",
+            "start": 0.463,
+            "end": 0.543
+          },
+          {
+            "text": "Tì",
+            "start": 0.563,
+            "end": 0.603
+          },
+          {
+            "text": "lén",
+            "start": 0.623,
+            "end": 0.684
+          },
+          {
+            "text": "ra",
+            "start": 0.704,
+            "end": 0.744
+          },
+          {
+            "text": "hiên",
+            "start": 0.764,
+            "end": 0.845
+          },
+          {
+            "text": "chẻ",
+            "start": 0.865,
+            "end": 0.925
+          },
+          {
+            "text": "tre",
+            "start": 0.945,
+            "end": 1.006
+          },
+          {
+            "text": "dưới",
+            "start": 1.026,
+            "end": 1.106
+          },
+          {
+            "text": "ngọn",
+            "start": 1.126,
+            "end": 1.207
+          },
+          {
+            "text": "đèn",
+            "start": 1.227,
+            "end": 1.287
+          },
+          {
+            "text": "dầu.",
+            "start": 1.307,
+            "end": 1.388
+          }
+        ],
+        "used_seed": 1338287675
+      },
+      "words": [
+        {
+          "text": "Đêm",
+          "start_ms": 0,
+          "end_ms": 231,
+          "approx": true
+        },
+        {
+          "text": "ấy,",
+          "start_ms": 231,
+          "end_ms": 385,
+          "approx": true
+        },
+        {
+          "text": "chờ",
+          "start_ms": 385,
+          "end_ms": 616,
+          "approx": true
+        },
+        {
+          "text": "cả",
+          "start_ms": 616,
+          "end_ms": 769,
+          "approx": true
+        },
+        {
+          "text": "nhà",
+          "start_ms": 769,
+          "end_ms": 1000,
+          "approx": true
+        },
+        {
+          "text": "ngủ",
+          "start_ms": 1000,
+          "end_ms": 1231,
+          "approx": true
+        },
+        {
+          "text": "say,",
+          "start_ms": 1231,
+          "end_ms": 1462,
+          "approx": true
+        },
+        {
+          "text": "Tí",
+          "start_ms": 1462,
+          "end_ms": 1616,
+          "approx": true
+        },
+        {
+          "text": "lén",
+          "start_ms": 1616,
+          "end_ms": 1847,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 1847,
+          "end_ms": 2000,
+          "approx": true
+        },
+        {
+          "text": "hiên",
+          "start_ms": 2000,
+          "end_ms": 2308,
+          "approx": true
+        },
+        {
+          "text": "chẻ",
+          "start_ms": 2308,
+          "end_ms": 2539,
+          "approx": true
+        },
+        {
+          "text": "tre",
+          "start_ms": 2539,
+          "end_ms": 2770,
+          "approx": true
+        },
+        {
+          "text": "dưới",
+          "start_ms": 2770,
+          "end_ms": 3078,
+          "approx": true
+        },
+        {
+          "text": "ngọn",
+          "start_ms": 3078,
+          "end_ms": 3385,
+          "approx": true
+        },
+        {
+          "text": "đèn",
+          "start_ms": 3385,
+          "end_ms": 3616,
+          "approx": true
+        },
+        {
+          "text": "dầu.",
+          "start_ms": 3616,
+          "end_ms": 3847,
+          "approx": true
+        }
+      ],
+      "words_hash": "acf62340066cc3d6"
+    },
+    {
+      "id": "L006",
+      "speaker": "narrator",
+      "text": "Nan tre sắc cứa vào tay, rướm máu. Tí cắn môi, lặng lẽ uốn tiếp từng cánh sao.",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L006.wav",
+        "duration_ms": 4339,
+        "seed": 1017380508,
+        "input_hash": "1817d81c64ab5b01",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.14,
+          "cer": 0.07,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Nance",
+            "start": 0.0,
+            "end": 0.101
+          },
+          {
+            "text": "sắc",
+            "start": 0.121,
+            "end": 0.181
+          },
+          {
+            "text": "cứa",
+            "start": 0.201,
+            "end": 0.261
+          },
+          {
+            "text": "vào",
+            "start": 0.281,
+            "end": 0.342
+          },
+          {
+            "text": "tay",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "dưới",
+            "start": 0.442,
+            "end": 0.523
+          },
+          {
+            "text": "máu,",
+            "start": 0.543,
+            "end": 0.623
+          },
+          {
+            "text": "tí",
+            "start": 0.643,
+            "end": 0.683
+          },
+          {
+            "text": "cắn",
+            "start": 0.704,
+            "end": 0.764
+          },
+          {
+            "text": "môi,",
+            "start": 0.784,
+            "end": 0.864
+          },
+          {
+            "text": "lặng",
+            "start": 0.884,
+            "end": 0.965
+          },
+          {
+            "text": "lẽ",
+            "start": 0.985,
+            "end": 1.025
+          },
+          {
+            "text": "uốn",
+            "start": 1.045,
+            "end": 1.106
+          },
+          {
+            "text": "tiếp",
+            "start": 1.126,
+            "end": 1.206
+          },
+          {
+            "text": "từng",
+            "start": 1.226,
+            "end": 1.307
+          },
+          {
+            "text": "cánh",
+            "start": 1.327,
+            "end": 1.407
+          },
+          {
+            "text": "sao.",
+            "start": 1.427,
+            "end": 1.508
+          }
+        ],
+        "used_seed": 1017380508
+      },
+      "words": [
+        {
+          "text": "Nan",
+          "start_ms": 0,
+          "end_ms": 216,
+          "approx": true
+        },
+        {
+          "text": "tre",
+          "start_ms": 216,
+          "end_ms": 432,
+          "approx": true
+        },
+        {
+          "text": "sắc",
+          "start_ms": 432,
+          "end_ms": 647,
+          "approx": true
+        },
+        {
+          "text": "cứa",
+          "start_ms": 647,
+          "end_ms": 863,
+          "approx": true
+        },
+        {
+          "text": "vào",
+          "start_ms": 863,
+          "end_ms": 1079,
+          "approx": true
+        },
+        {
+          "text": "tay,",
+          "start_ms": 1079,
+          "end_ms": 1295,
+          "approx": true
+        },
+        {
+          "text": "rướm",
+          "start_ms": 1295,
+          "end_ms": 1582,
+          "approx": true
+        },
+        {
+          "text": "máu.",
+          "start_ms": 1582,
+          "end_ms": 1798,
+          "approx": true
+        },
+        {
+          "text": "Tí",
+          "start_ms": 1989,
+          "end_ms": 2136,
+          "approx": true
+        },
+        {
+          "text": "cắn",
+          "start_ms": 2136,
+          "end_ms": 2356,
+          "approx": true
+        },
+        {
+          "text": "môi,",
+          "start_ms": 2356,
+          "end_ms": 2577,
+          "approx": true
+        },
+        {
+          "text": "lặng",
+          "start_ms": 2577,
+          "end_ms": 2870,
+          "approx": true
+        },
+        {
+          "text": "lẽ",
+          "start_ms": 2870,
+          "end_ms": 3017,
+          "approx": true
+        },
+        {
+          "text": "uốn",
+          "start_ms": 3017,
+          "end_ms": 3237,
+          "approx": true
+        },
+        {
+          "text": "tiếp",
+          "start_ms": 3237,
+          "end_ms": 3531,
+          "approx": true
+        },
+        {
+          "text": "từng",
+          "start_ms": 3531,
+          "end_ms": 3825,
+          "approx": true
+        },
+        {
+          "text": "cánh",
+          "start_ms": 3825,
+          "end_ms": 4119,
+          "approx": true
+        },
+        {
+          "text": "sao.",
+          "start_ms": 4119,
+          "end_ms": 4339,
+          "approx": true
+        }
+      ],
+      "words_hash": "1817d81c64ab5b01"
+    },
+    {
+      "id": "L007",
+      "speaker": "narrator",
+      "text": "Giấy bóng kính đỏ, cậu xin từ gói kẹo cũ. Còn nến, chỉ có một mẩu ngắn tũn.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L007.wav",
+        "duration_ms": 4156,
+        "seed": 126720679,
+        "input_hash": "b8d303c0166ce036",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 12.99,
+          "cer": 0.056,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Giấy",
+            "start": 0.0,
+            "end": 0.08
+          },
+          {
+            "text": "bóng",
+            "start": 0.101,
+            "end": 0.181
+          },
+          {
+            "text": "kính",
+            "start": 0.201,
+            "end": 0.281
+          },
+          {
+            "text": "đỏ,",
+            "start": 0.302,
+            "end": 0.362
+          },
+          {
+            "text": "cậu",
+            "start": 0.382,
+            "end": 0.442
+          },
+          {
+            "text": "xin",
+            "start": 0.462,
+            "end": 0.523
+          },
+          {
+            "text": "thử",
+            "start": 0.543,
+            "end": 0.603
+          },
+          {
+            "text": "gói",
+            "start": 0.623,
+            "end": 0.683
+          },
+          {
+            "text": "kẹo",
+            "start": 0.704,
+            "end": 0.764
+          },
+          {
+            "text": "cũ,",
+            "start": 0.784,
+            "end": 0.844
+          },
+          {
+            "text": "còn",
+            "start": 0.864,
+            "end": 0.925
+          },
+          {
+            "text": "nến",
+            "start": 0.945,
+            "end": 1.005
+          },
+          {
+            "text": "chỉ",
+            "start": 1.025,
+            "end": 1.085
+          },
+          {
+            "text": "có",
+            "start": 1.106,
+            "end": 1.146
+          },
+          {
+            "text": "một",
+            "start": 1.166,
+            "end": 1.226
+          },
+          {
+            "text": "màu",
+            "start": 1.246,
+            "end": 1.307
+          },
+          {
+            "text": "ngắn",
+            "start": 1.327,
+            "end": 1.407
+          },
+          {
+            "text": "tũn.",
+            "start": 1.427,
+            "end": 1.508
+          }
+        ],
+        "used_seed": 126720679
+      },
+      "words": [
+        {
+          "text": "Giấy",
+          "start_ms": 0,
+          "end_ms": 266,
+          "approx": true
+        },
+        {
+          "text": "bóng",
+          "start_ms": 266,
+          "end_ms": 532,
+          "approx": true
+        },
+        {
+          "text": "kính",
+          "start_ms": 532,
+          "end_ms": 798,
+          "approx": true
+        },
+        {
+          "text": "đỏ,",
+          "start_ms": 798,
+          "end_ms": 931,
+          "approx": true
+        },
+        {
+          "text": "cậu",
+          "start_ms": 1172,
+          "end_ms": 1381,
+          "approx": true
+        },
+        {
+          "text": "xin",
+          "start_ms": 1381,
+          "end_ms": 1590,
+          "approx": true
+        },
+        {
+          "text": "từ",
+          "start_ms": 1590,
+          "end_ms": 1729,
+          "approx": true
+        },
+        {
+          "text": "gói",
+          "start_ms": 1729,
+          "end_ms": 1938,
+          "approx": true
+        },
+        {
+          "text": "kẹo",
+          "start_ms": 1938,
+          "end_ms": 2147,
+          "approx": true
+        },
+        {
+          "text": "cũ.",
+          "start_ms": 2147,
+          "end_ms": 2286,
+          "approx": true
+        },
+        {
+          "text": "Còn",
+          "start_ms": 2446,
+          "end_ms": 2660,
+          "approx": true
+        },
+        {
+          "text": "nến,",
+          "start_ms": 2660,
+          "end_ms": 2874,
+          "approx": true
+        },
+        {
+          "text": "chỉ",
+          "start_ms": 2874,
+          "end_ms": 3087,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 3087,
+          "end_ms": 3230,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 3230,
+          "end_ms": 3444,
+          "approx": true
+        },
+        {
+          "text": "mẩu",
+          "start_ms": 3444,
+          "end_ms": 3657,
+          "approx": true
+        },
+        {
+          "text": "ngắn",
+          "start_ms": 3657,
+          "end_ms": 3942,
+          "approx": true
+        },
+        {
+          "text": "tũn.",
+          "start_ms": 3942,
+          "end_ms": 4156,
+          "approx": true
+        }
+      ],
+      "words_hash": "b8d303c0166ce036"
+    },
+    {
+      "id": "L008",
+      "speaker": "narrator",
+      "text": "Tối rằm, Tí giơ ra một ngôi sao năm cánh. Đỏ rực, hơi méo, nhưng là của Bống.",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L008.wav",
+        "duration_ms": 4262,
+        "seed": 42942847,
+        "input_hash": "357812e7749a968c",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 12.9,
+          "cer": 0.091,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Tối",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "giảm",
+            "start": 0.08,
+            "end": 0.161
+          },
+          {
+            "text": "tí",
+            "start": 0.181,
+            "end": 0.221
+          },
+          {
+            "text": "rơ",
+            "start": 0.241,
+            "end": 0.281
+          },
+          {
+            "text": "ra",
+            "start": 0.301,
+            "end": 0.342
+          },
+          {
+            "text": "một",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "ngôi",
+            "start": 0.442,
+            "end": 0.523
+          },
+          {
+            "text": "sao",
+            "start": 0.543,
+            "end": 0.603
+          },
+          {
+            "text": "năm",
+            "start": 0.623,
+            "end": 0.683
+          },
+          {
+            "text": "cánh,",
+            "start": 0.703,
+            "end": 0.804
+          },
+          {
+            "text": "đỏ",
+            "start": 0.824,
+            "end": 0.864
+          },
+          {
+            "text": "rực",
+            "start": 0.884,
+            "end": 0.945
+          },
+          {
+            "text": "hơi",
+            "start": 0.965,
+            "end": 1.025
+          },
+          {
+            "text": "méo",
+            "start": 1.045,
+            "end": 1.105
+          },
+          {
+            "text": "nhưng",
+            "start": 1.126,
+            "end": 1.226
+          },
+          {
+            "text": "là",
+            "start": 1.246,
+            "end": 1.286
+          },
+          {
+            "text": "của",
+            "start": 1.306,
+            "end": 1.367
+          },
+          {
+            "text": "bống.",
+            "start": 1.387,
+            "end": 1.487
+          }
+        ],
+        "used_seed": 42942847
+      },
+      "words": [
+        {
+          "text": "Tối",
+          "start_ms": 0,
+          "end_ms": 232,
+          "approx": true
+        },
+        {
+          "text": "rằm,",
+          "start_ms": 232,
+          "end_ms": 465,
+          "approx": true
+        },
+        {
+          "text": "Tí",
+          "start_ms": 465,
+          "end_ms": 620,
+          "approx": true
+        },
+        {
+          "text": "giơ",
+          "start_ms": 620,
+          "end_ms": 852,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 852,
+          "end_ms": 1007,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 1007,
+          "end_ms": 1240,
+          "approx": true
+        },
+        {
+          "text": "ngôi",
+          "start_ms": 1240,
+          "end_ms": 1550,
+          "approx": true
+        },
+        {
+          "text": "sao",
+          "start_ms": 1550,
+          "end_ms": 1782,
+          "approx": true
+        },
+        {
+          "text": "năm",
+          "start_ms": 1782,
+          "end_ms": 2015,
+          "approx": true
+        },
+        {
+          "text": "cánh.",
+          "start_ms": 2015,
+          "end_ms": 2325,
+          "approx": true
+        },
+        {
+          "text": "Đỏ",
+          "start_ms": 2325,
+          "end_ms": 2480,
+          "approx": true
+        },
+        {
+          "text": "rực,",
+          "start_ms": 2480,
+          "end_ms": 2712,
+          "approx": true
+        },
+        {
+          "text": "hơi",
+          "start_ms": 2712,
+          "end_ms": 2945,
+          "approx": true
+        },
+        {
+          "text": "méo,",
+          "start_ms": 2945,
+          "end_ms": 3177,
+          "approx": true
+        },
+        {
+          "text": "nhưng",
+          "start_ms": 3177,
+          "end_ms": 3565,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 3565,
+          "end_ms": 3720,
+          "approx": true
+        },
+        {
+          "text": "của",
+          "start_ms": 3720,
+          "end_ms": 3952,
+          "approx": true
+        },
+        {
+          "text": "Bống.",
+          "start_ms": 3952,
+          "end_ms": 4262,
+          "approx": true
+        }
+      ],
+      "words_hash": "357812e7749a968c"
+    },
+    {
+      "id": "L009",
+      "speaker": "C02",
+      "text": "Đèn ông sao! Của em thật hả anh Tí?",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L009.wav",
+        "duration_ms": 1900,
+        "seed": 662183255,
+        "input_hash": "7f4bd2d41e3da0f6",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.16,
+          "cer": 0.04,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Đèn",
+            "start": 0.0,
+            "end": 0.061
+          },
+          {
+            "text": "ông",
+            "start": 0.081,
+            "end": 0.142
+          },
+          {
+            "text": "sao",
+            "start": 0.162,
+            "end": 0.223
+          },
+          {
+            "text": "của",
+            "start": 0.243,
+            "end": 0.304
+          },
+          {
+            "text": "em",
+            "start": 0.324,
+            "end": 0.364
+          },
+          {
+            "text": "thật",
+            "start": 0.385,
+            "end": 0.466
+          },
+          {
+            "text": "hả",
+            "start": 0.486,
+            "end": 0.526
+          },
+          {
+            "text": "anh",
+            "start": 0.547,
+            "end": 0.607
+          },
+          {
+            "text": "Tý?",
+            "start": 0.628,
+            "end": 0.688
+          }
+        ],
+        "used_seed": 662183255
+      },
+      "words": [
+        {
+          "text": "Đèn",
+          "start_ms": 0,
+          "end_ms": 228,
+          "approx": true
+        },
+        {
+          "text": "ông",
+          "start_ms": 228,
+          "end_ms": 456,
+          "approx": true
+        },
+        {
+          "text": "sao!",
+          "start_ms": 456,
+          "end_ms": 684,
+          "approx": true
+        },
+        {
+          "text": "Của",
+          "start_ms": 684,
+          "end_ms": 912,
+          "approx": true
+        },
+        {
+          "text": "em",
+          "start_ms": 912,
+          "end_ms": 1064,
+          "approx": true
+        },
+        {
+          "text": "thật",
+          "start_ms": 1064,
+          "end_ms": 1368,
+          "approx": true
+        },
+        {
+          "text": "hả",
+          "start_ms": 1368,
+          "end_ms": 1520,
+          "approx": true
+        },
+        {
+          "text": "anh",
+          "start_ms": 1520,
+          "end_ms": 1748,
+          "approx": true
+        },
+        {
+          "text": "Tí?",
+          "start_ms": 1748,
+          "end_ms": 1900,
+          "approx": true
+        }
+      ],
+      "words_hash": "7f4bd2d41e3da0f6"
+    },
+    {
+      "id": "L010",
+      "speaker": "narrator",
+      "text": "Hai anh em ra bờ sông rước đèn. Gió sông thổi mạnh. Mẩu nến chập chờn… rồi tắt lịm.",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L010.wav",
+        "duration_ms": 4696,
+        "seed": 20878765,
+        "input_hash": "e59a280b7990f166",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 12.99,
+          "cer": 0.066,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Hai",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "anh",
+            "start": 0.08,
+            "end": 0.141
+          },
+          {
+            "text": "em",
+            "start": 0.161,
+            "end": 0.201
+          },
+          {
+            "text": "ra",
+            "start": 0.221,
+            "end": 0.261
+          },
+          {
+            "text": "bờ",
+            "start": 0.281,
+            "end": 0.321
+          },
+          {
+            "text": "sông",
+            "start": 0.342,
+            "end": 0.422
+          },
+          {
+            "text": "rước",
+            "start": 0.442,
+            "end": 0.522
+          },
+          {
+            "text": "đèn,",
+            "start": 0.542,
+            "end": 0.623
+          },
+          {
+            "text": "gió",
+            "start": 0.643,
+            "end": 0.703
+          },
+          {
+            "text": "sông",
+            "start": 0.723,
+            "end": 0.804
+          },
+          {
+            "text": "thổi",
+            "start": 0.824,
+            "end": 0.904
+          },
+          {
+            "text": "mạnh,",
+            "start": 0.924,
+            "end": 1.025
+          },
+          {
+            "text": "màu",
+            "start": 1.045,
+            "end": 1.105
+          },
+          {
+            "text": "nến",
+            "start": 1.125,
+            "end": 1.185
+          },
+          {
+            "text": "chập",
+            "start": 1.205,
+            "end": 1.286
+          },
+          {
+            "text": "trờn,",
+            "start": 1.306,
+            "end": 1.406
+          },
+          {
+            "text": "rồi",
+            "start": 1.426,
+            "end": 1.487
+          },
+          {
+            "text": "tắt",
+            "start": 1.507,
+            "end": 1.567
+          },
+          {
+            "text": "lịp.",
+            "start": 1.587,
+            "end": 1.667
+          }
+        ],
+        "used_seed": 20878765
+      },
+      "words": [
+        {
+          "text": "Hai",
+          "start_ms": 0,
+          "end_ms": 231,
+          "approx": true
+        },
+        {
+          "text": "anh",
+          "start_ms": 231,
+          "end_ms": 462,
+          "approx": true
+        },
+        {
+          "text": "em",
+          "start_ms": 462,
+          "end_ms": 616,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 616,
+          "end_ms": 770,
+          "approx": true
+        },
+        {
+          "text": "bờ",
+          "start_ms": 770,
+          "end_ms": 924,
+          "approx": true
+        },
+        {
+          "text": "sông",
+          "start_ms": 924,
+          "end_ms": 1232,
+          "approx": true
+        },
+        {
+          "text": "rước",
+          "start_ms": 1232,
+          "end_ms": 1540,
+          "approx": true
+        },
+        {
+          "text": "đèn.",
+          "start_ms": 1540,
+          "end_ms": 1771,
+          "approx": true
+        },
+        {
+          "text": "Gió",
+          "start_ms": 1771,
+          "end_ms": 2002,
+          "approx": true
+        },
+        {
+          "text": "sông",
+          "start_ms": 2002,
+          "end_ms": 2310,
+          "approx": true
+        },
+        {
+          "text": "thổi",
+          "start_ms": 2310,
+          "end_ms": 2617,
+          "approx": true
+        },
+        {
+          "text": "mạnh.",
+          "start_ms": 2617,
+          "end_ms": 2925,
+          "approx": true
+        },
+        {
+          "text": "Mẩu",
+          "start_ms": 2925,
+          "end_ms": 3156,
+          "approx": true
+        },
+        {
+          "text": "nến",
+          "start_ms": 3156,
+          "end_ms": 3387,
+          "approx": true
+        },
+        {
+          "text": "chập",
+          "start_ms": 3387,
+          "end_ms": 3695,
+          "approx": true
+        },
+        {
+          "text": "chờn…",
+          "start_ms": 3695,
+          "end_ms": 4003,
+          "approx": true
+        },
+        {
+          "text": "rồi",
+          "start_ms": 4003,
+          "end_ms": 4234,
+          "approx": true
+        },
+        {
+          "text": "tắt",
+          "start_ms": 4234,
+          "end_ms": 4465,
+          "approx": true
+        },
+        {
+          "text": "lịm.",
+          "start_ms": 4465,
+          "end_ms": 4696,
+          "approx": true
+        }
+      ],
+      "words_hash": "e59a280b7990f166"
+    },
+    {
+      "id": "L011",
+      "speaker": "C01",
+      "text": "Anh xin lỗi… Nến hết thật rồi, Bống ơi.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L011.wav",
+        "duration_ms": 3281,
+        "seed": 1397509609,
+        "input_hash": "b0ccf66c0c4730f9",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 8.53,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Anh",
+            "start": 0.0,
+            "end": 0.062
+          },
+          {
+            "text": "xin",
+            "start": 0.083,
+            "end": 0.145
+          },
+          {
+            "text": "lỗi.",
+            "start": 0.166,
+            "end": 0.249
+          },
+          {
+            "text": "Nến",
+            "start": 1.4,
+            "end": 1.461
+          },
+          {
+            "text": "hết",
+            "start": 1.482,
+            "end": 1.543
+          },
+          {
+            "text": "thật",
+            "start": 1.563,
+            "end": 1.645
+          },
+          {
+            "text": "rồi.",
+            "start": 1.666,
+            "end": 1.747
+          },
+          {
+            "text": "Bống",
+            "start": 2.5,
+            "end": 2.583
+          },
+          {
+            "text": "ơi.",
+            "start": 2.604,
+            "end": 2.667
+          }
+        ],
+        "used_seed": 1397509609
+      },
+      "words": [
+        {
+          "text": "Anh",
+          "start_ms": 0,
+          "end_ms": 229,
+          "approx": true
+        },
+        {
+          "text": "xin",
+          "start_ms": 229,
+          "end_ms": 458,
+          "approx": true
+        },
+        {
+          "text": "lỗi…",
+          "start_ms": 458,
+          "end_ms": 687,
+          "approx": true
+        },
+        {
+          "text": "Nến",
+          "start_ms": 1649,
+          "end_ms": 1853,
+          "approx": true
+        },
+        {
+          "text": "hết",
+          "start_ms": 1853,
+          "end_ms": 2056,
+          "approx": true
+        },
+        {
+          "text": "thật",
+          "start_ms": 2056,
+          "end_ms": 2327,
+          "approx": true
+        },
+        {
+          "text": "rồi,",
+          "start_ms": 2327,
+          "end_ms": 2531,
+          "approx": true
+        },
+        {
+          "text": "Bống",
+          "start_ms": 2754,
+          "end_ms": 3105,
+          "approx": true
+        },
+        {
+          "text": "ơi.",
+          "start_ms": 3105,
+          "end_ms": 3281,
+          "approx": true
+        }
+      ],
+      "words_hash": "b0ccf66c0c4730f9"
+    },
+    {
+      "id": "L012",
+      "speaker": "narrator",
+      "text": "Bống không khóc. Em lặng lẽ móc trong túi áo ra một cây nến nhỏ, cong queo.",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L012.wav",
+        "duration_ms": 4237,
+        "seed": 566629660,
+        "input_hash": "cf2b35c79ae9cd6b",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.22,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Bống",
+            "start": 0.0,
+            "end": 0.08
+          },
+          {
+            "text": "không",
+            "start": 0.1,
+            "end": 0.201
+          },
+          {
+            "text": "khóc,",
+            "start": 0.221,
+            "end": 0.322
+          },
+          {
+            "text": "em",
+            "start": 0.342,
+            "end": 0.382
+          },
+          {
+            "text": "lặng",
+            "start": 0.402,
+            "end": 0.482
+          },
+          {
+            "text": "lẽ",
+            "start": 0.502,
+            "end": 0.543
+          },
+          {
+            "text": "móc",
+            "start": 0.563,
+            "end": 0.623
+          },
+          {
+            "text": "trong",
+            "start": 0.643,
+            "end": 0.744
+          },
+          {
+            "text": "túi",
+            "start": 0.764,
+            "end": 0.824
+          },
+          {
+            "text": "áo",
+            "start": 0.844,
+            "end": 0.884
+          },
+          {
+            "text": "ra",
+            "start": 0.904,
+            "end": 0.945
+          },
+          {
+            "text": "một",
+            "start": 0.965,
+            "end": 1.025
+          },
+          {
+            "text": "cây",
+            "start": 1.045,
+            "end": 1.105
+          },
+          {
+            "text": "nến",
+            "start": 1.126,
+            "end": 1.186
+          },
+          {
+            "text": "nhỏ,",
+            "start": 1.206,
+            "end": 1.286
+          },
+          {
+            "text": "cong",
+            "start": 1.306,
+            "end": 1.387
+          },
+          {
+            "text": "queo.",
+            "start": 1.407,
+            "end": 1.507
+          }
+        ],
+        "used_seed": 566629660
+      },
+      "words": [
+        {
+          "text": "Bống",
+          "start_ms": 0,
+          "end_ms": 209,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 209,
+          "end_ms": 471,
+          "approx": true
+        },
+        {
+          "text": "khóc.",
+          "start_ms": 471,
+          "end_ms": 680,
+          "approx": true
+        },
+        {
+          "text": "Em",
+          "start_ms": 871,
+          "end_ms": 1028,
+          "approx": true
+        },
+        {
+          "text": "lặng",
+          "start_ms": 1028,
+          "end_ms": 1341,
+          "approx": true
+        },
+        {
+          "text": "lẽ",
+          "start_ms": 1341,
+          "end_ms": 1497,
+          "approx": true
+        },
+        {
+          "text": "móc",
+          "start_ms": 1497,
+          "end_ms": 1732,
+          "approx": true
+        },
+        {
+          "text": "trong",
+          "start_ms": 1732,
+          "end_ms": 2123,
+          "approx": true
+        },
+        {
+          "text": "túi",
+          "start_ms": 2123,
+          "end_ms": 2358,
+          "approx": true
+        },
+        {
+          "text": "áo",
+          "start_ms": 2358,
+          "end_ms": 2515,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 2515,
+          "end_ms": 2671,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 2671,
+          "end_ms": 2906,
+          "approx": true
+        },
+        {
+          "text": "cây",
+          "start_ms": 2906,
+          "end_ms": 3141,
+          "approx": true
+        },
+        {
+          "text": "nến",
+          "start_ms": 3141,
+          "end_ms": 3376,
+          "approx": true
+        },
+        {
+          "text": "nhỏ,",
+          "start_ms": 3376,
+          "end_ms": 3611,
+          "approx": true
+        },
+        {
+          "text": "cong",
+          "start_ms": 3611,
+          "end_ms": 3924,
+          "approx": true
+        },
+        {
+          "text": "queo.",
+          "start_ms": 3924,
+          "end_ms": 4237,
+          "approx": true
+        }
+      ],
+      "words_hash": "cf2b35c79ae9cd6b"
+    },
+    {
+      "id": "L013",
+      "speaker": "C02",
+      "text": "Em thấy anh làm đèn mấy đêm liền. Em để dành cây nến này cho anh đó.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L013.wav",
+        "duration_ms": 3738,
+        "seed": 383280279,
+        "input_hash": "ea2434f45b4f559e",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.38,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Em",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "thấy",
+            "start": 0.06,
+            "end": 0.141
+          },
+          {
+            "text": "anh",
+            "start": 0.161,
+            "end": 0.221
+          },
+          {
+            "text": "làm",
+            "start": 0.241,
+            "end": 0.302
+          },
+          {
+            "text": "đèn",
+            "start": 0.322,
+            "end": 0.382
+          },
+          {
+            "text": "mấy",
+            "start": 0.402,
+            "end": 0.463
+          },
+          {
+            "text": "đêm",
+            "start": 0.483,
+            "end": 0.543
+          },
+          {
+            "text": "liền,",
+            "start": 0.563,
+            "end": 0.664
+          },
+          {
+            "text": "em",
+            "start": 0.684,
+            "end": 0.724
+          },
+          {
+            "text": "để",
+            "start": 0.744,
+            "end": 0.785
+          },
+          {
+            "text": "dành",
+            "start": 0.805,
+            "end": 0.885
+          },
+          {
+            "text": "cây",
+            "start": 0.905,
+            "end": 0.966
+          },
+          {
+            "text": "nến",
+            "start": 0.986,
+            "end": 1.046
+          },
+          {
+            "text": "này",
+            "start": 1.066,
+            "end": 1.127
+          },
+          {
+            "text": "cho",
+            "start": 1.147,
+            "end": 1.207
+          },
+          {
+            "text": "anh",
+            "start": 1.227,
+            "end": 1.288
+          },
+          {
+            "text": "đó.",
+            "start": 1.308,
+            "end": 1.368
+          }
+        ],
+        "used_seed": 383280279
+      },
+      "words": [
+        {
+          "text": "Em",
+          "start_ms": 0,
+          "end_ms": 131,
+          "approx": true
+        },
+        {
+          "text": "thấy",
+          "start_ms": 131,
+          "end_ms": 392,
+          "approx": true
+        },
+        {
+          "text": "anh",
+          "start_ms": 392,
+          "end_ms": 588,
+          "approx": true
+        },
+        {
+          "text": "làm",
+          "start_ms": 588,
+          "end_ms": 783,
+          "approx": true
+        },
+        {
+          "text": "đèn",
+          "start_ms": 783,
+          "end_ms": 979,
+          "approx": true
+        },
+        {
+          "text": "mấy",
+          "start_ms": 979,
+          "end_ms": 1175,
+          "approx": true
+        },
+        {
+          "text": "đêm",
+          "start_ms": 1175,
+          "end_ms": 1371,
+          "approx": true
+        },
+        {
+          "text": "liền.",
+          "start_ms": 1371,
+          "end_ms": 1632,
+          "approx": true
+        },
+        {
+          "text": "Em",
+          "start_ms": 1971,
+          "end_ms": 2112,
+          "approx": true
+        },
+        {
+          "text": "để",
+          "start_ms": 2112,
+          "end_ms": 2254,
+          "approx": true
+        },
+        {
+          "text": "dành",
+          "start_ms": 2254,
+          "end_ms": 2536,
+          "approx": true
+        },
+        {
+          "text": "cây",
+          "start_ms": 2536,
+          "end_ms": 2748,
+          "approx": true
+        },
+        {
+          "text": "nến",
+          "start_ms": 2748,
+          "end_ms": 2961,
+          "approx": true
+        },
+        {
+          "text": "này",
+          "start_ms": 2961,
+          "end_ms": 3173,
+          "approx": true
+        },
+        {
+          "text": "cho",
+          "start_ms": 3173,
+          "end_ms": 3385,
+          "approx": true
+        },
+        {
+          "text": "anh",
+          "start_ms": 3385,
+          "end_ms": 3597,
+          "approx": true
+        },
+        {
+          "text": "đó.",
+          "start_ms": 3597,
+          "end_ms": 3738,
+          "approx": true
+        }
+      ],
+      "words_hash": "ea2434f45b4f559e"
+    },
+    {
+      "id": "L014",
+      "speaker": "narrator",
+      "text": "Tí run run quẹt que diêm. Ngôi sao đỏ bừng sáng, lung linh soi xuống mặt sông.",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L014.wav",
+        "duration_ms": 4524,
+        "seed": 2094801586,
+        "input_hash": "b8a604db75759f93",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.04,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Tí",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "run",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "run",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "quẹt",
+            "start": 0.221,
+            "end": 0.301
+          },
+          {
+            "text": "que",
+            "start": 0.321,
+            "end": 0.382
+          },
+          {
+            "text": "diêm,",
+            "start": 0.402,
+            "end": 0.502
+          },
+          {
+            "text": "ngôi",
+            "start": 0.522,
+            "end": 0.603
+          },
+          {
+            "text": "sao",
+            "start": 0.623,
+            "end": 0.683
+          },
+          {
+            "text": "đỏ",
+            "start": 0.703,
+            "end": 0.743
+          },
+          {
+            "text": "bừng",
+            "start": 0.764,
+            "end": 0.844
+          },
+          {
+            "text": "sáng",
+            "start": 0.864,
+            "end": 0.944
+          },
+          {
+            "text": "lung",
+            "start": 0.964,
+            "end": 1.045
+          },
+          {
+            "text": "linh",
+            "start": 1.065,
+            "end": 1.145
+          },
+          {
+            "text": "soi",
+            "start": 1.165,
+            "end": 1.226
+          },
+          {
+            "text": "xuống",
+            "start": 1.246,
+            "end": 1.346
+          },
+          {
+            "text": "mặt",
+            "start": 1.366,
+            "end": 1.427
+          },
+          {
+            "text": "sông.",
+            "start": 1.447,
+            "end": 1.547
+          }
+        ],
+        "used_seed": 2094801586
+      },
+      "words": [
+        {
+          "text": "Tí",
+          "start_ms": 0,
+          "end_ms": 153,
+          "approx": true
+        },
+        {
+          "text": "run",
+          "start_ms": 153,
+          "end_ms": 383,
+          "approx": true
+        },
+        {
+          "text": "run",
+          "start_ms": 383,
+          "end_ms": 613,
+          "approx": true
+        },
+        {
+          "text": "quẹt",
+          "start_ms": 613,
+          "end_ms": 920,
+          "approx": true
+        },
+        {
+          "text": "que",
+          "start_ms": 920,
+          "end_ms": 1150,
+          "approx": true
+        },
+        {
+          "text": "diêm.",
+          "start_ms": 1150,
+          "end_ms": 1457,
+          "approx": true
+        },
+        {
+          "text": "Ngôi",
+          "start_ms": 1457,
+          "end_ms": 1764,
+          "approx": true
+        },
+        {
+          "text": "sao",
+          "start_ms": 1764,
+          "end_ms": 1994,
+          "approx": true
+        },
+        {
+          "text": "đỏ",
+          "start_ms": 1994,
+          "end_ms": 2147,
+          "approx": true
+        },
+        {
+          "text": "bừng",
+          "start_ms": 2147,
+          "end_ms": 2454,
+          "approx": true
+        },
+        {
+          "text": "sáng,",
+          "start_ms": 2454,
+          "end_ms": 2760,
+          "approx": true
+        },
+        {
+          "text": "lung",
+          "start_ms": 2760,
+          "end_ms": 3067,
+          "approx": true
+        },
+        {
+          "text": "linh",
+          "start_ms": 3067,
+          "end_ms": 3374,
+          "approx": true
+        },
+        {
+          "text": "soi",
+          "start_ms": 3374,
+          "end_ms": 3604,
+          "approx": true
+        },
+        {
+          "text": "xuống",
+          "start_ms": 3604,
+          "end_ms": 3987,
+          "approx": true
+        },
+        {
+          "text": "mặt",
+          "start_ms": 3987,
+          "end_ms": 4217,
+          "approx": true
+        },
+        {
+          "text": "sông.",
+          "start_ms": 4217,
+          "end_ms": 4524,
+          "approx": true
+        }
+      ],
+      "words_hash": "b8a604db75759f93"
+    },
+    {
+      "id": "L015",
+      "speaker": "C02",
+      "text": "Anh Tí ơi, đèn anh làm là đẹp nhất xóm luôn đó!",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L015.wav",
+        "duration_ms": 2585,
+        "seed": 1873446093,
+        "input_hash": "bb4113c2200e0f90",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.15,
+          "cer": 0.029,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Anh",
+            "start": 0.0,
+            "end": 0.061
+          },
+          {
+            "text": "tía",
+            "start": 0.081,
+            "end": 0.141
+          },
+          {
+            "text": "ơi,",
+            "start": 0.161,
+            "end": 0.222
+          },
+          {
+            "text": "đèn",
+            "start": 0.242,
+            "end": 0.303
+          },
+          {
+            "text": "anh",
+            "start": 0.323,
+            "end": 0.383
+          },
+          {
+            "text": "làm",
+            "start": 0.404,
+            "end": 0.464
+          },
+          {
+            "text": "là",
+            "start": 0.484,
+            "end": 0.525
+          },
+          {
+            "text": "đẹp",
+            "start": 0.545,
+            "end": 0.605
+          },
+          {
+            "text": "nhất",
+            "start": 0.625,
+            "end": 0.706
+          },
+          {
+            "text": "xóm",
+            "start": 0.726,
+            "end": 0.787
+          },
+          {
+            "text": "luôn",
+            "start": 0.807,
+            "end": 0.888
+          },
+          {
+            "text": "đó.",
+            "start": 0.908,
+            "end": 0.968
+          }
+        ],
+        "used_seed": 1873446093
+      },
+      "words": [
+        {
+          "text": "Anh",
+          "start_ms": 0,
+          "end_ms": 288,
+          "approx": true
+        },
+        {
+          "text": "Tí",
+          "start_ms": 288,
+          "end_ms": 479,
+          "approx": true
+        },
+        {
+          "text": "ơi,",
+          "start_ms": 479,
+          "end_ms": 671,
+          "approx": true
+        },
+        {
+          "text": "đèn",
+          "start_ms": 1002,
+          "end_ms": 1178,
+          "approx": true
+        },
+        {
+          "text": "anh",
+          "start_ms": 1178,
+          "end_ms": 1354,
+          "approx": true
+        },
+        {
+          "text": "làm",
+          "start_ms": 1354,
+          "end_ms": 1530,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 1530,
+          "end_ms": 1647,
+          "approx": true
+        },
+        {
+          "text": "đẹp",
+          "start_ms": 1647,
+          "end_ms": 1823,
+          "approx": true
+        },
+        {
+          "text": "nhất",
+          "start_ms": 1823,
+          "end_ms": 2057,
+          "approx": true
+        },
+        {
+          "text": "xóm",
+          "start_ms": 2057,
+          "end_ms": 2233,
+          "approx": true
+        },
+        {
+          "text": "luôn",
+          "start_ms": 2233,
+          "end_ms": 2468,
+          "approx": true
+        },
+        {
+          "text": "đó!",
+          "start_ms": 2468,
+          "end_ms": 2585,
+          "approx": true
+        }
+      ],
+      "words_hash": "bb4113c2200e0f90"
+    },
+    {
+      "id": "L016",
+      "speaker": "narrator",
+      "text": "Đêm ấy, Tí mới hiểu: có những chiếc đèn, chẳng tiền nào mua được.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L016.wav",
+        "duration_ms": 3681,
+        "seed": 1691886227,
+        "input_hash": "a588f146abae893c",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "qc": {
+          "cps": 13.04,
+          "cer": 0.021,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Đêm",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "ấy,",
+            "start": 0.08,
+            "end": 0.141
+          },
+          {
+            "text": "Tý",
+            "start": 0.161,
+            "end": 0.201
+          },
+          {
+            "text": "mới",
+            "start": 0.221,
+            "end": 0.282
+          },
+          {
+            "text": "hiểu,",
+            "start": 0.302,
+            "end": 0.402
+          },
+          {
+            "text": "có",
+            "start": 0.422,
+            "end": 0.463
+          },
+          {
+            "text": "những",
+            "start": 0.483,
+            "end": 0.583
+          },
+          {
+            "text": "chiếc",
+            "start": 0.604,
+            "end": 0.704
+          },
+          {
+            "text": "đèn",
+            "start": 0.724,
+            "end": 0.785
+          },
+          {
+            "text": "chẳng",
+            "start": 0.805,
+            "end": 0.905
+          },
+          {
+            "text": "tiền",
+            "start": 0.925,
+            "end": 1.006
+          },
+          {
+            "text": "nào",
+            "start": 1.026,
+            "end": 1.086
+          },
+          {
+            "text": "mua",
+            "start": 1.106,
+            "end": 1.167
+          },
+          {
+            "text": "được.",
+            "start": 1.187,
+            "end": 1.288
+          }
+        ],
+        "used_seed": 1691886227
+      },
+      "words": [
+        {
+          "text": "Đêm",
+          "start_ms": 0,
+          "end_ms": 312,
+          "approx": true
+        },
+        {
+          "text": "ấy,",
+          "start_ms": 312,
+          "end_ms": 519,
+          "approx": true
+        },
+        {
+          "text": "Tí",
+          "start_ms": 519,
+          "end_ms": 727,
+          "approx": true
+        },
+        {
+          "text": "mới",
+          "start_ms": 727,
+          "end_ms": 1039,
+          "approx": true
+        },
+        {
+          "text": "hiểu:",
+          "start_ms": 1039,
+          "end_ms": 1454,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 1680,
+          "end_ms": 1798,
+          "approx": true
+        },
+        {
+          "text": "những",
+          "start_ms": 1798,
+          "end_ms": 2092,
+          "approx": true
+        },
+        {
+          "text": "chiếc",
+          "start_ms": 2092,
+          "end_ms": 2386,
+          "approx": true
+        },
+        {
+          "text": "đèn,",
+          "start_ms": 2386,
+          "end_ms": 2563,
+          "approx": true
+        },
+        {
+          "text": "chẳng",
+          "start_ms": 2563,
+          "end_ms": 2857,
+          "approx": true
+        },
+        {
+          "text": "tiền",
+          "start_ms": 2857,
+          "end_ms": 3092,
+          "approx": true
+        },
+        {
+          "text": "nào",
+          "start_ms": 3092,
+          "end_ms": 3269,
+          "approx": true
+        },
+        {
+          "text": "mua",
+          "start_ms": 3269,
+          "end_ms": 3446,
+          "approx": true
+        },
+        {
+          "text": "được.",
+          "start_ms": 3446,
+          "end_ms": 3681,
+          "approx": true
+        }
+      ],
+      "words_hash": "a588f146abae893c"
+    }
+  ],
+  "research": null,
+  "source_work": null,
+  "learnings_applied": [],
+  "output": {
+    "video": "out/final.mp4",
+    "captions": "out/captions.ass",
+    "contact_sheet": "out/contact_sheet.png",
+    "qc": "out/qc.json"
+  }
+}
