@@ -11,12 +11,12 @@ description: Casts StoryForge voices (library, design, clone) and handles voice 
    gender `male|female`; age `child|teenager|young adult|middle-aged|elderly`;
    pitch `very low pitch|low pitch|moderate pitch|high pitch|very high pitch`; optional accent
    (`american accent`, `british accent`, …; leave out for Vietnamese); optional `whisper`.
-   Free-form emotion words are rejected.
+   Free-form emotion words are not attributes: `/design/describe` drops them and VoiceStudio rejects them in `instruct` (400).
 3. `source: clone` + a user-supplied reference clip (strongest control over delivery).
 Apply matching audio taste rules (e.g. how young child voices should sound).
 
 ## Expressive controls
-Punctuation, `[pause]`, `[pause 500ms]`, `[pause 1.5s]`, `[laughter]`, `[sigh]`, `whisper: true`. Nothing else.
+Punctuation; `[pause]`, `[pause 500ms]`, `[pause 1.5s]`; the 13 OmniVoice non-verbal tags in `scripts/sflib/text.py` (`NONVERBAL_TAGS`) — prefer `[laughter]` and `[sigh]`, the others are language-specific interjections; `[[written|spoken]]` pronunciation overrides; `whisper: true` on a line. Anything else in brackets is spoken literally, and `sf_validate` rejects it.
 
 ## Run
 Check VoiceStudio (sf-director `references/services.md`), then `uv run scripts/sf_voice.py projects/<slug>`.

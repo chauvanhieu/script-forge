@@ -82,7 +82,7 @@ or bumps a check in `checks.md` (§6.2) — that is workflow knowledge.
 
 Services: before step 4 and step 6, `sf-director` checks the image provider config and
 `GET /health` on VoiceStudio; if down it starts it with the command recorded in
-`sf-director/references/services.md`, waiting up to 60 s.
+`sf-director/references/services.md`, waiting up to 90 s.
 
 ## 5. `/story-feedback`
 

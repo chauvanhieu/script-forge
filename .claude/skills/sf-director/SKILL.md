@@ -25,7 +25,7 @@ Never edit fields scripts own (asset path/status/hash/attempts/last_error, audio
 | 2 | canon + script | Dispatch one subagent that follows `sf-script` (pass: brief, matching rules, calibration numbers, target paths). | `sf_validate` ok; Story CLI `validate`, `links` clean |
 | 3 | Gate 1 | auto: score `script.md` against `sf-script/references/rubric.md` and the script-scoped rules; if any item fails, send the failures back to the script subagent; max 2 rounds, then ask the user. gated: show `script.md`, wait. | pass |
 | 4 | images | Follow `sf-visual` for prompts; run `SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>` then `sf_contact_sheet`. | all done |
-| 5 | Gate 2 | Follow `sf-visual` self-review; redo flagged items; max 2 rounds, then ask the user. | pass |
+| 5 | Gate 2 | auto: follow `sf-visual` self-review; redo flagged items; max 2 rounds, then ask the user. gated: show `out/contact_sheet.png`, wait. | pass |
 | 6 | voice | Follow `sf-audio`; `sf_voice`. | all lines done |
 | 7 | finish | `sf_align`, `sf_captions`, `sf_render`, `sf_qc`. Auto-fix only: re-run captions after re-wrapping, re-render after a regenerated asset. | QC ok, or remaining failures reviewed (see below) |
 | 8 | learn | `sf_learn`. If `library_problems` is non-empty, fix the library file format and re-run. | ok |
