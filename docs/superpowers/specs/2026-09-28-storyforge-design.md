@@ -537,7 +537,10 @@ whole pipeline can run without spending quota.
 - No silence gap longer than `pause_after_ms` + 300 ms; a silence that instead
   falls inside a line's own audio span (e.g. a rendered in-line `[pause]` tag)
   is allowed up to that tag's duration + 300 ms + a 400 ms engine-calibration
-  allowance for VoiceStudio's per-span synthesis padding. No clipped final
+  allowance for VoiceStudio's per-span synthesis padding, or up to 1.3 s
+  (a 1 s engine-calibration allowance for OmniVoice's natural sentence-break
+  pause + 300 ms) when the line's display text has a sentence break (`. ! ? … ; :`)
+  before its final character, whichever allowance is larger. No clipped final
   line.
 - Output resolution matches `aspect`.
 

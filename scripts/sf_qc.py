@@ -9,7 +9,7 @@ from pathlib import Path
 from sf_captions import SIZE, STYLES_DIR, load_style
 from sflib.media import probe_audio_ms, probe_video, silences
 from sflib.project import EXIT_HUMAN, EXIT_OK, load_story, main_wrapper, save_story
-from sflib.text import pause_durations_ms
+from sflib.text import display_text, pause_durations_ms
 from sflib.timeline import FPS, build_timeline
 
 AUDIO_TOLERANCE_MS = 60 + round(1000 / FPS)
@@ -20,6 +20,11 @@ SILENCE_GRACE_S = 0.3
 # each of the pause's two span edges adds its own bit of silence on top of the pause itself.
 # Retune this if VoiceStudio's span-edge padding changes.
 SPAN_EDGE_PAD_S = 0.4
+# ponytail: engine calibration, not a spec constant -- OmniVoice Vietnamese TTS leaves a natural
+# pause at sentence breaks inside a line (measured up to 0.96s after "…"); don't flag those as gaps.
+SENTENCE_PAUSE_S = 1.0
+# a sentence-ending mark (.!?…;: or a run of them, e.g. ASCII "...") followed by more text
+_SENTENCE_BREAK_RE = re.compile(r"[.!?…;:]+\s+\S")
 _DIALOGUE = re.compile(r"^Dialogue: \d+,([^,]+),([^,]+),[^,]*,([^,]*),[^,]*,[^,]*,[^,]*,[^,]*,(.*)$")
 
 
@@ -104,6 +109,8 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
                     # in-line silence: inside the line's own audio span, e.g. a rendered [pause] tag
                     pauses = pause_durations_ms(owner_line["text"])
                     allowed = max(pauses) / 1000 + SPAN_EDGE_PAD_S + SILENCE_GRACE_S if pauses else SILENCE_GRACE_S
+                    if _SENTENCE_BREAK_RE.search(display_text(owner_line["text"])):
+                        allowed = max(allowed, SENTENCE_PAUSE_S + SILENCE_GRACE_S)
                 else:
                     allowed = owner_line.get("pause_after_ms", 0) / 1000 + SILENCE_GRACE_S
                 if gap > allowed:
