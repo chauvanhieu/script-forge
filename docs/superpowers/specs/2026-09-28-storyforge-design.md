@@ -511,8 +511,8 @@ whole pipeline can run without spending quota.
   - ASR word times are distrusted (dropped for that line, so it takes the
     approx fallback; the reason goes to the summary's `untrusted_timings` and
     `logs/sf_align.log`) when the last word ends before 60% of the line's
-    duration or the median word is shorter than 50 ms. VoiceStudio's forced
-    aligner can collapse a line this way: its Vietnamese model
+    duration or words last a median under 25 ms per character. VoiceStudio's
+    forced aligner can collapse a line this way: its Vietnamese model
     (`nguyenvulebinh/wav2vec2-base-vi`, whisperx's default) is a pretraining-only
     checkpoint with no CTC head, so every character gets one 20 ms frame
     regardless of the upload's sample rate.

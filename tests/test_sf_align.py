@@ -144,9 +144,12 @@ def test_timing_distrust_flags_collapsed_span():
     assert reason and "1508" in reason
 
 
-def test_timing_distrust_flags_tiny_median_word():
-    asr = [_w(t, i * 0.03, i * 0.03 + 0.03) for i, t in enumerate("a b c d e f g h".split())]
-    assert "median" in sf_align.timing_distrust(asr + [_w("end", 0.9, 1.0)], 1000)
+def test_timing_distrust_flags_collapsed_words_even_when_segments_span_the_line():
+    # den-ong-sao L011: three whisper segments, each collapsed to one 20 ms frame per character
+    asr = [_w("Anh", 0.0, 0.062), _w("xin", 0.083, 0.145), _w("lỗi.", 0.166, 0.249), _w("Nến", 1.4, 1.461),
+           _w("hết", 1.482, 1.543), _w("thật", 1.563, 1.645), _w("rồi.", 1.666, 1.747), _w("Bống", 2.5, 2.583),
+           _w("ơi.", 2.604, 2.667)]
+    assert "per character" in sf_align.timing_distrust(asr, 3281)
 
 
 def test_timing_distrust_accepts_normal_and_empty_timings():

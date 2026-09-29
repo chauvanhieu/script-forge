@@ -12,7 +12,7 @@ from sflib.voicestudio import VoiceStudio
 
 MIN_MATCH_RATIO = 0.3
 MIN_SPAN_RATIO = 0.6  # trimmed takes end on speech, so the last word should end near the audio's end
-MIN_MEDIAN_WORD_MS = 50
+MIN_MEDIAN_MS_PER_CHAR = 25  # a collapsed aligner gives exactly one 20 ms frame per character; real speech is 30-45
 
 
 def timing_distrust(asr_words: list[dict], duration_ms: int) -> str | None:
@@ -26,9 +26,9 @@ def timing_distrust(asr_words: list[dict], duration_ms: int) -> str | None:
     last_ms = round(max(w["end"] for w in timed) * 1000)
     if last_ms < MIN_SPAN_RATIO * duration_ms:
         return f"ASR words end at {last_ms} ms of {duration_ms} ms audio"
-    median_ms = round(median((w["end"] - w["start"]) * 1000 for w in timed))
-    if median_ms < MIN_MEDIAN_WORD_MS:
-        return f"ASR median word length {median_ms} ms < {MIN_MEDIAN_WORD_MS} ms"
+    per_char = median((w["end"] - w["start"]) * 1000 / max(1, len(w["text"])) for w in timed)
+    if per_char < MIN_MEDIAN_MS_PER_CHAR:
+        return f"ASR words last a median {per_char:.1f} ms per character (< {MIN_MEDIAN_MS_PER_CHAR})"
     return None
 
 
