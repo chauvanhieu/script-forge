@@ -65,6 +65,8 @@ def run(project_dir: Path, only: set[str] | None = None, library_dir: Path = LIB
         return summary, EXIT_HUMAN if problems else EXIT_OK
     run_id = input_hash(new)
     summary["run_id"] = run_id
+    if any(entry["run_id"] == run_id for entry in history):
+        return summary, EXIT_HUMAN if problems else EXIT_OK
     calibration = _read_json(library_dir / "calibration.json", {"version": 1, "speaking_rate": {}, "stage_seconds": {}})
     lang = story["brief"]["language"].split("-")[0]
     rate_entry = calibration["speaking_rate"].get(lang)
@@ -121,8 +123,8 @@ def run(project_dir: Path, only: set[str] | None = None, library_dir: Path = LIB
         "qc_failed": [check["name"] for check in qc["checks"] if not check["ok"]],
         "stage_wall_s": wall,
     })
-    _write_json(library_dir / "calibration.json", calibration)
     _write_json(history_path, history)
+    _write_json(library_dir / "calibration.json", calibration)
     summary.update(recorded=True, speaking_rate={k: round(v["chars_per_s"], 2) for k, v in calibration["speaking_rate"].items()})
     return summary, EXIT_HUMAN if problems else EXIT_OK
 

@@ -90,3 +90,20 @@ def test_no_log_lines_records_nothing(tmp_path):
     project = _voiced(tmp_path)
     summary, code = sf_learn.run(project, library_dir=tmp_path / "library")
     assert code == 0 and summary == {"run_id": None, "recorded": False, "speaking_rate": {}, "library_problems": []}
+
+
+def test_run_id_guard_prevents_double_write(tmp_path):
+    project = _voiced(tmp_path)
+    _log(project, VOICE, IMAGE, RENDER)
+    library = tmp_path / "library"
+    summary1, _ = sf_learn.run(project, library_dir=library)
+    cal_before = json.loads((library / "calibration.json").read_text())
+    # Simulate lost cursor: rewrite history's last entry's log_lines to 0
+    history = json.loads((library / "runs" / (load_story(project)["slug"] + ".json")).read_text())
+    history[-1]["log_lines"] = 0
+    with (library / "runs" / (load_story(project)["slug"] + ".json")).open("w", encoding="utf-8") as fh:
+        json.dump(history, fh)
+    # Run again with same logs; should be rejected by run_id guard
+    summary2, code = sf_learn.run(project, library_dir=library)
+    assert code == 0 and summary2["recorded"] is False and summary2["run_id"] == summary1["run_id"]
+    assert json.loads((library / "calibration.json").read_text()) == cal_before
