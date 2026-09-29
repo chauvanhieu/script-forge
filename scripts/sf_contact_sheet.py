@@ -14,6 +14,23 @@ CELL = {"9:16": (270, 480), "16:9": (480, 270)}
 COLS = {"9:16": 6, "16:9": 4}
 LABEL_H = 56
 PAD = 12
+# Common system fonts with broad Latin-extended coverage (Vietnamese etc); PIL's load_default
+# glyph set lacks these, so labels like "Bống" render as tofu boxes without one of these.
+_FONT_PATHS = (
+    "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+    "/Library/Fonts/Arial Unicode.ttf",
+    "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    "/usr/share/fonts/dejavu/DejaVuSans.ttf",
+    "C:/Windows/Fonts/arial.ttf",
+)
+
+
+def _font(size: int) -> ImageFont.FreeTypeFont:
+    for path in _FONT_PATHS:
+        if Path(path).exists():
+            return ImageFont.truetype(path, size)
+    return ImageFont.load_default(size=size)
 
 
 def _tiles(story: dict) -> list[tuple[str, str, str | None]]:
@@ -42,8 +59,8 @@ def run(project_dir: Path, only: set[str] | None = None) -> tuple[dict, int]:
     rows = math.ceil(len(tiles) / cols)
     sheet = Image.new("RGB", (cols * cell_w + (cols + 1) * PAD, rows * (cell_h + LABEL_H) + (rows + 1) * PAD), "#1e1e1e")
     draw = ImageDraw.Draw(sheet)
-    id_font = ImageFont.load_default(size=20)
-    caption_font = ImageFont.load_default(size=14)
+    id_font = _font(20)
+    caption_font = _font(14)
     missing = []
     for index, (item, caption, rel_path) in enumerate(tiles):
         x = PAD + (index % cols) * (cell_w + PAD)

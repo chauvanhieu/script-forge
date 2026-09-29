@@ -1,3 +1,6 @@
+from pathlib import Path
+
+import pytest
 from PIL import Image
 
 from fixtures import make_story, write_project
@@ -23,3 +26,12 @@ def test_missing_images_are_reported(tmp_path):
     summary, code = sf_contact_sheet.run(project)
     assert code == 2
     assert summary["missing"] == ["C01_face", "C01_half", "C01_full", "LOC01", "S01", "S02"]
+
+
+def test_font_uses_a_system_truetype_font_when_one_exists():
+    available = [p for p in sf_contact_sheet._FONT_PATHS if Path(p).exists()]
+    if not available:
+        pytest.skip("no system TrueType font with Vietnamese coverage on this machine")
+    font = sf_contact_sheet._font(20)
+    # a real font file (Vietnamese glyphs like "ố" render correctly), not PIL's load_default fallback
+    assert font.path in available
