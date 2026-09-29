@@ -17,3 +17,4 @@ projects/*/prompts/
 projects/*/.sf.lock
 projects/*/.story.*.tmp
 .pytest_cache/
+/logs/
