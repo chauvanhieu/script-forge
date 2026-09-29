@@ -29,3 +29,22 @@ def test_slide_frames_tile_the_whole_timeline_without_drift():
 def test_missing_duration_raises():
     with pytest.raises(ValueError, match="L001"):
         build_timeline(make_story())
+
+
+def test_multiple_slides_per_line_partition_duration():
+    story = make_story()
+    # Add a 3rd slide that also covers L003
+    s3 = dict(story["slides"][1])
+    s3["id"] = "S03"
+    story["slides"].append(s3)
+    _with_durations(story, [1000, 700, 1400])  # L001=1000, L002=700 (L003 starts at 1950, ends at 3350 + 400 pause = 3750)
+    tl = build_timeline(story)
+    assert len(tl.slides) == 3
+    s1, s2, s3 = tl.slides
+    assert (s1.slide_id, s1.start_ms, s1.end_ms) == ("S01", 0, 1950)
+    # L003 duration + pause is 3750 - 1950 = 1800 ms, split between S02 and S03
+    assert (s2.slide_id, s2.start_ms, s2.end_ms) == ("S02", 1950, 1950 + 900)
+    assert (s3.slide_id, s3.start_ms, s3.end_ms) == ("S03", 2850, 3750)
+    assert s1.end_frame == s2.start_frame
+    assert s2.end_frame == s3.start_frame
+    assert sum(s.frames for s in tl.slides) == tl.total_frames

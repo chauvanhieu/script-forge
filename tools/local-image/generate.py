@@ -19,7 +19,7 @@ import zlib
 from pathlib import Path
 
 MODEL = "flux2-klein-4b"
-QUANTIZE = int(os.environ.get("SF_LOCAL_IMAGE_QUANTIZE", "8"))  # 4 = smaller/faster, 8 = closer to bf16
+QUANTIZE = int(os.environ.get("SF_LOCAL_IMAGE_QUANTIZE", "4"))  # 4 = faster Apple Silicon MLX inference, 8 = bf16
 STEPS = int(os.environ.get("SF_LOCAL_IMAGE_STEPS", "4"))        # klein is distilled for 4 steps
 # Refs are encoded at their own size; 512px keeps identity and cuts a 2-ref slide from ~65s to ~26s.
 REF_PX = int(os.environ.get("SF_LOCAL_IMAGE_REF_PX", "512"))

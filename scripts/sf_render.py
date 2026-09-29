@@ -7,7 +7,7 @@ import os
 import wave
 from pathlib import Path
 
-from sflib.media import decode_pcm, has_filter, run_ffmpeg
+from sflib.media import decode_pcm, has_encoder, has_filter, run_ffmpeg
 from sflib.project import EXIT_HUMAN, EXIT_OK, file_hash, input_hash, load_story, main_wrapper, save_story
 from sflib.timeline import FPS, build_timeline
 
@@ -78,6 +78,9 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
         return summary, EXIT_HUMAN
     width, height = size or SIZE[story["brief"]["aspect"]]
     timeline = build_timeline(story)
+    use_vt = has_encoder("h264_videotoolbox")
+    clip_codec = ["-c:v", "h264_videotoolbox", "-b:v", "8000k"] if use_vt else ["-c:v", "libx264", "-preset", "veryfast", "-crf", "18"]
+    final_codec = ["-c:v", "h264_videotoolbox", "-b:v", "6000k"] if use_vt else ["-c:v", "libx264", "-preset", "veryfast", "-crf", "20"]
     clips = project_dir / "clips"
     clips.mkdir(exist_ok=True)
     manifest_path = clips / "manifest.json"
@@ -98,7 +101,7 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
             summary["cached"] += 1
             continue
         run_ffmpeg(["-i", str(image), "-vf", motion_filter(slide["visual"]["motion"], span.frames, width, height),
-                    "-frames:v", str(span.frames), "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+                    "-frames:v", str(span.frames), *clip_codec,
                     "-pix_fmt", "yuv420p", "-r", str(FPS), str(clip)])
         manifest[span.slide_id] = clip_hash
         summary["rendered"].append(span.slide_id)
@@ -111,7 +114,7 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
     args = ["-f", "concat", "-safe", "0", "-i", "clips/concat.txt", "-i", "clips/timeline.wav"]
     if captions:
         args += ["-vf", f"ass={captions}"]
-    args += ["-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+    args += ["-map", "0:v", "-map", "1:a", *final_codec,
              "-pix_fmt", "yuv420p", "-r", str(FPS), "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
              "-ar", str(RATE), "-c:a", "aac", "-b:a", "192k", "-t", f"{timeline.total_ms / 1000:.3f}",
              "-movflags", "+faststart", "out/final.mp4"]

@@ -40,6 +40,17 @@ def test_lines_must_follow_slide_order_exactly(tmp_path):
     assert any("line_ids" in e and "lines array order" in e for e in errors)
 
 
+def test_multiple_slides_can_share_a_line(tmp_path):
+    story = make_story()
+    # Add a 3rd slide that also references L003
+    s3 = dict(story["slides"][1])
+    s3["id"] = "S03"
+    story["slides"].append(s3)
+    errors, code = _errors(tmp_path, story)
+    assert errors == []
+    assert code == 0
+
+
 def test_unsupported_bracket_tag(tmp_path):
     story = make_story()
     story["lines"][1]["text"] = "Every [excited] night."

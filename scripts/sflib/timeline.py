@@ -47,10 +47,24 @@ def build_timeline(story: dict) -> Timeline:
         starts[line["id"]] = cursor
         ends[line["id"]] = cursor + duration
         cursor += duration + line.get("pause_after_ms", 0)
-    slide_starts = [starts[slide["line_ids"][0]] for slide in story["slides"]]
+    slides = story["slides"]
     spans = []
-    for index, slide in enumerate(story["slides"]):
-        start = slide_starts[index]
-        end = slide_starts[index + 1] if index + 1 < len(slide_starts) else cursor
-        spans.append(SlideSpan(slide["id"], start, end, ms_to_frame(start), ms_to_frame(end)))
+    i = 0
+    while i < len(slides):
+        current_lid = slides[i]["line_ids"][0]
+        j = i + 1
+        while j < len(slides) and slides[j]["line_ids"][0] == current_lid:
+            j += 1
+        k = j - i
+        block_start = starts[current_lid]
+        block_end = starts[slides[j]["line_ids"][0]] if j < len(slides) else cursor
+        block_duration = block_end - block_start
+
+        for idx in range(k):
+            s_start = block_start + round(idx * block_duration / k)
+            s_end = block_start + round((idx + 1) * block_duration / k)
+            slide = slides[i + idx]
+            spans.append(SlideSpan(slide["id"], s_start, s_end, ms_to_frame(s_start), ms_to_frame(s_end)))
+        i = j
+
     return Timeline(starts, ends, spans, cursor)

@@ -41,6 +41,14 @@ def has_filter(name: str) -> bool:
     return any(line.split()[1:2] == [name] for line in proc.stdout.splitlines() if line.strip())
 
 
+def has_encoder(name: str) -> bool:
+    try:
+        proc = subprocess.run(["ffmpeg", "-hide_banner", "-encoders"], capture_output=True, text=True, check=True)
+        return any(line.split()[1:2] == [name] for line in proc.stdout.splitlines() if len(line.split()) >= 2)
+    except Exception:
+        return False
+
+
 def run_ffmpeg(args: list[str], cwd: Path | None = None) -> None:
     proc = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *args],
                           capture_output=True, text=True, cwd=cwd)

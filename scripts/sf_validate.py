@@ -76,9 +76,14 @@ def reference_errors(story: dict, root: Path) -> list[str]:
         _duplicates("cast", cast_ids) + _duplicates("location", location_ids)
         + _duplicates("line", line_ids) + _duplicates("slide", slide_ids)
     )
-    if [lid for slide in story["slides"] for lid in slide["line_ids"]] != line_ids:
+    flattened = [lid for slide in story["slides"] for lid in slide["line_ids"]]
+    deduped = []
+    for lid in flattened:
+        if not deduped or deduped[-1] != lid:
+            deduped.append(lid)
+    if deduped != line_ids:
         errors.append("slides' line_ids, concatenated in slide order, must equal the lines array order exactly "
-                      "(each line belongs to exactly one slide)")
+                      "(each line must appear in lines array order without skipping or reordering)")
     for line in story["lines"]:
         if line["speaker"] not in cast_ids:
             errors.append(f"{line['id']}: speaker '{line['speaker']}' is not in cast")

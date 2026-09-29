@@ -18,3 +18,5 @@ projects/*/.sf.lock
 projects/*/.story.*.tmp
 .pytest_cache/
 /logs/
+scratch/
+content-skills/
