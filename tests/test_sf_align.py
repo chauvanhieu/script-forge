@@ -169,3 +169,46 @@ def test_run_discards_implausible_asr_timings_and_reports_why(tmp_path):
     assert words and all(w["approx"] for w in words) and words[-1]["end_ms"] == 4197
     assert len(summary["untrusted_timings"]) == 1 and summary["untrusted_timings"][0].startswith("L001:")
     assert "L001" in (project / "logs" / "sf_align.log").read_text(encoding="utf-8")
+
+
+def test_timing_distrust_ignores_zero_length_and_empty_words():
+    asr = [_w("Hi", 0.0, 0.16), _w("", 0.16, 0.16), _w("there", 0.3, 0.3), _w(",", 0.3, 0.2)]
+    assert sf_align.timing_distrust(asr, 200) is None
+
+
+def test_approx_split_anchors_the_next_phrase_at_a_pause():
+    words = sf_align.align_line(["Hello", "there,", "my", "friend."], [], 2000, "en", pauses_ms=[(900, 1300)])
+    assert _times(words) == [("Hello", 0, 450, True), ("there,", 450, 900, True),
+                             ("my", 1300, 1475, True), ("friend.", 1475, 2000, True)]
+
+
+def test_approx_split_anchors_after_ellipsis_and_closing_quote():
+    words = sf_align.align_line(["“Anh", "xin", "lỗi…”", "Nến", "hết"], [], 3000, "vi", pauses_ms=[(1200, 1600)])
+    assert words[2]["end_ms"] == 1200 and words[3]["start_ms"] == 1600
+
+
+def test_approx_split_ignores_pauses_far_from_punctuation():
+    plain = sf_align.align_line(["one", "two", "three,", "four"], [], 4000, "en")
+    assert sf_align.align_line(["one", "two", "three,", "four"], [], 4000, "en", pauses_ms=[(200, 400)]) == plain
+    plain = sf_align.align_line(["alpha", "beta"], [], 1000, "en")
+    assert sf_align.align_line(["alpha", "beta"], [], 1000, "en", pauses_ms=[(450, 600)]) == plain
+
+
+def test_pauses_are_unused_when_asr_times_are_trusted():
+    asr = [_w("Every", 0.0, 0.3), _w("night.", 0.3, 0.6)]
+    words = sf_align.align_line(["Every", "night."], asr, 600, "en", pauses_ms=[(250, 350)])
+    assert _times(words) == [("Every", 0, 300, False), ("night.", 300, 600, False)]
+
+
+def test_run_anchors_approx_words_on_pauses_in_the_line_audio(tmp_path):
+    from fixtures import _silence_frames, _tone_frames, _wav_bytes
+    story = make_story()
+    story["lines"][2]["audio"].update(status="done", path="audio/L003.wav", duration_ms=1600, input_hash="h-L003",
+                                      asr_words=[])
+    project = write_project(tmp_path, story)
+    (project / "audio").mkdir(exist_ok=True)
+    (project / "audio" / "L003.wav").write_bytes(_wav_bytes(_tone_frames(400) + _silence_frames(400) + _tone_frames(800)))
+    sf_align.run(project, only={"L003"})
+    words = load_story(project)["lines"][2]["words"]
+    assert [w["text"] for w in words] == ["No.", "Not", "again."]
+    assert abs(words[1]["start_ms"] - 800) <= 20 and words[0]["end_ms"] <= 420

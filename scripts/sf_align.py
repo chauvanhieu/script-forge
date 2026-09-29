@@ -6,6 +6,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from statistics import median
 
+from sflib.media import silences
 from sflib.project import EXIT_HUMAN, EXIT_OK, EXIT_PROVIDER, ProviderError, load_config, load_story, log, main_wrapper, save_story, wanted
 from sflib.text import clusters, norm, tokens, uses_clusters
 from sflib.voicestudio import VoiceStudio
@@ -13,6 +14,12 @@ from sflib.voicestudio import VoiceStudio
 MIN_MATCH_RATIO = 0.3
 MIN_SPAN_RATIO = 0.6  # trimmed takes end on speech, so the last word should end near the audio's end
 MIN_MEDIAN_MS_PER_CHAR = 25  # a collapsed aligner gives exactly one 20 ms frame per character; real speech is 30-45
+MAX_ANCHOR_DRIFT_MS = 800  # how far a pause may sit from where the plain split expects a phrase break
+PAUSE_NOISE_DB = -40
+PAUSE_MIN_S = 0.15  # intra-line pauses are shorter than the between-line gaps sf_qc checks
+PAUSE_EDGE_MS = 10  # silences touching the clip edges are trim leftovers, not pauses
+PHRASE_END = set(",.!?…;:，。！？；：、")
+CLOSERS = "\"'”’»)]」』）"
 
 
 def timing_distrust(asr_words: list[dict], duration_ms: int) -> str | None:
@@ -20,13 +27,14 @@ def timing_distrust(asr_words: list[dict], duration_ms: int) -> str | None:
 
     VoiceStudio's forced aligner can collapse a line (e.g. its vi wav2vec2 model has no trained CTC head, so
     each character gets one 20 ms frame); such times are worse than the length-weighted fallback."""
-    timed = [w for w in asr_words if w.get("start") is not None and w.get("end") is not None]
+    timed = [w for w in asr_words if w.get("start") is not None and w.get("end") is not None
+             and w["end"] > w["start"] and norm(w["text"])]
     if not timed or not duration_ms:
         return None
     last_ms = round(max(w["end"] for w in timed) * 1000)
     if last_ms < MIN_SPAN_RATIO * duration_ms:
         return f"ASR words end at {last_ms} ms of {duration_ms} ms audio"
-    per_char = median((w["end"] - w["start"]) * 1000 / max(1, len(w["text"])) for w in timed)
+    per_char = median((w["end"] - w["start"]) * 1000 / len(norm(w["text"])) for w in timed)
     if per_char < MIN_MEDIAN_MS_PER_CHAR:
         return f"ASR words last a median {per_char:.1f} ms per character (< {MIN_MEDIAN_MS_PER_CHAR})"
     return None
@@ -64,7 +72,47 @@ def _split(script_tokens: list[str], start: int, end: int) -> list[tuple[int, in
     return spans
 
 
-def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int, language: str) -> list[dict]:
+def _ends_phrase(token: str) -> bool:
+    stripped = token.rstrip(CLOSERS)
+    return bool(stripped) and stripped[-1] in PHRASE_END
+
+
+def _anchored_split(script_tokens: list[str], duration_ms: int, pauses_ms: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    """Length-weighted split whose phrase breaks snap onto the line's real pauses (unmatched pauses are ignored)."""
+    plain = _split(script_tokens, 0, duration_ms)
+    candidates = [i for i in range(1, len(script_tokens)) if _ends_phrase(script_tokens[i - 1])]
+    anchors: list[tuple[int, int, int]] = []  # (first token after the break, pause start, pause end)
+    for pause_start, pause_end in sorted(pauses_ms):
+        if anchors and pause_start < anchors[-1][2]:
+            continue
+
+        def drift(index: int) -> int:
+            expected = plain[index][0]
+            return max(pause_start - expected, expected - pause_end, 0)
+
+        usable = [i for i in candidates if not anchors or i > anchors[-1][0]]
+        best = min(usable, key=drift, default=None)
+        if best is not None and drift(best) <= MAX_ANCHOR_DRIFT_MS:
+            anchors.append((best, pause_start, pause_end))
+    spans, first, start = [], 0, 0
+    for index, pause_start, pause_end in anchors:
+        spans += _split(script_tokens[first:index], start, pause_start)
+        first, start = index, pause_end
+    return spans + _split(script_tokens[first:], start, duration_ms)
+
+
+def line_pauses(wav: Path, duration_ms: int) -> list[tuple[int, int]]:
+    """Internal silences (start_ms, end_ms) of a line's audio."""
+    pauses = []
+    for start_s, length_s in silences(wav, PAUSE_NOISE_DB, PAUSE_MIN_S):
+        start, end = round(start_s * 1000), round((start_s + length_s) * 1000)
+        if start > PAUSE_EDGE_MS and end < duration_ms - PAUSE_EDGE_MS:
+            pauses.append((start, end))
+    return pauses
+
+
+def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int, language: str,
+               pauses_ms: list[tuple[int, int]] | None = None) -> list[dict]:
     if not script_tokens:
         return []
     units = _units(asr_words or [], language)
@@ -80,7 +128,7 @@ def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int
     matched = sum(t is not None for t in times)
     approx = [t is None for t in times]
     if matched == 0 or matched < MIN_MATCH_RATIO * len(script_tokens):
-        spans = _split(script_tokens, 0, duration_ms)
+        spans = _anchored_split(script_tokens, duration_ms, pauses_ms) if pauses_ms else _split(script_tokens, 0, duration_ms)
         approx = [True] * len(script_tokens)
     else:
         spans = list(times)
@@ -138,7 +186,9 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
             asr_words = []
             summary["untrusted_timings"].append(f"{line['id']}: {reason}")
             log(project_dir, "sf_align", f"{line['id']}: discarded ASR word times ({reason}); using approx split")
-        line["words"] = align_line(tokens(line["text"], language), asr_words, audio["duration_ms"], language)
+        wav = project_dir / audio["path"]
+        pauses = line_pauses(wav, audio["duration_ms"]) if wav.exists() else None  # only used if the split is approx
+        line["words"] = align_line(tokens(line["text"], language), asr_words, audio["duration_ms"], language, pauses)
         line["words_hash"] = audio["input_hash"]
         summary["aligned"].append(line["id"])
     save_story(project_dir, story)

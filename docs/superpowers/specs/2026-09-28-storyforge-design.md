@@ -507,7 +507,10 @@ whole pipeline can run without spending quota.
     `[[written|spoken]]` override replaced by its `written` half.
   - Unmatched tokens are interpolated between matched neighbors. A line with no
     usable match falls back to a character-length-weighted split, flagged
-    `approx: true`.
+    `approx: true`. That split snaps phrase breaks (tokens ending in `, . ! ? … ; :`) onto
+    the line's own internal pauses (ffmpeg silencedetect, -40 dB, >= 0.15 s,
+    not touching the clip edges) when a pause lies within 800 ms of where the
+    plain split expects the break.
   - ASR word times are distrusted (dropped for that line, so it takes the
     approx fallback; the reason goes to the summary's `untrusted_timings` and
     `logs/sf_align.log`) when the last word ends before 60% of the line's
