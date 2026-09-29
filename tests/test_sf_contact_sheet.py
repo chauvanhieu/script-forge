@@ -35,3 +35,22 @@ def test_font_uses_a_system_truetype_font_when_one_exists():
     font = sf_contact_sheet._font(20)
     # a real font file (Vietnamese glyphs like "ố" render correctly), not PIL's load_default fallback
     assert font.path in available
+
+
+def test_font_skips_a_corrupt_font_file_and_falls_back_to_default(tmp_path, monkeypatch):
+    bad = tmp_path / "corrupt.ttf"
+    bad.write_bytes(b"not a font")  # exists, but PIL raises OSError trying to load it
+    monkeypatch.setattr(sf_contact_sheet, "_FONT_PATHS", (str(bad),))
+    font = sf_contact_sheet._font(20)  # must not raise
+    assert not isinstance(getattr(font, "path", None), str)  # fell through to load_default
+
+
+def test_font_skips_a_corrupt_font_file_and_falls_through_to_a_good_one(tmp_path, monkeypatch):
+    bad = tmp_path / "corrupt.ttf"
+    bad.write_bytes(b"not a font")
+    good = [p for p in sf_contact_sheet._FONT_PATHS if Path(p).exists()]
+    if not good:
+        pytest.skip("no system TrueType font available on this machine")
+    monkeypatch.setattr(sf_contact_sheet, "_FONT_PATHS", (str(bad), good[0]))
+    font = sf_contact_sheet._font(20)
+    assert font.path == good[0]

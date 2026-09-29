@@ -144,6 +144,28 @@ def test_inline_silence_past_the_sentence_pause_allowance_still_fails(tmp_path):
     assert code == 2 and summary["failed"] == ["silence"]
 
 
+def test_inline_silence_after_a_closing_quote_widens_the_allowance(tmp_path):
+    story = make_story()
+    story["lines"][1]["text"] = 'Co het "Doi da!" roi bo di.'  # closing quote right after the "!"
+    project = prepare_media(tmp_path, story, [1000, 1960, 1300])
+    _wav_with_inline_gap(project, "L002", 500, 960, 500)
+    sf_captions.run(project, styles_dir=STYLES)
+    sf_render.run(project, size=SMALL)
+    summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
+    assert code == 0, summary
+
+
+def test_inline_silence_before_a_trailing_quote_does_not_widen_the_allowance(tmp_path):
+    story = make_story()
+    story["lines"][1]["text"] = 'Co het "Doi da roi!"'  # sentence-ending punctuation + quote at the very end
+    project = prepare_media(tmp_path, story, [1000, 1960, 1300])
+    _wav_with_inline_gap(project, "L002", 500, 960, 500)
+    sf_captions.run(project, styles_dir=STYLES)
+    sf_render.run(project, size=SMALL)
+    summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
+    assert code == 2 and summary["failed"] == ["silence"]
+
+
 def test_silence_straddling_a_lines_end_uses_its_pause_after_ms(tmp_path):
     import io
     import wave

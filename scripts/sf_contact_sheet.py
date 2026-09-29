@@ -29,7 +29,10 @@ _FONT_PATHS = (
 def _font(size: int) -> ImageFont.FreeTypeFont:
     for path in _FONT_PATHS:
         if Path(path).exists():
-            return ImageFont.truetype(path, size)
+            try:
+                return ImageFont.truetype(path, size)
+            except OSError:
+                continue  # present but corrupt/unsupported -- try the next candidate
     return ImageFont.load_default(size=size)
 
 

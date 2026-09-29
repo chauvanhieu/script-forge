@@ -23,8 +23,10 @@ SPAN_EDGE_PAD_S = 0.4
 # ponytail: engine calibration, not a spec constant -- OmniVoice Vietnamese TTS leaves a natural
 # pause at sentence breaks inside a line (measured up to 0.96s after "…"); don't flag those as gaps.
 SENTENCE_PAUSE_S = 1.0
-# a sentence-ending mark (.!?…;: or a run of them, e.g. ASCII "...") followed by more text
-_SENTENCE_BREAK_RE = re.compile(r"[.!?…;:]+\s+\S")
+# a sentence-ending mark (.!?…;: or a run of them, e.g. ASCII "..."), optionally followed by a
+# closing quote/bracket (as in Vietnamese dialogue: `"Doi da!" roi ...`), then more text
+_CLOSING_MARKS = "\"'”’»)]"  # " ' ” ’ » ) ]
+_SENTENCE_BREAK_RE = re.compile(r"[.!?…;:]+[" + re.escape(_CLOSING_MARKS) + r"]*\s+\S")
 _DIALOGUE = re.compile(r"^Dialogue: \d+,([^,]+),([^,]+),[^,]*,([^,]*),[^,]*,[^,]*,[^,]*,[^,]*,(.*)$")
 
 
