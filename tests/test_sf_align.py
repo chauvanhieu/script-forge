@@ -128,3 +128,41 @@ def test_run_handles_transient_error_with_approx_fallback(tmp_path):
     # L002's words should all be approx=True (fallback to length-weighted split)
     stored = load_story(project)["lines"][1]
     assert all(w["approx"] for w in stored["words"])
+
+
+# Real VoiceStudio output for projects/den-ong-sao L001 (4197 ms of speech): its vi aligner has no
+# trained CTC head, so every character got one 20 ms frame and the line "ends" at 1.508 s.
+_COLLAPSED_VI = [("Cả", 0.0, 0.04), ("xóm", 0.06, 0.121), ("ven", 0.141, 0.201), ("sông,", 0.221, 0.322),
+                 ("đứa", 0.342, 0.402), ("nào", 0.422, 0.482), ("cũng", 0.503, 0.583), ("có", 0.603, 0.643),
+                 ("đèn", 0.663, 0.724), ("trung", 0.744, 0.844), ("thu,", 0.864, 0.945), ("chỉ", 0.965, 1.025),
+                 ("riêng", 1.045, 1.146), ("bé", 1.166, 1.206), ("bóng", 1.226, 1.307), ("là", 1.327, 1.367),
+                 ("không.", 1.387, 1.508)]
+
+
+def test_timing_distrust_flags_collapsed_span():
+    reason = sf_align.timing_distrust([_w(*w) for w in _COLLAPSED_VI], 4197)
+    assert reason and "1508" in reason
+
+
+def test_timing_distrust_flags_tiny_median_word():
+    asr = [_w(t, i * 0.03, i * 0.03 + 0.03) for i, t in enumerate("a b c d e f g h".split())]
+    assert "median" in sf_align.timing_distrust(asr + [_w("end", 0.9, 1.0)], 1000)
+
+
+def test_timing_distrust_accepts_normal_and_empty_timings():
+    asr = [_w("Look", 0.06, 0.221), _w("up", 0.3, 0.5), _w("white.", 3.199, 3.34)]
+    assert sf_align.timing_distrust(asr, 3603) is None
+    assert sf_align.timing_distrust([], 3603) is None
+    assert sf_align.timing_distrust([_w("x", None, None)], 3603) is None
+
+
+def test_run_discards_implausible_asr_timings_and_reports_why(tmp_path):
+    story = make_story()
+    story["lines"][0]["audio"].update(status="done", path="audio/L001.wav", duration_ms=4197, input_hash="h-L001",
+                                      asr_words=[_w(*w) for w in _COLLAPSED_VI])
+    project = write_project(tmp_path, story)
+    summary, _ = sf_align.run(project, only={"L001"})
+    words = load_story(project)["lines"][0]["words"]
+    assert words and all(w["approx"] for w in words) and words[-1]["end_ms"] == 4197
+    assert len(summary["untrusted_timings"]) == 1 and summary["untrusted_timings"][0].startswith("L001:")
+    assert "L001" in (project / "logs" / "sf_align.log").read_text(encoding="utf-8")

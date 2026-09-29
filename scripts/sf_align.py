@@ -4,12 +4,32 @@ from __future__ import annotations
 
 from difflib import SequenceMatcher
 from pathlib import Path
+from statistics import median
 
-from sflib.project import EXIT_HUMAN, EXIT_OK, EXIT_PROVIDER, ProviderError, load_config, load_story, main_wrapper, save_story, wanted
+from sflib.project import EXIT_HUMAN, EXIT_OK, EXIT_PROVIDER, ProviderError, load_config, load_story, log, main_wrapper, save_story, wanted
 from sflib.text import clusters, norm, tokens, uses_clusters
 from sflib.voicestudio import VoiceStudio
 
 MIN_MATCH_RATIO = 0.3
+MIN_SPAN_RATIO = 0.6  # trimmed takes end on speech, so the last word should end near the audio's end
+MIN_MEDIAN_WORD_MS = 50
+
+
+def timing_distrust(asr_words: list[dict], duration_ms: int) -> str | None:
+    """Why these ASR word times can't be trusted for this audio, or None if they look plausible.
+
+    VoiceStudio's forced aligner can collapse a line (e.g. its vi wav2vec2 model has no trained CTC head, so
+    each character gets one 20 ms frame); such times are worse than the length-weighted fallback."""
+    timed = [w for w in asr_words if w.get("start") is not None and w.get("end") is not None]
+    if not timed or not duration_ms:
+        return None
+    last_ms = round(max(w["end"] for w in timed) * 1000)
+    if last_ms < MIN_SPAN_RATIO * duration_ms:
+        return f"ASR words end at {last_ms} ms of {duration_ms} ms audio"
+    median_ms = round(median((w["end"] - w["start"]) * 1000 for w in timed))
+    if median_ms < MIN_MEDIAN_WORD_MS:
+        return f"ASR median word length {median_ms} ms < {MIN_MEDIAN_WORD_MS} ms"
+    return None
 
 
 def _units(asr_words: list[dict], language: str) -> list[dict]:
@@ -88,7 +108,8 @@ def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int
 def run(project_dir: Path, only: set[str] | None = None, config: dict | None = None, client=None) -> tuple[dict, int]:
     story = load_story(project_dir)
     language = story["brief"]["language"]
-    summary: dict = {"aligned": [], "skipped": 0, "needs_human": [], "errors": [], "approx_ratio": 0.0}
+    summary: dict = {"aligned": [], "skipped": 0, "needs_human": [], "errors": [], "approx_ratio": 0.0,
+                     "untrusted_timings": []}
     vs = client
     for line in story["lines"]:
         if not wanted(line["id"], only):
@@ -112,6 +133,11 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
                     summary["errors"].append(f"{exc.code}: {exc.message}")
                     return summary, EXIT_PROVIDER
                 asr_words = []
+        reason = timing_distrust(asr_words, audio["duration_ms"])
+        if reason:
+            asr_words = []
+            summary["untrusted_timings"].append(f"{line['id']}: {reason}")
+            log(project_dir, "sf_align", f"{line['id']}: discarded ASR word times ({reason}); using approx split")
         line["words"] = align_line(tokens(line["text"], language), asr_words, audio["duration_ms"], language)
         line["words_hash"] = audio["input_hash"]
         summary["aligned"].append(line["id"])

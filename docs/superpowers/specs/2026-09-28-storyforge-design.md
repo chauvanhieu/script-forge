@@ -508,6 +508,14 @@ whole pipeline can run without spending quota.
   - Unmatched tokens are interpolated between matched neighbors. A line with no
     usable match falls back to a character-length-weighted split, flagged
     `approx: true`.
+  - ASR word times are distrusted (dropped for that line, so it takes the
+    approx fallback; the reason goes to the summary's `untrusted_timings` and
+    `logs/sf_align.log`) when the last word ends before 60% of the line's
+    duration or the median word is shorter than 50 ms. VoiceStudio's forced
+    aligner can collapse a line this way: its Vietnamese model
+    (`nguyenvulebinh/wav2vec2-base-vi`, whisperx's default) is a pretraining-only
+    checkpoint with no CTC head, so every character gets one 20 ms frame
+    regardless of the upload's sample rate.
   - Stores word times **relative to the line start**, so changing one line
     never invalidates another line's words. Captions and render add the
     line's start from the timeline.
