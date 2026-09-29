@@ -1,0 +1,15 @@
+# StoryForge provider settings with LOCAL image generation (FLUX.2-klein-4B via mflux, tools/local-image).
+# Opt in per run: SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py <project>
+voice:
+  base_url: http://localhost:3900
+  engine: null            # null = VoiceStudio's active engine (OmniVoice by default)
+  qc:
+    max_cer: 0.25         # transcribe-back character error rate allowed per line
+    min_cps: 2            # speaking-rate band in characters per second (display text, no spaces)
+    max_cps: 30
+image:
+  provider: command
+  command: ["uv", "run", "--quiet", "--project", "/Users/irondev/Desktop/Projects/chauvanhieu/yt/tools/local-image",
+            "python", "/Users/irondev/Desktop/Projects/chauvanhieu/yt/tools/local-image/generate.py"]
+  timeout_s: 1200
+  max_refs: 4
