@@ -17,7 +17,7 @@ STAGES = {"sf_image": ("image", "done"), "sf_voice": ("voice_line", "done"), "sf
 
 
 def speech_chars(text: str) -> int:
-    return len("".join(display_text(text).split()))
+    return len("".join(norm(display_text(text)).split()))
 
 
 def check_library(library_dir: Path) -> list[str]:

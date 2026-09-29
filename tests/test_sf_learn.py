@@ -28,7 +28,7 @@ RENDER = {"script": "sf_render", "started": "2026-09-29T10:02:00+00:00", "elapse
 
 
 def test_speech_chars_matches_display_text_without_spaces_or_tags():
-    assert sf_learn.speech_chars("No. [sigh] Not again.") == len("No.Notagain.")
+    assert sf_learn.speech_chars("No. [sigh] Not again.") == len("nonotagain")
     assert sf_learn.speech_chars("[sigh]") == 0
 
 
