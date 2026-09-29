@@ -173,8 +173,8 @@ as every other script.
 - **Idempotent:** `run_id` = hash of the `runs.jsonl` entries it consumed; an existing
   `run_id` is skipped; each line contributes to `speaking_rate` once per `audio.input_hash`
   (tracked in the run entry).
-- `--check-library`: validates `taste.md` and `checks.md` format (ids unique, scope tags
-  known, two-line taste entries) and exits 2 with the problems.
+- Every run validates `taste.md` and `checks.md` (`check_library`); problems are listed
+  in `library_problems` and the script exits 2.
 
 ## 8. Changes to existing files
 
@@ -190,8 +190,9 @@ as every other script.
 
 - **Unit (`tests/test_sf_learn.py`):** EWMA math; idempotency (running twice changes
   nothing); speaking rate counts each `input_hash` once; `runs/` entry fields;
-  `--check-library` accepts valid files and rejects duplicates / unknown scopes /
-  malformed taste entries; `main_wrapper` appends a well-formed `runs.jsonl` line.
+  `check_library` accepts valid files and rejects duplicates / unknown scopes /
+  malformed taste entries, and its problems make `sf_learn` exit 2; `main_wrapper`
+  appends a well-formed `runs.jsonl` line.
 - **Acceptance (end to end, manual by the controller):**
   1. `/story "<new idea>"` in auto mode produces a video with no user input; duration
      within ±10 % of `target_seconds`.

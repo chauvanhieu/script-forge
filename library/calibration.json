@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "speaking_rate": {
+    "vi": {
+      "chars_per_s": 12.48622741588459,
+      "lines": 16
+    }
+  },
+  "stage_seconds": {
+    "render": {
+      "mean": 13.683,
+      "n": 1
+    }
+  }
+}

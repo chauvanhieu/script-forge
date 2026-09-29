@@ -56,15 +56,13 @@ yt/
 ├── .claude/
 │   ├── skills/
 │   │   ├── <22 Story Skills symlinks>   # existing
-│   │   ├── sf-director/             # stage machine, gates, resume, skill routing
-│   │   ├── sf-video-script/         # canon prose / research → lines[] + slides[]
+│   │   ├── sf-director/             # stage machine, gates, resume, skill routing; also captions/render/QC (sf-finishing folded in)
+│   │   ├── sf-script/               # canon + adaptation: canon prose / research → lines[] + slides[]
 │   │   ├── sf-visual/               # style bible, identity + location plates, slide prompts
-│   │   ├── sf-audio/                # casting, VoiceStudio generation, pronunciation, retakes
-│   │   └── sf-finishing/            # captions/karaoke, render, QC
+│   │   └── sf-audio/                # casting, VoiceStudio generation, pronunciation, retakes
 │   ├── commands/
-│   │   ├── story-new.md             # idea → canon (or research) → production folder
-│   │   ├── story-run.md             # advance to the next gate or to done
-│   │   ├── story-status.md          # stage, blockers, what the next /story-run will do
+│   │   ├── story.md                 # idea → canon (or research) → production folder, resumes if it exists
+│   │   ├── story-feedback.md        # apply user feedback as taste rules, redo affected stages
 │   │   └── story-redo.md            # redo one slide / line / character / plate
 │   └── rules/
 │       ├── language.md
@@ -90,7 +88,10 @@ yt/
 │   └── caption-styles/              # named ASS style presets
 ├── library/
 │   ├── cast/<ref>/                  # reusable voice profile + plates for recurring characters
-│   └── learnings.md                 # gate feedback distilled into rules of taste
+│   ├── taste.md                     # user feedback distilled into rules (written only by /story-feedback)
+│   ├── checks.md                    # objective defects distilled into checks (written by auto gates/QC)
+│   ├── calibration.json             # speaking-rate and stage-duration calibration (written by sf_learn)
+│   └── runs/                        # per-production measurement history (written by sf_learn)
 ├── stories/<story-id>/              # CANON (Story Skills project)
 ├── projects/<slug>/                 # PRODUCTION
 │   ├── story.json
@@ -117,9 +118,8 @@ yt/
 ### 4.1 Commands
 
 ```text
-/story-new "<idea>"        interactive brief → canon (or research) → production folder
-/story-run [slug]          advance until the next gate or done
-/story-status [slug]       current stage, blockers, next action
+/story "<idea>"            interactive brief → canon (or research) → production folder; resumes an existing production
+/story-feedback <slug> "<feedback>"   apply feedback as taste rules, redo the affected stages
 /story-redo <slug> <id>    redo S07 | L023 | C01 (voice or plates) | LOC02 (location plate)
 ```
 
@@ -127,11 +127,11 @@ yt/
 
 | # | Stage | Owner | Output |
 |---|---|---|---|
-| 0 | **brief** | `/story-new` | `language`, `aspect`, `content_type`, `genre`, `target_seconds`, `captions.mode`, canon target (new or existing story, which chapters) |
+| 0 | **brief** | `/story` | `language`, `aspect`, `content_type`, `genre`, `target_seconds`, `captions.mode`, canon target (new or existing story, which chapters) |
 | 1 | **idea** (fiction/adaptation, new story only) | `premise-workshop` | Tested logline, premise, stakes, form (`flash` ≤ ~3 min, `short-story` for long 16:9, `serial` for series) |
 | 2 | **canon** | `story-init`, `character-management`, `worldbuilding`, `plot-structure`, `genre-craft`, `scene-craft`, `chapter-writing` | Canon project with drafted prose for the chapters this production adapts |
 | 2f | **research** (factual only) | `research` skill note format | `story.json.research`: sources, claims, status, confidence, risk |
-| 3 | **adapt** | `sf-video-script` | `story.json` `cast[]`, `locations[]`, `lines[]`, `slides[]`, `style_bible`; `script.md` |
+| 3 | **adapt** | `sf-script` | `story.json` `cast[]`, `locations[]`, `lines[]`, `slides[]`, `style_bible`; `script.md` |
 | 4 | **pre-gate checks** | `sf-director` | Story CLI checks on the canon, read-aloud pass, `sf_validate`, self-critique rubric |
 | 🚦 | **GATE 1** | human | Approves `script.md`: story, cast, slide list, check results. Feedback edits canon (with approval) or `story.json`, then stage 4 re-runs. |
 | 5 | **cast** | `sf-audio`, `sf-visual` | Voice profile per speaker; identity plates per character; location plates per recurring location |
@@ -140,7 +140,11 @@ yt/
 | 🚦 | **GATE 2** | human | Reviews contact sheet; names slides/plates to redo and why; loop until approved |
 | 8 | **captions** | `sf_align`, `sf_captions` | Word timings matched to script text; `captions.ass` |
 | 9 | **render** | `sf_render` | `out/final.mp4` |
-| 10 | **QC** | `sf-finishing` | `out/qc.json`; auto-fixes allowed fixes, reports the rest |
+| 10 | **QC** | `sf-director` | `out/qc.json`; auto-fixes allowed fixes, reports the rest |
+
+With `review_mode: auto` (default), Gate 1 and Gate 2 are self-reviewed against
+the rubric, `library/taste.md` and `library/checks.md` (max 2 fix rounds, then
+the user is asked); see the Plan 2 spec.
 
 Stages 6 and 7 are independent and may run in either order once stage 5 is
 done (not concurrently: each script holds the project lock and rewrites the
@@ -164,7 +168,7 @@ Then:
   dialogue runs, visual-only devices, numbers and symbols, names without
   `pronunciation`.
 - **`sf_validate`** on `story.json`.
-- **Self-critique rubric** (in `sf-video-script`): hook strength in the first
+- **Self-critique rubric** (in `sf-script`): hook strength in the first
   slide, stakes, setup/payoff, every slide drawable, distinct character voices,
   no slide repeats the previous composition. A score below threshold triggers
   one rewrite before Gate 1.
@@ -176,7 +180,7 @@ Findings go into `script.md` under "Checks" so Gate 1 shows them.
 - Every line and slide carries `status` and `input_hash`.
   - Line hash: text, speaker voice profile, whisper, language, engine, seed.
   - Slide hash: prompt, reference plate hashes, aspect, provider, seed.
-- `/story-run` skips items whose status is `done` and whose hash still matches.
+- `/story` skips items whose status is `done` and whose hash still matches.
   Changing one line regenerates that line's audio, its captions, and the render.
 - `/story-redo` resets the named items to `pending` (and, for a character or
   location, every slide that references its plates), then runs the affected
@@ -326,10 +330,14 @@ when the brief needs it.
 - Reads `state`, stops at gates, resumes after interruption, applies the error
   policy (§4.5).
 - **Routing table** for Story Skills by stage (§6.2).
-- Appends one line per gate correction to `library/learnings.md`, phrased as a
-  reusable rule with its scope (genre, aspect, language).
+- User feedback becomes rules in `library/taste.md` (only via `/story-feedback`);
+  objective defects become checks in `library/checks.md`.
+- Folds in `sf-finishing`'s old duties: captions (presets, karaoke tokenization
+  by language, safe zones), render, and QC (checklist, auto-fixable failures),
+  driving the `sf_captions`, `sf_render`, `sf_qc` scripts directly.
 
-**`sf-video-script`**, the adaptation skill: canon prose or factual research → `lines[]` + `slides[]`.
+**`sf-script`** (was `sf-video-script`; now also writes canon), the
+adaptation skill: canon prose or factual research → `lines[]` + `slides[]`.
 - Pacing per aspect:
   - `9:16`: hook on slide 1 within ~1.5 s; 60–180 s; slides of 2–4 s; one idea per slide.
   - `16:9`: 3–12 min; slides of 4–8 s; room for explanation.
@@ -386,13 +394,6 @@ when the brief needs it.
   (VoiceStudio speaks `spoken`; captions show `written`).
 - Retake policy and audio QC thresholds (§8.3).
 
-**`sf-finishing`**, captions, render, QC.
-- Caption presets. Karaoke tokenization by language: space-delimited languages
-  by word; CJK/Thai/Lao/Khmer/Burmese by character cluster. 1–2 lines per cue,
-  max characters per line by aspect, speaker colors, captions only inside the
-  slide's `text_placement` zone.
-- QC checklist and the list of auto-fixable failures.
-
 ### 6.2 Story Skills routing (used by `sf-director`)
 
 | Stage | Story Skills loaded |
@@ -402,7 +403,7 @@ when the brief needs it.
 | canon — structure | `plot-structure` (`short-story-form.md` for flash/short; `structure-models.md` for kishōtenketsu and others), `genre-craft` (the genre pack; `serial-episodic.md` for series), `theme-craft` (controlling idea, light touch) |
 | canon — draft | `scene-craft` (`openings.md` for the hook, `try-fail.md`, `dialogue-subtext.md`), `chapter-writing` |
 | series | `series-continuity` for new seasons or spin-offs; within a serial, one episode = one chapter with `episode-question` |
-| adapt | `adaptation` references (`comics-script.md`, `picture-book.md`, `audiobook.md`) as inputs to `sf-video-script` |
+| adapt | `adaptation` references (`comics-script.md`, `picture-book.md`, `audiobook.md`) as inputs to `sf-script` |
 | pre-gate | `story-maintenance` (CLI), `line-editing` (read-aloud), `voice-style` (style sheet, dialect) |
 | factual | `research` (note fields and practice) |
 | any, on trigger | `editorial-review` (real people, defamation, lyrics and quote permissions, AI disclosure, sensitivity), `verse-craft` (rhyming stories), `revision-continuity` (canon revisions after Gate 1 feedback) |
@@ -539,7 +540,7 @@ whole pipeline can run without spending quota.
   - Audio: concatenate the line WAVs with pauses; resample to 48 kHz; `loudnorm`.
   - Output: burn `captions.ass`; H.264 yuv420p, 30 fps, AAC 48 kHz.
 
-### 8.4 QC (`sf_qc.py` measures and writes `out/qc.json`; `sf-finishing` interprets and acts)
+### 8.4 QC (`sf_qc.py` measures and writes `out/qc.json`; `sf-director` interprets and acts)
 
 - Every line has audio and every slide has an image (`done`).
 - Final duration equals audio timeline ±1 frame.

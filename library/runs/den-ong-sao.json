@@ -1,0 +1,38 @@
+[
+  {
+    "run_id": "e8faf13191476f60",
+    "date": "2026-09-29",
+    "log_lines": 1,
+    "line_hashes": [
+      "cf2bcef41b16be33",
+      "4620d1f7c2ff028a",
+      "8b6fdbab6c1c17a8",
+      "93e1491b7b05ba0e",
+      "acf62340066cc3d6",
+      "1817d81c64ab5b01",
+      "b8d303c0166ce036",
+      "357812e7749a968c",
+      "7f4bd2d41e3da0f6",
+      "e59a280b7990f166",
+      "b0ccf66c0c4730f9",
+      "cf2b35c79ae9cd6b",
+      "ea2434f45b4f559e",
+      "b8a604db75759f93",
+      "bb4113c2200e0f90",
+      "a588f146abae893c"
+    ],
+    "target_s": 60,
+    "actual_s": 64.25,
+    "predicted_s": null,
+    "images_generated": 0,
+    "voice_lines_generated": 0,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_render": 13.683
+    }
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "run_id": "980a23965ba0b60a",
+    "date": "2026-09-29",
+    "log_lines": 1,
+    "line_hashes": [],
+    "target_s": 30,
+    "actual_s": null,
+    "predicted_s": null,
+    "images_generated": 0,
+    "voice_lines_generated": 0,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.002
+    }
+  }
+]
