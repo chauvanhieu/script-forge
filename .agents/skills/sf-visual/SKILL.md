@@ -10,15 +10,13 @@ description: Writes StoryForge style bibles, character/location plate prompts an
 - The image model sees only the prompt plus the slide's character **face** plates and location plate
   (max 4). Repeat each visible character's key appearance words verbatim in every slide prompt.
 - Face plates: "head-and-shoulders portrait, face fills the frame". Half: waist up. Full: head to toe, neutral background.
-- State counts explicitly (people, moons, lanterns). End every prompt with: clean lower third, no text, no letters, no logos, no watermarks.
+- State counts explicitly (people, moons, lanterns). End every prompt with: full-frame dynamic composition, no text, no letters, no logos, no watermarks (per T002: do not mandate an empty lower third or text section at the bottom).
 - Apply every matching image check in `library/checks.md` and every visual taste rule while writing, not only when reviewing.
 
 ## Generate
-`SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>` then
-`uv run scripts/sf_contact_sheet.py projects/<slug>`.
-
-- **Image Model Preference:** Prioritize generating images using `nanobanana` (optimized for Antigravity environment with Gemini 3.1 flash image) for better performance. Only fallback to `flux` if `nanobanana` fails or is unavailable.
-- **Image Diversity:** When multiple slides share the same voice segment to increase pacing, THE GENERATED IMAGES MUST BE TRULY DISTINCT (different camera angles, actions, shot sizes). Absolutely do not duplicate or clone the same image across multiple slides just to meet the slide count.
+- **Image Model Preference (Antigravity first):** When running in Google Antigravity, prioritize generating video slide images using Gemini 3.1 Flash Image via the agent's built-in image tool (`generate_image`) for ultra-fast generation and high fidelity. Only fallback to local FLUX.2 (`SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>`) when running in other IDEs (Cursor, Claude Code, terminal) or when the native tool is unavailable.
+- `SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>` then `uv run scripts/sf_contact_sheet.py projects/<slug>`.
+- **Image Diversity & Pacing (T003):** Increase image count to target rapid transitions of 1.5s–2.5s per slide cut. When multiple slides share the same voice segment to increase pacing, THE GENERATED IMAGES MUST BE TRULY DISTINCT (different camera angles, actions, shot sizes). Absolutely do not duplicate or clone the same image across multiple slides.
 
 ## Gate 2 self-review
 1. Read `projects/<slug>/out/contact_sheet.png`; open any doubtful tile at full size (`images/<id>.png`, `plates/<id>.png`).

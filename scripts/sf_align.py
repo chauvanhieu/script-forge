@@ -123,8 +123,9 @@ def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int
         if tag == "equal" or (tag == "replace" and i2 - i1 == j2 - j1):
             for offset in range(i2 - i1):
                 unit = units[j1 + offset]
-                if unit["start"] is not None and keys[i1 + offset]:
-                    times[i1 + offset] = (round(unit["start"] * 1000), round(unit["end"] * 1000))
+                start_val, end_val = unit.get("start"), unit.get("end")
+                if start_val is not None and end_val is not None and keys[i1 + offset]:
+                    times[i1 + offset] = (round(start_val * 1000), round(end_val * 1000))
     matched = sum(t is not None for t in times)
     approx = [t is None for t in times]
     if matched == 0 or matched < MIN_MATCH_RATIO * len(script_tokens):
@@ -140,8 +141,10 @@ def align_line(script_tokens: list[str], asr_words: list[dict], duration_ms: int
             run_end = index
             while run_end < len(spans) and spans[run_end] is None:
                 run_end += 1
-            left = spans[index - 1][1] if index > 0 else 0
-            right = spans[run_end][0] if run_end < len(spans) else duration_ms
+            left_span = spans[index - 1] if index > 0 else None
+            left = left_span[1] if left_span is not None else 0
+            right_span = spans[run_end] if run_end < len(spans) else None
+            right = right_span[0] if right_span is not None else duration_ms
             spans[index:run_end] = _split(script_tokens[index:run_end], left, max(left, right))
             index = run_end
     words, previous_start = [], 0
@@ -171,15 +174,30 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
             continue
         asr_words = audio.get("asr_words")
         if asr_words is None:
-            if vs is None:
-                vs = VoiceStudio((config or load_config())["voice"]["base_url"])
-            try:
-                asr_words = vs.transcribe_words(project_dir / audio["path"], language.split("-")[0])
-            except ProviderError as exc:
-                if exc.code in ("quota", "auth"):
-                    save_story(project_dir, story)
-                    summary["errors"].append(f"{exc.code}: {exc.message}")
-                    return summary, EXIT_PROVIDER
+            wav_path = project_dir / audio["path"]
+            if wav_path.exists():
+                import mlx_whisper
+                log(project_dir, "sf_align", f"{line['id']}: extracting word timestamps via mlx_whisper cross-attention")
+                try:
+                    result = mlx_whisper.transcribe(
+                        str(wav_path),
+                        word_timestamps=True,
+                        initial_prompt=line["text"],
+                        language=language.split("-")[0]
+                    )
+                    asr_words = []
+                    for segment in result.get("segments", []):
+                        for word in segment.get("words", []):
+                            if word.get("word") and word.get("start") is not None and word.get("end") is not None:
+                                asr_words.append({
+                                    "text": word["word"].strip(),
+                                    "start": word["start"],
+                                    "end": word["end"]
+                                })
+                except Exception as exc:
+                    log(project_dir, "sf_align", f"{line['id']}: mlx_whisper failed: {exc}")
+                    asr_words = []
+            else:
                 asr_words = []
         reason = timing_distrust(asr_words, audio["duration_ms"])
         if reason:

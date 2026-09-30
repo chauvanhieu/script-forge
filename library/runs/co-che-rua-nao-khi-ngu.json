@@ -1,0 +1,106 @@
+[
+  {
+    "run_id": "11c684189ee6ba75",
+    "date": "2026-09-30",
+    "log_lines": 11,
+    "line_hashes": [
+      "e52ee75c81d040d5",
+      "0f4560284f78758d",
+      "9681e210ace66783",
+      "8668e810e49167cc",
+      "6b3279ca1ec56bb8",
+      "06feaeb945cee570",
+      "7cf53485dff306c0",
+      "87f9a4788369a440"
+    ],
+    "target_s": 60,
+    "actual_s": 52.66,
+    "predicted_s": 52.08,
+    "images_generated": 14,
+    "voice_lines_generated": 8,
+    "needs_human": 1,
+    "untrusted_timings": 8,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.007,
+      "sf_image": 287.871,
+      "sf_contact_sheet": 0.301,
+      "sf_voice": 113.266,
+      "sf_align": 0.265,
+      "sf_captions": 0.004,
+      "sf_render": 14.221,
+      "sf_qc": 5.403
+    }
+  },
+  {
+    "run_id": "459cc91b34a020e6",
+    "date": "2026-09-30",
+    "log_lines": 2,
+    "line_hashes": [],
+    "target_s": 60,
+    "actual_s": 52.66,
+    "predicted_s": 52.56,
+    "images_generated": 0,
+    "voice_lines_generated": 0,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.006
+    }
+  },
+  {
+    "run_id": "324c19520672181f",
+    "date": "2026-09-30",
+    "log_lines": 10,
+    "line_hashes": [
+      "fa46f0a6c593a9cf",
+      "0c122a594a2bad43",
+      "df6cc979388660e1",
+      "e73774bd2a28745d",
+      "4a7538ea7e7eb2af",
+      "d6dce818b1c0eb8d",
+      "8d3004af371ffb1e",
+      "ddf29dbf4df0cf1c"
+    ],
+    "target_s": 60,
+    "actual_s": 52.94,
+    "predicted_s": 52.82,
+    "images_generated": 24,
+    "voice_lines_generated": 8,
+    "needs_human": 0,
+    "untrusted_timings": 8,
+    "qc_failed": [
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_validate": 0.006,
+      "sf_image": 517.129,
+      "sf_contact_sheet": 0.497,
+      "sf_voice": 75.728,
+      "sf_align": 0.283,
+      "sf_captions": 0.005,
+      "sf_render": 15.842,
+      "sf_qc": 5.59
+    }
+  },
+  {
+    "run_id": "e1057743b48a0fd7",
+    "date": "2026-09-30",
+    "log_lines": 2,
+    "line_hashes": [],
+    "target_s": 60,
+    "actual_s": 52.94,
+    "predicted_s": 52.78,
+    "images_generated": 0,
+    "voice_lines_generated": 0,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_validate": 0.006
+    }
+  }
+]

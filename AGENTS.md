@@ -37,6 +37,14 @@
 - **Thêm tính năng mới:** Nếu thêm tính năng cho quy trình tạo video, cần bổ sung logic vào `scripts/` hoặc `scripts/sflib/`. Bất kỳ thay đổi cấu trúc nào của `story.json` đều phải được cập nhật ở `schemas/story.schema.json`.
 - **Nguyên tắc Agent:** Các Agent không được tự động sửa những file hoặc metadata được sinh ra tự động bởi scripts (asset path, hash, audio measurements, etc.).
 - **Ngôn ngữ Skill:** Tất cả file SKILL.md TRONG TOÀN BỘ hệ thống (kể cả `.agents/skills/`) bắt buộc phải ghi bằng tiếng Anh.
+- **Ưu tiên công nghệ tạo ảnh (Image Generation Priority):**
+  - **Khi chạy trên Antigravity:** Ưu tiên sinh ảnh bằng Gemini 3.1 Flash Image do chính Agent IDE thực hiện (qua tool `generate_image`), vừa nhanh vừa chất lượng cao.
+  - **Fallback:** Nếu chạy trên IDE khác (Cursor, Claude Code, Terminal) hoặc agent không thể gọi tool tạo ảnh, fallback về FLUX.2 local qua `SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>`.
+  - **Bố cục ảnh (Full-frame):** Không ép buộc tạo section text hoặc chừa khoảng trống ở đáy ảnh (`no clean lower third margin`); ảnh phải tràn khung tự nhiên và sinh động.
+- **Nhịp độ video & Chuyển cảnh (Fast Pacing):** Tăng số lượng ảnh để đẩy nhịp chuyển cảnh nhanh (1.5s – 2.5s / slide cut), giúp video luôn có biến đổi thị giác dồn dập, đẩy mạnh tỷ lệ hoàn thành (completion rate).
+- **Quy chuẩn thoại & Giọng đọc (Audio Flow):** Hạn chế tối đa dấu phẩy `,`, triệt tiêu dấu ba chấm `...` và ngoặc kép giữa các vế câu liền mạch; sử dụng liên từ ngữ pháp (`thì`, `và`, `khiến`) để công cụ TTS đọc một mạch tự nhiên, không bị ngắt khựng bất thường.
+- **Quy chuẩn Subtext (Karaoke & Highlighting):** Khi làm subtext theo kiểu highlight (Karaoke), BẮT BUỘC dùng cơ chế "Audio-Visual Anticipation" (Pre-roll khoảng 40ms) và hiệu ứng Micro-Flash chuyển màu (\t trong ASS). Tuyệt đối KHÔNG thay đổi font scale, spacing hoặc tắt/bật tag `\b` giữa chừng (nên set bold mặc định) để tránh rục rịch layout chữ.
+- **Cơ chế tiến hoá qua Feedback (Continuous Learning):** Mỗi lần người dùng gửi `/story-feedback`, Agent BẮT BUỘC phải cập nhật ngay các quy tắc/note vào `library/taste.md`, `library/checks.md`, `AGENTS.md` và các file `SKILL.md` liên quan để hướng dẫn các Agent thế hệ sau tiến hóa thông minh hơn, không lặp lại lỗi cũ.
 
 ## 6. Lưu ý bảo mật/rủi ro
 - Không hardcode API key. Cấu hình provider nên nằm trong file `.yaml` tại thư mục `config/` (đã được .gitignore cấu hình nhạy cảm nếu có).
@@ -45,3 +53,4 @@
 
 ---
 *Lưu ý cho AI Sessions:* Hãy đọc file này trước tiên khi bắt đầu làm việc. Nếu thay đổi kiến trúc, quy ước, thêm lệnh, HÃY CẬP NHẬT TRỰC TIẾP VÀO FILE NÀY!
+

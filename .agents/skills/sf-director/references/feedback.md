@@ -15,8 +15,11 @@ The only path that writes `library/taste.md`.
    (e.g. `vi · audio` for a Vietnamese voice remark; `global` only if the user says always/every).
    If it contradicts an existing rule of the same or broader scope, delete that rule and write
    "(replaces T###)" at the end of the new rule. If an existing rule already says the same, do nothing.
-3. Apply item fixes through the owning skill: `sf-script` (text), `sf-visual` (prompts, seed), `sf-audio`
+3. **Agent Evolution & Knowledge Persistence (CRITICAL):**
+   - In addition to `library/taste.md` (and `library/checks.md` for objective bugs), actively update `AGENTS.md` and the relevant skill markdown files (`sf-visual`, `sf-script`, `sf-audio`, `sf-director`) to permanently record the user's feedback lessons. Future agent sessions read these files upon startup and will immediately inherit the refined behavior without repeating past mistakes.
+4. Apply item fixes through the owning skill: `sf-script` (text), `sf-visual` (prompts, seed), `sf-audio`
    (voice description, casting — re-cast with `--only <cast id>`). Then re-run only the affected
    stages and everything downstream: images → contact sheet; voice → align → captions → render → qc.
-4. Run `sf_learn`; confirm `library_problems` is empty.
-5. Report: rule ids written or replaced, items redone, new video path.
+5. Run `sf_learn`; confirm `library_problems` is empty.
+6. Report: rule ids written or replaced, items redone, new video path.
+

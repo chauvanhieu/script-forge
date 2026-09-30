@@ -25,7 +25,7 @@ Never edit fields scripts own (asset path/status/hash/attempts/last_error, audio
 | 1 | brief | Fill `brief` from the idea. Defaults come from taste rules scoped `brief`; with none: language `vi`, aspect `9:16`, `target_seconds` 60, `platform_target` `youtube_shorts` (options: `youtube_shorts`, `tiktok`, `instagram_reels`), captions `karaoke`/`karaoke-bold`, `review_mode` `auto`. Ask the user only if the idea gives no premise to write from. | brief complete |
 | 2 | canon + script | Dispatch one subagent that follows `sf-script` (pass: brief with `platform_target`, matching rules, calibration numbers, target paths, and references). | `sf_validate` ok; Story CLI `validate`, `links` clean |
 | 3 | Gate 1 | auto: score `script.md` against **all 14 items** in `sf-script/references/rubric.md` (Part A Technical + Part B Viral Readiness) and the script-scoped rules; if any item fails (especially weak hook, flat escalation without But/Therefore, or missing payoff), send specific actionable failures back to the script subagent; max 2 rounds, then ask the user. gated: show `script.md`, wait. | pass all 14 checks |
-| 4 | images | Follow `sf-visual` for prompts (Slide 1 must execute the Visual Hook); run `SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>` then `sf_contact_sheet`. | all done |
+| 4 | images | Follow `sf-visual` for prompts (Slide 1 must execute the Visual Hook); when running in Antigravity prioritize Gemini 3.1 Flash Image via native agent `generate_image` tool, fallback to `SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>` then `sf_contact_sheet`. | all done |
 | 5 | Gate 2 | auto: follow `sf-visual` self-review; redo flagged items; max 2 rounds, then ask the user. gated: show `out/contact_sheet.png`, wait. | pass |
 | 6 | voice | Follow `sf-audio`; `sf_voice`. Line 1 must deliver punchy Verbal Hook delivery without hesitant pauses. | all lines done |
 | 7 | finish | `sf_align`, `sf_captions`, `sf_render`, `sf_qc`. Auto-fix only: re-run captions after re-wrapping, re-render after a regenerated asset. | QC ok, or remaining failures reviewed (see below) |
@@ -45,10 +45,13 @@ timing failure, length miss > 10 %), fix it, then add a check or bump the `hits`
 existing one that covers it. Keep ≤ 30 per scope: when adding past the cap, delete the
 entry with the fewest hits, oldest first. Checks are workflow knowledge, not taste.
 
-## Taste → only `/story-feedback`
+## Taste & Continuous Evolution → `/story-feedback`
 
-Never write `library/taste.md` except in the feedback flow (`references/feedback.md`).
-Without user feedback, taste stays exactly as it is.
+When user feedback arrives (`/story-feedback`), the director must:
+1. Append taste rules to `library/taste.md` per `references/feedback.md`.
+2. Persist operational notes, rules, and best practices directly into `AGENTS.md` and related `SKILL.md` files so future AI sessions continuously learn and evolve.
+3. Without user feedback, taste stays exactly as it is.
+
 
 ## Errors
 

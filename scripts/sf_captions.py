@@ -67,19 +67,29 @@ def _chunk(words: list[dict], max_chars: int, max_lines: int, spaced: bool) -> l
     return cues
 
 
-def _cue_text(rows: list[list[dict]], karaoke: bool, spaced: bool) -> str:
-    flat = [word for row in rows for word in row]
-    durations = {}
-    for index, word in enumerate(flat):
-        until = flat[index + 1]["start_ms"] if index + 1 < len(flat) else word["end_ms"]
-        durations[id(word)] = max(0, round((until - word["start_ms"]) / 10))
+def _active_word_text(rows: list[list[dict]], active_word_id: int, caption_color: str, unsung_color: str, spaced: bool) -> str:
+    joiner = " " if spaced else ""
+    rendered = []
+    base_color_tag = f"\\c{ass_color(unsung_color)}"
+    for row in rows:
+        row_text = []
+        for w in row:
+            text = _escape(w["text"])
+            if id(w) == active_word_id:
+                # Subtle flash: starts bright white, fades to caption_color over 60ms for a punchy visual hit
+                flash_tag = f"{{\\c&HFFFFFF&\\t(0,60,\\c{ass_color(caption_color)})}}"
+                row_text.append(f"{flash_tag}{text}{{\\c{ass_color(unsung_color)}}}")
+            else:
+                row_text.append(text)
+        rendered.append(joiner.join(row_text))
+    return f"{{{base_color_tag}}}" + "\\N".join(rendered)
+
+
+def _cue_text(rows: list[list[dict]], spaced: bool) -> str:
     joiner = " " if spaced else ""
     rendered = []
     for row in rows:
-        if karaoke:
-            rendered.append(joiner.join(f"{{\\kf{durations[id(w)]}}}{_escape(w['text'])}" for w in row))
-        else:
-            rendered.append(joiner.join(_escape(w["text"]) for w in row))
+        rendered.append(joiner.join(_escape(w["text"]) for w in row))
     return "\\N".join(rendered)
 
 
@@ -108,6 +118,7 @@ def _header(story: dict, style: dict) -> str:
 def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYLES_DIR) -> tuple[dict, int]:
     story = load_story(project_dir)
     mode = story["brief"]["captions"]["mode"]
+    animation = story["brief"]["captions"].get("animation", "none")
     if mode == "none":
         story["output"]["captions"] = None
         save_story(project_dir, story)
@@ -128,11 +139,78 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
         start = timeline.line_start_ms[line["id"]]
         where = placement[line["id"]]
         margin_v = round(style["margin_v_pct"][aspect][where] * height)
-        for cue in _chunk(line["words"], max_chars, style["max_lines"], spaced):
+        chunks = [[w] for w in line["words"]] if animation == "word_by_word" else _chunk(line["words"], max_chars, style["max_lines"], spaced)
+        for cue in chunks:
             rows = _split_lines(cue, max_chars, spaced)
             cue_start = start + cue[0]["start_ms"]
             cue_end = max(start + cue[-1]["end_ms"], cue_start + 10)
-            text = f"{{\\an{ALIGNMENT[where]}}}" + _cue_text(rows, mode == "karaoke", spaced)
+            if animation == "word_by_word":
+                cue_start = max(0, cue_start - 40)
+                cue_end = max(10, cue_end - 40)
+            
+            is_karaoke = (mode == "karaoke") and (animation != "word_by_word")
+            if is_karaoke:
+                speaker_id = line["speaker"]
+                speaker_color = next((m["caption_color"] for m in story["cast"] if m["id"] == speaker_id), "#FFFF00")
+                unsung_color = style.get("unsung_color", "#FFFFFF")
+                flat = [w for row in rows for w in row]
+                
+                PRE_ROLL = 40
+                
+                for index, word in enumerate(flat):
+                    w_start_orig = start + word["start_ms"]
+                    w_end_orig = start + word["end_ms"]
+                    
+                    w_start = max(0, w_start_orig - PRE_ROLL)
+                    
+                    next_start_orig = start + flat[index + 1]["start_ms"] if index + 1 < len(flat) else None
+                    
+                    # Determine active event duration and gap handling
+                    if next_start_orig is not None:
+                        next_start = max(0, next_start_orig - PRE_ROLL)
+                        gap = next_start_orig - w_end_orig
+                        if gap > 80:  # Perceptual gap threshold
+                            w_end = w_end_orig
+                            has_gap = True
+                        else:
+                            w_end = next_start
+                            has_gap = False
+                    else:
+                        w_end = max(w_end_orig, w_start + 10)
+                        has_gap = False
+                        next_start = None
+                        
+                    # Create the active word event
+                    text_content = _active_word_text(rows, id(word), speaker_color, unsung_color, spaced)
+                    text = f"{{\\an{ALIGNMENT[where]}}}" + text_content
+                    events.append(f"Dialogue: 0,{ass_time(w_start)},{ass_time(w_end)},{line['speaker']},{line['id']},0,0,{margin_v},,{text}")
+                    
+                    # Create the REST event if there's a significant gap
+                    if has_gap and next_start is not None:
+                        rest_content = _active_word_text(rows, -1, speaker_color, unsung_color, spaced)
+                        rest_text = f"{{\\an{ALIGNMENT[where]}}}" + rest_content
+                        events.append(f"Dialogue: 0,{ass_time(w_end)},{ass_time(next_start)},{line['speaker']},{line['id']},0,0,{margin_v},,{rest_text}")
+                continue
+
+            base_text = _cue_text(rows, spaced)
+            cue_dur = cue_end - cue_start
+            anim_tags = ""
+            
+            if animation == "pop_up":
+                in_dur = min(100, max(10, cue_dur // 2))
+                back_dur = min(60, max(10, cue_dur // 3))
+                anim_tags = f"{{\\fscx0\\fscy0\\t(0,{in_dur},1.5,\\fscx110\\fscy110)\\t({in_dur},{in_dur+back_dur},1,\\fscx100\\fscy100)}}"
+            elif animation == "slide_blur":
+                slide_dur = min(800, cue_dur)
+                out_dur = min(200, cue_dur // 3)
+                out_start = cue_dur - out_dur
+                
+                x = SIZE[aspect][0] // 2
+                y = margin_v if where == "upper_third" else (height // 2 if where == "center" else height - margin_v)
+                
+                anim_tags = f"{{\\move({x},{y+60},{x},{y},0,{slide_dur})\\fad(150,0)\\t({out_start},{cue_dur},\\blur5\\alpha&HFF&)}}"
+                
+            text = f"{{\\an{ALIGNMENT[where]}}}" + anim_tags + base_text
             events.append(f"Dialogue: 0,{ass_time(cue_start)},{ass_time(cue_end)},{line['speaker']},{line['id']},0,0,{margin_v},,{text}")
     out = project_dir / "out" / "captions.ass"
     out.parent.mkdir(exist_ok=True)

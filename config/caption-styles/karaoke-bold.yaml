@@ -1,10 +1,10 @@
 # Word-by-word highlight. Unsung words use unsung_color; sung words take the speaker's caption_color.
-font: Arial
+font: Montserrat
 bold: true
-font_size: {"9:16": 78, "16:9": 60}
-outline: 5
+font_size: {"9:16": 120, "16:9": 85}
+outline: 10
 shadow: 0
-unsung_color: "#9A9A9A"
+unsung_color: "#FFFFFF"
 max_chars_per_line: {"9:16": 18, "16:9": 36}
 max_lines: 2
 margin_v_pct:

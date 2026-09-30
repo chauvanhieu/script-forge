@@ -34,7 +34,8 @@
           "required": ["mode", "style"],
           "properties": {
             "mode": {"enum": ["karaoke", "plain", "none"]},
-            "style": {"type": "string", "pattern": "^[a-z0-9-]+$"}
+            "style": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+            "animation": {"enum": ["none", "pop_up", "slide_blur", "word_by_word"]}
           }
         },
         "review_mode": {"enum": ["gated", "auto"]}
