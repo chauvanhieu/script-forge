@@ -1,0 +1,3138 @@
+{
+  "schema_version": "1.0",
+  "slug": "cu-giat-minh-khi-ngu",
+  "canon": null,
+  "brief": {
+    "idea": "Bí ẩn cú rơi tự do khi ngủ (Hypnic Jerk): Tại sao não tưởng bạn sắp chết? Cú giật bắn người là cơ chế sốc điện sinh tồn tiến hóa 5 triệu năm để cứu mạng bạn.",
+    "language": "vi",
+    "aspect": "9:16",
+    "content_type": "factual",
+    "genre": "science-mindblowing",
+    "target_seconds": 60,
+    "captions": {
+      "mode": "karaoke",
+      "style": "karaoke-bold"
+    },
+    "review_mode": "auto"
+  },
+  "state": {
+    "stage": "done",
+    "gates": {
+      "script": {
+        "approved_at": "2026-09-30"
+      },
+      "images": {
+        "approved_at": "2026-09-30"
+      }
+    }
+  },
+  "style_bible": {
+    "medium": "Cinematic hyperrealistic scientific visualization, 3D anatomical CGI, deep indigo and dark cosmic navy background, bioluminescent neon cyan neural pathways and vibrant amber-gold electrical arcs",
+    "palette": [
+      "electric cyan",
+      "amber-gold",
+      "deep indigo navy",
+      "crimson pulse"
+    ],
+    "lighting": "dramatic high-contrast rim lighting, glowing particle effects, dark void atmosphere, chiaroscuro",
+    "composition": "vertical 9:16 composition with main subject in the upper two thirds and clear lower third for captions",
+    "avoid": [
+      "text",
+      "letters",
+      "watermarks",
+      "logos",
+      "distorted anatomy",
+      "extra limbs",
+      "blurry"
+    ]
+  },
+  "cast": [
+    {
+      "id": "narrator",
+      "canon_id": "narrator",
+      "name": "Người kể",
+      "role": "narrator",
+      "appearance": "Narrator voiceover, calm, profound, documentary style",
+      "voice": {
+        "source": "design",
+        "profile_id": "0938cc90",
+        "design_prompt": "male, middle-aged, low pitch",
+        "instruct": "male, middle-aged, low pitch",
+        "selected_name": "The Promo Voice",
+        "archetype_id": "feat_19_the_promo_voice"
+      },
+      "caption_color": "#FFDF00"
+    }
+  ],
+  "locations": [],
+  "slides": [
+    {
+      "id": "S01",
+      "source": "scene-01",
+      "line_ids": [
+        "L001"
+      ],
+      "brief": {
+        "moment": "Người đang trôi lơ lửng giữa vực thẳm vũ trụ ngay phía trên chiếc giường ngủ mờ ảo.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Người đang trôi lơ lửng giữa vực thẳm vũ trụ ngay phía trên chiếc giường ngủ mờ ảo."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "A dramatic 9:16 vertical cinematic shot of a person floating weightlessly in mid-air above an endless dark cosmic abyss, frozen in mid-fall right above a soft dissolving bed, intense dynamic Dutch angle, glowing cyan and amber particle streaks spiraling around the falling body, hyperrealistic, high contrast chiaroscuro, volumetric lighting, photorealistic, 8k resolution, no watermark, no text.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S01.png",
+        "input_hash": "9ba2b29038bf11b8",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S02",
+      "source": "scene-02",
+      "line_ids": [
+        "L002"
+      ],
+      "brief": {
+        "moment": "Toàn cảnh hàng ngàn bóng người phát sáng đang nằm ngủ trong màn đêm, đại diện cho 70% nhân loại.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Toàn cảnh hàng ngàn bóng người phát sáng đang nằm ngủ trong màn đêm, đại diện cho 70% nhân loại."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Wide cinematic shot of thousands of glowing human silhouettes in a dark futuristic world lying in beds under starry skies, faint cyan energy halos connecting them, representing 70 percent of humanity, deep cosmic navy atmosphere, glowing soft light, 9:16 vertical orientation, ultra detailed, cinematic, no text, no watermark.",
+        "shot": "wide",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S02.png",
+        "input_hash": "d6f3876258762dc6",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S03",
+      "source": "scene-02",
+      "line_ids": [
+        "L002"
+      ],
+      "brief": {
+        "moment": "Cận cảnh một người đang ngủ, lồng ngực phát sáng xung điện nhịp tim cyan bí ẩn.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cận cảnh một người đang ngủ, lồng ngực phát sáng xung điện nhịp tim cyan bí ẩn."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Dramatic close-up shot of a sleeping human silhouette in bed, glowing translucent chest suddenly pulsating with an intense electric cyan circular shockwave and glowing heart rhythm, high contrast dark bedroom background with cosmic nebula dust, 9:16 vertical orientation, 8k resolution, cinematic lighting, no text, no watermark, clean lower third.",
+        "shot": "medium",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S03.png",
+        "input_hash": "00e6c4fc0742fe78",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S04",
+      "source": "scene-03",
+      "line_ids": [
+        "L003"
+      ],
+      "brief": {
+        "moment": "Cận cảnh con ngươi mắt người mở to trong bóng tối, phản chiếu thế giới giấc mơ siêu thực tan biến.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cận cảnh con ngươi mắt người mở to trong bóng tối, phản chiếu thế giới giấc mơ siêu thực tan biến."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Extreme close-up shot of a human eye wide open in the dark, iris glowing with faint electrical blue sparks, reflecting a surreal shadowy dreamscape that dissolves into glowing dust, cinematic macro photography, dramatic side lighting, 9:16 vertical framing, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S04.png",
+        "input_hash": "095af3375ce0b99f",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S05",
+      "source": "scene-04",
+      "line_ids": [
+        "L004"
+      ],
+      "brief": {
+        "moment": "Mô hình não bộ 3D trong suốt chia đôi với hai luồng năng lượng đối kháng dữ dội: cam và xanh.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Mô hình não bộ 3D trong suốt chia đôi với hai luồng năng lượng đối kháng dữ dội: cam và xanh."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Cinematic split-brain 3D visualization showing two halves of the human brain clashing with energy, the left hemisphere glowing with warm wakeful amber-orange light and the right hemisphere glowing with cool deep indigo-blue sleep waves, neural synapses firing across the corpus callosum, 9:16 vertical, intricate anatomical detail, 8k resolution, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S05.png",
+        "input_hash": "abfc7f35cc5d2516",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S06",
+      "source": "scene-04",
+      "line_ids": [
+        "L004"
+      ],
+      "brief": {
+        "moment": "Cực cận thể chai não bộ với các tia sét thần kinh phóng qua lại dữ dội giữa hai bán cầu.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cực cận thể chai não bộ với các tia sét thần kinh phóng qua lại dữ dội giữa hai bán cầu."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Extreme macro 3D scientific visualization of neural synapses firing intense bright electric arcs and lightning bolts across the corpus callosum bridge between the two conflicting brain halves, vivid amber and electric cyan colors, high speed capture, 9:16 vertical orientation, 8k resolution, cinematic lighting, no text, no watermark, clean lower third.",
+        "shot": "extreme-close",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S06.png",
+        "input_hash": "7059c5dc3035289d",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S07",
+      "source": "scene-05",
+      "line_ids": [
+        "L005"
+      ],
+      "brief": {
+        "moment": "Mạng lưới nơ-ron phát sáng trong vũ trụ tối với hai trung tâm chỉ quy kéo giằng tia sáng ý thức.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Mạng lưới nơ-ron phát sáng trong vũ trụ tối với hai trung tâm chỉ quy kéo giằng tia sáng ý thức."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "A glowing neural network in dark space with two distinct command centers, one radiating calming soothing lavender and deep blue sleep impulses, the other emitting sharp golden alertness signals, tug-of-war of light beams, photorealistic scientific rendering, 9:16 vertical composition, no text, no watermark.",
+        "shot": "medium",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S07.png",
+        "input_hash": "08db6250e8c1df72",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S08",
+      "source": "scene-06",
+      "line_ids": [
+        "L006"
+      ],
+      "brief": {
+        "moment": "Cận cảnh cấu trúc 3D mô phỏng các bó cơ bắp và mạch máu tim thả lỏng nhanh chóng.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cận cảnh cấu trúc 3D mô phỏng các bó cơ bắp và mạch máu tim thả lỏng nhanh chóng."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "A detailed 3D anatomical model of human muscle fibers and heart blood vessels suddenly relaxing and deflating, heart rate pulse line dipping down steeply, surrounded by deep blue and cyan biomedical aura, dark studio background, cinematic lighting, 9:16 vertical composition, no text, no watermark.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S08.png",
+        "input_hash": "d31948cc9be24555",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S09",
+      "source": "scene-06",
+      "line_ids": [
+        "L006"
+      ],
+      "brief": {
+        "moment": "Màn hình điện tâm đồ holographic trong phòng tối hạ dốc đột ngột gần như ngừng đập.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Màn hình điện tâm đồ holographic trong phòng tối hạ dốc đột ngột gần như ngừng đập."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "A dramatic 3D biomedical visualization of a glowing cyan holographic electrocardiogram heart rate line sharply diving downwards toward flatline, surrounded by dim dark atmospheric clinical room lighting, high stakes medical tension, 9:16 vertical orientation, 8k resolution, no text, no watermark, clean lower third.",
+        "shot": "close-up",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S09.png",
+        "input_hash": "04de8ab41c823030",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S10",
+      "source": "scene-07",
+      "line_ids": [
+        "L007"
+      ],
+      "brief": {
+        "moment": "Vùng thân não cổ xưa và hạch hạnh nhân bùng lên luồng ánh sáng đỏ thẫm báo động khẩn cấp.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Vùng thân não cổ xưa và hạch hạnh nhân bùng lên luồng ánh sáng đỏ thẫm báo động khẩn cấp."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Intense close-up of the primitive brainstem and amygdala glowing with an intense crimson red warning pulse, bright red electrical alarms shooting through neural nodes in dark brain tissue, emergency siren aesthetic in neurology, dramatic contrast, 9:16 vertical, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S10.png",
+        "input_hash": "60ecbf1318a17c7c",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S11",
+      "source": "scene-08",
+      "line_ids": [
+        "L008"
+      ],
+      "brief": {
+        "moment": "Tổ tiên vượn người tiền sử ngủ trên cành cây cao giữa rừng rậm nguyên sinh dưới ánh trăng.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Tổ tiên vượn người tiền sử ngủ trên cành cây cao giữa rừng rậm nguyên sinh dưới ánh trăng."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Cinematic wide shot of an ancient primate ancestor sleeping on a high mossy tree branch in a prehistoric moonlit jungle canopy, slipping slightly from the branch, dramatic moonlight with deep misty shadows, primal survival atmosphere, 9:16 vertical framing, photorealistic, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S11.png",
+        "input_hash": "d45d51d9a9000555",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S12",
+      "source": "scene-08",
+      "line_ids": [
+        "L008"
+      ],
+      "brief": {
+        "moment": "Góc nhìn nghiêng kịch tính từ trên cây nhìn cành cây gãy vụn rơi vào màn đêm sâu thẳm.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Góc nhìn nghiêng kịch tính từ trên cây nhìn cành cây gãy vụn rơi vào màn đêm sâu thẳm."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Dynamic dramatic Dutch angle looking down from the high prehistoric jungle canopy at an ancient tree branch snapping in half, moss flying off in the misty moonlight, deep terrifying drop into the dark jungle abyss below, primal survival adrenaline, 9:16 vertical orientation, 8k resolution, cinematic lighting, no text, no watermark, clean lower third.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S12.png",
+        "input_hash": "74925d2c2a808935",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S13",
+      "source": "scene-09",
+      "line_ids": [
+        "L009"
+      ],
+      "brief": {
+        "moment": "Tia sét thần kinh cực sáng phóng thẳng từ cuống não dọc theo tủy sống người.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Tia sét thần kinh cực sáng phóng thẳng từ cuống não dọc theo tủy sống người."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "A powerful electric lightning bolt shooting down the translucent human spinal cord, glowing white-hot electric cyan and sparks exploding outward into muscle nerves of the arms and legs, high-speed macro scientific visualization, 9:16 vertical orientation, cinematic, no text, no watermark.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S13.png",
+        "input_hash": "277b77c21fcc74b3",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S14",
+      "source": "scene-09",
+      "line_ids": [
+        "L009"
+      ],
+      "brief": {
+        "moment": "Cận cảnh các bó cơ bắp tay và chân giật co mạnh dưới luồng xung điện phóng qua.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cận cảnh các bó cơ bắp tay và chân giật co mạnh dưới luồng xung điện phóng qua."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Intense macro shot of human arm and leg muscle fibers violently flexing and twitching under a sudden blast of high voltage electric cyan spark arcs, biomechanical shockwave, extreme muscular contraction reflex, dark cinematic background, 9:16 vertical orientation, 8k resolution, cinematic lighting, no text, no watermark, clean lower third.",
+        "shot": "close-up",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S14.png",
+        "input_hash": "d4f87d23416c29c3",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S15",
+      "source": "scene-10",
+      "line_ids": [
+        "L010"
+      ],
+      "brief": {
+        "moment": "Người ngủ bật ngồi dậy trên giường, mắt mở to thở dốc trong luồng sóng vàng bảo vệ.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Người ngủ bật ngồi dậy trên giường, mắt mở to thở dốc trong luồng sóng vàng bảo vệ."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "A person sitting up abruptly in bed with eyes wide open, gasping for breath, surrounded by a sudden shockwave of golden light and dissipating electric sparks, frozen motion, dramatic high-contrast rim lighting, cinematic realism, 9:16 vertical, no text, no watermark.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S15.png",
+        "input_hash": "a4c7be657962ddfb",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S16",
+      "source": "scene-10",
+      "line_ids": [
+        "L010"
+      ],
+      "brief": {
+        "moment": "Cực cận con ngươi co lại phản xạ khi ý thức bừng tỉnh trở lại trong phòng tối.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cực cận con ngươi co lại phản xạ khi ý thức bừng tỉnh trở lại trong phòng tối."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "Extreme macro close-up of a human eye wide open, the pupil contracting rapidly in response to a sudden return of consciousness, golden neural sparks reflecting on the deep glossy iris, high contrast dramatic cinematic lighting, 9:16 vertical composition, 8k resolution, photorealistic, no text, no watermark, clean lower third.",
+        "shot": "extreme-close",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S16.png",
+        "input_hash": "c9eb0fdc60d13746",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S17",
+      "source": "scene-11",
+      "line_ids": [
+        "L011"
+      ],
+      "brief": {
+        "moment": "Bóng người tĩnh lặng ngồi trên đường cong Trái Đất nhìn ra vũ trụ bao la, bao bọc bởi vầng hào quang ấm áp.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Bóng người tĩnh lặng ngồi trên đường cong Trái Đất nhìn ra vũ trụ bao la, bao bọc bởi vầng hào quang ấm áp."
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "A breathtaking cosmic view of a translucent human silhouette sitting peacefully on the edge of the Earth looking at a glowing nebula, surrounded by an intricate warm golden aura of protective neural energy, poetic and comforting atmosphere, 9:16 vertical composition, 8k resolution, cinematic masterpiece, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S17.png",
+        "input_hash": "2567e0f0b894e5f6",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    }
+  ],
+  "lines": [
+    {
+      "id": "L001",
+      "speaker": "narrator",
+      "text": "Vừa chợp mắt, bạn bỗng giật nảy người vì cảm giác rơi tự do?",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L001.wav",
+        "input_hash": "1a05dc27bdaeb4e6",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2938,
+        "seed": 1582992269,
+        "qc": {
+          "cps": 15.32,
+          "cer": 0.067,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Vừa",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "chậm",
+            "start": 0.081,
+            "end": 0.161
+          },
+          {
+            "text": "mắt",
+            "start": 0.181,
+            "end": 0.242
+          },
+          {
+            "text": "bạn",
+            "start": 0.262,
+            "end": 0.322
+          },
+          {
+            "text": "bỗng",
+            "start": 0.343,
+            "end": 0.423
+          },
+          {
+            "text": "giận",
+            "start": 0.443,
+            "end": 0.524
+          },
+          {
+            "text": "nảy",
+            "start": 0.544,
+            "end": 0.605
+          },
+          {
+            "text": "người",
+            "start": 0.625,
+            "end": 0.726
+          },
+          {
+            "text": "vì",
+            "start": 0.746,
+            "end": 0.786
+          },
+          {
+            "text": "cảm",
+            "start": 0.806,
+            "end": 0.867
+          },
+          {
+            "text": "giác",
+            "start": 0.887,
+            "end": 0.967
+          },
+          {
+            "text": "rơi",
+            "start": 0.988,
+            "end": 1.048
+          },
+          {
+            "text": "tự",
+            "start": 1.068,
+            "end": 1.108
+          },
+          {
+            "text": "do.",
+            "start": 1.129,
+            "end": 1.189
+          }
+        ],
+        "used_seed": 1582992269
+      },
+      "words": [
+        {
+          "text": "Vừa",
+          "start_ms": 0,
+          "end_ms": 196,
+          "approx": true
+        },
+        {
+          "text": "chợp",
+          "start_ms": 196,
+          "end_ms": 457,
+          "approx": true
+        },
+        {
+          "text": "mắt,",
+          "start_ms": 457,
+          "end_ms": 653,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 653,
+          "end_ms": 849,
+          "approx": true
+        },
+        {
+          "text": "bỗng",
+          "start_ms": 849,
+          "end_ms": 1110,
+          "approx": true
+        },
+        {
+          "text": "giật",
+          "start_ms": 1110,
+          "end_ms": 1371,
+          "approx": true
+        },
+        {
+          "text": "nảy",
+          "start_ms": 1371,
+          "end_ms": 1567,
+          "approx": true
+        },
+        {
+          "text": "người",
+          "start_ms": 1567,
+          "end_ms": 1893,
+          "approx": true
+        },
+        {
+          "text": "vì",
+          "start_ms": 1893,
+          "end_ms": 2024,
+          "approx": true
+        },
+        {
+          "text": "cảm",
+          "start_ms": 2024,
+          "end_ms": 2220,
+          "approx": true
+        },
+        {
+          "text": "giác",
+          "start_ms": 2220,
+          "end_ms": 2481,
+          "approx": true
+        },
+        {
+          "text": "rơi",
+          "start_ms": 2481,
+          "end_ms": 2677,
+          "approx": true
+        },
+        {
+          "text": "tự",
+          "start_ms": 2677,
+          "end_ms": 2807,
+          "approx": true
+        },
+        {
+          "text": "do?",
+          "start_ms": 2807,
+          "end_ms": 2938,
+          "approx": true
+        }
+      ],
+      "words_hash": "1a05dc27bdaeb4e6"
+    },
+    {
+      "id": "L002",
+      "speaker": "narrator",
+      "text": "Hơn [[70%|bảy mươi phần trăm]] nhân loại đều từng trải qua cú giật thót tim này.",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L002.wav",
+        "input_hash": "30d098b7a4f825b9",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4022,
+        "seed": 142773473,
+        "qc": {
+          "cps": 10.69,
+          "cer": 0.047,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Hơn",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "70%",
+            "start": 0.08,
+            "end": 0.141
+          },
+          {
+            "text": "nhân",
+            "start": 0.161,
+            "end": 0.241
+          },
+          {
+            "text": "loại",
+            "start": 0.261,
+            "end": 0.342
+          },
+          {
+            "text": "đều",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "từng",
+            "start": 0.442,
+            "end": 0.523
+          },
+          {
+            "text": "trải",
+            "start": 0.543,
+            "end": 0.623
+          },
+          {
+            "text": "qua",
+            "start": 0.643,
+            "end": 0.704
+          },
+          {
+            "text": "cú",
+            "start": 0.724,
+            "end": 0.764
+          },
+          {
+            "text": "giật",
+            "start": 0.784,
+            "end": 0.865
+          },
+          {
+            "text": "thoát",
+            "start": 0.885,
+            "end": 0.985
+          },
+          {
+            "text": "tim",
+            "start": 1.005,
+            "end": 1.066
+          },
+          {
+            "text": "này.",
+            "start": 1.086,
+            "end": 1.166
+          }
+        ],
+        "used_seed": 142773473
+      },
+      "words": [
+        {
+          "text": "Hơn",
+          "start_ms": 0,
+          "end_ms": 281,
+          "approx": true
+        },
+        {
+          "text": "70%",
+          "start_ms": 281,
+          "end_ms": 468,
+          "approx": true
+        },
+        {
+          "text": "nhân",
+          "start_ms": 468,
+          "end_ms": 842,
+          "approx": true
+        },
+        {
+          "text": "loại",
+          "start_ms": 842,
+          "end_ms": 1216,
+          "approx": true
+        },
+        {
+          "text": "đều",
+          "start_ms": 1216,
+          "end_ms": 1497,
+          "approx": true
+        },
+        {
+          "text": "từng",
+          "start_ms": 1497,
+          "end_ms": 1871,
+          "approx": true
+        },
+        {
+          "text": "trải",
+          "start_ms": 1871,
+          "end_ms": 2245,
+          "approx": true
+        },
+        {
+          "text": "qua",
+          "start_ms": 2245,
+          "end_ms": 2525,
+          "approx": true
+        },
+        {
+          "text": "cú",
+          "start_ms": 2525,
+          "end_ms": 2713,
+          "approx": true
+        },
+        {
+          "text": "giật",
+          "start_ms": 2713,
+          "end_ms": 3087,
+          "approx": true
+        },
+        {
+          "text": "thót",
+          "start_ms": 3087,
+          "end_ms": 3461,
+          "approx": true
+        },
+        {
+          "text": "tim",
+          "start_ms": 3461,
+          "end_ms": 3741,
+          "approx": true
+        },
+        {
+          "text": "này.",
+          "start_ms": 3741,
+          "end_ms": 4022,
+          "approx": true
+        }
+      ],
+      "words_hash": "30d098b7a4f825b9"
+    },
+    {
+      "id": "L003",
+      "speaker": "narrator",
+      "text": "Nhưng đó hoàn toàn không phải một cơn ác mộng ngẫu nhiên.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L003.wav",
+        "input_hash": "b92faedfdb82e862",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 3275,
+        "seed": 2071865737,
+        "qc": {
+          "cps": 13.74,
+          "cer": 0.022,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Nhưng",
+            "start": 0.0,
+            "end": 0.101
+          },
+          {
+            "text": "đó",
+            "start": 0.121,
+            "end": 0.161
+          },
+          {
+            "text": "hoàn",
+            "start": 0.181,
+            "end": 0.262
+          },
+          {
+            "text": "toàn",
+            "start": 0.282,
+            "end": 0.362
+          },
+          {
+            "text": "không",
+            "start": 0.382,
+            "end": 0.483
+          },
+          {
+            "text": "phải",
+            "start": 0.503,
+            "end": 0.584
+          },
+          {
+            "text": "một",
+            "start": 0.604,
+            "end": 0.664
+          },
+          {
+            "text": "cơn",
+            "start": 0.684,
+            "end": 0.745
+          },
+          {
+            "text": "ác",
+            "start": 0.765,
+            "end": 0.805
+          },
+          {
+            "text": "mộng",
+            "start": 0.825,
+            "end": 0.906
+          },
+          {
+            "text": "ngậu",
+            "start": 0.926,
+            "end": 1.006
+          },
+          {
+            "text": "nhiên.",
+            "start": 1.027,
+            "end": 1.147
+          }
+        ],
+        "used_seed": 2071865737
+      },
+      "words": [
+        {
+          "text": "Nhưng",
+          "start_ms": 0,
+          "end_ms": 364,
+          "approx": true
+        },
+        {
+          "text": "đó",
+          "start_ms": 364,
+          "end_ms": 509,
+          "approx": true
+        },
+        {
+          "text": "hoàn",
+          "start_ms": 509,
+          "end_ms": 801,
+          "approx": true
+        },
+        {
+          "text": "toàn",
+          "start_ms": 801,
+          "end_ms": 1092,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 1092,
+          "end_ms": 1456,
+          "approx": true
+        },
+        {
+          "text": "phải",
+          "start_ms": 1456,
+          "end_ms": 1747,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 1747,
+          "end_ms": 1965,
+          "approx": true
+        },
+        {
+          "text": "cơn",
+          "start_ms": 1965,
+          "end_ms": 2183,
+          "approx": true
+        },
+        {
+          "text": "ác",
+          "start_ms": 2183,
+          "end_ms": 2329,
+          "approx": true
+        },
+        {
+          "text": "mộng",
+          "start_ms": 2329,
+          "end_ms": 2620,
+          "approx": true
+        },
+        {
+          "text": "ngẫu",
+          "start_ms": 2620,
+          "end_ms": 2911,
+          "approx": true
+        },
+        {
+          "text": "nhiên.",
+          "start_ms": 2911,
+          "end_ms": 3275,
+          "approx": true
+        }
+      ],
+      "words_hash": "b92faedfdb82e862"
+    },
+    {
+      "id": "L004",
+      "speaker": "narrator",
+      "text": "Vì tại ranh giới giữa thức và ngủ, hai vùng não đang kịch chiến để tranh quyền kiểm soát.",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L004.wav",
+        "input_hash": "6d80e7e8f2cd5c52",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4568,
+        "seed": 1603083723,
+        "qc": {
+          "cps": 15.11,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Vì",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "tại",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "ranh",
+            "start": 0.141,
+            "end": 0.221
+          },
+          {
+            "text": "giới",
+            "start": 0.241,
+            "end": 0.321
+          },
+          {
+            "text": "giữa",
+            "start": 0.342,
+            "end": 0.422
+          },
+          {
+            "text": "thức",
+            "start": 0.442,
+            "end": 0.522
+          },
+          {
+            "text": "và",
+            "start": 0.542,
+            "end": 0.583
+          },
+          {
+            "text": "ngủ,",
+            "start": 0.603,
+            "end": 0.683
+          },
+          {
+            "text": "hai",
+            "start": 0.703,
+            "end": 0.763
+          },
+          {
+            "text": "vùng",
+            "start": 0.784,
+            "end": 0.864
+          },
+          {
+            "text": "não",
+            "start": 0.884,
+            "end": 0.944
+          },
+          {
+            "text": "đang",
+            "start": 0.964,
+            "end": 1.045
+          },
+          {
+            "text": "kịch",
+            "start": 1.065,
+            "end": 1.145
+          },
+          {
+            "text": "chiến",
+            "start": 1.165,
+            "end": 1.266
+          },
+          {
+            "text": "để",
+            "start": 1.286,
+            "end": 1.326
+          },
+          {
+            "text": "tranh",
+            "start": 1.346,
+            "end": 1.447
+          },
+          {
+            "text": "quyền",
+            "start": 1.467,
+            "end": 1.567
+          },
+          {
+            "text": "kiểm",
+            "start": 1.587,
+            "end": 1.668
+          },
+          {
+            "text": "soát.",
+            "start": 1.688,
+            "end": 1.788
+          }
+        ],
+        "used_seed": 1603083723
+      },
+      "words": [
+        {
+          "text": "Vì",
+          "start_ms": 0,
+          "end_ms": 132,
+          "approx": true
+        },
+        {
+          "text": "tại",
+          "start_ms": 132,
+          "end_ms": 331,
+          "approx": true
+        },
+        {
+          "text": "ranh",
+          "start_ms": 331,
+          "end_ms": 596,
+          "approx": true
+        },
+        {
+          "text": "giới",
+          "start_ms": 596,
+          "end_ms": 861,
+          "approx": true
+        },
+        {
+          "text": "giữa",
+          "start_ms": 861,
+          "end_ms": 1125,
+          "approx": true
+        },
+        {
+          "text": "thức",
+          "start_ms": 1125,
+          "end_ms": 1390,
+          "approx": true
+        },
+        {
+          "text": "và",
+          "start_ms": 1390,
+          "end_ms": 1523,
+          "approx": true
+        },
+        {
+          "text": "ngủ,",
+          "start_ms": 1523,
+          "end_ms": 1721,
+          "approx": true
+        },
+        {
+          "text": "hai",
+          "start_ms": 1721,
+          "end_ms": 1920,
+          "approx": true
+        },
+        {
+          "text": "vùng",
+          "start_ms": 1920,
+          "end_ms": 2185,
+          "approx": true
+        },
+        {
+          "text": "não",
+          "start_ms": 2185,
+          "end_ms": 2383,
+          "approx": true
+        },
+        {
+          "text": "đang",
+          "start_ms": 2383,
+          "end_ms": 2648,
+          "approx": true
+        },
+        {
+          "text": "kịch",
+          "start_ms": 2648,
+          "end_ms": 2913,
+          "approx": true
+        },
+        {
+          "text": "chiến",
+          "start_ms": 2913,
+          "end_ms": 3244,
+          "approx": true
+        },
+        {
+          "text": "để",
+          "start_ms": 3244,
+          "end_ms": 3376,
+          "approx": true
+        },
+        {
+          "text": "tranh",
+          "start_ms": 3376,
+          "end_ms": 3707,
+          "approx": true
+        },
+        {
+          "text": "quyền",
+          "start_ms": 3707,
+          "end_ms": 4038,
+          "approx": true
+        },
+        {
+          "text": "kiểm",
+          "start_ms": 4038,
+          "end_ms": 4303,
+          "approx": true
+        },
+        {
+          "text": "soát.",
+          "start_ms": 4303,
+          "end_ms": 4568,
+          "approx": true
+        }
+      ],
+      "words_hash": "6d80e7e8f2cd5c52"
+    },
+    {
+      "id": "L005",
+      "speaker": "narrator",
+      "text": "Một nửa muốn ru bạn ngủ say, nhưng nửa kia vẫn cố ghì bạn tỉnh táo.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L005.wav",
+        "input_hash": "a482c4320ee37603",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 3622,
+        "seed": 100761430,
+        "qc": {
+          "cps": 13.8,
+          "cer": 0.1,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Một",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "nửa",
+            "start": 0.08,
+            "end": 0.141
+          },
+          {
+            "text": "muốn",
+            "start": 0.161,
+            "end": 0.241
+          },
+          {
+            "text": "giúp",
+            "start": 0.262,
+            "end": 0.342
+          },
+          {
+            "text": "bạn",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "ngủ",
+            "start": 0.443,
+            "end": 0.503
+          },
+          {
+            "text": "say",
+            "start": 0.523,
+            "end": 0.583
+          },
+          {
+            "text": "nhưng",
+            "start": 0.603,
+            "end": 0.704
+          },
+          {
+            "text": "nửa",
+            "start": 0.724,
+            "end": 0.785
+          },
+          {
+            "text": "kia",
+            "start": 0.805,
+            "end": 0.865
+          },
+          {
+            "text": "vẫn",
+            "start": 0.885,
+            "end": 0.945
+          },
+          {
+            "text": "cố",
+            "start": 0.966,
+            "end": 1.006
+          },
+          {
+            "text": "ghi",
+            "start": 1.026,
+            "end": 1.086
+          },
+          {
+            "text": "bạn",
+            "start": 1.106,
+            "end": 1.167
+          },
+          {
+            "text": "tỉnh",
+            "start": 1.187,
+            "end": 1.267
+          },
+          {
+            "text": "táo.",
+            "start": 1.287,
+            "end": 1.368
+          }
+        ],
+        "used_seed": 100761430
+      },
+      "words": [
+        {
+          "text": "Một",
+          "start_ms": 0,
+          "end_ms": 217,
+          "approx": true
+        },
+        {
+          "text": "nửa",
+          "start_ms": 217,
+          "end_ms": 435,
+          "approx": true
+        },
+        {
+          "text": "muốn",
+          "start_ms": 435,
+          "end_ms": 724,
+          "approx": true
+        },
+        {
+          "text": "ru",
+          "start_ms": 724,
+          "end_ms": 869,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 869,
+          "end_ms": 1087,
+          "approx": true
+        },
+        {
+          "text": "ngủ",
+          "start_ms": 1087,
+          "end_ms": 1304,
+          "approx": true
+        },
+        {
+          "text": "say,",
+          "start_ms": 1304,
+          "end_ms": 1521,
+          "approx": true
+        },
+        {
+          "text": "nhưng",
+          "start_ms": 1521,
+          "end_ms": 1883,
+          "approx": true
+        },
+        {
+          "text": "nửa",
+          "start_ms": 1883,
+          "end_ms": 2101,
+          "approx": true
+        },
+        {
+          "text": "kia",
+          "start_ms": 2101,
+          "end_ms": 2318,
+          "approx": true
+        },
+        {
+          "text": "vẫn",
+          "start_ms": 2318,
+          "end_ms": 2535,
+          "approx": true
+        },
+        {
+          "text": "cố",
+          "start_ms": 2535,
+          "end_ms": 2680,
+          "approx": true
+        },
+        {
+          "text": "ghì",
+          "start_ms": 2680,
+          "end_ms": 2898,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 2898,
+          "end_ms": 3115,
+          "approx": true
+        },
+        {
+          "text": "tỉnh",
+          "start_ms": 3115,
+          "end_ms": 3405,
+          "approx": true
+        },
+        {
+          "text": "táo.",
+          "start_ms": 3405,
+          "end_ms": 3622,
+          "approx": true
+        }
+      ],
+      "words_hash": "a482c4320ee37603"
+    },
+    {
+      "id": "L006",
+      "speaker": "narrator",
+      "text": "Nhưng khi bạn quá kiệt sức, các bó cơ thả lỏng đột ngột làm huyết áp tụt dốc.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL02"
+      ],
+      "audio": {
+        "path": "audio/L006.wav",
+        "input_hash": "7a8c56d6d7aad1d4",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4196,
+        "seed": 585788737,
+        "qc": {
+          "cps": 13.82,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Nhưng",
+            "start": 0.0,
+            "end": 0.1
+          },
+          {
+            "text": "khi",
+            "start": 0.121,
+            "end": 0.181
+          },
+          {
+            "text": "bạn",
+            "start": 0.201,
+            "end": 0.261
+          },
+          {
+            "text": "quá",
+            "start": 0.281,
+            "end": 0.342
+          },
+          {
+            "text": "kiệt",
+            "start": 0.362,
+            "end": 0.442
+          },
+          {
+            "text": "sức,",
+            "start": 0.462,
+            "end": 0.543
+          },
+          {
+            "text": "các",
+            "start": 0.563,
+            "end": 0.623
+          },
+          {
+            "text": "bó",
+            "start": 0.643,
+            "end": 0.683
+          },
+          {
+            "text": "cơ",
+            "start": 0.703,
+            "end": 0.744
+          },
+          {
+            "text": "thả",
+            "start": 0.764,
+            "end": 0.824
+          },
+          {
+            "text": "lỏng",
+            "start": 0.844,
+            "end": 0.925
+          },
+          {
+            "text": "đột",
+            "start": 0.945,
+            "end": 1.005
+          },
+          {
+            "text": "ngột",
+            "start": 1.025,
+            "end": 1.105
+          },
+          {
+            "text": "làm",
+            "start": 1.126,
+            "end": 1.186
+          },
+          {
+            "text": "huyết",
+            "start": 1.206,
+            "end": 1.306
+          },
+          {
+            "text": "áp",
+            "start": 1.327,
+            "end": 1.367
+          },
+          {
+            "text": "tụt",
+            "start": 1.387,
+            "end": 1.447
+          },
+          {
+            "text": "dốc.",
+            "start": 1.467,
+            "end": 1.548
+          }
+        ],
+        "used_seed": 585788737
+      },
+      "words": [
+        {
+          "text": "Nhưng",
+          "start_ms": 0,
+          "end_ms": 362,
+          "approx": true
+        },
+        {
+          "text": "khi",
+          "start_ms": 362,
+          "end_ms": 579,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 579,
+          "end_ms": 796,
+          "approx": true
+        },
+        {
+          "text": "quá",
+          "start_ms": 796,
+          "end_ms": 1013,
+          "approx": true
+        },
+        {
+          "text": "kiệt",
+          "start_ms": 1013,
+          "end_ms": 1302,
+          "approx": true
+        },
+        {
+          "text": "sức,",
+          "start_ms": 1302,
+          "end_ms": 1519,
+          "approx": true
+        },
+        {
+          "text": "các",
+          "start_ms": 1519,
+          "end_ms": 1736,
+          "approx": true
+        },
+        {
+          "text": "bó",
+          "start_ms": 1736,
+          "end_ms": 1881,
+          "approx": true
+        },
+        {
+          "text": "cơ",
+          "start_ms": 1881,
+          "end_ms": 2026,
+          "approx": true
+        },
+        {
+          "text": "thả",
+          "start_ms": 2026,
+          "end_ms": 2243,
+          "approx": true
+        },
+        {
+          "text": "lỏng",
+          "start_ms": 2243,
+          "end_ms": 2532,
+          "approx": true
+        },
+        {
+          "text": "đột",
+          "start_ms": 2532,
+          "end_ms": 2749,
+          "approx": true
+        },
+        {
+          "text": "ngột",
+          "start_ms": 2749,
+          "end_ms": 3038,
+          "approx": true
+        },
+        {
+          "text": "làm",
+          "start_ms": 3038,
+          "end_ms": 3256,
+          "approx": true
+        },
+        {
+          "text": "huyết",
+          "start_ms": 3256,
+          "end_ms": 3617,
+          "approx": true
+        },
+        {
+          "text": "áp",
+          "start_ms": 3617,
+          "end_ms": 3762,
+          "approx": true
+        },
+        {
+          "text": "tụt",
+          "start_ms": 3762,
+          "end_ms": 3979,
+          "approx": true
+        },
+        {
+          "text": "dốc.",
+          "start_ms": 3979,
+          "end_ms": 4196,
+          "approx": true
+        }
+      ],
+      "words_hash": "7a8c56d6d7aad1d4"
+    },
+    {
+      "id": "L007",
+      "speaker": "narrator",
+      "text": "Vì thế, hệ thống phòng thủ sinh tồn nguyên thủy lập tức hú còi báo động đỏ!",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL02"
+      ],
+      "audio": {
+        "path": "audio/L007.wav",
+        "input_hash": "de4cc0c194d8233d",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4124,
+        "seed": 1479203660,
+        "qc": {
+          "cps": 13.82,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Vì",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "thế,",
+            "start": 0.06,
+            "end": 0.141
+          },
+          {
+            "text": "hệ",
+            "start": 0.161,
+            "end": 0.201
+          },
+          {
+            "text": "thống",
+            "start": 0.221,
+            "end": 0.322
+          },
+          {
+            "text": "phòng",
+            "start": 0.342,
+            "end": 0.442
+          },
+          {
+            "text": "thủ",
+            "start": 0.462,
+            "end": 0.523
+          },
+          {
+            "text": "sinh",
+            "start": 0.543,
+            "end": 0.623
+          },
+          {
+            "text": "tồn",
+            "start": 0.643,
+            "end": 0.704
+          },
+          {
+            "text": "Nguyên",
+            "start": 0.724,
+            "end": 0.844
+          },
+          {
+            "text": "Thủy",
+            "start": 0.864,
+            "end": 0.945
+          },
+          {
+            "text": "lập",
+            "start": 0.965,
+            "end": 1.025
+          },
+          {
+            "text": "tức",
+            "start": 1.045,
+            "end": 1.106
+          },
+          {
+            "text": "hú",
+            "start": 1.126,
+            "end": 1.166
+          },
+          {
+            "text": "còi",
+            "start": 1.186,
+            "end": 1.246
+          },
+          {
+            "text": "báo",
+            "start": 1.266,
+            "end": 1.327
+          },
+          {
+            "text": "động",
+            "start": 1.347,
+            "end": 1.427
+          },
+          {
+            "text": "đỏ.",
+            "start": 1.447,
+            "end": 1.508
+          }
+        ],
+        "used_seed": 1479203660
+      },
+      "words": [
+        {
+          "text": "Vì",
+          "start_ms": 0,
+          "end_ms": 145,
+          "approx": true
+        },
+        {
+          "text": "thế,",
+          "start_ms": 145,
+          "end_ms": 362,
+          "approx": true
+        },
+        {
+          "text": "hệ",
+          "start_ms": 362,
+          "end_ms": 506,
+          "approx": true
+        },
+        {
+          "text": "thống",
+          "start_ms": 506,
+          "end_ms": 868,
+          "approx": true
+        },
+        {
+          "text": "phòng",
+          "start_ms": 868,
+          "end_ms": 1230,
+          "approx": true
+        },
+        {
+          "text": "thủ",
+          "start_ms": 1230,
+          "end_ms": 1447,
+          "approx": true
+        },
+        {
+          "text": "sinh",
+          "start_ms": 1447,
+          "end_ms": 1736,
+          "approx": true
+        },
+        {
+          "text": "tồn",
+          "start_ms": 1736,
+          "end_ms": 1953,
+          "approx": true
+        },
+        {
+          "text": "nguyên",
+          "start_ms": 1953,
+          "end_ms": 2388,
+          "approx": true
+        },
+        {
+          "text": "thủy",
+          "start_ms": 2388,
+          "end_ms": 2677,
+          "approx": true
+        },
+        {
+          "text": "lập",
+          "start_ms": 2677,
+          "end_ms": 2894,
+          "approx": true
+        },
+        {
+          "text": "tức",
+          "start_ms": 2894,
+          "end_ms": 3111,
+          "approx": true
+        },
+        {
+          "text": "hú",
+          "start_ms": 3111,
+          "end_ms": 3256,
+          "approx": true
+        },
+        {
+          "text": "còi",
+          "start_ms": 3256,
+          "end_ms": 3473,
+          "approx": true
+        },
+        {
+          "text": "báo",
+          "start_ms": 3473,
+          "end_ms": 3690,
+          "approx": true
+        },
+        {
+          "text": "động",
+          "start_ms": 3690,
+          "end_ms": 3979,
+          "approx": true
+        },
+        {
+          "text": "đỏ!",
+          "start_ms": 3979,
+          "end_ms": 4124,
+          "approx": true
+        }
+      ],
+      "words_hash": "de4cc0c194d8233d"
+    },
+    {
+      "id": "L008",
+      "speaker": "narrator",
+      "text": "Nó tưởng bạn vừa ngã khỏi cành cây như tổ tiên vượn cổ, hoặc tim bạn sắp ngừng đập!",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL02"
+      ],
+      "audio": {
+        "path": "audio/L008.wav",
+        "input_hash": "04f7cedf5fafb73f",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4522,
+        "seed": 1929817120,
+        "qc": {
+          "cps": 13.93,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Nó",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "tưởng",
+            "start": 0.06,
+            "end": 0.161
+          },
+          {
+            "text": "bạn",
+            "start": 0.181,
+            "end": 0.241
+          },
+          {
+            "text": "vừa",
+            "start": 0.261,
+            "end": 0.321
+          },
+          {
+            "text": "ngã",
+            "start": 0.342,
+            "end": 0.402
+          },
+          {
+            "text": "khỏi",
+            "start": 0.422,
+            "end": 0.502
+          },
+          {
+            "text": "cành",
+            "start": 0.522,
+            "end": 0.603
+          },
+          {
+            "text": "cây",
+            "start": 0.623,
+            "end": 0.683
+          },
+          {
+            "text": "như",
+            "start": 0.703,
+            "end": 0.763
+          },
+          {
+            "text": "tổ",
+            "start": 0.784,
+            "end": 0.824
+          },
+          {
+            "text": "tiên",
+            "start": 0.844,
+            "end": 0.924
+          },
+          {
+            "text": "vượn",
+            "start": 0.944,
+            "end": 1.025
+          },
+          {
+            "text": "cổ",
+            "start": 1.045,
+            "end": 1.085
+          },
+          {
+            "text": "hoặc",
+            "start": 1.105,
+            "end": 1.185
+          },
+          {
+            "text": "tim",
+            "start": 1.205,
+            "end": 1.266
+          },
+          {
+            "text": "bạn",
+            "start": 1.286,
+            "end": 1.346
+          },
+          {
+            "text": "sắp",
+            "start": 1.366,
+            "end": 1.426
+          },
+          {
+            "text": "ngừng",
+            "start": 1.447,
+            "end": 1.547
+          },
+          {
+            "text": "đập.",
+            "start": 1.567,
+            "end": 1.647
+          }
+        ],
+        "used_seed": 1929817120
+      },
+      "words": [
+        {
+          "text": "Nó",
+          "start_ms": 0,
+          "end_ms": 137,
+          "approx": true
+        },
+        {
+          "text": "tưởng",
+          "start_ms": 137,
+          "end_ms": 478,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 478,
+          "end_ms": 684,
+          "approx": true
+        },
+        {
+          "text": "vừa",
+          "start_ms": 684,
+          "end_ms": 889,
+          "approx": true
+        },
+        {
+          "text": "ngã",
+          "start_ms": 889,
+          "end_ms": 1094,
+          "approx": true
+        },
+        {
+          "text": "khỏi",
+          "start_ms": 1094,
+          "end_ms": 1367,
+          "approx": true
+        },
+        {
+          "text": "cành",
+          "start_ms": 1367,
+          "end_ms": 1641,
+          "approx": true
+        },
+        {
+          "text": "cây",
+          "start_ms": 1641,
+          "end_ms": 1846,
+          "approx": true
+        },
+        {
+          "text": "như",
+          "start_ms": 1846,
+          "end_ms": 2051,
+          "approx": true
+        },
+        {
+          "text": "tổ",
+          "start_ms": 2051,
+          "end_ms": 2187,
+          "approx": true
+        },
+        {
+          "text": "tiên",
+          "start_ms": 2187,
+          "end_ms": 2461,
+          "approx": true
+        },
+        {
+          "text": "vượn",
+          "start_ms": 2461,
+          "end_ms": 2734,
+          "approx": true
+        },
+        {
+          "text": "cổ,",
+          "start_ms": 2734,
+          "end_ms": 2871,
+          "approx": true
+        },
+        {
+          "text": "hoặc",
+          "start_ms": 3096,
+          "end_ms": 3368,
+          "approx": true
+        },
+        {
+          "text": "tim",
+          "start_ms": 3368,
+          "end_ms": 3571,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 3571,
+          "end_ms": 3775,
+          "approx": true
+        },
+        {
+          "text": "sắp",
+          "start_ms": 3775,
+          "end_ms": 3979,
+          "approx": true
+        },
+        {
+          "text": "ngừng",
+          "start_ms": 3979,
+          "end_ms": 4318,
+          "approx": true
+        },
+        {
+          "text": "đập!",
+          "start_ms": 4318,
+          "end_ms": 4522,
+          "approx": true
+        }
+      ],
+      "words_hash": "04f7cedf5fafb73f"
+    },
+    {
+      "id": "L009",
+      "speaker": "narrator",
+      "text": "Vì thế, não bộ phóng thẳng một tia điện cực mạnh xuống tủy sống để kích hoạt toàn bộ cơ bắp.",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL02"
+      ],
+      "audio": {
+        "path": "audio/L009.wav",
+        "input_hash": "0fa1afb7f06234e0",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 5065,
+        "seed": 1886858506,
+        "qc": {
+          "cps": 13.82,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Vì",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "thế,",
+            "start": 0.06,
+            "end": 0.141
+          },
+          {
+            "text": "não",
+            "start": 0.161,
+            "end": 0.221
+          },
+          {
+            "text": "bộ",
+            "start": 0.241,
+            "end": 0.281
+          },
+          {
+            "text": "phóng",
+            "start": 0.301,
+            "end": 0.402
+          },
+          {
+            "text": "thẳng",
+            "start": 0.422,
+            "end": 0.522
+          },
+          {
+            "text": "một",
+            "start": 0.542,
+            "end": 0.602
+          },
+          {
+            "text": "tia",
+            "start": 0.623,
+            "end": 0.683
+          },
+          {
+            "text": "điện",
+            "start": 0.703,
+            "end": 0.783
+          },
+          {
+            "text": "cực",
+            "start": 0.803,
+            "end": 0.864
+          },
+          {
+            "text": "mạnh",
+            "start": 0.884,
+            "end": 0.964
+          },
+          {
+            "text": "xuống",
+            "start": 0.984,
+            "end": 1.084
+          },
+          {
+            "text": "tủy",
+            "start": 1.105,
+            "end": 1.165
+          },
+          {
+            "text": "sống",
+            "start": 1.185,
+            "end": 1.265
+          },
+          {
+            "text": "để",
+            "start": 1.285,
+            "end": 1.325
+          },
+          {
+            "text": "kích",
+            "start": 1.345,
+            "end": 1.426
+          },
+          {
+            "text": "hoạt",
+            "start": 1.446,
+            "end": 1.526
+          },
+          {
+            "text": "toàn",
+            "start": 1.546,
+            "end": 1.627
+          },
+          {
+            "text": "bộ",
+            "start": 1.647,
+            "end": 1.687
+          },
+          {
+            "text": "cơ",
+            "start": 1.707,
+            "end": 1.747
+          },
+          {
+            "text": "bắp.",
+            "start": 1.767,
+            "end": 1.848
+          }
+        ],
+        "used_seed": 1886858506
+      },
+      "words": [
+        {
+          "text": "Vì",
+          "start_ms": 0,
+          "end_ms": 145,
+          "approx": true
+        },
+        {
+          "text": "thế,",
+          "start_ms": 145,
+          "end_ms": 362,
+          "approx": true
+        },
+        {
+          "text": "não",
+          "start_ms": 362,
+          "end_ms": 579,
+          "approx": true
+        },
+        {
+          "text": "bộ",
+          "start_ms": 579,
+          "end_ms": 724,
+          "approx": true
+        },
+        {
+          "text": "phóng",
+          "start_ms": 724,
+          "end_ms": 1085,
+          "approx": true
+        },
+        {
+          "text": "thẳng",
+          "start_ms": 1085,
+          "end_ms": 1447,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 1447,
+          "end_ms": 1664,
+          "approx": true
+        },
+        {
+          "text": "tia",
+          "start_ms": 1664,
+          "end_ms": 1881,
+          "approx": true
+        },
+        {
+          "text": "điện",
+          "start_ms": 1881,
+          "end_ms": 2171,
+          "approx": true
+        },
+        {
+          "text": "cực",
+          "start_ms": 2171,
+          "end_ms": 2388,
+          "approx": true
+        },
+        {
+          "text": "mạnh",
+          "start_ms": 2388,
+          "end_ms": 2677,
+          "approx": true
+        },
+        {
+          "text": "xuống",
+          "start_ms": 2677,
+          "end_ms": 3039,
+          "approx": true
+        },
+        {
+          "text": "tủy",
+          "start_ms": 3039,
+          "end_ms": 3256,
+          "approx": true
+        },
+        {
+          "text": "sống",
+          "start_ms": 3256,
+          "end_ms": 3546,
+          "approx": true
+        },
+        {
+          "text": "để",
+          "start_ms": 3546,
+          "end_ms": 3690,
+          "approx": true
+        },
+        {
+          "text": "kích",
+          "start_ms": 3690,
+          "end_ms": 3980,
+          "approx": true
+        },
+        {
+          "text": "hoạt",
+          "start_ms": 3980,
+          "end_ms": 4269,
+          "approx": true
+        },
+        {
+          "text": "toàn",
+          "start_ms": 4269,
+          "end_ms": 4558,
+          "approx": true
+        },
+        {
+          "text": "bộ",
+          "start_ms": 4558,
+          "end_ms": 4703,
+          "approx": true
+        },
+        {
+          "text": "cơ",
+          "start_ms": 4703,
+          "end_ms": 4848,
+          "approx": true
+        },
+        {
+          "text": "bắp.",
+          "start_ms": 4848,
+          "end_ms": 5065,
+          "approx": true
+        }
+      ],
+      "words_hash": "0fa1afb7f06234e0"
+    },
+    {
+      "id": "L010",
+      "speaker": "narrator",
+      "text": "Cú giật bắn mình chính là liều sốc điện khẩn cấp kéo bạn trở lại từ bờ vực sinh tử!",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [
+        "CL02"
+      ],
+      "audio": {
+        "path": "audio/L010.wav",
+        "input_hash": "88c9c97d24c27eec",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4605,
+        "seed": 2111994203,
+        "qc": {
+          "cps": 13.68,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Cú",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "giật",
+            "start": 0.06,
+            "end": 0.141
+          },
+          {
+            "text": "bắn",
+            "start": 0.161,
+            "end": 0.221
+          },
+          {
+            "text": "mình",
+            "start": 0.241,
+            "end": 0.321
+          },
+          {
+            "text": "chính",
+            "start": 0.342,
+            "end": 0.442
+          },
+          {
+            "text": "là",
+            "start": 0.462,
+            "end": 0.502
+          },
+          {
+            "text": "liều",
+            "start": 0.522,
+            "end": 0.603
+          },
+          {
+            "text": "sốc",
+            "start": 0.623,
+            "end": 0.683
+          },
+          {
+            "text": "điện",
+            "start": 0.703,
+            "end": 0.784
+          },
+          {
+            "text": "khẩn",
+            "start": 0.804,
+            "end": 0.884
+          },
+          {
+            "text": "cấp",
+            "start": 0.904,
+            "end": 0.964
+          },
+          {
+            "text": "kéo",
+            "start": 0.984,
+            "end": 1.045
+          },
+          {
+            "text": "bạn",
+            "start": 1.065,
+            "end": 1.125
+          },
+          {
+            "text": "trở",
+            "start": 1.145,
+            "end": 1.205
+          },
+          {
+            "text": "lại",
+            "start": 1.226,
+            "end": 1.286
+          },
+          {
+            "text": "từ",
+            "start": 1.306,
+            "end": 1.346
+          },
+          {
+            "text": "bờ",
+            "start": 1.366,
+            "end": 1.406
+          },
+          {
+            "text": "vực",
+            "start": 1.426,
+            "end": 1.487
+          },
+          {
+            "text": "sinh",
+            "start": 1.507,
+            "end": 1.587
+          },
+          {
+            "text": "tử.",
+            "start": 1.607,
+            "end": 1.668
+          }
+        ],
+        "used_seed": 2111994203
+      },
+      "words": [
+        {
+          "text": "Cú",
+          "start_ms": 0,
+          "end_ms": 146,
+          "approx": true
+        },
+        {
+          "text": "giật",
+          "start_ms": 146,
+          "end_ms": 439,
+          "approx": true
+        },
+        {
+          "text": "bắn",
+          "start_ms": 439,
+          "end_ms": 658,
+          "approx": true
+        },
+        {
+          "text": "mình",
+          "start_ms": 658,
+          "end_ms": 950,
+          "approx": true
+        },
+        {
+          "text": "chính",
+          "start_ms": 950,
+          "end_ms": 1316,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 1316,
+          "end_ms": 1462,
+          "approx": true
+        },
+        {
+          "text": "liều",
+          "start_ms": 1462,
+          "end_ms": 1754,
+          "approx": true
+        },
+        {
+          "text": "sốc",
+          "start_ms": 1754,
+          "end_ms": 1974,
+          "approx": true
+        },
+        {
+          "text": "điện",
+          "start_ms": 1974,
+          "end_ms": 2266,
+          "approx": true
+        },
+        {
+          "text": "khẩn",
+          "start_ms": 2266,
+          "end_ms": 2558,
+          "approx": true
+        },
+        {
+          "text": "cấp",
+          "start_ms": 2558,
+          "end_ms": 2778,
+          "approx": true
+        },
+        {
+          "text": "kéo",
+          "start_ms": 2778,
+          "end_ms": 2997,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 2997,
+          "end_ms": 3216,
+          "approx": true
+        },
+        {
+          "text": "trở",
+          "start_ms": 3216,
+          "end_ms": 3435,
+          "approx": true
+        },
+        {
+          "text": "lại",
+          "start_ms": 3435,
+          "end_ms": 3655,
+          "approx": true
+        },
+        {
+          "text": "từ",
+          "start_ms": 3655,
+          "end_ms": 3801,
+          "approx": true
+        },
+        {
+          "text": "bờ",
+          "start_ms": 3801,
+          "end_ms": 3947,
+          "approx": true
+        },
+        {
+          "text": "vực",
+          "start_ms": 3947,
+          "end_ms": 4166,
+          "approx": true
+        },
+        {
+          "text": "sinh",
+          "start_ms": 4166,
+          "end_ms": 4459,
+          "approx": true
+        },
+        {
+          "text": "tử!",
+          "start_ms": 4459,
+          "end_ms": 4605,
+          "approx": true
+        }
+      ],
+      "words_hash": "88c9c97d24c27eec"
+    },
+    {
+      "id": "L011",
+      "speaker": "narrator",
+      "text": "Hóa ra cơ thể yêu bạn đến mức luôn sẵn sàng bật dậy cứu bạn, mỗi khi...",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL02"
+      ],
+      "audio": {
+        "path": "audio/L011.wav",
+        "input_hash": "b4462566ee1c6257",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 3891,
+        "seed": 1522699166,
+        "qc": {
+          "cps": 13.11,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Hóa",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "ra",
+            "start": 0.08,
+            "end": 0.121
+          },
+          {
+            "text": "cơ",
+            "start": 0.141,
+            "end": 0.181
+          },
+          {
+            "text": "thể",
+            "start": 0.201,
+            "end": 0.261
+          },
+          {
+            "text": "yêu",
+            "start": 0.281,
+            "end": 0.342
+          },
+          {
+            "text": "bạn",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "đến",
+            "start": 0.442,
+            "end": 0.503
+          },
+          {
+            "text": "mức",
+            "start": 0.523,
+            "end": 0.583
+          },
+          {
+            "text": "luôn",
+            "start": 0.603,
+            "end": 0.684
+          },
+          {
+            "text": "sẵn",
+            "start": 0.704,
+            "end": 0.764
+          },
+          {
+            "text": "sàng",
+            "start": 0.784,
+            "end": 0.865
+          },
+          {
+            "text": "bật",
+            "start": 0.885,
+            "end": 0.945
+          },
+          {
+            "text": "dậy",
+            "start": 0.965,
+            "end": 1.025
+          },
+          {
+            "text": "cứu",
+            "start": 1.045,
+            "end": 1.106
+          },
+          {
+            "text": "bạn",
+            "start": 1.126,
+            "end": 1.186
+          },
+          {
+            "text": "mỗi",
+            "start": 1.206,
+            "end": 1.267
+          },
+          {
+            "text": "khi...",
+            "start": 1.287,
+            "end": 1.407
+          }
+        ],
+        "used_seed": 1522699166
+      },
+      "words": [
+        {
+          "text": "Hóa",
+          "start_ms": 0,
+          "end_ms": 217,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 217,
+          "end_ms": 361,
+          "approx": true
+        },
+        {
+          "text": "cơ",
+          "start_ms": 361,
+          "end_ms": 505,
+          "approx": true
+        },
+        {
+          "text": "thể",
+          "start_ms": 505,
+          "end_ms": 722,
+          "approx": true
+        },
+        {
+          "text": "yêu",
+          "start_ms": 722,
+          "end_ms": 938,
+          "approx": true
+        },
+        {
+          "text": "bạn",
+          "start_ms": 938,
+          "end_ms": 1155,
+          "approx": true
+        },
+        {
+          "text": "đến",
+          "start_ms": 1155,
+          "end_ms": 1371,
+          "approx": true
+        },
+        {
+          "text": "mức",
+          "start_ms": 1371,
+          "end_ms": 1588,
+          "approx": true
+        },
+        {
+          "text": "luôn",
+          "start_ms": 1588,
+          "end_ms": 1877,
+          "approx": true
+        },
+        {
+          "text": "sẵn",
+          "start_ms": 1877,
+          "end_ms": 2093,
+          "approx": true
+        },
+        {
+          "text": "sàng",
+          "start_ms": 2093,
+          "end_ms": 2382,
+          "approx": true
+        },
+        {
+          "text": "bật",
+          "start_ms": 2382,
+          "end_ms": 2598,
+          "approx": true
+        },
+        {
+          "text": "dậy",
+          "start_ms": 2598,
+          "end_ms": 2815,
+          "approx": true
+        },
+        {
+          "text": "cứu",
+          "start_ms": 2815,
+          "end_ms": 3031,
+          "approx": true
+        },
+        {
+          "text": "bạn,",
+          "start_ms": 3031,
+          "end_ms": 3248,
+          "approx": true
+        },
+        {
+          "text": "mỗi",
+          "start_ms": 3436,
+          "end_ms": 3664,
+          "approx": true
+        },
+        {
+          "text": "khi...",
+          "start_ms": 3664,
+          "end_ms": 3891,
+          "approx": true
+        }
+      ],
+      "words_hash": "b4462566ee1c6257"
+    }
+  ],
+  "research": {
+    "notes": [
+      {
+        "id": "R01",
+        "title": "Hypnic jerk and motor system desynchronization during sleep onset",
+        "sources": [
+          "American Academy of Sleep Medicine (AASM)",
+          "Journal of Sleep Research",
+          "Mayo Clinic Sleep Studies"
+        ],
+        "status": "verified",
+        "accuracy": "must-be-accurate",
+        "confidence": "high",
+        "checked_on": "2026-09-30",
+        "risk": [
+          "technical"
+        ]
+      },
+      {
+        "id": "R02",
+        "title": "Evolutionary vestige hypothesis of sleep starts",
+        "sources": [
+          "Frederick Coolidge - Evolutionary Neurobiology of Sleep",
+          "Sleep Medicine Reviews"
+        ],
+        "status": "verified",
+        "accuracy": "must-be-accurate",
+        "confidence": "high",
+        "checked_on": "2026-09-30",
+        "risk": [
+          "technical"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "CL01",
+        "text": "Hypnic jerks occur in over 70% of healthy humans when the reticular activating system and ventrolateral preoptic nucleus transition control during sleep onset.",
+        "status": "verified",
+        "note_ids": [
+          "R01"
+        ],
+        "limitations": "Prevalence estimates vary from 60% to 75% in clinical sleep literature."
+      },
+      {
+        "id": "CL02",
+        "text": "Rapid muscle hypotonia during fatigue is interpreted by primitive motor pathways as falling from tree canopies or cardiovascular collapse, prompting an emergency motor discharge.",
+        "status": "verified",
+        "note_ids": [
+          "R02"
+        ],
+        "limitations": "Leading evolutionary hypothesis widely cited by sleep neurologists."
+      }
+    ]
+  },
+  "source_work": null,
+  "learnings_applied": [
+    "K003",
+    "K004",
+    "K012"
+  ],
+  "output": {
+    "video": "out/final.mp4",
+    "captions": "out/captions.ass",
+    "contact_sheet": "out/contact_sheet.png",
+    "qc": "out/qc.json"
+  }
+}

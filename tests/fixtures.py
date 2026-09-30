@@ -187,17 +187,27 @@ def padded_tone_wav_bytes(lead_ms: int, tone_ms: int, trail_ms: int, rate: int =
     return _wav_bytes(frames, rate)
 
 
+def gapped_tone_wav_bytes(tone_ms: int, gap_ms: int, rate: int = 24000, freq: float = 440.0) -> bytes:
+    """tone_ms of audible tone, a silent gap_ms gap, then a short closing blip -- simulates a take
+    trim_silence can't fix because its last loud frame is genuinely near the file's end, with a
+    real dead-air gap baked in before it (see checks.md K014)."""
+    frames = _tone_frames(tone_ms, rate, freq) + _silence_frames(gap_ms, rate) + _tone_frames(50, rate, freq)
+    return _wav_bytes(frames, rate)
+
+
 class FakeVS:
     """In-memory VoiceStudio: sine WAVs (1000 ms unless durations[text] says otherwise), transcripts echo the text."""
 
     def __init__(self, bad_transcripts: int = 0, fail_generate: str | None = None, fail_after: int = 0,
-                 durations: dict[str, int] | None = None, padded: dict[str, tuple[int, int]] | None = None):
+                 durations: dict[str, int] | None = None, padded: dict[str, tuple[int, int]] | None = None,
+                 internal_gaps: dict[str, int] | None = None):
         self.calls: list[dict] = []
         self.bad_left = bad_transcripts
         self.fail_generate = fail_generate
         self.fail_after = fail_after
         self.durations = durations or {}
         self.padded = padded or {}  # text -> (lead_ms, trail_ms) of silence around the tone, for trim tests
+        self.internal_gaps = internal_gaps or {}  # text -> gap_ms; every take gets a fresh gap until popped
         self.profiles = 0
         self.design_ref_texts: list[str] = []
 
@@ -224,8 +234,14 @@ class FakeVS:
             raise ProviderError(self.fail_generate, "refused")
         ms = self.durations.get(text, 1000)
         lead, trail = self.padded.get(text, (0, 0))
-        data = padded_tone_wav_bytes(lead, ms, trail) if lead or trail else sine_wav_bytes(ms)
-        return data, {"seed": str(seed), "duration_s": str((lead + ms + trail) / 1000), "dropped_chunks": None}
+        if self.internal_gaps.get(text, 0) > 0:
+            self.internal_gaps[text] -= 1
+            data = gapped_tone_wav_bytes(ms, 600)
+            duration_s = (ms + 600 + 50) / 1000
+        else:
+            data = padded_tone_wav_bytes(lead, ms, trail) if lead or trail else sine_wav_bytes(ms)
+            duration_s = (lead + ms + trail) / 1000
+        return data, {"seed": str(seed), "duration_s": str(duration_s), "dropped_chunks": None}
 
     def transcribe_words(self, wav, language):
         from sflib.text import display_text

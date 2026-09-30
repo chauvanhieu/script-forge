@@ -1,0 +1,3521 @@
+{
+  "schema_version": "1.0",
+  "slug": "con-dau-bi-duoi-khoi-ban-tiec",
+  "canon": {
+    "path": "stories/con-dau-bi-duoi-khoi-ban-tiec",
+    "chapters": [
+      "chapter-01"
+    ]
+  },
+  "brief": {
+    "idea": "Con dâu bị đuổi khỏi bàn tiệc Tết: Linh, a young daughter-in-law, is publicly humiliated and thrown out of the family's Lunar New Year feast by her wealthy mother-in-law Bà Tâm, who mocks her for being poor and 'not good enough' for her son in front of the whole extended family. Linh quietly stands, bows, and leaves without a word. Moments later Bà Tâm's phone rings — the bank, confirming the family's crushing debt (about to cost them the house) has just been paid off in full by an anonymous benefactor. A screenshot/statement reveals the benefactor's account name: Linh's. The family realizes the 'poor' daughter-in-law they just humiliated has secretly been saving them for months. Bà Tâm runs out after her, breaks down, kneels to apologize in front of everyone. Linh helps her up with quiet dignity — no gloating, just grace — and the family finally welcomes her to the table as one of their own.",
+    "language": "vi",
+    "aspect": "9:16",
+    "content_type": "fiction",
+    "genre": "karma-drama",
+    "target_seconds": 60,
+    "captions": {
+      "mode": "karaoke",
+      "style": "karaoke-bold"
+    },
+    "review_mode": "auto"
+  },
+  "state": {
+    "stage": "done",
+    "gates": {
+      "script": {
+        "approved_at": "2026-09-29"
+      },
+      "images": {
+        "approved_at": "2026-09-29"
+      }
+    }
+  },
+  "style_bible": {
+    "medium": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting",
+    "palette": [
+      "lacquer red",
+      "imperial gold",
+      "jade green accent",
+      "charcoal black",
+      "cool moonlight blue"
+    ],
+    "lighting": "warm lantern and gold-lit glow inside the Tet feast, shifting to cool blue-grey moonlight and harder shadow for the confrontation, exit and courtyard beats",
+    "composition": "one clear focal subject in the upper two thirds, calm uncluttered lower third kept clear for captions, vertical 9:16 framing, tighter dramatic framing at emotional peaks",
+    "avoid": [
+      "generated text",
+      "letters or signage",
+      "logos",
+      "watermarks",
+      "watercolor or storybook softness",
+      "pastel or dusty-rose tones",
+      "extra fingers or distorted hands",
+      "cartoonish exaggerated expressions",
+      "gloating or smug expression on Linh in the final beats"
+    ]
+  },
+  "cast": [
+    {
+      "id": "narrator",
+      "canon_id": null,
+      "name": "Người kể chuyện",
+      "role": "narrator",
+      "voice": {
+        "source": "design",
+        "profile_id": "fbeed787",
+        "design_prompt": "female, middle-aged, moderate pitch",
+        "instruct": "female, middle-aged, moderate pitch"
+      },
+      "caption_color": "#FFFFFF"
+    },
+    {
+      "id": "C01",
+      "canon_id": "linh",
+      "name": "Linh",
+      "role": "protagonist",
+      "appearance": "a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture",
+      "voice": {
+        "source": "design",
+        "profile_id": "cec9f75e",
+        "design_prompt": "female, young adult, moderate pitch",
+        "instruct": "female, young adult, moderate pitch"
+      },
+      "caption_color": "#E8B84B",
+      "plates": {
+        "face": {
+          "path": "plates/C01_face.png",
+          "input_hash": "93cc48e6dad25e37",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, head-and-shoulders portrait, face fills the frame, of a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, gentle steady expression, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "half": {
+          "path": "plates/C01_half.png",
+          "input_hash": "15e42ab63d7d4a16",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, half-body view from the waist up, of a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, arms relaxed at the sides, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "full": {
+          "path": "plates/C01_full.png",
+          "input_hash": "37cdb43462658f17",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, full-body view, standing upright, whole figure visible from head to feet, of a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "canon_id": "ba-tam",
+      "name": "Bà Tâm",
+      "role": "antagonist",
+      "appearance": "a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression",
+      "voice": {
+        "source": "design",
+        "profile_id": "9af7edaf",
+        "design_prompt": "female, middle-aged, moderate pitch",
+        "instruct": "female, middle-aged, moderate pitch"
+      },
+      "caption_color": "#C23B22",
+      "plates": {
+        "face": {
+          "path": "plates/C02_face.png",
+          "input_hash": "68ff3685883ce65e",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, head-and-shoulders portrait, face fills the frame, of a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, imperious expression, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "half": {
+          "path": "plates/C02_half.png",
+          "input_hash": "bd1e59e3ad02fb66",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, half-body view from the waist up, of a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, arms relaxed at the sides, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        },
+        "full": {
+          "path": "plates/C02_full.png",
+          "input_hash": "d938f69b52e7d4a3",
+          "status": "done",
+          "attempts": 1,
+          "last_error": null,
+          "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, full-body view, standing upright, whole figure visible from head to feet, of a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, facing the viewer, plain warm cream background, soft even light, no text, no letters, no logos, no watermarks."
+        }
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "LOC01",
+      "canon_id": "phong-khach-nha-ba-tam",
+      "name": "Phòng khách nhà bà Tâm",
+      "appearance": "a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor",
+      "plate": {
+        "path": "plates/LOC01.png",
+        "input_hash": "5ffa09782f9a45c3",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, no people, vertical 9:16 composition, no text, no letters, no logos, no watermarks."
+      }
+    },
+    {
+      "id": "LOC02",
+      "canon_id": "san-nha-ba-tam",
+      "name": "Sân nhà bà Tâm",
+      "appearance": "a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, quiet and empty",
+      "plate": {
+        "path": "plates/LOC02.png",
+        "input_hash": "87399c3517870124",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, quiet and empty, no people, vertical 9:16 composition, no text, no letters, no logos, no watermarks."
+      }
+    }
+  ],
+  "slides": [
+    {
+      "id": "S01",
+      "source": "chapter-01-scene-01",
+      "line_ids": [
+        "L001"
+      ],
+      "brief": {
+        "moment": "Giữa mâm cỗ Tết, bà Tâm đột ngột nổi giận, chỉ thẳng tay vào Linh và quát đuổi cô ra khỏi bàn.",
+        "characters": [
+          "C02",
+          "C01"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "bà Tâm chỉ tay giận dữ",
+          "Linh đứng lặng bên bàn tiệc"
+        ],
+        "must_not_show": [
+          "Linh khóc",
+          "Linh cãi lại"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression",
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture"
+        ],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, in a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, standing and pointing an accusing finger with a furious expression, at a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, standing quietly beside the feast table with her head slightly lowered, warm lantern light, close-up shot on the confrontation, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S01.png",
+        "input_hash": "f2e714be7aa97f3e",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S02",
+      "source": "chapter-01-scene-01",
+      "line_ids": [
+        "L002"
+      ],
+      "brief": {
+        "moment": "Cả bàn tiệc đông đủ họ hàng chết lặng sau lời sỉ nhục, không ai dám lên tiếng.",
+        "characters": [
+          "C02",
+          "C01"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "bàn tiệc Tết đông đủ món ăn",
+          "cả họ hàng im lặng sững sờ"
+        ],
+        "must_not_show": [
+          "Linh rời khỏi khung hình"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression",
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture"
+        ],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, wide shot of a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, extended family seated around the long feast table in stunned frozen silence, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression still standing with her hand lowered after shouting, a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture standing quietly a step back from the table, warm lantern light now feeling cold and tense, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S02.png",
+        "input_hash": "5d6ab923233c8891",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S03",
+      "source": "chapter-01-scene-02",
+      "line_ids": [
+        "L003"
+      ],
+      "brief": {
+        "moment": "Linh lặng lẽ đứng dậy, cúi đầu chào rồi quay người bước ra khỏi cửa, không một lời thanh minh.",
+        "characters": [
+          "C01"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "Linh cúi đầu chào",
+          "Linh quay lưng bước về phía cửa"
+        ],
+        "must_not_show": [
+          "bà Tâm cận cảnh",
+          "nước mắt"
+        ],
+        "continuity": [
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture"
+        ],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, inside a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, caught mid-turn giving a small respectful bow toward the seated family before walking away toward the front door, calm composed posture, warm lantern light behind her, medium shot, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "medium",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S03.png",
+        "input_hash": "e03d0b74f64aff19",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S04",
+      "source": "chapter-01-scene-02",
+      "line_ids": [
+        "L004"
+      ],
+      "brief": {
+        "moment": "Ngoài sân lạnh, Linh bước đi một mình, không ngoái đầu lại, không một lời oán trách.",
+        "characters": [
+          "C01"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "Linh bước đi một mình ngoài sân",
+          "ánh trăng lạnh"
+        ],
+        "must_not_show": [
+          "bà Tâm",
+          "nước mắt rơi rõ trên má"
+        ],
+        "continuity": [
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture"
+        ],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, in a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, quiet and empty, a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, walking slowly alone across the courtyard away from the house, calm unreadable expression, cool blue moonlight replacing the warm feast glow, close-up shot on her composed face, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "pan_left",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S04.png",
+        "input_hash": "d73db2e39f022368",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S14",
+      "source": "chapter-01-scene-02",
+      "line_ids": [
+        "L016"
+      ],
+      "brief": {
+        "moment": "Close-up on Linh's calm, composed face as she walks alone through the courtyard at night",
+        "characters": [
+          "C01"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "gương mặt Linh bình thản, kiên định"
+        ],
+        "must_not_show": [
+          "nước mắt"
+        ],
+        "continuity": [
+          "C01: muted rose-brown áo dài, hair in a low bun, minimal jewelry, poised posture"
+        ],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, close-up on a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, walking alone through a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, her expression calm and composed, no tears, soft bokeh from distant lantern light, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S14.png",
+        "input_hash": "57f6baf7a1d6f228",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S05",
+      "source": "chapter-01-scene-03",
+      "line_ids": [
+        "L005"
+      ],
+      "brief": {
+        "moment": "Ngay lúc cửa vừa khép lại, điện thoại của bà Tâm bất ngờ đổ chuông trên bàn tiệc.",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "điện thoại di động đang rung chuông sáng màn hình",
+          "đặt trên bàn tiệc"
+        ],
+        "must_not_show": [
+          "tay người cầm máy"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, extreme close-up on a smartphone resting flat on the crowded Tet feast table by itself, no hand or person touching it, its screen glowing with a soft colored call-alert light, no readable text or icons on the screen inside a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, festive dishes and lantern light blurred behind it, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "extreme-close",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S05.png",
+        "input_hash": "1c4fc2228cb75c20",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": 777
+      }
+    },
+    {
+      "id": "S06",
+      "source": "chapter-01-scene-03",
+      "line_ids": [
+        "L006"
+      ],
+      "brief": {
+        "moment": "Bà Tâm nghe điện thoại, sững sờ khi ngân hàng báo khoản nợ cứu nhà vừa được thanh toán hết.",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "bà Tâm áp điện thoại vào tai",
+          "vẻ mặt sững sờ"
+        ],
+        "must_not_show": [
+          "Linh trong khung hình"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, medium shot inside a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, holding a phone to her ear, her sharp expression melting into shock, free hand gripping the edge of the feast table, warm lantern light, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S06.png",
+        "input_hash": "b2231397cd02ef72",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S15",
+      "source": "chapter-01-scene-03",
+      "line_ids": [
+        "L017"
+      ],
+      "brief": {
+        "moment": "Extreme close-up on Bà Tâm's trembling hand slowly scrolling the phone screen, building suspense before the reveal",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "tay run rẩy",
+          "màn hình mờ, không đọc được chữ"
+        ],
+        "must_not_show": [
+          "chữ rõ trên màn hình"
+        ],
+        "continuity": [
+          "C02: crimson and gold brocade áo dài, jade jewelry, formal updo"
+        ],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, extreme close-up on the trembling hand of a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, fingers slowly scrolling across a smartphone screen glowing softly, the screen showing only soft abstract glowing shapes, no readable text or icons, set inside a spacious modern Vietnamese living room set up for a lavish Tet feast, warm lacquer-red and gold decor blurred behind, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "extreme-close",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S15.png",
+        "input_hash": "f83edd01bf4228bf",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S07",
+      "source": "chapter-01-scene-04",
+      "line_ids": [
+        "L007"
+      ],
+      "brief": {
+        "moment": "Trên màn hình điện thoại, hóa đơn ngân hàng hiện rõ tên người trả nợ: Linh.",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "màn hình điện thoại hiện giao diện chuyển khoản ngân hàng thành công (dấu tick xanh, các dòng thông tin mờ ảo không đọc được)",
+          "tay bà Tâm run rẩy cầm điện thoại"
+        ],
+        "must_not_show": [
+          "mặt bà Tâm trong cùng khung hình"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, extreme close-up on a smartphone screen held in a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression's trembling hand, showing a bank transfer confirmation screen with a large green checkmark icon and abstract soft-focus lines suggesting receipt text, illegible, no readable characters, soft warm light reflecting off the screen, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "extreme-close",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S07.png",
+        "input_hash": "473cea50e5628ef5",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S08",
+      "source": "chapter-01-scene-04",
+      "line_ids": [
+        "L008"
+      ],
+      "brief": {
+        "moment": "Cả họ hàng quanh bàn tiệc nhìn nhau chết sững, không ai nói nên lời.",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "cả họ hàng quanh bàn tiệc sững sờ",
+          "ánh mắt nhìn nhau"
+        ],
+        "must_not_show": [
+          "Linh trong khung hình"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, wide shot inside a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, extended family around the feast table frozen in stunned disbelief, exchanging shocked glances, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression still holding the phone at the head of the table, warm lantern light now feeling heavy and still, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S08.png",
+        "input_hash": "226ceb20c22febb3",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S09",
+      "source": "chapter-01-scene-04",
+      "line_ids": [
+        "L009"
+      ],
+      "brief": {
+        "moment": "Bà Tâm chợt nhớ lại: suốt mấy tháng qua, chính người con dâu nghèo ấy đã âm thầm trả nợ cho cả nhà.",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "gương mặt bà Tâm dần vỡ oà nhận ra sự thật"
+        ],
+        "must_not_show": [
+          "Linh trong khung hình"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, close-up on a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, her sharp commanding expression collapsing into guilt and realization, eyes glistening, still gripping the phone, warm lantern light, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "medium",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S09.png",
+        "input_hash": "5704afe0a7699c0c",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S10",
+      "source": "chapter-01-scene-05",
+      "line_ids": [
+        "L010"
+      ],
+      "brief": {
+        "moment": "Bà Tâm buông điện thoại, lao ra sân trong đêm lạnh, giọng run rẩy gọi tên con dâu.",
+        "characters": [
+          "C02"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "bà Tâm chạy ra sân",
+          "dáng vẻ hoảng hốt, mất hết uy quyền ban đầu"
+        ],
+        "must_not_show": [
+          "Linh cận cảnh"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, wide shot in a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, quiet and empty, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, rushing out through the front door into the cool blue moonlit courtyard, unsteady hurried steps, one hand reaching out, calling out desperately, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "pan_right",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S10.png",
+        "input_hash": "67fcf24b2892df8a",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S11",
+      "source": "chapter-01-scene-05",
+      "line_ids": [
+        "L011",
+        "L012"
+      ],
+      "brief": {
+        "moment": "Bà Tâm quỳ sụp xuống nền gạch lạnh trước mặt Linh, nước mắt giàn giụa, xin con dâu tha lỗi.",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "bà Tâm quỳ trên nền gạch",
+          "nước mắt trên má bà Tâm",
+          "Linh đứng trước mặt"
+        ],
+        "must_not_show": [
+          "Linh quỳ xuống theo"
+        ],
+        "continuity": [
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression",
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture"
+        ],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, close-up in a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, quiet and empty, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression, kneeling on the cold paved ground with tears streaming down her face, hands clasped pleading upward, a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, standing just in front of her looking down with a calm unreadable expression, cool blue moonlight, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S11.png",
+        "input_hash": "b0e94fe79b643c62",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S12",
+      "source": "chapter-01-scene-06",
+      "line_ids": [
+        "L013"
+      ],
+      "brief": {
+        "moment": "Linh cúi xuống, nhẹ nhàng đỡ bà Tâm đứng dậy, không một lời trách móc.",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC02",
+        "must_show": [
+          "Linh đỡ bà Tâm đứng dậy bằng hai tay",
+          "ánh mắt dịu dàng, không giận dữ"
+        ],
+        "must_not_show": [
+          "nét mặt đắc thắng"
+        ],
+        "continuity": [
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture",
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, medium shot in a paved front courtyard outside a modern Vietnamese house at night, cool blue-toned moonlight, a wrought-iron gate, a few potted kumquat trees for Tet, quiet and empty, a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture, gently taking a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression's hands and helping her rise from the ground, warm compassionate expression with no trace of anger or triumph, cool moonlight beginning to warm as they stand, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S12.png",
+        "input_hash": "1e2d7e96e2cbc1c2",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S13",
+      "source": "chapter-01-scene-06",
+      "line_ids": [
+        "L014",
+        "L015"
+      ],
+      "brief": {
+        "moment": "Linh trấn an mẹ chồng; đêm giao thừa năm ấy, cả nhà đón Linh trở lại mâm cỗ như một người con thật sự.",
+        "characters": [
+          "C01",
+          "C02"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "Linh và bà Tâm cùng bước vào, tay trong tay",
+          "cả họ hàng vui vẻ đón nhận, mâm cỗ Tết ấm cúng"
+        ],
+        "must_not_show": [
+          "nét mặt giận dữ hay lạnh lùng"
+        ],
+        "continuity": [
+          "C01: a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture",
+          "C02: a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression"
+        ],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, wide shot inside a spacious modern Vietnamese living room set up for a lavish Tet feast, a long dining table crowded with festive dishes, red lanterns and gold apricot blossom branches, warm lacquer-red and gold decor, a well-dressed Vietnamese woman in her late fifties, wearing an ornate crimson and gold brocade áo dài for Tet, jade jewelry, hair styled in a formal updo, sharp commanding expression warmly leading a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, calm composed expression, minimal jewelry, poised upright posture by the hand back to the feast table, the extended family smiling and making room for her with open welcoming gestures, warm lantern and gold light fully restored, festive joyful atmosphere, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S13.png",
+        "input_hash": "d1f097c08e5800e4",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S16",
+      "source": "chapter-01-scene-06",
+      "line_ids": [
+        "L018"
+      ],
+      "brief": {
+        "moment": "Closing coda: close-up on Linh's gentle, peaceful smile at the head of the reunited feast table",
+        "characters": [
+          "C01"
+        ],
+        "location": "LOC01",
+        "must_show": [
+          "nụ cười nhẹ nhàng, bình yên của Linh"
+        ],
+        "must_not_show": [
+          "vẻ đắc thắng"
+        ],
+        "continuity": [
+          "C01: muted rose-brown áo dài, hair in a low bun, minimal jewelry, poised posture"
+        ],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "Modern Vietnamese cinematic digital painting, crisp clean linework, polished lacquer-like sheen, dramatic directional lighting, palette of lacquer red, imperial gold, jade green accent, charcoal black and cool moonlight blue, close-up on a young Vietnamese woman in her mid-twenties, wearing a simple modest muted rose-brown áo dài, hair neatly tied back in a low bun, a gentle peaceful smile, minimal jewelry, poised upright posture, seated at a long dining table crowded with festive dishes inside a spacious modern Vietnamese living room set up for a lavish Tet feast, red lanterns and gold apricot blossom branches glowing softly behind her, warm lacquer-red and gold light, family chatting happily in soft focus around her, vertical 9:16 composition with the main subject in the upper two thirds and a calm, uncluttered lower third, no text, no letters, no logos, no watermarks.",
+        "shot": "close-up",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S16.png",
+        "input_hash": "96e983c2a2df1e5a",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    }
+  ],
+  "lines": [
+    {
+      "id": "L001",
+      "speaker": "C02",
+      "text": "Cút ngay, đồ nhà nghèo!",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L001.wav",
+        "input_hash": "40ad555e76e6d268",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 1592,
+        "seed": 1679153099,
+        "qc": {
+          "cps": 10.68,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Cút",
+            "start": 0.0,
+            "end": 0.061
+          },
+          {
+            "text": "ngay,",
+            "start": 0.081,
+            "end": 0.182
+          },
+          {
+            "text": "đồ",
+            "start": 0.203,
+            "end": 0.243
+          },
+          {
+            "text": "nhà",
+            "start": 0.264,
+            "end": 0.324
+          },
+          {
+            "text": "nghèo!",
+            "start": 0.345,
+            "end": 0.466
+          }
+        ],
+        "used_seed": 1679153099
+      },
+      "words": [
+        {
+          "text": "Cút",
+          "start_ms": 0,
+          "end_ms": 234,
+          "approx": true
+        },
+        {
+          "text": "ngay,",
+          "start_ms": 234,
+          "end_ms": 546,
+          "approx": true
+        },
+        {
+          "text": "đồ",
+          "start_ms": 728,
+          "end_ms": 901,
+          "approx": true
+        },
+        {
+          "text": "nhà",
+          "start_ms": 901,
+          "end_ms": 1160,
+          "approx": true
+        },
+        {
+          "text": "nghèo!",
+          "start_ms": 1160,
+          "end_ms": 1592,
+          "approx": true
+        }
+      ],
+      "words_hash": "40ad555e76e6d268"
+    },
+    {
+      "id": "L002",
+      "speaker": "narrator",
+      "text": "Giữa mâm cỗ Tết, cả họ hàng chết lặng.",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L002.wav",
+        "input_hash": "42e4c72a46232012",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2162,
+        "seed": 567778785,
+        "qc": {
+          "cps": 12.95,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Giữa",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "mâm",
+            "start": 0.101,
+            "end": 0.162
+          },
+          {
+            "text": "cỗ",
+            "start": 0.182,
+            "end": 0.222
+          },
+          {
+            "text": "tết,",
+            "start": 0.242,
+            "end": 0.323
+          },
+          {
+            "text": "cả",
+            "start": 0.343,
+            "end": 0.384
+          },
+          {
+            "text": "họ",
+            "start": 0.404,
+            "end": 0.444
+          },
+          {
+            "text": "hàng",
+            "start": 0.465,
+            "end": 0.545
+          },
+          {
+            "text": "chết",
+            "start": 0.566,
+            "end": 0.646
+          },
+          {
+            "text": "lặng.",
+            "start": 0.667,
+            "end": 0.768
+          }
+        ],
+        "used_seed": 567778785
+      },
+      "words": [
+        {
+          "text": "Giữa",
+          "start_ms": 0,
+          "end_ms": 324,
+          "approx": true
+        },
+        {
+          "text": "mâm",
+          "start_ms": 324,
+          "end_ms": 566,
+          "approx": true
+        },
+        {
+          "text": "cỗ",
+          "start_ms": 566,
+          "end_ms": 728,
+          "approx": true
+        },
+        {
+          "text": "Tết,",
+          "start_ms": 728,
+          "end_ms": 971,
+          "approx": true
+        },
+        {
+          "text": "cả",
+          "start_ms": 1155,
+          "end_ms": 1281,
+          "approx": true
+        },
+        {
+          "text": "họ",
+          "start_ms": 1281,
+          "end_ms": 1407,
+          "approx": true
+        },
+        {
+          "text": "hàng",
+          "start_ms": 1407,
+          "end_ms": 1659,
+          "approx": true
+        },
+        {
+          "text": "chết",
+          "start_ms": 1659,
+          "end_ms": 1910,
+          "approx": true
+        },
+        {
+          "text": "lặng.",
+          "start_ms": 1910,
+          "end_ms": 2162,
+          "approx": true
+        }
+      ],
+      "words_hash": "42e4c72a46232012"
+    },
+    {
+      "id": "L003",
+      "speaker": "narrator",
+      "text": "Linh lặng lẽ đứng dậy, cúi đầu, bước ra khỏi cửa.",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L003.wav",
+        "input_hash": "da99da5f7c28817a",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2660,
+        "seed": 1235506756,
+        "qc": {
+          "cps": 13.53,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Linh",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "lặng",
+            "start": 0.101,
+            "end": 0.181
+          },
+          {
+            "text": "lẽ",
+            "start": 0.202,
+            "end": 0.242
+          },
+          {
+            "text": "đứng",
+            "start": 0.262,
+            "end": 0.343
+          },
+          {
+            "text": "dậy,",
+            "start": 0.363,
+            "end": 0.444
+          },
+          {
+            "text": "cúi",
+            "start": 0.464,
+            "end": 0.524
+          },
+          {
+            "text": "đầu,",
+            "start": 0.544,
+            "end": 0.625
+          },
+          {
+            "text": "bước",
+            "start": 0.645,
+            "end": 0.726
+          },
+          {
+            "text": "ra",
+            "start": 0.746,
+            "end": 0.786
+          },
+          {
+            "text": "khỏi",
+            "start": 0.806,
+            "end": 0.887
+          },
+          {
+            "text": "cửa.",
+            "start": 0.907,
+            "end": 0.988
+          }
+        ],
+        "used_seed": 1235506756
+      },
+      "words": [
+        {
+          "text": "Linh",
+          "start_ms": 0,
+          "end_ms": 232,
+          "approx": true
+        },
+        {
+          "text": "lặng",
+          "start_ms": 232,
+          "end_ms": 465,
+          "approx": true
+        },
+        {
+          "text": "lẽ",
+          "start_ms": 465,
+          "end_ms": 581,
+          "approx": true
+        },
+        {
+          "text": "đứng",
+          "start_ms": 581,
+          "end_ms": 814,
+          "approx": true
+        },
+        {
+          "text": "dậy,",
+          "start_ms": 814,
+          "end_ms": 988,
+          "approx": true
+        },
+        {
+          "text": "cúi",
+          "start_ms": 1158,
+          "end_ms": 1382,
+          "approx": true
+        },
+        {
+          "text": "đầu,",
+          "start_ms": 1382,
+          "end_ms": 1605,
+          "approx": true
+        },
+        {
+          "text": "bước",
+          "start_ms": 1771,
+          "end_ms": 2045,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 2045,
+          "end_ms": 2181,
+          "approx": true
+        },
+        {
+          "text": "khỏi",
+          "start_ms": 2181,
+          "end_ms": 2455,
+          "approx": true
+        },
+        {
+          "text": "cửa.",
+          "start_ms": 2455,
+          "end_ms": 2660,
+          "approx": true
+        }
+      ],
+      "words_hash": "da99da5f7c28817a"
+    },
+    {
+      "id": "L004",
+      "speaker": "narrator",
+      "text": "Không một lời thanh minh.",
+      "whisper": false,
+      "pause_after_ms": 500,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L004.wav",
+        "input_hash": "8fb55c496587ecd6",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 1172,
+        "seed": 1688594817,
+        "qc": {
+          "cps": 17.06,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Không",
+            "start": 0.0,
+            "end": 0.102
+          },
+          {
+            "text": "một",
+            "start": 0.122,
+            "end": 0.184
+          },
+          {
+            "text": "lời",
+            "start": 0.204,
+            "end": 0.265
+          },
+          {
+            "text": "thanh",
+            "start": 0.286,
+            "end": 0.388
+          },
+          {
+            "text": "minh.",
+            "start": 0.408,
+            "end": 0.51
+          }
+        ],
+        "used_seed": 1688594817
+      },
+      "words": [
+        {
+          "text": "Không",
+          "start_ms": 0,
+          "end_ms": 293,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 293,
+          "end_ms": 469,
+          "approx": true
+        },
+        {
+          "text": "lời",
+          "start_ms": 469,
+          "end_ms": 645,
+          "approx": true
+        },
+        {
+          "text": "thanh",
+          "start_ms": 645,
+          "end_ms": 938,
+          "approx": true
+        },
+        {
+          "text": "minh.",
+          "start_ms": 938,
+          "end_ms": 1172,
+          "approx": true
+        }
+      ],
+      "words_hash": "8fb55c496587ecd6"
+    },
+    {
+      "id": "L016",
+      "speaker": "narrator",
+      "text": "Đêm lạnh, cô bước đi một mình, không ai hay nửa năm qua cô đã âm thầm làm gì.",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L016.wav",
+        "input_hash": "cb8bea03889bbb3e",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4325,
+        "seed": 934945514,
+        "used_seed": 934945514,
+        "qc": {
+          "cps": 12.95,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Đêm",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "lạnh,",
+            "start": 0.08,
+            "end": 0.181
+          },
+          {
+            "text": "cô",
+            "start": 0.201,
+            "end": 0.241
+          },
+          {
+            "text": "bước",
+            "start": 0.261,
+            "end": 0.342
+          },
+          {
+            "text": "đi",
+            "start": 0.362,
+            "end": 0.402
+          },
+          {
+            "text": "một",
+            "start": 0.422,
+            "end": 0.482
+          },
+          {
+            "text": "mình,",
+            "start": 0.502,
+            "end": 0.603
+          },
+          {
+            "text": "không",
+            "start": 0.623,
+            "end": 0.724
+          },
+          {
+            "text": "ai",
+            "start": 0.744,
+            "end": 0.784
+          },
+          {
+            "text": "hay",
+            "start": 0.804,
+            "end": 0.864
+          },
+          {
+            "text": "nửa",
+            "start": 0.884,
+            "end": 0.945
+          },
+          {
+            "text": "năm",
+            "start": 0.965,
+            "end": 1.025
+          },
+          {
+            "text": "qua",
+            "start": 1.045,
+            "end": 1.105
+          },
+          {
+            "text": "cô",
+            "start": 1.126,
+            "end": 1.166
+          },
+          {
+            "text": "đã",
+            "start": 1.186,
+            "end": 1.226
+          },
+          {
+            "text": "âm",
+            "start": 1.246,
+            "end": 1.286
+          },
+          {
+            "text": "thầm",
+            "start": 1.306,
+            "end": 1.387
+          },
+          {
+            "text": "làm",
+            "start": 1.407,
+            "end": 1.467
+          },
+          {
+            "text": "gì.",
+            "start": 1.487,
+            "end": 1.548
+          }
+        ]
+      },
+      "words": [
+        {
+          "text": "Đêm",
+          "start_ms": 0,
+          "end_ms": 264,
+          "approx": true
+        },
+        {
+          "text": "lạnh,",
+          "start_ms": 264,
+          "end_ms": 616,
+          "approx": true
+        },
+        {
+          "text": "cô",
+          "start_ms": 840,
+          "end_ms": 966,
+          "approx": true
+        },
+        {
+          "text": "bước",
+          "start_ms": 966,
+          "end_ms": 1217,
+          "approx": true
+        },
+        {
+          "text": "đi",
+          "start_ms": 1217,
+          "end_ms": 1342,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 1342,
+          "end_ms": 1531,
+          "approx": true
+        },
+        {
+          "text": "mình,",
+          "start_ms": 1531,
+          "end_ms": 1782,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 1961,
+          "end_ms": 2309,
+          "approx": true
+        },
+        {
+          "text": "ai",
+          "start_ms": 2309,
+          "end_ms": 2448,
+          "approx": true
+        },
+        {
+          "text": "hay",
+          "start_ms": 2448,
+          "end_ms": 2656,
+          "approx": true
+        },
+        {
+          "text": "nửa",
+          "start_ms": 2656,
+          "end_ms": 2865,
+          "approx": true
+        },
+        {
+          "text": "năm",
+          "start_ms": 2865,
+          "end_ms": 3073,
+          "approx": true
+        },
+        {
+          "text": "qua",
+          "start_ms": 3073,
+          "end_ms": 3282,
+          "approx": true
+        },
+        {
+          "text": "cô",
+          "start_ms": 3282,
+          "end_ms": 3421,
+          "approx": true
+        },
+        {
+          "text": "đã",
+          "start_ms": 3421,
+          "end_ms": 3560,
+          "approx": true
+        },
+        {
+          "text": "âm",
+          "start_ms": 3560,
+          "end_ms": 3699,
+          "approx": true
+        },
+        {
+          "text": "thầm",
+          "start_ms": 3699,
+          "end_ms": 3977,
+          "approx": true
+        },
+        {
+          "text": "làm",
+          "start_ms": 3977,
+          "end_ms": 4186,
+          "approx": true
+        },
+        {
+          "text": "gì.",
+          "start_ms": 4186,
+          "end_ms": 4325,
+          "approx": true
+        }
+      ],
+      "words_hash": "cb8bea03889bbb3e"
+    },
+    {
+      "id": "L005",
+      "speaker": "narrator",
+      "text": "Ngay lúc đó, điện thoại bà Tâm đổ chuông.",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L005.wav",
+        "input_hash": "2bcdcbd58c5fd6ac",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2330,
+        "seed": 1831504704,
+        "qc": {
+          "cps": 13.3,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Ngay",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "lúc",
+            "start": 0.101,
+            "end": 0.162
+          },
+          {
+            "text": "đó,",
+            "start": 0.182,
+            "end": 0.242
+          },
+          {
+            "text": "điện",
+            "start": 0.262,
+            "end": 0.343
+          },
+          {
+            "text": "thoại",
+            "start": 0.363,
+            "end": 0.464
+          },
+          {
+            "text": "bà",
+            "start": 0.485,
+            "end": 0.525
+          },
+          {
+            "text": "Tâm",
+            "start": 0.545,
+            "end": 0.606
+          },
+          {
+            "text": "đổ",
+            "start": 0.626,
+            "end": 0.666
+          },
+          {
+            "text": "chuông.",
+            "start": 0.686,
+            "end": 0.828
+          }
+        ],
+        "used_seed": 1831504704
+      },
+      "words": [
+        {
+          "text": "Ngay",
+          "start_ms": 0,
+          "end_ms": 23,
+          "approx": true
+        },
+        {
+          "text": "lúc",
+          "start_ms": 23,
+          "end_ms": 40,
+          "approx": true
+        },
+        {
+          "text": "đó,",
+          "start_ms": 40,
+          "end_ms": 51,
+          "approx": true
+        },
+        {
+          "text": "điện",
+          "start_ms": 206,
+          "end_ms": 592,
+          "approx": true
+        },
+        {
+          "text": "thoại",
+          "start_ms": 592,
+          "end_ms": 1075,
+          "approx": true
+        },
+        {
+          "text": "bà",
+          "start_ms": 1075,
+          "end_ms": 1268,
+          "approx": true
+        },
+        {
+          "text": "Tâm",
+          "start_ms": 1268,
+          "end_ms": 1558,
+          "approx": true
+        },
+        {
+          "text": "đổ",
+          "start_ms": 1558,
+          "end_ms": 1751,
+          "approx": true
+        },
+        {
+          "text": "chuông.",
+          "start_ms": 1751,
+          "end_ms": 2330,
+          "approx": true
+        }
+      ],
+      "words_hash": "2bcdcbd58c5fd6ac"
+    },
+    {
+      "id": "L006",
+      "speaker": "narrator",
+      "text": "Ngân hàng báo khoản nợ cứu nhà đã được trả hết.",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L006.wav",
+        "input_hash": "39fbf6c5b2a361e5",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2327,
+        "seed": 1822809178,
+        "qc": {
+          "cps": 15.47,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Ngân",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "hàng",
+            "start": 0.101,
+            "end": 0.182
+          },
+          {
+            "text": "báo",
+            "start": 0.202,
+            "end": 0.263
+          },
+          {
+            "text": "khoản",
+            "start": 0.283,
+            "end": 0.384
+          },
+          {
+            "text": "nợ",
+            "start": 0.404,
+            "end": 0.444
+          },
+          {
+            "text": "cứu",
+            "start": 0.464,
+            "end": 0.525
+          },
+          {
+            "text": "nhà",
+            "start": 0.545,
+            "end": 0.606
+          },
+          {
+            "text": "đã",
+            "start": 0.626,
+            "end": 0.666
+          },
+          {
+            "text": "được",
+            "start": 0.687,
+            "end": 0.767
+          },
+          {
+            "text": "trả",
+            "start": 0.788,
+            "end": 0.848
+          },
+          {
+            "text": "hết.",
+            "start": 0.868,
+            "end": 0.949
+          }
+        ],
+        "used_seed": 1822809178
+      },
+      "words": [
+        {
+          "text": "Ngân",
+          "start_ms": 0,
+          "end_ms": 259,
+          "approx": true
+        },
+        {
+          "text": "hàng",
+          "start_ms": 259,
+          "end_ms": 517,
+          "approx": true
+        },
+        {
+          "text": "báo",
+          "start_ms": 517,
+          "end_ms": 711,
+          "approx": true
+        },
+        {
+          "text": "khoản",
+          "start_ms": 711,
+          "end_ms": 1034,
+          "approx": true
+        },
+        {
+          "text": "nợ",
+          "start_ms": 1034,
+          "end_ms": 1164,
+          "approx": true
+        },
+        {
+          "text": "cứu",
+          "start_ms": 1164,
+          "end_ms": 1357,
+          "approx": true
+        },
+        {
+          "text": "nhà",
+          "start_ms": 1357,
+          "end_ms": 1551,
+          "approx": true
+        },
+        {
+          "text": "đã",
+          "start_ms": 1551,
+          "end_ms": 1681,
+          "approx": true
+        },
+        {
+          "text": "được",
+          "start_ms": 1681,
+          "end_ms": 1939,
+          "approx": true
+        },
+        {
+          "text": "trả",
+          "start_ms": 1939,
+          "end_ms": 2133,
+          "approx": true
+        },
+        {
+          "text": "hết.",
+          "start_ms": 2133,
+          "end_ms": 2327,
+          "approx": true
+        }
+      ],
+      "words_hash": "39fbf6c5b2a361e5"
+    },
+    {
+      "id": "L017",
+      "speaker": "narrator",
+      "text": "Tay bà run lên, ngón tay lướt chậm trên màn hình.",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L017.wav",
+        "input_hash": "fbe7fbdb270d8c1f",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2762,
+        "seed": 1123994002,
+        "used_seed": 1123994002,
+        "qc": {
+          "cps": 13.4,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Tay",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "bà",
+            "start": 0.081,
+            "end": 0.121
+          },
+          {
+            "text": "run",
+            "start": 0.141,
+            "end": 0.202
+          },
+          {
+            "text": "lên,",
+            "start": 0.222,
+            "end": 0.302
+          },
+          {
+            "text": "ngón",
+            "start": 0.323,
+            "end": 0.403
+          },
+          {
+            "text": "tay",
+            "start": 0.423,
+            "end": 0.484
+          },
+          {
+            "text": "lướt",
+            "start": 0.504,
+            "end": 0.585
+          },
+          {
+            "text": "chậm",
+            "start": 0.605,
+            "end": 0.685
+          },
+          {
+            "text": "trên",
+            "start": 0.706,
+            "end": 0.786
+          },
+          {
+            "text": "màn",
+            "start": 0.806,
+            "end": 0.867
+          },
+          {
+            "text": "hình.",
+            "start": 0.887,
+            "end": 0.988
+          }
+        ]
+      },
+      "words": [
+        {
+          "text": "Tay",
+          "start_ms": 0,
+          "end_ms": 224,
+          "approx": true
+        },
+        {
+          "text": "bà",
+          "start_ms": 224,
+          "end_ms": 373,
+          "approx": true
+        },
+        {
+          "text": "run",
+          "start_ms": 373,
+          "end_ms": 597,
+          "approx": true
+        },
+        {
+          "text": "lên,",
+          "start_ms": 597,
+          "end_ms": 821,
+          "approx": true
+        },
+        {
+          "text": "ngón",
+          "start_ms": 821,
+          "end_ms": 1120,
+          "approx": true
+        },
+        {
+          "text": "tay",
+          "start_ms": 1120,
+          "end_ms": 1344,
+          "approx": true
+        },
+        {
+          "text": "lướt",
+          "start_ms": 1344,
+          "end_ms": 1642,
+          "approx": true
+        },
+        {
+          "text": "chậm",
+          "start_ms": 1642,
+          "end_ms": 1941,
+          "approx": true
+        },
+        {
+          "text": "trên",
+          "start_ms": 1941,
+          "end_ms": 2239,
+          "approx": true
+        },
+        {
+          "text": "màn",
+          "start_ms": 2239,
+          "end_ms": 2463,
+          "approx": true
+        },
+        {
+          "text": "hình.",
+          "start_ms": 2463,
+          "end_ms": 2762,
+          "approx": true
+        }
+      ],
+      "words_hash": "fbe7fbdb270d8c1f"
+    },
+    {
+      "id": "L007",
+      "speaker": "narrator",
+      "text": "Trên hóa đơn ngân hàng, tên người trả nợ là Linh.",
+      "whisper": false,
+      "pause_after_ms": 500,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L007.wav",
+        "input_hash": "35635f47f7c17ff0",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2734,
+        "seed": 180139759,
+        "qc": {
+          "cps": 13.53,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Trên",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "hóa",
+            "start": 0.101,
+            "end": 0.161
+          },
+          {
+            "text": "đơn",
+            "start": 0.181,
+            "end": 0.242
+          },
+          {
+            "text": "ngân",
+            "start": 0.262,
+            "end": 0.343
+          },
+          {
+            "text": "hàng,",
+            "start": 0.363,
+            "end": 0.464
+          },
+          {
+            "text": "tên",
+            "start": 0.484,
+            "end": 0.544
+          },
+          {
+            "text": "người",
+            "start": 0.564,
+            "end": 0.665
+          },
+          {
+            "text": "trả",
+            "start": 0.685,
+            "end": 0.746
+          },
+          {
+            "text": "nợ",
+            "start": 0.766,
+            "end": 0.806
+          },
+          {
+            "text": "là",
+            "start": 0.827,
+            "end": 0.867
+          },
+          {
+            "text": "Linh.",
+            "start": 0.887,
+            "end": 0.988
+          }
+        ],
+        "used_seed": 180139759
+      },
+      "words": [
+        {
+          "text": "Trên",
+          "start_ms": 0,
+          "end_ms": 296,
+          "approx": true
+        },
+        {
+          "text": "hóa",
+          "start_ms": 296,
+          "end_ms": 517,
+          "approx": true
+        },
+        {
+          "text": "đơn",
+          "start_ms": 517,
+          "end_ms": 739,
+          "approx": true
+        },
+        {
+          "text": "ngân",
+          "start_ms": 739,
+          "end_ms": 1034,
+          "approx": true
+        },
+        {
+          "text": "hàng,",
+          "start_ms": 1034,
+          "end_ms": 1330,
+          "approx": true
+        },
+        {
+          "text": "tên",
+          "start_ms": 1330,
+          "end_ms": 1552,
+          "approx": true
+        },
+        {
+          "text": "người",
+          "start_ms": 1552,
+          "end_ms": 1921,
+          "approx": true
+        },
+        {
+          "text": "trả",
+          "start_ms": 1921,
+          "end_ms": 2143,
+          "approx": true
+        },
+        {
+          "text": "nợ",
+          "start_ms": 2143,
+          "end_ms": 2291,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 2291,
+          "end_ms": 2438,
+          "approx": true
+        },
+        {
+          "text": "Linh.",
+          "start_ms": 2438,
+          "end_ms": 2734,
+          "approx": true
+        }
+      ],
+      "words_hash": "35635f47f7c17ff0"
+    },
+    {
+      "id": "L008",
+      "speaker": "narrator",
+      "text": "Cả nhà chết sững.",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L008.wav",
+        "input_hash": "f6285b382039ec62",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 1503,
+        "seed": 159305246,
+        "qc": {
+          "cps": 8.65,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Cả",
+            "start": 0.0,
+            "end": 0.041
+          },
+          {
+            "text": "nhà",
+            "start": 0.061,
+            "end": 0.122
+          },
+          {
+            "text": "chết",
+            "start": 0.142,
+            "end": 0.224
+          },
+          {
+            "text": "sững",
+            "start": 0.244,
+            "end": 0.325
+          }
+        ],
+        "used_seed": 159305246
+      },
+      "words": [
+        {
+          "text": "Cả",
+          "start_ms": 0,
+          "end_ms": 231,
+          "approx": true
+        },
+        {
+          "text": "nhà",
+          "start_ms": 231,
+          "end_ms": 578,
+          "approx": true
+        },
+        {
+          "text": "chết",
+          "start_ms": 578,
+          "end_ms": 1041,
+          "approx": true
+        },
+        {
+          "text": "sững.",
+          "start_ms": 1041,
+          "end_ms": 1503,
+          "approx": true
+        }
+      ],
+      "words_hash": "f6285b382039ec62"
+    },
+    {
+      "id": "L009",
+      "speaker": "narrator",
+      "text": "Suốt mấy tháng qua, chính con dâu nghèo ấy đã âm thầm trả nợ cho cả nhà.",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L009.wav",
+        "input_hash": "14cab9ccdd730cfa",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4131,
+        "seed": 233134888,
+        "qc": {
+          "cps": 13.07,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Suốt",
+            "start": 0.0,
+            "end": 0.08
+          },
+          {
+            "text": "mấy",
+            "start": 0.101,
+            "end": 0.161
+          },
+          {
+            "text": "tháng",
+            "start": 0.181,
+            "end": 0.281
+          },
+          {
+            "text": "qua,",
+            "start": 0.302,
+            "end": 0.382
+          },
+          {
+            "text": "chính",
+            "start": 0.402,
+            "end": 0.503
+          },
+          {
+            "text": "con",
+            "start": 0.523,
+            "end": 0.583
+          },
+          {
+            "text": "dâu",
+            "start": 0.603,
+            "end": 0.663
+          },
+          {
+            "text": "nghèo",
+            "start": 0.684,
+            "end": 0.784
+          },
+          {
+            "text": "ấy",
+            "start": 0.804,
+            "end": 0.844
+          },
+          {
+            "text": "đã",
+            "start": 0.865,
+            "end": 0.905
+          },
+          {
+            "text": "âm",
+            "start": 0.925,
+            "end": 0.965
+          },
+          {
+            "text": "thầm",
+            "start": 0.985,
+            "end": 1.066
+          },
+          {
+            "text": "trả",
+            "start": 1.086,
+            "end": 1.146
+          },
+          {
+            "text": "nợ",
+            "start": 1.166,
+            "end": 1.206
+          },
+          {
+            "text": "cho",
+            "start": 1.226,
+            "end": 1.287
+          },
+          {
+            "text": "cả",
+            "start": 1.307,
+            "end": 1.347
+          },
+          {
+            "text": "nhà.",
+            "start": 1.367,
+            "end": 1.448
+          }
+        ],
+        "used_seed": 233134888
+      },
+      "words": [
+        {
+          "text": "Suốt",
+          "start_ms": 0,
+          "end_ms": 306,
+          "approx": true
+        },
+        {
+          "text": "mấy",
+          "start_ms": 306,
+          "end_ms": 536,
+          "approx": true
+        },
+        {
+          "text": "tháng",
+          "start_ms": 536,
+          "end_ms": 918,
+          "approx": true
+        },
+        {
+          "text": "qua,",
+          "start_ms": 918,
+          "end_ms": 1148,
+          "approx": true
+        },
+        {
+          "text": "chính",
+          "start_ms": 1148,
+          "end_ms": 1530,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 1530,
+          "end_ms": 1760,
+          "approx": true
+        },
+        {
+          "text": "dâu",
+          "start_ms": 1760,
+          "end_ms": 1989,
+          "approx": true
+        },
+        {
+          "text": "nghèo",
+          "start_ms": 1989,
+          "end_ms": 2372,
+          "approx": true
+        },
+        {
+          "text": "ấy",
+          "start_ms": 2372,
+          "end_ms": 2524,
+          "approx": true
+        },
+        {
+          "text": "đã",
+          "start_ms": 2524,
+          "end_ms": 2678,
+          "approx": true
+        },
+        {
+          "text": "âm",
+          "start_ms": 2678,
+          "end_ms": 2830,
+          "approx": true
+        },
+        {
+          "text": "thầm",
+          "start_ms": 2830,
+          "end_ms": 3136,
+          "approx": true
+        },
+        {
+          "text": "trả",
+          "start_ms": 3136,
+          "end_ms": 3366,
+          "approx": true
+        },
+        {
+          "text": "nợ",
+          "start_ms": 3366,
+          "end_ms": 3519,
+          "approx": true
+        },
+        {
+          "text": "cho",
+          "start_ms": 3519,
+          "end_ms": 3748,
+          "approx": true
+        },
+        {
+          "text": "cả",
+          "start_ms": 3748,
+          "end_ms": 3902,
+          "approx": true
+        },
+        {
+          "text": "nhà.",
+          "start_ms": 3902,
+          "end_ms": 4131,
+          "approx": true
+        }
+      ],
+      "words_hash": "14cab9ccdd730cfa"
+    },
+    {
+      "id": "L010",
+      "speaker": "narrator",
+      "text": "Bà Tâm lao ra sân, gọi tên con dâu, giọng run rẩy.",
+      "whisper": false,
+      "pause_after_ms": 400,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L010.wav",
+        "input_hash": "5c09fd6d68f4c333",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2874,
+        "seed": 1249881569,
+        "qc": {
+          "cps": 12.53,
+          "cer": 0.028,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Bà",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "Tâm",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "lao",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "ra",
+            "start": 0.222,
+            "end": 0.262
+          },
+          {
+            "text": "sân,",
+            "start": 0.282,
+            "end": 0.363
+          },
+          {
+            "text": "gọi",
+            "start": 0.383,
+            "end": 0.443
+          },
+          {
+            "text": "tên",
+            "start": 0.463,
+            "end": 0.524
+          },
+          {
+            "text": "con",
+            "start": 0.544,
+            "end": 0.604
+          },
+          {
+            "text": "dâu",
+            "start": 0.625,
+            "end": 0.685
+          },
+          {
+            "text": "giọng",
+            "start": 0.705,
+            "end": 0.806
+          },
+          {
+            "text": "run",
+            "start": 0.826,
+            "end": 0.887
+          },
+          {
+            "text": "rảy.",
+            "start": 0.907,
+            "end": 0.987
+          }
+        ],
+        "used_seed": 1249881569
+      },
+      "words": [
+        {
+          "text": "Bà",
+          "start_ms": 0,
+          "end_ms": 160,
+          "approx": true
+        },
+        {
+          "text": "Tâm",
+          "start_ms": 160,
+          "end_ms": 399,
+          "approx": true
+        },
+        {
+          "text": "lao",
+          "start_ms": 399,
+          "end_ms": 639,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 639,
+          "end_ms": 798,
+          "approx": true
+        },
+        {
+          "text": "sân,",
+          "start_ms": 798,
+          "end_ms": 1038,
+          "approx": true
+        },
+        {
+          "text": "gọi",
+          "start_ms": 1038,
+          "end_ms": 1277,
+          "approx": true
+        },
+        {
+          "text": "tên",
+          "start_ms": 1277,
+          "end_ms": 1517,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 1517,
+          "end_ms": 1756,
+          "approx": true
+        },
+        {
+          "text": "dâu,",
+          "start_ms": 1756,
+          "end_ms": 1996,
+          "approx": true
+        },
+        {
+          "text": "giọng",
+          "start_ms": 1996,
+          "end_ms": 2395,
+          "approx": true
+        },
+        {
+          "text": "run",
+          "start_ms": 2395,
+          "end_ms": 2634,
+          "approx": true
+        },
+        {
+          "text": "rẩy.",
+          "start_ms": 2634,
+          "end_ms": 2874,
+          "approx": true
+        }
+      ],
+      "words_hash": "5c09fd6d68f4c333"
+    },
+    {
+      "id": "L011",
+      "speaker": "C02",
+      "text": "Con... tha lỗi cho mẹ!",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L011.wav",
+        "input_hash": "2eb8c1684ba2715a",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 1656,
+        "seed": 1612503878,
+        "qc": {
+          "cps": 8.45,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Con,",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "tha",
+            "start": 0.101,
+            "end": 0.162
+          },
+          {
+            "text": "lỗi",
+            "start": 0.182,
+            "end": 0.243
+          },
+          {
+            "text": "cho",
+            "start": 0.263,
+            "end": 0.324
+          },
+          {
+            "text": "mẹ.",
+            "start": 0.345,
+            "end": 0.405
+          }
+        ],
+        "used_seed": 1612503878
+      },
+      "words": [
+        {
+          "text": "Con...",
+          "start_ms": 0,
+          "end_ms": 343,
+          "approx": true
+        },
+        {
+          "text": "tha",
+          "start_ms": 674,
+          "end_ms": 942,
+          "approx": true
+        },
+        {
+          "text": "lỗi",
+          "start_ms": 942,
+          "end_ms": 1210,
+          "approx": true
+        },
+        {
+          "text": "cho",
+          "start_ms": 1210,
+          "end_ms": 1477,
+          "approx": true
+        },
+        {
+          "text": "mẹ!",
+          "start_ms": 1477,
+          "end_ms": 1656,
+          "approx": true
+        }
+      ],
+      "words_hash": "2eb8c1684ba2715a"
+    },
+    {
+      "id": "L012",
+      "speaker": "narrator",
+      "text": "Bà quỳ sụp xuống, nước mắt giàn giụa.",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L012.wav",
+        "input_hash": "1ae711bd4e41424d",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2144,
+        "seed": 662895924,
+        "qc": {
+          "cps": 13.06,
+          "cer": 0.179,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Bà",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "Quỳ",
+            "start": 0.061,
+            "end": 0.121
+          },
+          {
+            "text": "sụp",
+            "start": 0.141,
+            "end": 0.202
+          },
+          {
+            "text": "xuống,",
+            "start": 0.222,
+            "end": 0.343
+          },
+          {
+            "text": "nước",
+            "start": 0.364,
+            "end": 0.444
+          },
+          {
+            "text": "mắt",
+            "start": 0.465,
+            "end": 0.525
+          },
+          {
+            "text": "giàn",
+            "start": 0.545,
+            "end": 0.626
+          },
+          {
+            "text": "ruộng.",
+            "start": 0.646,
+            "end": 0.768
+          }
+        ],
+        "used_seed": 662895924
+      },
+      "words": [
+        {
+          "text": "Bà",
+          "start_ms": 0,
+          "end_ms": 153,
+          "approx": true
+        },
+        {
+          "text": "quỳ",
+          "start_ms": 153,
+          "end_ms": 383,
+          "approx": true
+        },
+        {
+          "text": "sụp",
+          "start_ms": 383,
+          "end_ms": 613,
+          "approx": true
+        },
+        {
+          "text": "xuống,",
+          "start_ms": 613,
+          "end_ms": 995,
+          "approx": true
+        },
+        {
+          "text": "nước",
+          "start_ms": 995,
+          "end_ms": 1302,
+          "approx": true
+        },
+        {
+          "text": "mắt",
+          "start_ms": 1302,
+          "end_ms": 1531,
+          "approx": true
+        },
+        {
+          "text": "giàn",
+          "start_ms": 1531,
+          "end_ms": 1838,
+          "approx": true
+        },
+        {
+          "text": "giụa.",
+          "start_ms": 1838,
+          "end_ms": 2144,
+          "approx": true
+        }
+      ],
+      "words_hash": "1ae711bd4e41424d"
+    },
+    {
+      "id": "L013",
+      "speaker": "narrator",
+      "text": "Linh nhẹ nhàng đỡ bà đứng lên, không một lời trách móc.",
+      "whisper": false,
+      "pause_after_ms": 500,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L013.wav",
+        "input_hash": "f4ff65d0be6001fb",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2907,
+        "seed": 2113600464,
+        "qc": {
+          "cps": 14.45,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Linh",
+            "start": 0.0,
+            "end": 0.081
+          },
+          {
+            "text": "nhẹ",
+            "start": 0.101,
+            "end": 0.161
+          },
+          {
+            "text": "nhàng",
+            "start": 0.181,
+            "end": 0.282
+          },
+          {
+            "text": "đỡ",
+            "start": 0.302,
+            "end": 0.343
+          },
+          {
+            "text": "bà",
+            "start": 0.363,
+            "end": 0.403
+          },
+          {
+            "text": "đứng",
+            "start": 0.423,
+            "end": 0.504
+          },
+          {
+            "text": "lên,",
+            "start": 0.524,
+            "end": 0.604
+          },
+          {
+            "text": "không",
+            "start": 0.625,
+            "end": 0.725
+          },
+          {
+            "text": "một",
+            "start": 0.746,
+            "end": 0.806
+          },
+          {
+            "text": "lời",
+            "start": 0.826,
+            "end": 0.887
+          },
+          {
+            "text": "trách",
+            "start": 0.907,
+            "end": 1.007
+          },
+          {
+            "text": "móc.",
+            "start": 1.028,
+            "end": 1.108
+          }
+        ],
+        "used_seed": 2113600464
+      },
+      "words": [
+        {
+          "text": "Linh",
+          "start_ms": 0,
+          "end_ms": 289,
+          "approx": true
+        },
+        {
+          "text": "nhẹ",
+          "start_ms": 289,
+          "end_ms": 506,
+          "approx": true
+        },
+        {
+          "text": "nhàng",
+          "start_ms": 506,
+          "end_ms": 867,
+          "approx": true
+        },
+        {
+          "text": "đỡ",
+          "start_ms": 867,
+          "end_ms": 1012,
+          "approx": true
+        },
+        {
+          "text": "bà",
+          "start_ms": 1012,
+          "end_ms": 1156,
+          "approx": true
+        },
+        {
+          "text": "đứng",
+          "start_ms": 1156,
+          "end_ms": 1445,
+          "approx": true
+        },
+        {
+          "text": "lên,",
+          "start_ms": 1445,
+          "end_ms": 1662,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 1852,
+          "end_ms": 2130,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 2130,
+          "end_ms": 2296,
+          "approx": true
+        },
+        {
+          "text": "lời",
+          "start_ms": 2296,
+          "end_ms": 2463,
+          "approx": true
+        },
+        {
+          "text": "trách",
+          "start_ms": 2463,
+          "end_ms": 2740,
+          "approx": true
+        },
+        {
+          "text": "móc.",
+          "start_ms": 2740,
+          "end_ms": 2907,
+          "approx": true
+        }
+      ],
+      "words_hash": "f4ff65d0be6001fb"
+    },
+    {
+      "id": "L014",
+      "speaker": "C01",
+      "text": "Mẹ đừng quỳ. Con dâu nào cũng là con của mẹ.",
+      "whisper": false,
+      "pause_after_ms": 450,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L014.wav",
+        "input_hash": "9e0be0cfe53bf1bd",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2667,
+        "seed": 1520490888,
+        "qc": {
+          "cps": 12.0,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Mẹ",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "đừng",
+            "start": 0.06,
+            "end": 0.141
+          },
+          {
+            "text": "quỳ,",
+            "start": 0.161,
+            "end": 0.242
+          },
+          {
+            "text": "con",
+            "start": 0.262,
+            "end": 0.323
+          },
+          {
+            "text": "dâu",
+            "start": 0.343,
+            "end": 0.403
+          },
+          {
+            "text": "nào",
+            "start": 0.423,
+            "end": 0.484
+          },
+          {
+            "text": "cũng",
+            "start": 0.504,
+            "end": 0.585
+          },
+          {
+            "text": "là",
+            "start": 0.605,
+            "end": 0.645
+          },
+          {
+            "text": "con",
+            "start": 0.665,
+            "end": 0.726
+          },
+          {
+            "text": "của",
+            "start": 0.746,
+            "end": 0.806
+          },
+          {
+            "text": "mẹ.",
+            "start": 0.827,
+            "end": 0.887
+          }
+        ],
+        "used_seed": 1520490888
+      },
+      "words": [
+        {
+          "text": "Mẹ",
+          "start_ms": 0,
+          "end_ms": 182,
+          "approx": true
+        },
+        {
+          "text": "đừng",
+          "start_ms": 182,
+          "end_ms": 545,
+          "approx": true
+        },
+        {
+          "text": "quỳ.",
+          "start_ms": 545,
+          "end_ms": 818,
+          "approx": true
+        },
+        {
+          "text": "Con",
+          "start_ms": 1125,
+          "end_ms": 1326,
+          "approx": true
+        },
+        {
+          "text": "dâu",
+          "start_ms": 1326,
+          "end_ms": 1527,
+          "approx": true
+        },
+        {
+          "text": "nào",
+          "start_ms": 1527,
+          "end_ms": 1728,
+          "approx": true
+        },
+        {
+          "text": "cũng",
+          "start_ms": 1728,
+          "end_ms": 1997,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 1997,
+          "end_ms": 2131,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 2131,
+          "end_ms": 2332,
+          "approx": true
+        },
+        {
+          "text": "của",
+          "start_ms": 2332,
+          "end_ms": 2533,
+          "approx": true
+        },
+        {
+          "text": "mẹ.",
+          "start_ms": 2533,
+          "end_ms": 2667,
+          "approx": true
+        }
+      ],
+      "words_hash": "9e0be0cfe53bf1bd"
+    },
+    {
+      "id": "L015",
+      "speaker": "narrator",
+      "text": "Đêm giao thừa năm ấy, cả nhà đón Linh vào mâm cỗ, như một người con thật sự.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L015.wav",
+        "input_hash": "74fde809a6bfaa18",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4291,
+        "seed": 165891065,
+        "qc": {
+          "cps": 13.05,
+          "cer": 0.071,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Đêm",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "giao",
+            "start": 0.08,
+            "end": 0.161
+          },
+          {
+            "text": "thừa",
+            "start": 0.181,
+            "end": 0.261
+          },
+          {
+            "text": "năm",
+            "start": 0.281,
+            "end": 0.342
+          },
+          {
+            "text": "ấy,",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "cả",
+            "start": 0.442,
+            "end": 0.482
+          },
+          {
+            "text": "nhà",
+            "start": 0.502,
+            "end": 0.563
+          },
+          {
+            "text": "đón",
+            "start": 0.583,
+            "end": 0.643
+          },
+          {
+            "text": "Linh",
+            "start": 0.663,
+            "end": 0.744
+          },
+          {
+            "text": "vào",
+            "start": 0.764,
+            "end": 0.824
+          },
+          {
+            "text": "Mông",
+            "start": 0.844,
+            "end": 0.925
+          },
+          {
+            "text": "Cổ",
+            "start": 0.945,
+            "end": 0.985
+          },
+          {
+            "text": "như",
+            "start": 1.005,
+            "end": 1.065
+          },
+          {
+            "text": "một",
+            "start": 1.085,
+            "end": 1.146
+          },
+          {
+            "text": "người",
+            "start": 1.166,
+            "end": 1.266
+          },
+          {
+            "text": "con",
+            "start": 1.286,
+            "end": 1.347
+          },
+          {
+            "text": "thật",
+            "start": 1.367,
+            "end": 1.447
+          },
+          {
+            "text": "sự.",
+            "start": 1.467,
+            "end": 1.527
+          }
+        ],
+        "used_seed": 165891065
+      },
+      "words": [
+        {
+          "text": "Đêm",
+          "start_ms": 0,
+          "end_ms": 269,
+          "approx": true
+        },
+        {
+          "text": "giao",
+          "start_ms": 269,
+          "end_ms": 628,
+          "approx": true
+        },
+        {
+          "text": "thừa",
+          "start_ms": 628,
+          "end_ms": 987,
+          "approx": true
+        },
+        {
+          "text": "năm",
+          "start_ms": 987,
+          "end_ms": 1256,
+          "approx": true
+        },
+        {
+          "text": "ấy,",
+          "start_ms": 1256,
+          "end_ms": 1436,
+          "approx": true
+        },
+        {
+          "text": "cả",
+          "start_ms": 1621,
+          "end_ms": 1755,
+          "approx": true
+        },
+        {
+          "text": "nhà",
+          "start_ms": 1755,
+          "end_ms": 1955,
+          "approx": true
+        },
+        {
+          "text": "đón",
+          "start_ms": 1955,
+          "end_ms": 2155,
+          "approx": true
+        },
+        {
+          "text": "Linh",
+          "start_ms": 2155,
+          "end_ms": 2422,
+          "approx": true
+        },
+        {
+          "text": "vào",
+          "start_ms": 2422,
+          "end_ms": 2622,
+          "approx": true
+        },
+        {
+          "text": "mâm",
+          "start_ms": 2622,
+          "end_ms": 2823,
+          "approx": true
+        },
+        {
+          "text": "cỗ,",
+          "start_ms": 2823,
+          "end_ms": 2956,
+          "approx": true
+        },
+        {
+          "text": "như",
+          "start_ms": 2956,
+          "end_ms": 3156,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 3156,
+          "end_ms": 3357,
+          "approx": true
+        },
+        {
+          "text": "người",
+          "start_ms": 3357,
+          "end_ms": 3690,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 3690,
+          "end_ms": 3891,
+          "approx": true
+        },
+        {
+          "text": "thật",
+          "start_ms": 3891,
+          "end_ms": 4157,
+          "approx": true
+        },
+        {
+          "text": "sự.",
+          "start_ms": 4157,
+          "end_ms": 4291,
+          "approx": true
+        }
+      ],
+      "words_hash": "74fde809a6bfaa18"
+    },
+    {
+      "id": "L018",
+      "speaker": "narrator",
+      "text": "Người ta chỉ nhìn thấy cái nghèo trước mắt, mà quên mất một tấm lòng không cần phô trương.",
+      "whisper": false,
+      "pause_after_ms": 600,
+      "claim_ids": [],
+      "audio": {
+        "path": "audio/L018.wav",
+        "input_hash": "9db5ecfa2a3a90c0",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 5126,
+        "seed": 47698508,
+        "used_seed": 47698508,
+        "qc": {
+          "cps": 13.66,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Người",
+            "start": 0.0,
+            "end": 0.1
+          },
+          {
+            "text": "ta",
+            "start": 0.12,
+            "end": 0.161
+          },
+          {
+            "text": "chỉ",
+            "start": 0.181,
+            "end": 0.241
+          },
+          {
+            "text": "nhìn",
+            "start": 0.261,
+            "end": 0.341
+          },
+          {
+            "text": "thấy",
+            "start": 0.361,
+            "end": 0.442
+          },
+          {
+            "text": "cái",
+            "start": 0.462,
+            "end": 0.522
+          },
+          {
+            "text": "nghèo",
+            "start": 0.542,
+            "end": 0.643
+          },
+          {
+            "text": "trước",
+            "start": 0.663,
+            "end": 0.763
+          },
+          {
+            "text": "mắt",
+            "start": 0.783,
+            "end": 0.843
+          },
+          {
+            "text": "mà",
+            "start": 0.864,
+            "end": 0.904
+          },
+          {
+            "text": "quên",
+            "start": 0.924,
+            "end": 1.004
+          },
+          {
+            "text": "mất",
+            "start": 1.024,
+            "end": 1.084
+          },
+          {
+            "text": "một",
+            "start": 1.105,
+            "end": 1.165
+          },
+          {
+            "text": "tấm",
+            "start": 1.185,
+            "end": 1.245
+          },
+          {
+            "text": "lòng",
+            "start": 1.265,
+            "end": 1.346
+          },
+          {
+            "text": "không",
+            "start": 1.366,
+            "end": 1.466
+          },
+          {
+            "text": "cần",
+            "start": 1.486,
+            "end": 1.546
+          },
+          {
+            "text": "phô",
+            "start": 1.566,
+            "end": 1.627
+          },
+          {
+            "text": "trương.",
+            "start": 1.647,
+            "end": 1.787
+          }
+        ]
+      },
+      "words": [
+        {
+          "text": "Người",
+          "start_ms": 0,
+          "end_ms": 353,
+          "approx": true
+        },
+        {
+          "text": "ta",
+          "start_ms": 353,
+          "end_ms": 494,
+          "approx": true
+        },
+        {
+          "text": "chỉ",
+          "start_ms": 494,
+          "end_ms": 706,
+          "approx": true
+        },
+        {
+          "text": "nhìn",
+          "start_ms": 706,
+          "end_ms": 988,
+          "approx": true
+        },
+        {
+          "text": "thấy",
+          "start_ms": 988,
+          "end_ms": 1270,
+          "approx": true
+        },
+        {
+          "text": "cái",
+          "start_ms": 1270,
+          "end_ms": 1482,
+          "approx": true
+        },
+        {
+          "text": "nghèo",
+          "start_ms": 1482,
+          "end_ms": 1835,
+          "approx": true
+        },
+        {
+          "text": "trước",
+          "start_ms": 1835,
+          "end_ms": 2187,
+          "approx": true
+        },
+        {
+          "text": "mắt,",
+          "start_ms": 2187,
+          "end_ms": 2399,
+          "approx": true
+        },
+        {
+          "text": "mà",
+          "start_ms": 2840,
+          "end_ms": 2967,
+          "approx": true
+        },
+        {
+          "text": "quên",
+          "start_ms": 2967,
+          "end_ms": 3221,
+          "approx": true
+        },
+        {
+          "text": "mất",
+          "start_ms": 3221,
+          "end_ms": 3412,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 3412,
+          "end_ms": 3602,
+          "approx": true
+        },
+        {
+          "text": "tấm",
+          "start_ms": 3602,
+          "end_ms": 3792,
+          "approx": true
+        },
+        {
+          "text": "lòng",
+          "start_ms": 3792,
+          "end_ms": 4046,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 4046,
+          "end_ms": 4364,
+          "approx": true
+        },
+        {
+          "text": "cần",
+          "start_ms": 4364,
+          "end_ms": 4554,
+          "approx": true
+        },
+        {
+          "text": "phô",
+          "start_ms": 4554,
+          "end_ms": 4745,
+          "approx": true
+        },
+        {
+          "text": "trương.",
+          "start_ms": 4745,
+          "end_ms": 5126,
+          "approx": true
+        }
+      ],
+      "words_hash": "9db5ecfa2a3a90c0"
+    }
+  ],
+  "research": null,
+  "source_work": null,
+  "learnings_applied": [],
+  "output": {
+    "video": "out/final.mp4",
+    "captions": "out/captions.ass",
+    "contact_sheet": "out/contact_sheet.png",
+    "qc": "out/qc.json"
+  }
+}

@@ -1,0 +1,3439 @@
+{
+  "schema_version": "1.0",
+  "slug": "bi-an-ca-voi-sat-thu",
+  "canon": null,
+  "brief": {
+    "idea": "Bí ẩn Cá Voi Sát Thủ (Orca): Kẻ săn mồi đỉnh cao đại dương nuốt chửng cả cá mập trắng và cá voi xanh nhưng tuyệt đối không bao giờ hại con người ngoài tự nhiên. Hiệp ước hòa bình ngầm và bộ não tiến hóa 7 triệu năm.",
+    "language": "vi",
+    "aspect": "9:16",
+    "content_type": "factual",
+    "genre": "science-mindblowing",
+    "target_seconds": 60,
+    "captions": {
+      "mode": "karaoke",
+      "style": "karaoke-bold"
+    },
+    "review_mode": "auto"
+  },
+  "state": {
+    "stage": "gate2",
+    "gates": {
+      "script": {
+        "approved_at": "2026-09-30"
+      },
+      "images": {
+        "approved_at": "2026-09-30"
+      }
+    }
+  },
+  "style_bible": {
+    "medium": "Cinematic hyperrealistic wildlife documentary, National Geographic underwater cinematography, crystal clear deep ocean waters, bioluminescent lighting, 8k resolution, dramatic volumetric sunbeams underwater",
+    "palette": [
+      "deep navy ocean",
+      "arctic cyan",
+      "glossy obsidian black",
+      "pure white",
+      "sunbeam amber"
+    ],
+    "lighting": "dramatic volumetric underwater caustics, sunbeams cutting through deep blue sea, high-contrast chiaroscuro, cinematic rim light",
+    "composition": "vertical 9:16 composition with main subject in the upper two thirds and clear lower third for captions",
+    "avoid": [
+      "text",
+      "letters",
+      "watermarks",
+      "logos",
+      "distorted anatomy",
+      "extra fins",
+      "blurry",
+      "cartoon"
+    ]
+  },
+  "cast": [
+    {
+      "id": "narrator",
+      "canon_id": "narrator",
+      "name": "Người kể",
+      "role": "narrator",
+      "appearance": "Narrator voiceover, calm, profound, documentary style",
+      "voice": {
+        "source": "design",
+        "profile_id": "0938cc90",
+        "design_prompt": "male, middle-aged, low pitch",
+        "instruct": "male, middle-aged, low pitch",
+        "selected_name": "The Promo Voice",
+        "archetype_id": "feat_19_the_promo_voice"
+      },
+      "caption_color": "#FFDF00"
+    }
+  ],
+  "locations": [],
+  "slides": [
+    {
+      "id": "S01",
+      "source": "scene-01",
+      "line_ids": [
+        "L001"
+      ],
+      "brief": {
+        "moment": "Thợ lặn đơn độc đối mặt trực diện với một con cá voi sát thủ Orca khổng lồ ở cự ly chỉ vài tấc dưới đáy biển sâu thẳm.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Thợ lặn đối mặt cá voi sát thủ Orca khổng lồ dưới biển sâu"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Cinematic vertical 9:16 shot of a lone scuba diver floating in deep blue ocean water face-to-face with a massive majestic wild killer whale Orca at point-blank range. Intense intelligent eye contact, dramatic Dutch angle, volumetric sunbeams piercing the crystal deep water, chiaroscuro lighting, photorealistic, 8k resolution, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S01.png",
+        "input_hash": "9ce997be1bd0fd38",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S02",
+      "source": "scene-02",
+      "line_ids": [
+        "L002"
+      ],
+      "brief": {
+        "moment": "Đàn cá voi sát thủ Orca năm con bơi rẽ sóng băng giá vùng biển Bắc Cực hùng vĩ.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Đàn Orca bơi rẽ sóng ở vùng biển băng"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Cinematic wide 9:16 vertical shot of a pod of five apex predator killer whales cutting through icy Arctic ocean waters, towering black dorsal fins slicing the surface, snow-capped glaciers in the misty background, dramatic cold rim lighting, National Geographic documentary style, 8k resolution, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S02.png",
+        "input_hash": "1c54b14cb0533b46",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S03",
+      "source": "scene-02",
+      "line_ids": [
+        "L002"
+      ],
+      "brief": {
+        "moment": "Cận cảnh đầu và hàm răng sắc nhọn lởm chởm của cá voi sát thủ Orca ngoi lên mặt nước tung bọt sóng.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cận cảnh đầu và hàm răng nhọn của Orca"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Macro close-up dramatic vertical 9:16 shot of an apex Orca whale's powerful head breaching water, showing rows of conical sharp interlocking predatory teeth, glistening wet black and white skin texture, water droplets freezing in high shutter speed, intense predatory power, 8k resolution, cinematic lighting, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S03.png",
+        "input_hash": "4a89fe0c7f455575",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S04",
+      "source": "scene-03",
+      "line_ids": [
+        "L003"
+      ],
+      "brief": {
+        "moment": "Dưới làn nước sâu, hai con Orca phối hợp tung cú húc trời giáng vào một con cá mập trắng lớn.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Orca phối hợp tấn công cá mập trắng dưới biển"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Underwater wide 9:16 vertical action shot of two tactical Orcas coordinating an attack against a great white shark in deep ocean water, flipping the shark upside down with immense speed and force, dynamic water vortices, bubble trails, high contrast underwater lighting, dramatic wildlife cinematography, 8k resolution, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S04.png",
+        "input_hash": "04044a03636f7988",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S05",
+      "source": "scene-03",
+      "line_ids": [
+        "L003"
+      ],
+      "brief": {
+        "moment": "Vùng nước biển sâu bùng lên vệt xoáy bọt sóng dữ dội khi đàn Orca vây ráp cá voi khổng lồ.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Đàn Orca vây ráp cá voi lớn dưới nước"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "setup"
+      },
+      "visual": {
+        "prompt": "Dynamic medium vertical 9:16 shot of an elite pack of killer whales hunting a colossal blue whale in the open sea, circling gracefully with synchronized tactical precision, shafts of golden sunbeam piercing deep abyss, awe-inspiring scale of ocean titans, 8k resolution, cinematic masterpiece, clean lower third, no text, no watermark.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S05.png",
+        "input_hash": "9c6df8a978da9540",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S06",
+      "source": "scene-04",
+      "line_ids": [
+        "L004"
+      ],
+      "brief": {
+        "moment": "Chiếc thuyền kayak nhỏ bé trên mặt biển phẳng lặng, bên dưới là bóng lưng đen tuyền khổng lồ của một con Orca bơi lướt qua êm đềm.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Chiếc kayak nhỏ bé và con Orca khổng lồ lướt êm bên dưới"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Aerial split-level vertical 9:16 shot of a tiny yellow kayak floating peacefully on glass-like transparent ocean surface, with a gigantic 8-meter wild killer whale gliding effortlessly right beneath the boat without causing a ripple, serene and spine-chilling harmony, 8k resolution, photorealistic, clean lower third, no text, no watermark.",
+        "shot": "medium",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S06.png",
+        "input_hash": "06771643ff9b5cd8",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S07",
+      "source": "scene-05",
+      "line_ids": [
+        "L005"
+      ],
+      "brief": {
+        "moment": "Thợ lặn tự do không bình khí bơi lượn song song với mẹ con cá voi sát thủ trong làn nước trong vắt.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Thợ lặn bơi tự do bên cạnh mẹ con cá voi sát thủ"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Wide angle vertical 9:16 underwater shot of a human freediver swimming peacefully alongside a wild mother Orca and her calf in crystal clear deep turquoise water, complete calm and mutual curiosity, sunlight dancing on whale skin, awe-inspiring interspecies tranquility, 8k resolution, cinematic lighting, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S07.png",
+        "input_hash": "1396c0337d157274",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S08",
+      "source": "scene-05",
+      "line_ids": [
+        "L005"
+      ],
+      "brief": {
+        "moment": "Cá voi sát thủ nghiêng mình 90 độ, dùng mắt quan sát cử động bàn tay thợ lặn tò mò và hiền hòa.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Orca nghiêng mình nhìn thợ lặn ở cự ly gần"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Close-up vertical 9:16 shot of a wild killer whale rolling gently on its side underwater, looking directly into a human diver's open palm with an intelligent, inquisitive expression, gentle eye with deep soul, soft sun caustic reflections on black and white skin, 8k resolution, cinematic documentary realism, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S08.png",
+        "input_hash": "3310681f57f88b5d",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S09",
+      "source": "scene-06",
+      "line_ids": [
+        "L006"
+      ],
+      "brief": {
+        "moment": "Cực cận con mắt sắc bén của cá voi sát thủ phản chiếu ánh sáng mặt trời qua làn nước biển.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cực cận con mắt sắc bén của Orca"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "question"
+      },
+      "visual": {
+        "prompt": "Extreme macro close-up vertical 9:16 shot of a killer whale's eye, intricate pupil details, glistening wet skin with distinctive white eye-patch nearby, deep intelligent gaze reflecting ripples of ocean surface light, mysterious cognitive power, ultra-detailed textures, 8k resolution, cinematic lighting, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S09.png",
+        "input_hash": "f0f04759043f876c",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S10",
+      "source": "scene-07",
+      "line_ids": [
+        "L007"
+      ],
+      "brief": {
+        "moment": "Mô hình đồ họa 3D holographic giải phẫu não bộ Orca phát sáng làm nổi bật thùy viền khổng lồ.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Mô hình 3D não bộ Orca phát sáng trong không gian tối"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Cinematic 3D scientific visualization vertical 9:16 of a translucent bioluminescent Orca whale brain floating in a dark cosmic space, intricate neural lobes glowing with electric cyan and bright amber-gold, highlighting an enormous complex paralimbic emotional system with branching synapse pathways, 8k resolution, medical CGI, clean lower third, no text, no watermark.",
+        "shot": "medium",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S10.png",
+        "input_hash": "c051dabdcbc01d4b",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S11",
+      "source": "scene-07",
+      "line_ids": [
+        "L007"
+      ],
+      "brief": {
+        "moment": "So sánh quét cắt lớp 3D hai bộ não người và Orca đặt cạnh nhau tỏa sáng rực rỡ.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "So sánh mô hình não người và não Orca phát sáng"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Side-by-side 3D holographic comparison vertical 9:16 shot of a human brain next to a gigantic Orca brain in dark visualization laboratory, both glowing with pulsating neural fibers, showing the Orca's emotional cortex significantly larger and more convoluted with vibrant electric purple and cyan light, 8k resolution, scientific CGI, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S11.png",
+        "input_hash": "d325f1f40eb85185",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S12",
+      "source": "scene-08",
+      "line_ids": [
+        "L008"
+      ],
+      "brief": {
+        "moment": "Đàn Orca bơi thành hàng ngang uy nghi, phát ra các luồng sóng âm sonar phản quang màu cyan dưới biển sâu.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Đàn Orca bơi hàng ngang với sóng âm sonar phát sáng"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Wide majestic vertical 9:16 underwater shot of a pod of killer whales swimming in formation through deep sapphire ocean, subtle glowing cyan acoustic sonar waveforms radiating from their heads visualizing complex dialect communication, breathtaking ethereal ocean atmosphere, 8k resolution, cinematic lighting, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S12.png",
+        "input_hash": "554fea634ae6e376",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S13",
+      "source": "scene-08",
+      "line_ids": [
+        "L008"
+      ],
+      "brief": {
+        "moment": "Cá voi sát thủ mẹ bơi kề sát, cọ đầu và truyền dạy cho cá voi con bên cạnh.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Cá voi sát thủ mẹ bơi cọ đầu dạy cá voi con"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reveal"
+      },
+      "visual": {
+        "prompt": "Heartwarming close-up vertical 9:16 underwater shot of an Orca mother nuzzling heads tenderly with her young baby calf, teaching swim navigation in sunlit shallow coastal water, gentle ripples and amber light rays, intergenerational culture transmission, 8k resolution, National Geographic documentary style, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S13.png",
+        "input_hash": "94800da87c8ecea0",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S14",
+      "source": "scene-09",
+      "line_ids": [
+        "L009"
+      ],
+      "brief": {
+        "moment": "Tái hiện lịch sử tại vịnh Twofold (Úc), đàn Orca bơi báo hiệu trước mũi thuyền buồm gỗ thế kỷ 19.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Đàn Orca bơi trước thuyền buồm gỗ cổ thế kỷ 19"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Cinematic historical reconstruction vertical 9:16 wide shot in Twofold Bay Australia in the late 19th century, a vintage wooden whaling sailboat gliding on moody mist-covered waters with a pod of wild killer whales swimming guide ahead of the bow, sepia-toned cinematic daylight, authentic maritime history, 8k resolution, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "static",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S14.png",
+        "input_hash": "be9d59870f9178e1",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S15",
+      "source": "scene-09",
+      "line_ids": [
+        "L009"
+      ],
+      "brief": {
+        "moment": "Con Orca đầu đàn Old Tom quẫy đuôi đập nước bên mạn thuyền gỗ cổ báo hiệu cho ngư dân.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Con Orca đập nước bên mạn thuyền gỗ"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "reversal"
+      },
+      "visual": {
+        "prompt": "Dynamic medium vertical 9:16 shot of the famous historic killer whale Old Tom tail-slapping the ocean surface next to the wooden hull of an old ship, splashing white spray to alert human fishermen, moody 1800s coastal weather, dramatic maritime alliance, 8k resolution, photorealistic, clean lower third, no text, no watermark.",
+        "shot": "medium",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S15.png",
+        "input_hash": "3728b8f98f2b4b0d",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S16",
+      "source": "scene-10",
+      "line_ids": [
+        "L010"
+      ],
+      "brief": {
+        "moment": "Góc nhìn cận cảnh ánh mắt thấu hiểu sâu sắc của cá voi sát thủ nhìn xuyên qua mặt nước lên trời.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Ánh mắt thấu hiểu của cá voi sát thủ nhìn lên mặt nước"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Poignant close-up vertical 9:16 underwater shot looking up at an Orca whale's face resting just beneath surface, its deep glossy eye gazing upward with undeniable intelligence and consciousness, golden sunset light breaking through sea mirror, profound contemplation, 8k resolution, cinematic lighting, clean lower third, no text, no watermark.",
+        "shot": "close-up",
+        "motion": "push_in",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S16.png",
+        "input_hash": "59ccdb6343827050",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S17",
+      "source": "scene-10",
+      "line_ids": [
+        "L010"
+      ],
+      "brief": {
+        "moment": "Toàn cảnh hoành tráng đàn Orca nhảy vọt lên không trung hoàng hôn biển, vảy nước bắn tung tóe.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Đàn Orca nhảy vọt lên không trung lúc hoàng hôn"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "emotional"
+      },
+      "visual": {
+        "prompt": "Breathtaking wide vertical 9:16 shot of three magnificent killer whales breaching high out of the ocean in unison against an epic fiery orange and violet sunset sky, crystal water spray scattering in golden backlight, freedom and sovereignty of ocean apex rulers, 8k resolution, cinematic masterpiece, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S17.png",
+        "input_hash": "6d22289e3432aa4b",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    },
+    {
+      "id": "S18",
+      "source": "scene-11",
+      "line_ids": [
+        "L011"
+      ],
+      "brief": {
+        "moment": "Toàn cảnh bóng cá voi sát thủ lặn dần vào lòng đại dương bao la dưới ánh trăng bạc, chuẩn bị loop lại cảnh mở đầu.",
+        "characters": [],
+        "location": null,
+        "must_show": [
+          "Bóng Orca lặn vào lòng đại dương xanh thẳm"
+        ],
+        "must_not_show": [
+          "text",
+          "watermark",
+          "letters"
+        ],
+        "continuity": [],
+        "beat": "resolution"
+      },
+      "visual": {
+        "prompt": "Mystical wide vertical 9:16 underwater shot of a giant solitary killer whale diving down into the endless deep sapphire abyss under shimmering silver moonlight beams, silent and eternal ocean sanctuary, camera slowly drifting down toward the viewpoint of the diver in slide one, seamless loop aesthetic, 8k resolution, cinematic lighting, clean lower third, no text, no watermark.",
+        "shot": "wide",
+        "motion": "pull_out",
+        "text_placement": "lower_third"
+      },
+      "image": {
+        "path": "images/S18.png",
+        "input_hash": "999dac64fcb6d34e",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "seed": null
+      }
+    }
+  ],
+  "lines": [
+    {
+      "id": "L001",
+      "speaker": "narrator",
+      "text": "Kẻ xé xác cá mập trắng, nhưng tuyệt đối không bao giờ hại bạn?",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L001.wav",
+        "input_hash": "df2296e2ac9c4311",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 2884,
+        "seed": 1872719969,
+        "qc": {
+          "cps": 16.3,
+          "cer": 0.128,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Kẻ",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "xe",
+            "start": 0.06,
+            "end": 0.101
+          },
+          {
+            "text": "xa",
+            "start": 0.121,
+            "end": 0.161
+          },
+          {
+            "text": "cầm",
+            "start": 0.181,
+            "end": 0.242
+          },
+          {
+            "text": "ập",
+            "start": 0.262,
+            "end": 0.302
+          },
+          {
+            "text": "trắng",
+            "start": 0.322,
+            "end": 0.423
+          },
+          {
+            "text": "nhưng",
+            "start": 0.443,
+            "end": 0.544
+          },
+          {
+            "text": "tuyệt",
+            "start": 0.564,
+            "end": 0.665
+          },
+          {
+            "text": "đối",
+            "start": 0.685,
+            "end": 0.745
+          },
+          {
+            "text": "không",
+            "start": 0.766,
+            "end": 0.866
+          },
+          {
+            "text": "bao",
+            "start": 0.886,
+            "end": 0.947
+          },
+          {
+            "text": "giờ",
+            "start": 0.967,
+            "end": 1.027
+          },
+          {
+            "text": "hai",
+            "start": 1.048,
+            "end": 1.108
+          },
+          {
+            "text": "bàn.",
+            "start": 1.128,
+            "end": 1.209
+          }
+        ],
+        "used_seed": 1872719969
+      },
+      "words": [
+        {
+          "text": "Kẻ",
+          "start_ms": 0,
+          "end_ms": 123,
+          "approx": true
+        },
+        {
+          "text": "xé",
+          "start_ms": 123,
+          "end_ms": 245,
+          "approx": true
+        },
+        {
+          "text": "xác",
+          "start_ms": 245,
+          "end_ms": 430,
+          "approx": true
+        },
+        {
+          "text": "cá",
+          "start_ms": 430,
+          "end_ms": 552,
+          "approx": true
+        },
+        {
+          "text": "mập",
+          "start_ms": 552,
+          "end_ms": 736,
+          "approx": true
+        },
+        {
+          "text": "trắng,",
+          "start_ms": 736,
+          "end_ms": 1043,
+          "approx": true
+        },
+        {
+          "text": "nhưng",
+          "start_ms": 1043,
+          "end_ms": 1350,
+          "approx": true
+        },
+        {
+          "text": "tuyệt",
+          "start_ms": 1350,
+          "end_ms": 1657,
+          "approx": true
+        },
+        {
+          "text": "đối",
+          "start_ms": 1657,
+          "end_ms": 1841,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 1841,
+          "end_ms": 2148,
+          "approx": true
+        },
+        {
+          "text": "bao",
+          "start_ms": 2148,
+          "end_ms": 2332,
+          "approx": true
+        },
+        {
+          "text": "giờ",
+          "start_ms": 2332,
+          "end_ms": 2516,
+          "approx": true
+        },
+        {
+          "text": "hại",
+          "start_ms": 2516,
+          "end_ms": 2700,
+          "approx": true
+        },
+        {
+          "text": "bạn?",
+          "start_ms": 2700,
+          "end_ms": 2884,
+          "approx": true
+        }
+      ],
+      "words_hash": "df2296e2ac9c4311"
+    },
+    {
+      "id": "L002",
+      "speaker": "narrator",
+      "text": "Cá voi sát thủ Orca là bá chủ đại dương, thông minh và tàn bạo nhất hành tinh.",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L002.wav",
+        "input_hash": "95d40a43f0b91914",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4288,
+        "seed": 1978924147,
+        "qc": {
+          "cps": 13.76,
+          "cer": 0.034,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Cà",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "vôi",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "sát",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "thủ",
+            "start": 0.221,
+            "end": 0.281
+          },
+          {
+            "text": "Orca",
+            "start": 0.301,
+            "end": 0.382
+          },
+          {
+            "text": "là",
+            "start": 0.402,
+            "end": 0.442
+          },
+          {
+            "text": "bá",
+            "start": 0.462,
+            "end": 0.502
+          },
+          {
+            "text": "chủ",
+            "start": 0.523,
+            "end": 0.583
+          },
+          {
+            "text": "đại",
+            "start": 0.603,
+            "end": 0.663
+          },
+          {
+            "text": "dương",
+            "start": 0.683,
+            "end": 0.784
+          },
+          {
+            "text": "thông",
+            "start": 0.804,
+            "end": 0.904
+          },
+          {
+            "text": "minh",
+            "start": 0.924,
+            "end": 1.005
+          },
+          {
+            "text": "và",
+            "start": 1.025,
+            "end": 1.065
+          },
+          {
+            "text": "tàn",
+            "start": 1.085,
+            "end": 1.146
+          },
+          {
+            "text": "bạo",
+            "start": 1.166,
+            "end": 1.226
+          },
+          {
+            "text": "nhất",
+            "start": 1.246,
+            "end": 1.326
+          },
+          {
+            "text": "hành",
+            "start": 1.347,
+            "end": 1.427
+          },
+          {
+            "text": "tinh.",
+            "start": 1.447,
+            "end": 1.547
+          }
+        ],
+        "used_seed": 1978924147
+      },
+      "words": [
+        {
+          "text": "Cá",
+          "start_ms": 0,
+          "end_ms": 145,
+          "approx": true
+        },
+        {
+          "text": "voi",
+          "start_ms": 145,
+          "end_ms": 363,
+          "approx": true
+        },
+        {
+          "text": "sát",
+          "start_ms": 363,
+          "end_ms": 581,
+          "approx": true
+        },
+        {
+          "text": "thủ",
+          "start_ms": 581,
+          "end_ms": 799,
+          "approx": true
+        },
+        {
+          "text": "Orca",
+          "start_ms": 799,
+          "end_ms": 1090,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 1090,
+          "end_ms": 1236,
+          "approx": true
+        },
+        {
+          "text": "bá",
+          "start_ms": 1236,
+          "end_ms": 1381,
+          "approx": true
+        },
+        {
+          "text": "chủ",
+          "start_ms": 1381,
+          "end_ms": 1599,
+          "approx": true
+        },
+        {
+          "text": "đại",
+          "start_ms": 1599,
+          "end_ms": 1817,
+          "approx": true
+        },
+        {
+          "text": "dương,",
+          "start_ms": 1817,
+          "end_ms": 2180,
+          "approx": true
+        },
+        {
+          "text": "thông",
+          "start_ms": 2180,
+          "end_ms": 2544,
+          "approx": true
+        },
+        {
+          "text": "minh",
+          "start_ms": 2544,
+          "end_ms": 2834,
+          "approx": true
+        },
+        {
+          "text": "và",
+          "start_ms": 2834,
+          "end_ms": 2980,
+          "approx": true
+        },
+        {
+          "text": "tàn",
+          "start_ms": 2980,
+          "end_ms": 3198,
+          "approx": true
+        },
+        {
+          "text": "bạo",
+          "start_ms": 3198,
+          "end_ms": 3416,
+          "approx": true
+        },
+        {
+          "text": "nhất",
+          "start_ms": 3416,
+          "end_ms": 3707,
+          "approx": true
+        },
+        {
+          "text": "hành",
+          "start_ms": 3707,
+          "end_ms": 3997,
+          "approx": true
+        },
+        {
+          "text": "tinh.",
+          "start_ms": 3997,
+          "end_ms": 4288,
+          "approx": true
+        }
+      ],
+      "words_hash": "95d40a43f0b91914"
+    },
+    {
+      "id": "L003",
+      "speaker": "narrator",
+      "text": "Chúng đánh bật cá mập trắng, xé toạc gan cá voi xanh khổng lồ trong chớp mắt.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L003.wav",
+        "input_hash": "2d3f1b9b31078021",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4267,
+        "seed": 2105776669,
+        "qc": {
+          "cps": 13.83,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Chúng",
+            "start": 0.0,
+            "end": 0.1
+          },
+          {
+            "text": "đánh",
+            "start": 0.121,
+            "end": 0.201
+          },
+          {
+            "text": "bật",
+            "start": 0.221,
+            "end": 0.281
+          },
+          {
+            "text": "cá",
+            "start": 0.301,
+            "end": 0.342
+          },
+          {
+            "text": "mập",
+            "start": 0.362,
+            "end": 0.422
+          },
+          {
+            "text": "trắng,",
+            "start": 0.442,
+            "end": 0.563
+          },
+          {
+            "text": "xé",
+            "start": 0.583,
+            "end": 0.623
+          },
+          {
+            "text": "toạc",
+            "start": 0.643,
+            "end": 0.724
+          },
+          {
+            "text": "gan",
+            "start": 0.744,
+            "end": 0.804
+          },
+          {
+            "text": "cá",
+            "start": 0.824,
+            "end": 0.864
+          },
+          {
+            "text": "voi",
+            "start": 0.884,
+            "end": 0.945
+          },
+          {
+            "text": "xanh",
+            "start": 0.965,
+            "end": 1.045
+          },
+          {
+            "text": "khổng",
+            "start": 1.065,
+            "end": 1.166
+          },
+          {
+            "text": "lồ",
+            "start": 1.186,
+            "end": 1.226
+          },
+          {
+            "text": "trong",
+            "start": 1.246,
+            "end": 1.347
+          },
+          {
+            "text": "chớp",
+            "start": 1.367,
+            "end": 1.447
+          },
+          {
+            "text": "mắt.",
+            "start": 1.467,
+            "end": 1.548
+          }
+        ],
+        "used_seed": 2105776669
+      },
+      "words": [
+        {
+          "text": "Chúng",
+          "start_ms": 0,
+          "end_ms": 362,
+          "approx": true
+        },
+        {
+          "text": "đánh",
+          "start_ms": 362,
+          "end_ms": 651,
+          "approx": true
+        },
+        {
+          "text": "bật",
+          "start_ms": 651,
+          "end_ms": 868,
+          "approx": true
+        },
+        {
+          "text": "cá",
+          "start_ms": 868,
+          "end_ms": 1013,
+          "approx": true
+        },
+        {
+          "text": "mập",
+          "start_ms": 1013,
+          "end_ms": 1229,
+          "approx": true
+        },
+        {
+          "text": "trắng,",
+          "start_ms": 1229,
+          "end_ms": 1591,
+          "approx": true
+        },
+        {
+          "text": "xé",
+          "start_ms": 1591,
+          "end_ms": 1736,
+          "approx": true
+        },
+        {
+          "text": "toạc",
+          "start_ms": 1736,
+          "end_ms": 2025,
+          "approx": true
+        },
+        {
+          "text": "gan",
+          "start_ms": 2025,
+          "end_ms": 2242,
+          "approx": true
+        },
+        {
+          "text": "cá",
+          "start_ms": 2242,
+          "end_ms": 2387,
+          "approx": true
+        },
+        {
+          "text": "voi",
+          "start_ms": 2387,
+          "end_ms": 2604,
+          "approx": true
+        },
+        {
+          "text": "xanh",
+          "start_ms": 2604,
+          "end_ms": 2893,
+          "approx": true
+        },
+        {
+          "text": "khổng",
+          "start_ms": 2893,
+          "end_ms": 3254,
+          "approx": true
+        },
+        {
+          "text": "lồ",
+          "start_ms": 3254,
+          "end_ms": 3399,
+          "approx": true
+        },
+        {
+          "text": "trong",
+          "start_ms": 3399,
+          "end_ms": 3761,
+          "approx": true
+        },
+        {
+          "text": "chớp",
+          "start_ms": 3761,
+          "end_ms": 4050,
+          "approx": true
+        },
+        {
+          "text": "mắt.",
+          "start_ms": 4050,
+          "end_ms": 4267,
+          "approx": true
+        }
+      ],
+      "words_hash": "2d3f1b9b31078021"
+    },
+    {
+      "id": "L004",
+      "speaker": "narrator",
+      "text": "Nhưng suốt chiều dài lịch sử tự nhiên, chưa từng có một vụ Orca hoang dã nào săn người!",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L004.wav",
+        "input_hash": "4fc60cca3e55af7a",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4842,
+        "seed": 884904768,
+        "qc": {
+          "cps": 13.84,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Nhưng",
+            "start": 0.0,
+            "end": 0.1
+          },
+          {
+            "text": "suốt",
+            "start": 0.121,
+            "end": 0.201
+          },
+          {
+            "text": "chiều",
+            "start": 0.221,
+            "end": 0.321
+          },
+          {
+            "text": "dài",
+            "start": 0.341,
+            "end": 0.402
+          },
+          {
+            "text": "lịch",
+            "start": 0.422,
+            "end": 0.502
+          },
+          {
+            "text": "sử",
+            "start": 0.522,
+            "end": 0.562
+          },
+          {
+            "text": "tự",
+            "start": 0.583,
+            "end": 0.623
+          },
+          {
+            "text": "nhiên,",
+            "start": 0.643,
+            "end": 0.763
+          },
+          {
+            "text": "chưa",
+            "start": 0.783,
+            "end": 0.864
+          },
+          {
+            "text": "từng",
+            "start": 0.884,
+            "end": 0.964
+          },
+          {
+            "text": "có",
+            "start": 0.984,
+            "end": 1.024
+          },
+          {
+            "text": "một",
+            "start": 1.045,
+            "end": 1.105
+          },
+          {
+            "text": "vụ",
+            "start": 1.125,
+            "end": 1.165
+          },
+          {
+            "text": "orca",
+            "start": 1.185,
+            "end": 1.266
+          },
+          {
+            "text": "hoang",
+            "start": 1.286,
+            "end": 1.386
+          },
+          {
+            "text": "dã",
+            "start": 1.406,
+            "end": 1.446
+          },
+          {
+            "text": "nào",
+            "start": 1.466,
+            "end": 1.527
+          },
+          {
+            "text": "săn",
+            "start": 1.547,
+            "end": 1.607
+          },
+          {
+            "text": "người.",
+            "start": 1.627,
+            "end": 1.748
+          }
+        ],
+        "used_seed": 884904768
+      },
+      "words": [
+        {
+          "text": "Nhưng",
+          "start_ms": 0,
+          "end_ms": 361,
+          "approx": true
+        },
+        {
+          "text": "suốt",
+          "start_ms": 361,
+          "end_ms": 650,
+          "approx": true
+        },
+        {
+          "text": "chiều",
+          "start_ms": 650,
+          "end_ms": 1012,
+          "approx": true
+        },
+        {
+          "text": "dài",
+          "start_ms": 1012,
+          "end_ms": 1229,
+          "approx": true
+        },
+        {
+          "text": "lịch",
+          "start_ms": 1229,
+          "end_ms": 1518,
+          "approx": true
+        },
+        {
+          "text": "sử",
+          "start_ms": 1518,
+          "end_ms": 1662,
+          "approx": true
+        },
+        {
+          "text": "tự",
+          "start_ms": 1662,
+          "end_ms": 1807,
+          "approx": true
+        },
+        {
+          "text": "nhiên,",
+          "start_ms": 1807,
+          "end_ms": 2168,
+          "approx": true
+        },
+        {
+          "text": "chưa",
+          "start_ms": 2168,
+          "end_ms": 2457,
+          "approx": true
+        },
+        {
+          "text": "từng",
+          "start_ms": 2457,
+          "end_ms": 2746,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 2746,
+          "end_ms": 2891,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 2891,
+          "end_ms": 3108,
+          "approx": true
+        },
+        {
+          "text": "vụ",
+          "start_ms": 3108,
+          "end_ms": 3252,
+          "approx": true
+        },
+        {
+          "text": "Orca",
+          "start_ms": 3252,
+          "end_ms": 3541,
+          "approx": true
+        },
+        {
+          "text": "hoang",
+          "start_ms": 3541,
+          "end_ms": 3903,
+          "approx": true
+        },
+        {
+          "text": "dã",
+          "start_ms": 3903,
+          "end_ms": 4047,
+          "approx": true
+        },
+        {
+          "text": "nào",
+          "start_ms": 4047,
+          "end_ms": 4264,
+          "approx": true
+        },
+        {
+          "text": "săn",
+          "start_ms": 4264,
+          "end_ms": 4481,
+          "approx": true
+        },
+        {
+          "text": "người!",
+          "start_ms": 4481,
+          "end_ms": 4842,
+          "approx": true
+        }
+      ],
+      "words_hash": "4fc60cca3e55af7a"
+    },
+    {
+      "id": "L005",
+      "speaker": "narrator",
+      "text": "Vì thế, thợ lặn bơi giữa đàn Orca đói chỉ nhận lại những ánh nhìn tò mò, bình thản.",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L005.wav",
+        "input_hash": "ea4df2e8a7e61837",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4473,
+        "seed": 202535066,
+        "qc": {
+          "cps": 13.86,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Vì",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "thế",
+            "start": 0.06,
+            "end": 0.121
+          },
+          {
+            "text": "thợ",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "lặn",
+            "start": 0.221,
+            "end": 0.281
+          },
+          {
+            "text": "bơi",
+            "start": 0.301,
+            "end": 0.362
+          },
+          {
+            "text": "giữa",
+            "start": 0.382,
+            "end": 0.462
+          },
+          {
+            "text": "đàn",
+            "start": 0.482,
+            "end": 0.543
+          },
+          {
+            "text": "orca",
+            "start": 0.563,
+            "end": 0.643
+          },
+          {
+            "text": "đói",
+            "start": 0.663,
+            "end": 0.723
+          },
+          {
+            "text": "chỉ",
+            "start": 0.743,
+            "end": 0.804
+          },
+          {
+            "text": "nhận",
+            "start": 0.824,
+            "end": 0.904
+          },
+          {
+            "text": "lại",
+            "start": 0.924,
+            "end": 0.985
+          },
+          {
+            "text": "những",
+            "start": 1.005,
+            "end": 1.105
+          },
+          {
+            "text": "ánh",
+            "start": 1.125,
+            "end": 1.186
+          },
+          {
+            "text": "nhìn",
+            "start": 1.206,
+            "end": 1.286
+          },
+          {
+            "text": "tò",
+            "start": 1.306,
+            "end": 1.346
+          },
+          {
+            "text": "mò",
+            "start": 1.366,
+            "end": 1.407
+          },
+          {
+            "text": "bình",
+            "start": 1.427,
+            "end": 1.507
+          },
+          {
+            "text": "thản.",
+            "start": 1.527,
+            "end": 1.628
+          }
+        ],
+        "used_seed": 202535066
+      },
+      "words": [
+        {
+          "text": "Vì",
+          "start_ms": 0,
+          "end_ms": 144,
+          "approx": true
+        },
+        {
+          "text": "thế,",
+          "start_ms": 144,
+          "end_ms": 361,
+          "approx": true
+        },
+        {
+          "text": "thợ",
+          "start_ms": 361,
+          "end_ms": 577,
+          "approx": true
+        },
+        {
+          "text": "lặn",
+          "start_ms": 577,
+          "end_ms": 794,
+          "approx": true
+        },
+        {
+          "text": "bơi",
+          "start_ms": 794,
+          "end_ms": 1010,
+          "approx": true
+        },
+        {
+          "text": "giữa",
+          "start_ms": 1010,
+          "end_ms": 1299,
+          "approx": true
+        },
+        {
+          "text": "đàn",
+          "start_ms": 1299,
+          "end_ms": 1515,
+          "approx": true
+        },
+        {
+          "text": "Orca",
+          "start_ms": 1515,
+          "end_ms": 1804,
+          "approx": true
+        },
+        {
+          "text": "đói",
+          "start_ms": 1804,
+          "end_ms": 2020,
+          "approx": true
+        },
+        {
+          "text": "chỉ",
+          "start_ms": 2020,
+          "end_ms": 2236,
+          "approx": true
+        },
+        {
+          "text": "nhận",
+          "start_ms": 2236,
+          "end_ms": 2525,
+          "approx": true
+        },
+        {
+          "text": "lại",
+          "start_ms": 2525,
+          "end_ms": 2742,
+          "approx": true
+        },
+        {
+          "text": "những",
+          "start_ms": 2742,
+          "end_ms": 3102,
+          "approx": true
+        },
+        {
+          "text": "ánh",
+          "start_ms": 3102,
+          "end_ms": 3319,
+          "approx": true
+        },
+        {
+          "text": "nhìn",
+          "start_ms": 3319,
+          "end_ms": 3607,
+          "approx": true
+        },
+        {
+          "text": "tò",
+          "start_ms": 3607,
+          "end_ms": 3752,
+          "approx": true
+        },
+        {
+          "text": "mò,",
+          "start_ms": 3752,
+          "end_ms": 3896,
+          "approx": true
+        },
+        {
+          "text": "bình",
+          "start_ms": 3896,
+          "end_ms": 4184,
+          "approx": true
+        },
+        {
+          "text": "thản.",
+          "start_ms": 4184,
+          "end_ms": 4473,
+          "approx": true
+        }
+      ],
+      "words_hash": "ea4df2e8a7e61837"
+    },
+    {
+      "id": "L006",
+      "speaker": "narrator",
+      "text": "Nhưng đừng lầm tưởng vì thịt người dở, hay mắt chúng không phân biệt được.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L006.wav",
+        "input_hash": "c5cbe90288fca785",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4175,
+        "seed": 128956968,
+        "qc": {
+          "cps": 13.89,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Nhưng",
+            "start": 0.0,
+            "end": 0.101
+          },
+          {
+            "text": "đừng",
+            "start": 0.121,
+            "end": 0.201
+          },
+          {
+            "text": "lầm",
+            "start": 0.221,
+            "end": 0.281
+          },
+          {
+            "text": "tưởng",
+            "start": 0.302,
+            "end": 0.402
+          },
+          {
+            "text": "vì",
+            "start": 0.422,
+            "end": 0.462
+          },
+          {
+            "text": "thịt",
+            "start": 0.482,
+            "end": 0.563
+          },
+          {
+            "text": "người",
+            "start": 0.583,
+            "end": 0.683
+          },
+          {
+            "text": "dở",
+            "start": 0.704,
+            "end": 0.744
+          },
+          {
+            "text": "hay",
+            "start": 0.764,
+            "end": 0.824
+          },
+          {
+            "text": "mắt",
+            "start": 0.844,
+            "end": 0.905
+          },
+          {
+            "text": "chúng",
+            "start": 0.925,
+            "end": 1.025
+          },
+          {
+            "text": "không",
+            "start": 1.045,
+            "end": 1.146
+          },
+          {
+            "text": "phân",
+            "start": 1.166,
+            "end": 1.246
+          },
+          {
+            "text": "biệt",
+            "start": 1.266,
+            "end": 1.347
+          },
+          {
+            "text": "được",
+            "start": 1.367,
+            "end": 1.447
+          }
+        ],
+        "used_seed": 128956968
+      },
+      "words": [
+        {
+          "text": "Nhưng",
+          "start_ms": 0,
+          "end_ms": 360,
+          "approx": true
+        },
+        {
+          "text": "đừng",
+          "start_ms": 360,
+          "end_ms": 648,
+          "approx": true
+        },
+        {
+          "text": "lầm",
+          "start_ms": 648,
+          "end_ms": 864,
+          "approx": true
+        },
+        {
+          "text": "tưởng",
+          "start_ms": 864,
+          "end_ms": 1224,
+          "approx": true
+        },
+        {
+          "text": "vì",
+          "start_ms": 1224,
+          "end_ms": 1368,
+          "approx": true
+        },
+        {
+          "text": "thịt",
+          "start_ms": 1368,
+          "end_ms": 1656,
+          "approx": true
+        },
+        {
+          "text": "người",
+          "start_ms": 1656,
+          "end_ms": 2016,
+          "approx": true
+        },
+        {
+          "text": "dở,",
+          "start_ms": 2016,
+          "end_ms": 2159,
+          "approx": true
+        },
+        {
+          "text": "hay",
+          "start_ms": 2159,
+          "end_ms": 2375,
+          "approx": true
+        },
+        {
+          "text": "mắt",
+          "start_ms": 2375,
+          "end_ms": 2591,
+          "approx": true
+        },
+        {
+          "text": "chúng",
+          "start_ms": 2591,
+          "end_ms": 2951,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 2951,
+          "end_ms": 3311,
+          "approx": true
+        },
+        {
+          "text": "phân",
+          "start_ms": 3311,
+          "end_ms": 3599,
+          "approx": true
+        },
+        {
+          "text": "biệt",
+          "start_ms": 3599,
+          "end_ms": 3887,
+          "approx": true
+        },
+        {
+          "text": "được.",
+          "start_ms": 3887,
+          "end_ms": 4175,
+          "approx": true
+        }
+      ],
+      "words_hash": "c5cbe90288fca785"
+    },
+    {
+      "id": "L007",
+      "speaker": "narrator",
+      "text": "Vì các nhà thần kinh học phát hiện: não Orca có thùy cảm xúc và thấu cảm vượt trội cả con người!",
+      "whisper": false,
+      "pause_after_ms": 250,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L007.wav",
+        "input_hash": "3f92f4e780a5fa36",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 5338,
+        "seed": 301247549,
+        "qc": {
+          "cps": 13.68,
+          "cer": 0.014,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Vì",
+            "start": 0.0,
+            "end": 0.04
+          },
+          {
+            "text": "các",
+            "start": 0.06,
+            "end": 0.12
+          },
+          {
+            "text": "nhà",
+            "start": 0.141,
+            "end": 0.201
+          },
+          {
+            "text": "thần",
+            "start": 0.221,
+            "end": 0.301
+          },
+          {
+            "text": "kinh",
+            "start": 0.321,
+            "end": 0.402
+          },
+          {
+            "text": "học",
+            "start": 0.422,
+            "end": 0.482
+          },
+          {
+            "text": "phát",
+            "start": 0.502,
+            "end": 0.582
+          },
+          {
+            "text": "hiện,",
+            "start": 0.602,
+            "end": 0.703
+          },
+          {
+            "text": "Nao",
+            "start": 0.723,
+            "end": 0.783
+          },
+          {
+            "text": "Orca",
+            "start": 0.803,
+            "end": 0.883
+          },
+          {
+            "text": "có",
+            "start": 0.904,
+            "end": 0.944
+          },
+          {
+            "text": "thùy",
+            "start": 0.964,
+            "end": 1.044
+          },
+          {
+            "text": "cảm",
+            "start": 1.064,
+            "end": 1.124
+          },
+          {
+            "text": "xúc",
+            "start": 1.145,
+            "end": 1.205
+          },
+          {
+            "text": "và",
+            "start": 1.225,
+            "end": 1.265
+          },
+          {
+            "text": "thấu",
+            "start": 1.285,
+            "end": 1.365
+          },
+          {
+            "text": "cảm",
+            "start": 1.385,
+            "end": 1.446
+          },
+          {
+            "text": "vượt",
+            "start": 1.466,
+            "end": 1.546
+          },
+          {
+            "text": "trội",
+            "start": 1.566,
+            "end": 1.646
+          },
+          {
+            "text": "cả",
+            "start": 1.667,
+            "end": 1.707
+          },
+          {
+            "text": "con",
+            "start": 1.727,
+            "end": 1.787
+          },
+          {
+            "text": "người.",
+            "start": 1.807,
+            "end": 1.928
+          }
+        ],
+        "used_seed": 301247549
+      },
+      "words": [
+        {
+          "text": "Vì",
+          "start_ms": 0,
+          "end_ms": 113,
+          "approx": true
+        },
+        {
+          "text": "các",
+          "start_ms": 113,
+          "end_ms": 282,
+          "approx": true
+        },
+        {
+          "text": "nhà",
+          "start_ms": 282,
+          "end_ms": 452,
+          "approx": true
+        },
+        {
+          "text": "thần",
+          "start_ms": 452,
+          "end_ms": 677,
+          "approx": true
+        },
+        {
+          "text": "kinh",
+          "start_ms": 677,
+          "end_ms": 903,
+          "approx": true
+        },
+        {
+          "text": "học",
+          "start_ms": 903,
+          "end_ms": 1072,
+          "approx": true
+        },
+        {
+          "text": "phát",
+          "start_ms": 1072,
+          "end_ms": 1298,
+          "approx": true
+        },
+        {
+          "text": "hiện:",
+          "start_ms": 1298,
+          "end_ms": 1524,
+          "approx": true
+        },
+        {
+          "text": "não",
+          "start_ms": 1703,
+          "end_ms": 1940,
+          "approx": true
+        },
+        {
+          "text": "Orca",
+          "start_ms": 1940,
+          "end_ms": 2256,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 2256,
+          "end_ms": 2414,
+          "approx": true
+        },
+        {
+          "text": "thùy",
+          "start_ms": 2414,
+          "end_ms": 2730,
+          "approx": true
+        },
+        {
+          "text": "cảm",
+          "start_ms": 2730,
+          "end_ms": 2967,
+          "approx": true
+        },
+        {
+          "text": "xúc",
+          "start_ms": 2967,
+          "end_ms": 3204,
+          "approx": true
+        },
+        {
+          "text": "và",
+          "start_ms": 3204,
+          "end_ms": 3362,
+          "approx": true
+        },
+        {
+          "text": "thấu",
+          "start_ms": 3362,
+          "end_ms": 3679,
+          "approx": true
+        },
+        {
+          "text": "cảm",
+          "start_ms": 3679,
+          "end_ms": 3916,
+          "approx": true
+        },
+        {
+          "text": "vượt",
+          "start_ms": 3916,
+          "end_ms": 4232,
+          "approx": true
+        },
+        {
+          "text": "trội",
+          "start_ms": 4232,
+          "end_ms": 4548,
+          "approx": true
+        },
+        {
+          "text": "cả",
+          "start_ms": 4548,
+          "end_ms": 4706,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 4706,
+          "end_ms": 4943,
+          "approx": true
+        },
+        {
+          "text": "người!",
+          "start_ms": 4943,
+          "end_ms": 5338,
+          "approx": true
+        }
+      ],
+      "words_hash": "3f92f4e780a5fa36"
+    },
+    {
+      "id": "L008",
+      "speaker": "narrator",
+      "text": "Chúng có ngôn ngữ riêng, và truyền thống văn hóa dạy con cháu qua hàng trăm thế hệ: không hại con người.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L008.wav",
+        "input_hash": "8eb1dde9fba332d9",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 5768,
+        "seed": 1722690390,
+        "qc": {
+          "cps": 13.87,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Chúng",
+            "start": 0.0,
+            "end": 0.1
+          },
+          {
+            "text": "có",
+            "start": 0.12,
+            "end": 0.161
+          },
+          {
+            "text": "ngôn",
+            "start": 0.181,
+            "end": 0.261
+          },
+          {
+            "text": "ngữ",
+            "start": 0.281,
+            "end": 0.341
+          },
+          {
+            "text": "riêng",
+            "start": 0.361,
+            "end": 0.462
+          },
+          {
+            "text": "và",
+            "start": 0.482,
+            "end": 0.522
+          },
+          {
+            "text": "truyền",
+            "start": 0.542,
+            "end": 0.662
+          },
+          {
+            "text": "thống",
+            "start": 0.682,
+            "end": 0.783
+          },
+          {
+            "text": "văn",
+            "start": 0.803,
+            "end": 0.863
+          },
+          {
+            "text": "hóa",
+            "start": 0.883,
+            "end": 0.943
+          },
+          {
+            "text": "dạy",
+            "start": 0.964,
+            "end": 1.024
+          },
+          {
+            "text": "con",
+            "start": 1.044,
+            "end": 1.104
+          },
+          {
+            "text": "cháu",
+            "start": 1.124,
+            "end": 1.204
+          },
+          {
+            "text": "qua",
+            "start": 1.224,
+            "end": 1.285
+          },
+          {
+            "text": "hàng",
+            "start": 1.305,
+            "end": 1.385
+          },
+          {
+            "text": "trăm",
+            "start": 1.405,
+            "end": 1.485
+          },
+          {
+            "text": "thế",
+            "start": 1.505,
+            "end": 1.566
+          },
+          {
+            "text": "hệ",
+            "start": 1.586,
+            "end": 1.626
+          },
+          {
+            "text": "không",
+            "start": 1.646,
+            "end": 1.746
+          },
+          {
+            "text": "hại",
+            "start": 1.766,
+            "end": 1.827
+          },
+          {
+            "text": "con",
+            "start": 1.847,
+            "end": 1.907
+          },
+          {
+            "text": "người.",
+            "start": 1.927,
+            "end": 2.047
+          }
+        ],
+        "used_seed": 1722690390
+      },
+      "words": [
+        {
+          "text": "Chúng",
+          "start_ms": 0,
+          "end_ms": 358,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 358,
+          "end_ms": 501,
+          "approx": true
+        },
+        {
+          "text": "ngôn",
+          "start_ms": 501,
+          "end_ms": 787,
+          "approx": true
+        },
+        {
+          "text": "ngữ",
+          "start_ms": 787,
+          "end_ms": 1001,
+          "approx": true
+        },
+        {
+          "text": "riêng,",
+          "start_ms": 1001,
+          "end_ms": 1359,
+          "approx": true
+        },
+        {
+          "text": "và",
+          "start_ms": 1614,
+          "end_ms": 1750,
+          "approx": true
+        },
+        {
+          "text": "truyền",
+          "start_ms": 1750,
+          "end_ms": 2159,
+          "approx": true
+        },
+        {
+          "text": "thống",
+          "start_ms": 2159,
+          "end_ms": 2499,
+          "approx": true
+        },
+        {
+          "text": "văn",
+          "start_ms": 2499,
+          "end_ms": 2704,
+          "approx": true
+        },
+        {
+          "text": "hóa",
+          "start_ms": 2704,
+          "end_ms": 2908,
+          "approx": true
+        },
+        {
+          "text": "dạy",
+          "start_ms": 2908,
+          "end_ms": 3112,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 3112,
+          "end_ms": 3316,
+          "approx": true
+        },
+        {
+          "text": "cháu",
+          "start_ms": 3316,
+          "end_ms": 3589,
+          "approx": true
+        },
+        {
+          "text": "qua",
+          "start_ms": 3589,
+          "end_ms": 3793,
+          "approx": true
+        },
+        {
+          "text": "hàng",
+          "start_ms": 3793,
+          "end_ms": 4066,
+          "approx": true
+        },
+        {
+          "text": "trăm",
+          "start_ms": 4066,
+          "end_ms": 4338,
+          "approx": true
+        },
+        {
+          "text": "thế",
+          "start_ms": 4338,
+          "end_ms": 4542,
+          "approx": true
+        },
+        {
+          "text": "hệ:",
+          "start_ms": 4542,
+          "end_ms": 4678,
+          "approx": true
+        },
+        {
+          "text": "không",
+          "start_ms": 4678,
+          "end_ms": 5019,
+          "approx": true
+        },
+        {
+          "text": "hại",
+          "start_ms": 5019,
+          "end_ms": 5223,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 5223,
+          "end_ms": 5428,
+          "approx": true
+        },
+        {
+          "text": "người.",
+          "start_ms": 5428,
+          "end_ms": 5768,
+          "approx": true
+        }
+      ],
+      "words_hash": "8eb1dde9fba332d9"
+    },
+    {
+      "id": "L009",
+      "speaker": "narrator",
+      "text": "Thậm chí tại Úc, một đàn Orca từng chủ động hợp tác với ngư dân săn cá voi suốt gần một thế kỷ!",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L009.wav",
+        "input_hash": "88cb35e38f15ee01",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 5026,
+        "seed": 1417407395,
+        "qc": {
+          "cps": 14.13,
+          "cer": 0.0,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Thậm",
+            "start": 0.0,
+            "end": 0.08
+          },
+          {
+            "text": "chí",
+            "start": 0.1,
+            "end": 0.161
+          },
+          {
+            "text": "tại",
+            "start": 0.181,
+            "end": 0.241
+          },
+          {
+            "text": "Úc,",
+            "start": 0.261,
+            "end": 0.321
+          },
+          {
+            "text": "một",
+            "start": 0.341,
+            "end": 0.402
+          },
+          {
+            "text": "đàn",
+            "start": 0.422,
+            "end": 0.482
+          },
+          {
+            "text": "orca",
+            "start": 0.502,
+            "end": 0.582
+          },
+          {
+            "text": "từng",
+            "start": 0.602,
+            "end": 0.683
+          },
+          {
+            "text": "chủ",
+            "start": 0.703,
+            "end": 0.763
+          },
+          {
+            "text": "động",
+            "start": 0.783,
+            "end": 0.864
+          },
+          {
+            "text": "hợp",
+            "start": 0.884,
+            "end": 0.944
+          },
+          {
+            "text": "tác",
+            "start": 0.964,
+            "end": 1.024
+          },
+          {
+            "text": "với",
+            "start": 1.044,
+            "end": 1.105
+          },
+          {
+            "text": "ngư",
+            "start": 1.125,
+            "end": 1.185
+          },
+          {
+            "text": "dân",
+            "start": 1.205,
+            "end": 1.265
+          },
+          {
+            "text": "săn",
+            "start": 1.285,
+            "end": 1.346
+          },
+          {
+            "text": "cá",
+            "start": 1.366,
+            "end": 1.406
+          },
+          {
+            "text": "voi",
+            "start": 1.426,
+            "end": 1.486
+          },
+          {
+            "text": "suốt",
+            "start": 1.506,
+            "end": 1.587
+          },
+          {
+            "text": "gần",
+            "start": 1.607,
+            "end": 1.667
+          },
+          {
+            "text": "một",
+            "start": 1.687,
+            "end": 1.747
+          },
+          {
+            "text": "thế",
+            "start": 1.767,
+            "end": 1.828
+          },
+          {
+            "text": "kỷ",
+            "start": 1.848,
+            "end": 1.888
+          }
+        ],
+        "used_seed": 1417407395
+      },
+      "words": [
+        {
+          "text": "Thậm",
+          "start_ms": 0,
+          "end_ms": 72,
+          "approx": true
+        },
+        {
+          "text": "chí",
+          "start_ms": 72,
+          "end_ms": 125,
+          "approx": true
+        },
+        {
+          "text": "tại",
+          "start_ms": 125,
+          "end_ms": 179,
+          "approx": true
+        },
+        {
+          "text": "Úc,",
+          "start_ms": 179,
+          "end_ms": 215,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 476,
+          "end_ms": 707,
+          "approx": true
+        },
+        {
+          "text": "đàn",
+          "start_ms": 707,
+          "end_ms": 939,
+          "approx": true
+        },
+        {
+          "text": "Orca",
+          "start_ms": 939,
+          "end_ms": 1247,
+          "approx": true
+        },
+        {
+          "text": "từng",
+          "start_ms": 1247,
+          "end_ms": 1556,
+          "approx": true
+        },
+        {
+          "text": "chủ",
+          "start_ms": 1556,
+          "end_ms": 1787,
+          "approx": true
+        },
+        {
+          "text": "động",
+          "start_ms": 1787,
+          "end_ms": 2095,
+          "approx": true
+        },
+        {
+          "text": "hợp",
+          "start_ms": 2095,
+          "end_ms": 2327,
+          "approx": true
+        },
+        {
+          "text": "tác",
+          "start_ms": 2327,
+          "end_ms": 2558,
+          "approx": true
+        },
+        {
+          "text": "với",
+          "start_ms": 2558,
+          "end_ms": 2790,
+          "approx": true
+        },
+        {
+          "text": "ngư",
+          "start_ms": 2790,
+          "end_ms": 3021,
+          "approx": true
+        },
+        {
+          "text": "dân",
+          "start_ms": 3021,
+          "end_ms": 3252,
+          "approx": true
+        },
+        {
+          "text": "săn",
+          "start_ms": 3252,
+          "end_ms": 3484,
+          "approx": true
+        },
+        {
+          "text": "cá",
+          "start_ms": 3484,
+          "end_ms": 3638,
+          "approx": true
+        },
+        {
+          "text": "voi",
+          "start_ms": 3638,
+          "end_ms": 3869,
+          "approx": true
+        },
+        {
+          "text": "suốt",
+          "start_ms": 3869,
+          "end_ms": 4178,
+          "approx": true
+        },
+        {
+          "text": "gần",
+          "start_ms": 4178,
+          "end_ms": 4409,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 4409,
+          "end_ms": 4640,
+          "approx": true
+        },
+        {
+          "text": "thế",
+          "start_ms": 4640,
+          "end_ms": 4872,
+          "approx": true
+        },
+        {
+          "text": "kỷ!",
+          "start_ms": 4872,
+          "end_ms": 5026,
+          "approx": true
+        }
+      ],
+      "words_hash": "88cb35e38f15ee01"
+    },
+    {
+      "id": "L010",
+      "speaker": "narrator",
+      "text": "Chúng coi chúng ta là một giống loài có ý thức tương đồng, hoặc hiểu rõ: chọc giận con người chính là tự sát.",
+      "whisper": false,
+      "pause_after_ms": 300,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L010.wav",
+        "input_hash": "52ab59080ee5f61f",
+        "status": "done",
+        "attempts": 2,
+        "last_error": null,
+        "duration_ms": 6040,
+        "seed": 2121586069,
+        "qc": {
+          "cps": 13.74,
+          "cer": 0.024,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Chúng",
+            "start": 0.0,
+            "end": 0.101
+          },
+          {
+            "text": "coi",
+            "start": 0.121,
+            "end": 0.181
+          },
+          {
+            "text": "chúng",
+            "start": 0.201,
+            "end": 0.302
+          },
+          {
+            "text": "ta",
+            "start": 0.322,
+            "end": 0.362
+          },
+          {
+            "text": "là",
+            "start": 0.382,
+            "end": 0.422
+          },
+          {
+            "text": "một",
+            "start": 0.442,
+            "end": 0.503
+          },
+          {
+            "text": "dống",
+            "start": 0.523,
+            "end": 0.603
+          },
+          {
+            "text": "loài",
+            "start": 0.623,
+            "end": 0.704
+          },
+          {
+            "text": "có",
+            "start": 0.724,
+            "end": 0.764
+          },
+          {
+            "text": "ý",
+            "start": 0.784,
+            "end": 0.804
+          },
+          {
+            "text": "thức",
+            "start": 0.824,
+            "end": 0.905
+          },
+          {
+            "text": "tương",
+            "start": 0.925,
+            "end": 1.025
+          },
+          {
+            "text": "đồng",
+            "start": 1.046,
+            "end": 1.126
+          },
+          {
+            "text": "hoặc",
+            "start": 1.146,
+            "end": 1.227
+          },
+          {
+            "text": "hiểu",
+            "start": 1.247,
+            "end": 1.327
+          },
+          {
+            "text": "rõ",
+            "start": 1.347,
+            "end": 1.387
+          },
+          {
+            "text": "Chọc",
+            "start": 3.76,
+            "end": 3.841
+          },
+          {
+            "text": "giận",
+            "start": 3.861,
+            "end": 3.942
+          },
+          {
+            "text": "con",
+            "start": 3.962,
+            "end": 4.023
+          },
+          {
+            "text": "người",
+            "start": 4.043,
+            "end": 4.144
+          },
+          {
+            "text": "chính",
+            "start": 4.164,
+            "end": 4.265
+          },
+          {
+            "text": "là",
+            "start": 4.285,
+            "end": 4.325
+          },
+          {
+            "text": "tự",
+            "start": 4.346,
+            "end": 4.386
+          },
+          {
+            "text": "sát",
+            "start": 4.406,
+            "end": 4.467
+          }
+        ],
+        "used_seed": 2121593988
+      },
+      "words": [
+        {
+          "text": "Chúng",
+          "start_ms": 0,
+          "end_ms": 324,
+          "approx": true
+        },
+        {
+          "text": "coi",
+          "start_ms": 324,
+          "end_ms": 519,
+          "approx": true
+        },
+        {
+          "text": "chúng",
+          "start_ms": 519,
+          "end_ms": 843,
+          "approx": true
+        },
+        {
+          "text": "ta",
+          "start_ms": 843,
+          "end_ms": 972,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 972,
+          "end_ms": 1102,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 1102,
+          "end_ms": 1296,
+          "approx": true
+        },
+        {
+          "text": "giống",
+          "start_ms": 1296,
+          "end_ms": 1621,
+          "approx": true
+        },
+        {
+          "text": "loài",
+          "start_ms": 1621,
+          "end_ms": 1880,
+          "approx": true
+        },
+        {
+          "text": "có",
+          "start_ms": 1880,
+          "end_ms": 2009,
+          "approx": true
+        },
+        {
+          "text": "ý",
+          "start_ms": 2009,
+          "end_ms": 2074,
+          "approx": true
+        },
+        {
+          "text": "thức",
+          "start_ms": 2074,
+          "end_ms": 2334,
+          "approx": true
+        },
+        {
+          "text": "tương",
+          "start_ms": 2334,
+          "end_ms": 2658,
+          "approx": true
+        },
+        {
+          "text": "đồng,",
+          "start_ms": 2658,
+          "end_ms": 2917,
+          "approx": true
+        },
+        {
+          "text": "hoặc",
+          "start_ms": 3097,
+          "end_ms": 3417,
+          "approx": true
+        },
+        {
+          "text": "hiểu",
+          "start_ms": 3417,
+          "end_ms": 3736,
+          "approx": true
+        },
+        {
+          "text": "rõ:",
+          "start_ms": 3736,
+          "end_ms": 3896,
+          "approx": true
+        },
+        {
+          "text": "chọc",
+          "start_ms": 4157,
+          "end_ms": 4426,
+          "approx": true
+        },
+        {
+          "text": "giận",
+          "start_ms": 4426,
+          "end_ms": 4695,
+          "approx": true
+        },
+        {
+          "text": "con",
+          "start_ms": 4695,
+          "end_ms": 4897,
+          "approx": true
+        },
+        {
+          "text": "người",
+          "start_ms": 4897,
+          "end_ms": 5233,
+          "approx": true
+        },
+        {
+          "text": "chính",
+          "start_ms": 5233,
+          "end_ms": 5569,
+          "approx": true
+        },
+        {
+          "text": "là",
+          "start_ms": 5569,
+          "end_ms": 5704,
+          "approx": true
+        },
+        {
+          "text": "tự",
+          "start_ms": 5704,
+          "end_ms": 5838,
+          "approx": true
+        },
+        {
+          "text": "sát.",
+          "start_ms": 5838,
+          "end_ms": 6040,
+          "approx": true
+        }
+      ],
+      "words_hash": "52ab59080ee5f61f"
+    },
+    {
+      "id": "L011",
+      "speaker": "narrator",
+      "text": "Hóa ra sinh vật đáng sợ nhất đại dương lại giữ trọn một hiệp ước ngầm kỳ lạ, mỗi khi...",
+      "whisper": false,
+      "pause_after_ms": 350,
+      "claim_ids": [
+        "CL01"
+      ],
+      "audio": {
+        "path": "audio/L011.wav",
+        "input_hash": "33d23d75427fc3b4",
+        "status": "done",
+        "attempts": 1,
+        "last_error": null,
+        "duration_ms": 4416,
+        "seed": 767307094,
+        "qc": {
+          "cps": 14.49,
+          "cer": 0.125,
+          "asr": "ok",
+          "reasons": []
+        },
+        "asr_words": [
+          {
+            "text": "Hóa",
+            "start": 0.0,
+            "end": 0.06
+          },
+          {
+            "text": "ra,",
+            "start": 0.08,
+            "end": 0.141
+          },
+          {
+            "text": "sinh",
+            "start": 0.161,
+            "end": 0.241
+          },
+          {
+            "text": "vật",
+            "start": 0.261,
+            "end": 0.322
+          },
+          {
+            "text": "đáng",
+            "start": 0.342,
+            "end": 0.422
+          },
+          {
+            "text": "sợ",
+            "start": 0.442,
+            "end": 0.483
+          },
+          {
+            "text": "nhất",
+            "start": 0.503,
+            "end": 0.583
+          },
+          {
+            "text": "đại",
+            "start": 0.603,
+            "end": 0.664
+          },
+          {
+            "text": "dương",
+            "start": 0.684,
+            "end": 0.784
+          },
+          {
+            "text": "lại",
+            "start": 0.804,
+            "end": 0.865
+          },
+          {
+            "text": "giữ",
+            "start": 0.885,
+            "end": 0.945
+          },
+          {
+            "text": "chọn",
+            "start": 0.965,
+            "end": 1.046
+          },
+          {
+            "text": "một",
+            "start": 1.066,
+            "end": 1.126
+          },
+          {
+            "text": "hiệp",
+            "start": 1.146,
+            "end": 1.227
+          },
+          {
+            "text": "ước",
+            "start": 1.247,
+            "end": 1.307
+          },
+          {
+            "text": "ngầm",
+            "start": 1.327,
+            "end": 1.408
+          },
+          {
+            "text": "kỳ",
+            "start": 1.428,
+            "end": 1.468
+          },
+          {
+            "text": "lạ.",
+            "start": 1.488,
+            "end": 1.549
+          }
+        ],
+        "used_seed": 767307094
+      },
+      "words": [
+        {
+          "text": "Hóa",
+          "start_ms": 0,
+          "end_ms": 207,
+          "approx": true
+        },
+        {
+          "text": "ra",
+          "start_ms": 207,
+          "end_ms": 345,
+          "approx": true
+        },
+        {
+          "text": "sinh",
+          "start_ms": 345,
+          "end_ms": 621,
+          "approx": true
+        },
+        {
+          "text": "vật",
+          "start_ms": 621,
+          "end_ms": 828,
+          "approx": true
+        },
+        {
+          "text": "đáng",
+          "start_ms": 828,
+          "end_ms": 1104,
+          "approx": true
+        },
+        {
+          "text": "sợ",
+          "start_ms": 1104,
+          "end_ms": 1242,
+          "approx": true
+        },
+        {
+          "text": "nhất",
+          "start_ms": 1242,
+          "end_ms": 1518,
+          "approx": true
+        },
+        {
+          "text": "đại",
+          "start_ms": 1518,
+          "end_ms": 1725,
+          "approx": true
+        },
+        {
+          "text": "dương",
+          "start_ms": 1725,
+          "end_ms": 2070,
+          "approx": true
+        },
+        {
+          "text": "lại",
+          "start_ms": 2070,
+          "end_ms": 2277,
+          "approx": true
+        },
+        {
+          "text": "giữ",
+          "start_ms": 2277,
+          "end_ms": 2484,
+          "approx": true
+        },
+        {
+          "text": "trọn",
+          "start_ms": 2484,
+          "end_ms": 2760,
+          "approx": true
+        },
+        {
+          "text": "một",
+          "start_ms": 2760,
+          "end_ms": 2967,
+          "approx": true
+        },
+        {
+          "text": "hiệp",
+          "start_ms": 2967,
+          "end_ms": 3243,
+          "approx": true
+        },
+        {
+          "text": "ước",
+          "start_ms": 3243,
+          "end_ms": 3450,
+          "approx": true
+        },
+        {
+          "text": "ngầm",
+          "start_ms": 3450,
+          "end_ms": 3726,
+          "approx": true
+        },
+        {
+          "text": "kỳ",
+          "start_ms": 3726,
+          "end_ms": 3864,
+          "approx": true
+        },
+        {
+          "text": "lạ,",
+          "start_ms": 3864,
+          "end_ms": 4002,
+          "approx": true
+        },
+        {
+          "text": "mỗi",
+          "start_ms": 4002,
+          "end_ms": 4209,
+          "approx": true
+        },
+        {
+          "text": "khi...",
+          "start_ms": 4209,
+          "end_ms": 4416,
+          "approx": true
+        }
+      ],
+      "words_hash": "33d23d75427fc3b4"
+    }
+  ],
+  "research": {
+    "notes": [
+      {
+        "id": "R01",
+        "title": "Wild Orca human interactions and neuroscience of paralimbic system",
+        "sources": [
+          "National Geographic",
+          "Orca Behavior Research - Dr. Lori Marino, Emory University"
+        ],
+        "status": "verified",
+        "accuracy": "must-be-accurate",
+        "confidence": "high",
+        "checked_on": "2026-09-30",
+        "risk": [
+          "technical"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "CL01",
+        "text": "There are zero recorded fatal attacks by wild orcas on humans in history, and orcas possess highly developed paralimbic emotional brains and cultural knowledge.",
+        "status": "verified",
+        "note_ids": [
+          "R01"
+        ],
+        "limitations": "Refers strictly to wild orcas, not captive ones."
+      }
+    ]
+  },
+  "source_work": null,
+  "learnings_applied": [
+    "K003",
+    "K004",
+    "K005",
+    "K012"
+  ],
+  "output": {
+    "video": "out/final.mp4",
+    "captions": "out/captions.ass",
+    "contact_sheet": "out/contact_sheet.png",
+    "qc": "out/qc.json"
+  }
+}

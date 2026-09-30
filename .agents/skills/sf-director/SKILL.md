@@ -1,6 +1,6 @@
 ---
 name: sf-director
-description: Orchestrates a StoryForge production from idea to final video and viral publishing package — stages, gates, resume, feedback. Entered by /story, /story-feedback and /story-redo; use it whenever a StoryForge production is created, resumed, redone or given feedback.
+description: Orchestrates a StoryForge production from idea to final video and viral publishing package — stages, gates, resume, feedback. Entered by /create-video, /story-feedback and /story-redo; use it whenever a StoryForge production is created, resumed, redone or given feedback.
 ---
 
 # sf-director
@@ -18,7 +18,7 @@ Never edit fields scripts own (asset path/status/hash/attempts/last_error, audio
 3. Read `references/platform-tuning.md` for platform targets and distribution specs.
 4. Record applied rule/check ids in `story.json` `learnings_applied` when the production exists.
 
-## Stages (`/story`)
+## Stages (`/create-video`)
 
 | # | Stage | Do | Exit |
 |---|---|---|---|
@@ -32,7 +32,7 @@ Never edit fields scripts own (asset path/status/hash/attempts/last_error, audio
 | 8 | learn | `sf_learn`. If `library_problems` is non-empty, fix the library file format and re-run. | ok |
 | 9 | report & publish | Video path, duration vs target, what was auto-fixed, open QC notes. **Generate the complete Publishing Package** per `references/platform-tuning.md` (Title, Caption, 3-5 Hashtags, Pinned Comment). End with: "Feedback? `/story-feedback <slug> \"...\"`". | done |
 
-Update `state.stage` as you pass each stage so a later `/story` resumes where it stopped.
+Update `state.stage` as you pass each stage so a later `/create-video` resumes where it stopped.
 Check services before stages 4 and 6 (`references/services.md`).
 
 QC failures you judge acceptable after inspection (e.g. a natural 10 ms-over pause at a comma)

@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 from typing import Callable
 
-from sflib.media import probe_duration_ms, trim_silence
+from sflib.media import probe_duration_ms, silences, trim_silence
 from sflib.project import (
     EXIT_BUG, EXIT_HUMAN, EXIT_OK, EXIT_PROVIDER, ROOT, ProviderError, input_hash, load_config,
     load_story, log, main_wrapper, needs_work, save_story, wanted,
@@ -103,6 +103,13 @@ def _quality(vs, wav: Path, line: dict, language: str, duration_ms: int, meta: d
         qc["cer"] = round(error, 3)
         if error > qc_cfg["max_cer"]:
             qc["reasons"].append(f"transcribe-back CER {error:.2f} > {qc_cfg['max_cer']}")
+    # trim_silence only cuts the file's leading/trailing edges; VoiceStudio occasionally leaves a
+    # genuine internal gap (breath, decay tail) that it doesn't touch. Catch it here with sf_qc's
+    # own silencedetect helper so a bad take gets reseeded and retried in this same loop, instead
+    # of surfacing only after a full align+captions+render+qc round trip.
+    longest = max((dur for _, dur in silences(wav)), default=0.0)
+    if longest > qc_cfg["max_trailing_silence_s"]:
+        qc["reasons"].append(f"internal silence {longest:.2f}s > {qc_cfg['max_trailing_silence_s']}s")
     return qc, words
 
 

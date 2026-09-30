@@ -2,7 +2,8 @@ from fixtures import FakeVS, make_story, write_project
 import sf_voice
 from sflib.project import load_story
 
-CONFIG = {"voice": {"base_url": "http://vs.local", "engine": None, "qc": {"max_cer": 0.25, "min_cps": 2, "max_cps": 30}}}
+CONFIG = {"voice": {"base_url": "http://vs.local", "engine": None,
+                    "qc": {"max_cer": 0.25, "min_cps": 2, "max_cps": 30, "max_trailing_silence_s": 0.4}}}
 
 
 def test_cer():
@@ -86,6 +87,28 @@ def test_second_run_skips_everything(tmp_path):
     vs = FakeVS()
     summary, code = sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
     assert code == 0 and summary["skipped"] == 3 and vs.calls == [] and vs.profiles == 0
+
+
+def test_internal_silence_gap_retakes_with_a_new_seed(tmp_path):
+    project = write_project(tmp_path, make_story())
+    # first take has a 600ms dead-air gap baked in (survives trim_silence); second take is clean.
+    vs = FakeVS(internal_gaps={"Every night for eleven years.": 1})
+    summary, code = sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    assert code == 0
+    audio = load_story(project)["lines"][0]["audio"]
+    assert audio["attempts"] == 2
+    assert audio["used_seed"] == audio["seed"] + sf_voice.RETAKE_SEED_STEP
+    assert audio["qc"]["reasons"] == []
+
+
+def test_persistent_internal_silence_needs_human(tmp_path):
+    project = write_project(tmp_path, make_story())
+    vs = FakeVS(internal_gaps={"Every night for eleven years.": 100})
+    summary, code = sf_voice.run(project, config=CONFIG, client=vs, root=tmp_path)
+    assert code == 2
+    audio = load_story(project)["lines"][0]["audio"]
+    assert audio["status"] == "needs_human" and audio["attempts"] == 3
+    assert "internal silence" in audio["last_error"]
 
 
 def test_failed_qc_retakes_with_a_new_seed(tmp_path):

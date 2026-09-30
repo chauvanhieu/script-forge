@@ -17,6 +17,9 @@ description: Writes StoryForge style bibles, character/location plate prompts an
 `SF_CONFIG=config/providers.local-image.yaml uv run scripts/sf_image.py projects/<slug>` then
 `uv run scripts/sf_contact_sheet.py projects/<slug>`.
 
+- **Image Model Preference:** Prioritize generating images using `nanobanana` (optimized for Antigravity environment with Gemini 3.1 flash image) for better performance. Only fallback to `flux` if `nanobanana` fails or is unavailable.
+- **Image Diversity:** When multiple slides share the same voice segment to increase pacing, THE GENERATED IMAGES MUST BE TRULY DISTINCT (different camera angles, actions, shot sizes). Absolutely do not duplicate or clone the same image across multiple slides just to meet the slide count.
+
 ## Gate 2 self-review
 1. Read `projects/<slug>/out/contact_sheet.png`; open any doubtful tile at full size (`images/<id>.png`, `plates/<id>.png`).
 2. Flag objective defects: wrong count, duplicated objects, text/signatures, wrong character look vs its plates,

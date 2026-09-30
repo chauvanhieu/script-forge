@@ -51,6 +51,51 @@ class VoiceStudio:
     def describe(self, description: str) -> dict:
         return self._request("POST", "/design/describe", json={"description": description}).json()
 
+    def list_archetypes(
+        self,
+        q: str | None = None,
+        use_case: str | None = None,
+        gender: str | None = None,
+        age: str | None = None,
+        pitch: str | None = None,
+        accent: str | None = None,
+        whisper: bool | None = None,
+        lang: str | None = None,
+        featured: bool | None = None,
+        limit: int = 60,
+        offset: int = 0,
+    ) -> dict:
+        params: dict[str, str | int] = {"limit": limit, "offset": offset}
+        if q:
+            params["q"] = q
+        if use_case:
+            params["use_case"] = use_case
+        if gender:
+            params["gender"] = gender
+        if age:
+            params["age"] = age
+        if pitch:
+            params["pitch"] = pitch
+        if accent:
+            params["accent"] = accent
+        if whisper is not None:
+            params["whisper"] = "true" if whisper else "false"
+        if lang:
+            params["lang"] = lang
+        if featured is not None:
+            params["featured"] = "true" if featured else "false"
+        return self._request("GET", "/archetypes", params=params).json()
+
+    def get_archetype(self, archetype_id: str) -> dict:
+        return self._request("GET", f"/archetypes/{archetype_id}").json()
+
+    def use_archetype(self, archetype_id: str, name: str | None = None) -> dict:
+        params = {"name": name} if name else {}
+        return self._request("POST", f"/archetypes/{archetype_id}/use", params=params).json()
+
+    def list_profiles(self) -> list[dict]:
+        return self._request("GET", "/profiles").json()
+
     def create_design_profile(self, name: str, attrs: dict, instruct: str, language: str, ref_text: str = "") -> str:
         data = {
             "name": name, "kind": "design", "vd_states": json.dumps(attrs), "instruct": instruct, "language": language,

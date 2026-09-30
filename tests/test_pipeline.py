@@ -9,7 +9,8 @@ from sflib.project import ROOT, load_story, save_story
 
 SMALL = (360, 640)
 STYLES = ROOT / "config" / "caption-styles"
-VOICE_CONFIG = {"voice": {"base_url": "http://vs.local", "engine": None, "qc": {"max_cer": 0.25, "min_cps": 2, "max_cps": 30}}}
+VOICE_CONFIG = {"voice": {"base_url": "http://vs.local", "engine": None,
+                          "qc": {"max_cer": 0.25, "min_cps": 2, "max_cps": 30, "max_trailing_silence_s": 0.4}}}
 L001_TEXT = "Every night for eleven years."
 
 

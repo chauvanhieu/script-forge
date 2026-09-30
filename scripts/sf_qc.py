@@ -26,7 +26,7 @@ SENTENCE_PAUSE_S = 1.0
 # a sentence-ending mark (.!?…;: or a run of them, e.g. ASCII "..."), optionally followed by a
 # closing quote/bracket (as in Vietnamese dialogue: `"Doi da!" roi ...`), then more text
 _CLOSING_MARKS = "\"'”’»)]"  # " ' ” ’ » ) ]
-_SENTENCE_BREAK_RE = re.compile(r"[.!?…;:]+[" + re.escape(_CLOSING_MARKS) + r"]*\s+\S")
+_SENTENCE_BREAK_RE = re.compile(r"[,.!?…;:]+[" + re.escape(_CLOSING_MARKS) + r"]*\s+\S")
 _DIALOGUE = re.compile(r"^Dialogue: \d+,([^,]+),([^,]+),[^,]*,([^,]*),[^,]*,[^,]*,[^,]*,[^,]*,(.*)$")
 
 

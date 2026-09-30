@@ -7,6 +7,7 @@ voice:
     max_cer: 0.25         # transcribe-back character error rate allowed per line
     min_cps: 2            # speaking-rate band in characters per second (display text, no spaces)
     max_cps: 30
+    max_trailing_silence_s: 0.4  # ponytail: mirrors sf_qc's SILENCE_GRACE_S (0.3) with a little margin
 image:
   provider: command
   command: ["uv", "run", "--quiet", "--project", "/Users/irondev/Desktop/Projects/chauvanhieu/yt/tools/local-image",
