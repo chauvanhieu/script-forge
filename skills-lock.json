@@ -132,6 +132,12 @@
       "sourceType": "github",
       "skillPath": "skills/worldbuilding/SKILL.md",
       "computedHash": "84bf04951971db6f7fb54a73790d13381dfe2eb216e06577af9813d1404642d8"
+    },
+    "youtube-thumbnail": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/youtube-thumbnail/SKILL.md",
+      "computedHash": "d8c3913edec456a25d5d9e36a5b8c5d8d94cca988a6c15098a5562fee11e6040"
     }
   }
 }

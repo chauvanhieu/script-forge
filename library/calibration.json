@@ -2,22 +2,22 @@
   "version": 1,
   "speaking_rate": {
     "vi": {
-      "chars_per_s": 13.529515431694035,
-      "lines": 154
+      "chars_per_s": 13.410084231151405,
+      "lines": 170
     }
   },
   "stage_seconds": {
     "render": {
-      "mean": 14.339,
-      "n": 16
+      "mean": 14.507,
+      "n": 18
     },
     "image": {
       "mean": 24.12,
       "n": 162
     },
     "voice_line": {
-      "mean": 6.203,
-      "n": 111
+      "mean": 6.338,
+      "n": 119
     }
   }
 }

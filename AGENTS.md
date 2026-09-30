@@ -26,9 +26,10 @@
   - Khớp chữ & Subtitle: `uv run scripts/sf_align.py projects/<slug>` và `uv run scripts/sf_captions.py projects/<slug>`
   - Render Video: `uv run scripts/sf_render.py projects/<slug>`
   - QC & Cập nhật: `uv run scripts/sf_qc.py projects/<slug>` và `uv run scripts/sf_learn.py projects/<slug>`
+  - Tạo Thumbnail Viral: Agent học kiến thức từ skill `youtube-thumbnail` để tạo prompt linh hoạt, sau đó sinh ảnh trực tiếp qua `generate_image` (Gemini 3.1 Flash Image) hoặc FLUX local fallback, lưu vào `out/thumbnail.jpg` (9:16) và `out/thumbnail_16_9.jpg` (16:9). Không dùng script cứng.
 
 ## 4. Kiến trúc high-level
-- **9-Stage Pipeline:** Brief/Canon -> Script (Gate 1) -> Plates -> Images -> Gate 2 -> Voice -> Render -> QC/Learn -> Package.
+- **10-Stage Pipeline:** Brief/Canon -> Script (Gate 1) -> Plates -> Images -> Gate 2 -> Voice -> Render -> QC/Learn -> Thumbnail -> Package.
 - **Multi-Slide Pacing:** Một đoạn voice (Line) có thể map với nhiều visual (Slide) để giữ nhịp độ video mà không bị giật lùi audio. Xử lý logic tại `sflib/timeline.py`.
 - **Tích hợp bên ngoài:** Sử dụng VoiceStudio/Kokoro TTS cho giọng nói (`sflib/voicestudio.py`); sử dụng FFmpeg (có compile `h264_videotoolbox` và `libass`) để xử lý caption và render hardware acceleration.
 - **Agent Roles:** Quy trình sản xuất được orchestration bởi `sf-director` skill gọi các script qua CLI, các skill khác xử lý các task hẹp hơn như biên kịch (`sf-script`), tạo ảnh (`sf-visual`), cast giọng (`sf-audio`). Toàn bộ skill được viết bằng tiếng Anh.
@@ -44,6 +45,7 @@
 - **Nhịp độ video & Chuyển cảnh (Fast Pacing):** Tăng số lượng ảnh để đẩy nhịp chuyển cảnh nhanh (1.5s – 2.5s / slide cut), giúp video luôn có biến đổi thị giác dồn dập, đẩy mạnh tỷ lệ hoàn thành (completion rate).
 - **Quy chuẩn thoại & Giọng đọc (Audio Flow):** Hạn chế tối đa dấu phẩy `,`, triệt tiêu dấu ba chấm `...` và ngoặc kép giữa các vế câu liền mạch; sử dụng liên từ ngữ pháp (`thì`, `và`, `khiến`) để công cụ TTS đọc một mạch tự nhiên, không bị ngắt khựng bất thường.
 - **Quy chuẩn Subtext (Karaoke & Highlighting):** Khi làm subtext theo kiểu highlight (Karaoke), BẮT BUỘC dùng cơ chế "Audio-Visual Anticipation" (Pre-roll khoảng 40ms) và hiệu ứng Micro-Flash chuyển màu (\t trong ASS). Tuyệt đối KHÔNG thay đổi font scale, spacing hoặc tắt/bật tag `\b` giữa chừng (nên set bold mặc định) để tránh rục rịch layout chữ.
+- **Quy chuẩn Thumbnail Viral (Linh hoạt qua Agent Skill):** Sau khi render xong video, Agent trực tiếp đọc kiến thức từ skill `youtube-thumbnail` (tỷ lệ gương mặt biểu cảm/hero 30-50%, bảng 2 màu tương phản cao, text hook 3-4 từ kích thích tò mò không che góc phải dưới) để tự viết prompt thích ứng theo ngữ cảnh kịch bản, sau đó tạo ảnh trực tiếp bằng Gemini 3.1 Flash Image (`generate_image`) hoặc fallback FLUX. Tuyệt đối KHÔNG dùng script sinh ảnh cứng; xuất đồng thời cả 2 tỷ lệ 9:16 và 16:9 vào `out/`.
 - **Cơ chế tiến hoá qua Feedback (Continuous Learning):** Mỗi lần người dùng gửi `/story-feedback`, Agent BẮT BUỘC phải cập nhật ngay các quy tắc/note vào `library/taste.md`, `library/checks.md`, `AGENTS.md` và các file `SKILL.md` liên quan để hướng dẫn các Agent thế hệ sau tiến hóa thông minh hơn, không lặp lại lỗi cũ.
 
 ## 6. Lưu ý bảo mật/rủi ro

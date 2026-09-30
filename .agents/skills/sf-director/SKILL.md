@@ -29,8 +29,9 @@ Never edit fields scripts own (asset path/status/hash/attempts/last_error, audio
 | 5 | Gate 2 | auto: follow `sf-visual` self-review; redo flagged items; max 2 rounds, then ask the user. gated: show `out/contact_sheet.png`, wait. | pass |
 | 6 | voice | Follow `sf-audio`; `sf_voice`. Line 1 must deliver punchy Verbal Hook delivery without hesitant pauses. | all lines done |
 | 7 | finish | `sf_align`, `sf_captions`, `sf_render`, `sf_qc`. Auto-fix only: re-run captions after re-wrapping, re-render after a regenerated asset. | QC ok, or remaining failures reviewed (see below) |
-| 8 | learn | `sf_learn`. If `library_problems` is non-empty, fix the library file format and re-run. | ok |
-| 9 | report & publish | Video path, duration vs target, what was auto-fixed, open QC notes. **Generate the complete Publishing Package** per `references/platform-tuning.md` (Title, Caption, 3-5 Hashtags, Pinned Comment). End with: "Feedback? `/story-feedback <slug> \"...\"`". | done |
+| 8 | thumbnail | Follow `youtube-thumbnail` skill for prompt knowledge (30-50% face/hero, 3-5 word hook text, 2-color dominant contrast). Synthesize prompt dynamically from script. In Antigravity prioritize Gemini 3.1 Flash Image via native `generate_image`, fallback to FLUX local. Save `out/thumbnail.jpg` (9:16) and `out/thumbnail_16_9.jpg` (16:9). No rigid scripts needed. | thumbnail done |
+| 9 | learn | `sf_learn`. If `library_problems` is non-empty, fix the library file format and re-run. | ok |
+| 10 | report & publish | Video path, Thumbnail preview & paths, duration vs target, what was auto-fixed, open QC notes. **Generate the complete Publishing Package** per `references/platform-tuning.md` (Title, Caption, 3-5 Hashtags, Pinned Comment, and Cover Thumbnails). End with: "Feedback? `/story-feedback <slug> \"...\"`". | done |
 
 Update `state.stage` as you pass each stage so a later `/create-video` resumes where it stopped.
 Check services before stages 4 and 6 (`references/services.md`).

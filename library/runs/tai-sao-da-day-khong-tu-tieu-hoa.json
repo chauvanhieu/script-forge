@@ -1,0 +1,37 @@
+[
+  {
+    "run_id": "e4e614621216fd56",
+    "date": "2026-09-30",
+    "log_lines": 8,
+    "line_hashes": [
+      "eb0319075c5ed169",
+      "5ae3820d7e05cea7",
+      "58e7ea2656746920",
+      "104a72462bd36316",
+      "94add9b15e428e03",
+      "730008dde75abae2",
+      "8289e5694cc19f62",
+      "720cf060a41cdbd1"
+    ],
+    "target_s": 60,
+    "actual_s": 49.56,
+    "predicted_s": 49.43,
+    "images_generated": 0,
+    "voice_lines_generated": 8,
+    "needs_human": 0,
+    "untrusted_timings": 8,
+    "qc_failed": [
+      "caption_timing",
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_validate": 0.006,
+      "sf_contact_sheet": 0.372,
+      "sf_voice": 65.643,
+      "sf_align": 0.246,
+      "sf_captions": 0.005,
+      "sf_render": 15.003,
+      "sf_qc": 5.314
+    }
+  }
+]

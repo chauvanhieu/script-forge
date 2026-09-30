@@ -78,7 +78,9 @@
         "video": {"type": ["string", "null"]},
         "captions": {"type": ["string", "null"]},
         "contact_sheet": {"type": ["string", "null"]},
-        "qc": {"type": ["string", "null"]}
+        "qc": {"type": ["string", "null"]},
+        "thumbnail": {"type": ["string", "null"]},
+        "thumbnail_16_9": {"type": ["string", "null"]}
       }
     }
   },
