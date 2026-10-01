@@ -68,6 +68,76 @@ legal paradoxes, court cases, bizarre trials, legal loopholes, corporate law, mo
 
 ---
 
+### 6. Signature Thumbnail Design System (Hệ Thống Thiết Kế Thumbnail Đồng Nhất Toàn Kênh)
+> **Mục tiêu tối thượng:** Khi bất kỳ ai bấm vào trang chủ kênh `@TheGreyVerdict`, toàn bộ lưới video (cả Shorts và Widescreen) phải toát lên sự đồng nhất, cao cấp, và được đầu tư như một studio phim tài liệu điều tra điện ảnh độc lập.
+
+#### A. Triết Lý Bố Cục 3 Vùng (The 3-Zone Composition Grid)
+Mọi thumbnail trên kênh bắt buộc phải tuân thủ nghiêm ngặt ma trận 3 vùng thị giác sau:
+
+| Vùng (Zone) | Tỷ lệ diện tích | Thành phần hiển thị | Quy tắc kỹ thuật |
+| :--- | :--- | :--- | :--- |
+| **Zone 1: The Focal Hero** | **35% – 45%** | Gương mặt nhân vật chính với biểu cảm tột độ (Shock / Frustration / Disbelief / Desperation). | Đặt ở 1/3 bên trái (Widescreen) hoặc trung tâm phía trên (Shorts 9:16). Mắt mở to, hướng nhìn trực diện hoặc hướng vào text hook. Phải rõ mồn một ở kích thước 320px trên mobile feed. |
+| **Zone 2: The Hook Phrase** | **25% – 30%** | Dòng chữ giật tít **2 đến 4 từ in hoa cực lớn** (Ví dụ: `LEGALLY DEAD`, `HE NEVER EXISTED`, `ZERO JURISDICTION`, `THE $10B LOOPHOLE`). | Font chữ không chân siêu đậm (*Impact / Montserrat Black*), màu **Vàng Hổ Phách (`#F5A623`)** với viền đổ bóng đen dày (`#0B0E14`) sắc lẹm. **Bố trí ở nửa trên.** Tuyệt đối không viết thành câu dài. |
+| **Zone 3: The Institutional Prop** | **25% – 35%** | Yếu tố đại diện cho Thiết Chế Quyền Lực (Búa thẩm phán giáng xuống nảy lửa, Cán cân công lý nghiêng lệch, hoặc Bục thẩm phán dưới luồng sáng lạnh). | Tạo sự đối đầu trực diện giữa Cá nhân ($\alpha$) và Hệ thống ($\beta$). |
+
+#### B. Quy Tắc Bảng Màu Độc Tôn (The Signature 2-Color Dominant Rule)
+Để tạo nhận diện thương hiệu tức thì trong mắt khán giả qua hàng chục video, **100% thumbnail của The Grey Verdict chỉ sử dụng 2 dải màu tương phản chủ đạo**:
+1. **Nền Tối & Bóng Đổ (Dark Foundation):** Obsidian Black (`#0B0E14`) kết hợp Ánh Sáng Lạnh Xanh Thép / Phiến Thạch (`#8E9AA8` / Ice Cyan) bao phủ không gian thiết chế và phía sau nhân vật.
+2. **Điểm Nhấn Phát Sáng (High-Voltage Accent):** Verdict Amber Gold (`#F5A623`) bao phủ viền tóc, gò má nhân vật, tia lửa búa đập và toàn bộ Text Hook.
+
+#### C. Bản Đồ Vùng An Toàn & Vùng Cấm (Safety Exclusion Bounds)
+* **VÙNG CẤM (Dead Zone):** **Góc dưới bên phải (Bottom-Right 20% x 20%)** BẮT BUỘC để trống hoàn toàn (chỉ có nền mờ hoặc góc bàn). Tuyệt đối KHÔNG đặt chữ, logo, khuôn mặt hay búa gõ tại đây vì sẽ bị YouTube che phủ bởi biểu tượng đếm thời lượng video (`0:58` / `Shorts`).
+* **VÙNG AN TOÀN SHORTS (9:16):** Nửa trên dành cho Text Hook và Đầu/Mắt nhân vật. 25% phía dưới cùng để thoáng nhằm tránh bị che bởi Tiêu đề video và nút bấm giao diện của TikTok/Shorts.
+
+#### D. Khuôn Mẫu Prompt Chuẩn Hóa Cho Agent (Standardized Production Templates)
+
+* **Template Cho Shorts Cover (Tỷ lệ 9:16):**
+```text
+A viral high-CTR vertical YouTube Shorts cover thumbnail for a legal paradox documentary. In the upper center, filling 45% of the frame, a hyper-detailed dramatic portrait of [CHARACTER_DESCRIPTION] with intense wide eyes and open mouth in utter shock and disbelief. Above their head across the top, the bold hook text "[HOOK_TEXT_2_TO_4_WORDS]" is rendered in massive, heavy embossed golden-amber sans-serif typography (#F5A623) with a thick black drop-shadow outline, razor-sharp and legible at 320px. In the background behind them, an imposing dark neoclassical courtroom with an elevated judge's bench, where [INSTITUTIONAL_PROP_ACTION: e.g. a heavy antique brass gavel strikes a sound block with explosive golden dust particles under a dramatic overhead beam of light]. Two-color dominant palette: electric amber-gold and deep obsidian black-blue. Cinematic 35mm film still, photorealistic, 8k, bottom-right kept clean of details.
+```
+
+* **Template Cho Video Dài / Widescreen (Tỷ lệ 16:9):**
+```text
+A viral high-CTR widescreen YouTube video thumbnail for a legal mystery documentary. On the left side, occupying 45% of the frame, an intense close-up portrait of [CHARACTER_DESCRIPTION] staring with wide, terrified eyes and open mouth in utter shock, clutching their chest with an open hand. In the upper center-right, the bold hook text "[HOOK_TEXT_2_TO_4_WORDS]" appears in massive, thick 3D golden-yellow uppercase block typography (#F5A623) with a deep black outline and sharp rim glow, ultra-readable at thumbnail size. On the right side, an imposing neoclassical courtroom where [INSTITUTIONAL_SCENE: e.g. an authoritative judge in black robes strikes a heavy dark brass gavel onto a sound block under a narrow, piercing overhead spotlight]. Dominated by two contrasting colors: incandescent amber-gold highlights and shadowy obsidian slate-blue. Hyper-realistic, 8k resolution, cinematic chiaroscuro composition, bottom-right quadrant completely clear of text or logos.
+```
+
+---
+
+### 7. YouTube Channel Profile Architecture (Theo Chuẩn /profile-optimizer)
+
+Để tối ưu hóa chuyển đổi từ lượt xem vãng lai thành người đăng ký trung thành (Subscriber Conversion), toàn bộ giao diện hồ sơ kênh được xây dựng theo tiêu chuẩn của skill `profile-optimizer`:
+
+#### A. Bộ Tài Sản Đồ Họa Kênh (Official Channel Assets)
+* **Channel Avatar (800 x 800 px / Tỷ lệ 1:1 Cắt Tròn):**
+  * *File lưu trữ:* [`assets/channel/avatar.png`](file:///Users/irondev/Desktop/Projects/chauvanhieu/yt/assets/channel/avatar.png)
+  * *Thiết kế:* Biểu tượng Cán Cân Công Lý bằng đồng cổ đặt trên bệ đá cẩm thạch trong đại sảnh tân cổ điển. Ánh sáng Chiaroscuro chia nửa: một bên được chiếu bởi tia sáng lạnh màu xanh lam từ vòm kính, một bên rực sáng ánh vàng hổ phách huyền bí.
+* **Channel Banner (2560 x 1440 px / Safe Area 1546 x 423 px):**
+  * *File lưu trữ:* [`assets/channel/banner.png`](file:///Users/irondev/Desktop/Projects/chauvanhieu/yt/assets/channel/banner.png)
+  * *Thiết kế:* Đại sảnh Tòa án Tối cao lúc nửa đêm với hàng cột cẩm thạch khổng lồ mờ sương. Tại trung tâm vùng an toàn, bàn thẩm phán bằng gỗ gụ cổ rực sáng dưới luồng đèn spotlight thẳng đứng chiếu vào dòng chữ mạ vàng uy nghi: **`THE GREY VERDICT`** và phụ đề **`WHERE THE LAW IS CLEAR, BUT JUSTICE IS DIVIDED`**.
+
+#### B. Cấu Trúc Bản Giới Thiệu Kênh (Channel About / Bio Copywriting)
+*Áp dụng khung sườn Hook > Conflict > Authority > Next Action:*
+```text
+Every day, courts deliver rulings that are 100% legal—yet completely divide society.
+
+The Grey Verdict uncovers the most contentious legal precedents, corporate grey zones, and institutional moral paradoxes in modern history. We dissect the documented trials where statutory rules clashed head-on with human common sense, leaving judges split and citizens stunned.
+
+No partisan commentary. No fabricated drama. Just the certified case records, the fine-print clauses, and the verdicts that exposed the legal system.
+
+⚖️ NEW TRIALS EVERY WEEK.
+
+Whose side are you on? The rulebook, or the individual?
+Subscribe to test your moral compass.
+```
+
+#### C. Chiến Lược Kệ Danh Sách Phát Trang Chủ (Homepage Merchandising & Playlist Strategy)
+Khi người xem truy cập trang chủ kênh, họ sẽ thấy 3 hàng danh sách phát được tuyển chọn chiến lược để tối ưu hóa thời lượng xem liên tục (Binge-Watch Sessions):
+1. **Shelf 1 (Top Hero):** *The Cases That Broke the Law (Những vụ án làm sụp đổ logic pháp lý)* — Tập hợp các phán quyết gây chấn động nhất như vụ án người sống bị tuyên bố đã chết.
+2. **Shelf 2:** *Corporate Grey Zones (Những lỗ hổng nghìn tỷ của các tập đoàn)* — Các vụ khai thác điều khoản hợp đồng kinh điển (AAirpass, Harrier Jet, Chicago Parking Meters).
+3. **Shelf 3:** *The Verdict Fork: Individual vs System (Những lựa chọn đạo đức bất khả điều hòa)* — Các vụ án phân cực 50/50 thử thách lương tri con người.
+
+---
+
 ## PART 2: BAREM XÂY KÊNH & QUY TRUẨN VẬN HÀNH TRỪU TƯỢNG (DÀNH CHO AI AGENT)
 
 > **NGUYÊN TẮC BẤT DI BẤT DỊCH CHO AGENT:**  
@@ -218,24 +288,25 @@ Trước khi Agent tiến hành render video bằng lệnh `uv run scripts/sf_re
 Khi người dùng yêu cầu sản xuất video mới cho kênh, Agent kích hoạt tuần tự các lệnh sau:
 
 ```bash
-# Bước 1: Khởi tạo dự án mới chuẩn Zero-Drift
+# Bước 1: Khởi tạo dự án mới chuẩn Zero-Drift (sf_init tự động chèn timestamp: projects/YYYYMMDD-HHMMSS-<project-slug>)
 uv run scripts/sf_init.py projects/<project-slug> --type factual
 
-# Bước 2: Điền kịch bản vào story.json theo đúng Barem 4 Pha trừu tượng
+# Bước 2: Điền kịch bản vào story.json theo đúng Barem 4 Pha trừu tượng, đồng thời điền khối "seo" (title, description, keywords, author)
 
 # Bước 3: Validate tính toàn vẹn của dữ liệu
-uv run scripts/sf_validate.py projects/<project-slug>
+uv run scripts/sf_validate.py projects/<timestamp-project-slug>
 
 # Bước 4: Phát 1 Turn Duy Nhất Mega-batch 20-26 prompt generate_image trên IDE
 
 # Bước 5: Tự động đồng bộ và băm SHA256 hình ảnh
-uv run scripts/sf_sync_gemini_images.py projects/<project-slug>
+uv run scripts/sf_sync_gemini_images.py projects/<timestamp-project-slug>
 
 # Bước 6: Sinh giọng đọc, khớp phụ đề karaoke và render video
-uv run scripts/sf_voice.py projects/<project-slug>
-uv run scripts/sf_align.py projects/<project-slug>
-uv run scripts/sf_captions.py projects/<project-slug>
-uv run scripts/sf_render.py projects/<project-slug>
+uv run scripts/sf_voice.py projects/<timestamp-project-slug>
+uv run scripts/sf_align.py projects/<timestamp-project-slug>
+uv run scripts/sf_captions.py projects/<timestamp-project-slug>
+# sf_render tự động đặt tên file video theo tiêu đề chuẩn SEO (out/<seo-title>.mp4), tạo alias out/final.mp4 và nhúng metadata ngầm
+uv run scripts/sf_render.py projects/<timestamp-project-slug>
 
 # Bước 7: Tạo Thumbnail Viral (9:16 & 16:9) dựa trên youtube-thumbnail skill
 ```

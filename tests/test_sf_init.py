@@ -49,3 +49,26 @@ def test_init_does_not_overwrite_without_force(tmp_path):
     assert summary_force["status"] == "initialized"
     loaded_force = json.loads(story_path.read_text(encoding="utf-8"))
     assert loaded_force["brief"]["idea"] == "Overwritten Idea"
+
+
+def test_init_with_timestamp_prefix_and_seo(tmp_path):
+    project_dir = tmp_path / "projects" / "slug-timestamped"
+    summary, code = sf_init.init_project(project_dir, content_type="factual", aspect="9:16", language="vi", with_timestamp=True)
+    assert code == 0
+    assert summary["ok"] is True
+    actual_path = Path(summary["project"])
+    assert actual_path.exists()
+    assert actual_path.name != "slug-timestamped"
+    assert "slug-timestamped" in actual_path.name
+
+    story_path = actual_path / "story.json"
+    story = json.loads(story_path.read_text(encoding="utf-8"))
+    assert "seo" in story
+    assert story["seo"]["title"] == "Slug Timestamped"
+    assert "keywords" in story["seo"]
+
+    # Must pass schema validation cleanly
+    val_summary, val_code = sf_validate.run(actual_path, root=tmp_path)
+    assert val_code == 0
+    assert val_summary["errors"] == []
+

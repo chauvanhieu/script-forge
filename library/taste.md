@@ -33,3 +33,7 @@ A rule that contradicts an older one of the same or broader scope replaces it (t
 
 - T012 [channel · the-grey-verdict] Standardize and preserve "The Grey Verdict" viral production formula: high-stakes legal/institutional paradox, 4-phase narrative curve (Cognitive Shock → System Trap → Institutional Reversal → Irresolvable Fork), fast slide pacing (~2.0–2.4s per cut), Chiaroscuro Noir atmosphere, cold analytical voiceover, karaoke subtext with 40ms pre-roll, and dual-aspect high-CTR thumbnails with binary debate trigger.
   ← the-fine-print-verdict · 2026-10-01 · "video tuyệt vời"
+
+- T013 [thumbnail · youtube-thumbnail] Strictly implement the youtube-thumbnail skill standards for high-CTR thumbnails: integrate a bold 3–5 word hook phrase (e.g. "LEGALLY DEAD") in large high-contrast typography (Verdict Amber #F5A623 or White with heavy dark stroke) placed in the upper portion away from UI elements, ensure an expressive face filling 30–50% of the frame with high emotional shock/disbelief, enforce a two-color dominant contrast (amber gold vs obsidian blue), and spotlight one dramatic secondary focal element (striking gavel or uneven scale of justice).
+  ← 20261001-202515-the-living-dead-verdict · 2026-10-01 · "tôi muốn thumbnail thu hút hơn, áp dụng sát với skill @youtube-thumbnail"
+

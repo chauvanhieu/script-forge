@@ -33,9 +33,11 @@ def find_candidate_file(brain_dirs: list[Path], slug: str, slide_id: str) -> Pat
     num = int(match.group(1)) if match else 1
     num_str = f"{num:02d}"
     single_num = str(num)
+    base_slug = re.sub(r"^\d{8}(-\d{6})?-", "", slug)
 
     patterns = [
-        re.compile(rf"{slug}.*s0*{single_num}[._]", re.IGNORECASE),
+        re.compile(rf"{re.escape(slug)}.*s0*{single_num}[._]", re.IGNORECASE),
+        re.compile(rf"{re.escape(base_slug)}.*s0*{single_num}[._]", re.IGNORECASE),
         re.compile(rf"^s0*{single_num}[._]", re.IGNORECASE),
         re.compile(rf"[._]s0*{single_num}[._]", re.IGNORECASE),
         re.compile(rf"slide[._-]?0*{single_num}[._]", re.IGNORECASE),

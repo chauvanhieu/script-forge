@@ -34,7 +34,12 @@ characters without spaces and `chars_per_s` is `calibration.speaking_rate[<lang>
 without calibration use `references/speaking-rates.md`. Aim within ±5 % of the budget.
 
 ## story.json
-- **Initialization & Scaffolding:** ALWAYS initialize a new production via `uv run scripts/sf_init.py projects/<slug> [--type factual|fiction|adaptation]`. NEVER read, list, or inspect past productions in `projects/`. All asset entries start `pending`. Follow `schemas/story.schema.json`.
+- **Initialization & Scaffolding:** ALWAYS initialize a new production via `uv run scripts/sf_init.py projects/<slug> [--type factual|fiction|adaptation]`. `sf_init` will automatically prepend a timestamp `YYYYMMDD-HHMMSS-<slug>`. NEVER read, list, or inspect past productions in `projects/`. All asset entries start `pending`. Follow `schemas/story.schema.json`.
+- **SEO & Search Indexing Metadata:** Populate `story.seo` with:
+  - `title`: High-CTR, curiosity-driven title (< 60 chars) containing the primary search keyword.
+  - `description`: Compelling 2-3 sentence overview + key question to stimulate engagement.
+  - `keywords`: 4-8 niche keywords for YouTube algorithm indexing (e.g. `["legal paradoxes", "court case", "the grey verdict"]`).
+  - `author`: Channel name or creator brand (e.g. "The Grey Verdict").
 - Metadata: Record `platform_target`, `hook_archetype`, and `text_hook` in the story or project notes.
 - Lines: Written natively in `brief.language`; narration and dialogue on separate lines; short sentences; Line 1 is the Verbal Hook within ~1.5 s; punctuation where the voice should pause; `pause_after_ms` 250–600 (longer at scene turns); only allowed tags (`[pause]`, `[pause 500ms]`, `[pause 1.5s]`, the OmniVoice non-verbal tags in `scripts/sflib/text.py`, `[[written|spoken]]`), prefer none.
 - Slides: 9:16 → slides of 2–4 s, one drawable moment each; Slide 1 visual prompt must execute the `Visual Hook`; `source` = canon scene id; no two consecutive slides share scene, pose and shot; vary `motion` (static, push_in, pull_out, pan_left, pan_right) every 3-5 s; `text_placement` lower_third. Visual prompts are written by `sf-visual` rules. **Pacing Note:** A single voice segment can and should be applied to multiple different image slides for faster transitions, increasing video pacing to retain viewers.

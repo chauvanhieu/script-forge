@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import json
 import re
 import sys
@@ -171,6 +172,12 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
         "research": research,
         "source_work": None,
         "learnings_applied": [],
+        "seo": {
+            "title": idea[:80] if idea else re.sub(r"^\d{8}(-\d{6})?-", "", slug).replace("-", " ").title(),
+            "description": f"Khám phá sự thật đằng sau {re.sub(r'^\d{8}(-\d{6})?-', '', slug).replace('-', ' ')} cùng StoryForge.",
+            "keywords": [re.sub(r"^\d{8}(-\d{6})?-", "", slug).replace("-", " "), content_type, "shorts", "storyforge"],
+            "author": "StoryForge"
+        },
         "output": {
             "video": "out/final.mp4",
             "captions": "out/captions.ass",
@@ -184,7 +191,8 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
 
 
 def build_skeleton_script(slug: str, title: str) -> str:
-    return f"""# Kịch bản: {title}
+    clean_title = re.sub(r"^\d{8}(-\d{6})?-", "", title)
+    return f"""# Kịch bản: {clean_title}
 
 - **Slug:** `{slug}`
 - **Thể loại:** Sức khỏe & Khoa học thường thức (Factual)
@@ -214,8 +222,16 @@ def build_skeleton_script(slug: str, title: str) -> str:
 
 
 def init_project(target: Path, content_type: str = "factual", aspect: str = "9:16",
-                 language: str = "vi", target_seconds: int = 60, idea: str = "", force: bool = False) -> tuple[dict, int]:
+                 language: str = "vi", target_seconds: int = 60, idea: str = "", force: bool = False,
+                 with_timestamp: bool = False) -> tuple[dict, int]:
     project_dir = target if target.is_absolute() else (ROOT / target).resolve()
+    dir_name = project_dir.name
+
+    if with_timestamp and not re.match(r"^\d{8}(-\d{6})?-", dir_name):
+        ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+        clean_name = parse_slug(dir_name)
+        project_dir = project_dir.parent / f"{ts}-{clean_name}"
+
     slug = parse_slug(project_dir.name)
 
     # Subdirectories
@@ -247,6 +263,7 @@ def main() -> None:
     parser.add_argument("--seconds", type=int, default=60, help="Target duration in seconds (default: 60)")
     parser.add_argument("--idea", default="", help="Initial idea or premise")
     parser.add_argument("--force", action="store_true", help="Overwrite existing story.json")
+    parser.add_argument("--no-timestamp", action="store_true", help="Do not prepend timestamp to project directory")
 
     args = parser.parse_args()
     summary, code = init_project(
@@ -256,7 +273,8 @@ def main() -> None:
         language=args.language,
         target_seconds=args.seconds,
         idea=args.idea,
-        force=args.force
+        force=args.force,
+        with_timestamp=not args.no_timestamp
     )
     print(json.dumps(summary, ensure_ascii=False))
     sys.exit(code)

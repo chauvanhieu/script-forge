@@ -63,3 +63,35 @@ def test_corrupt_clip_manifest_is_rebuilt(tmp_path):
     assert code == 0 and summary["rendered"] == ["S01", "S02"]
     assert set(json.loads((project / "clips/manifest.json").read_text())) == {"S01", "S02"}
     assert [p.name for p in (project / "clips").iterdir() if p.name.endswith(".tmp")] == []
+
+
+def test_render_with_seo_title_and_metadata(tmp_path):
+    import subprocess
+    story = make_story()
+    story["brief"]["captions"]["mode"] = "none"
+    story["seo"] = {
+        "title": "The Shocking Legal Loophole That Broke The System",
+        "description": "An institutional court trial where justice divided the public.",
+        "keywords": ["legal paradox", "court case", "shorts"],
+        "author": "The Grey Verdict"
+    }
+    project = prepare_media(tmp_path, story, [1000, 700, 1300])
+    summary, code = sf_render.run(project, size=SMALL)
+    assert code == 0
+
+    expected_file = "out/the-shocking-legal-loophole-that-broke-the-system.mp4"
+    assert summary["video"] == expected_file
+    assert (project / expected_file).is_file()
+    assert (project / "out/final.mp4").exists()
+
+    # Probe embedded metadata tags with ffprobe
+    res = subprocess.run([
+        "ffprobe", "-v", "quiet", "-show_entries", "format_tags", "-of", "json",
+        str(project / expected_file)
+    ], capture_output=True, text=True, check=True)
+    probe = json.loads(res.stdout)
+    tags = probe.get("format", {}).get("tags", {})
+    assert tags.get("title") == "The Shocking Legal Loophole That Broke The System"
+    assert tags.get("artist") == "The Grey Verdict"
+    assert "legal paradox" in tags.get("comment", "") or "legal paradox" in tags.get("description", "") or "legal paradox" in tags.get("keywords", "")
+

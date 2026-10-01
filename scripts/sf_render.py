@@ -2,10 +2,14 @@
 """Render out/final.mp4: per-slide motion clips, a sample-exact audio timeline, and burned-in captions."""
 from __future__ import annotations
 
+from datetime import datetime
 import json
 import os
-import wave
 from pathlib import Path
+import re
+import shutil
+import unicodedata
+import wave
 
 from sflib.media import decode_pcm, has_encoder, has_filter, run_ffmpeg
 from sflib.project import EXIT_HUMAN, EXIT_OK, file_hash, input_hash, load_story, main_wrapper, save_story
@@ -14,6 +18,18 @@ from sflib.timeline import FPS, build_timeline
 SIZE = {"9:16": (1080, 1920), "16:9": (1920, 1080)}
 ZOOM = 0.08
 RATE = 48000
+
+
+def sanitize_seo_filename(title: str, max_len: int = 80) -> str:
+    """Convert a video title into an SEO-friendly, filesystem-safe filename slug."""
+    title = title.replace("đ", "d").replace("Đ", "D")
+    normalized = unicodedata.normalize("NFKD", title)
+    ascii_text = "".join(c for c in normalized if not unicodedata.combining(c))
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", ascii_text).strip("-").lower()
+    slug = re.sub(r"-+", "-", slug)
+    if len(slug) > max_len:
+        slug = slug[:max_len].rstrip("-")
+    return slug or "video"
 
 
 def motion_filter(motion: str, frames: int, width: int, height: int) -> str:
@@ -111,17 +127,98 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
     (clips / "concat.txt").write_text("".join(f"file '{span.slide_id}.mp4'\n" for span in timeline.slides))
     _write_timeline_wav(story, timeline, project_dir, clips / "timeline.wav")
     (project_dir / "out").mkdir(exist_ok=True)
+
+    # SEO metadata extraction
+    seo = story.get("seo") or {}
+    brief = story.get("brief") or {}
+    has_explicit_seo_title = bool(seo.get("title"))
+
+    seo_title = seo.get("title") or brief.get("idea") or story.get("slug", "Video")
+    seo_title = seo_title.split("\n")[0].strip()
+    if len(seo_title) > 100:
+        seo_title = seo_title[:97] + "..."
+
+    seo_desc = seo.get("description") or brief.get("idea") or seo_title
+    keywords = seo.get("keywords")
+    if not keywords:
+        keywords = [
+            brief.get("genre", "general"),
+            brief.get("content_type", "factual"),
+            re.sub(r"^\d{8}(-\d{6})?-", "", story.get("slug", "")).replace("-", " "),
+            "shorts",
+            "viral"
+        ]
+    if isinstance(keywords, list):
+        keywords_str = ", ".join(str(k) for k in keywords if k)
+    else:
+        keywords_str = str(keywords)
+
+    author = seo.get("author") or "StoryForge"
+    genre = brief.get("genre", "Education")
+    date_str = datetime.now().strftime("%Y-%m-%d")
+
+    metadata_args = [
+        "-metadata", f"title={seo_title}",
+        "-metadata", f"comment={seo_desc}",
+        "-metadata", f"description={seo_desc}",
+        "-metadata", f"synopsis={seo_desc}",
+        "-metadata", f"keywords={keywords_str}",
+        "-metadata", f"artist={author}",
+        "-metadata", f"album_artist={author}",
+        "-metadata", f"composer={author}",
+        "-metadata", f"genre={genre}",
+        "-metadata", f"date={date_str}",
+    ]
+
+    if has_explicit_seo_title:
+        seo_slug = sanitize_seo_filename(seo_title)
+        video_filename = f"{seo_slug}.mp4"
+        video_rel = f"out/{video_filename}"
+    else:
+        video_filename = "final.mp4"
+        video_rel = "out/final.mp4"
+
+    target_video = project_dir / video_rel
+    final_video = project_dir / "out/final.mp4"
+
+    # Clean up obsolete video if filename changed
+    old_video = story["output"].get("video")
+    if old_video and old_video != video_rel and old_video != "out/final.mp4":
+        old_path = project_dir / old_video
+        if old_path.is_file():
+            try:
+                old_path.unlink()
+            except OSError:
+                pass
+
     args = ["-f", "concat", "-safe", "0", "-i", "clips/concat.txt", "-i", "clips/timeline.wav"]
     if captions:
         args += ["-vf", f"ass={captions}"]
     args += ["-map", "0:v", "-map", "1:a", *final_codec,
              "-pix_fmt", "yuv420p", "-r", str(FPS), "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
              "-ar", str(RATE), "-c:a", "aac", "-b:a", "192k", "-t", f"{timeline.total_ms / 1000:.3f}",
-             "-movflags", "+faststart", "out/final.mp4"]
+             *metadata_args,
+             "-movflags", "+faststart", video_rel]
     run_ffmpeg(args, cwd=project_dir)
-    story["output"]["video"] = "out/final.mp4"
+
+    if target_video != final_video:
+        try:
+            if final_video.is_symlink() or final_video.is_file():
+                final_video.unlink()
+            final_video.symlink_to(video_filename)
+        except OSError:
+            shutil.copy2(target_video, final_video)
+
+    story["output"]["video"] = video_rel
     save_story(project_dir, story)
-    summary.update(video="out/final.mp4", frames=timeline.total_frames, duration_ms=timeline.total_ms)
+    summary.update(
+        video=video_rel,
+        final_alias="out/final.mp4" if video_rel != "out/final.mp4" else None,
+        seo_title=seo_title,
+        metadata_tags={"title": seo_title, "artist": author, "genre": genre, "keywords": keywords_str},
+        frames=timeline.total_frames,
+        duration_ms=timeline.total_ms
+    )
     return summary, EXIT_OK
 
 
