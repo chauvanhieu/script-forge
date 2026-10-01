@@ -7,6 +7,12 @@
       "skillPath": "skills/adaptation/SKILL.md",
       "computedHash": "49100ceea28f648a977019ac32ebd9bc3490ab25e1bb1696431357a1e601eac0"
     },
+    "analytics-dashboard": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/analytics-dashboard/SKILL.md",
+      "computedHash": "b800a4f0a5fce5d7ce886c81aac7fd7fa632ed43271f26f440d5a0765bc9f338"
+    },
     "chapter-writing": {
       "source": "danjdewhurst/story-skills",
       "sourceType": "github",
@@ -18,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/character-management/SKILL.md",
       "computedHash": "8eb8bfe42d4587477e7d25452f7a2fb1fd860047f654165ef2618abacbe1c57a"
+    },
+    "content-matrix": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/content-matrix/SKILL.md",
+      "computedHash": "161a10a376fb74866172b3675e16af15f454f0ced05926ecc64fe8233ac6c83c"
     },
     "discovery-drafting": {
       "source": "danjdewhurst/story-skills",
@@ -37,11 +49,35 @@
       "skillPath": "skills/feedback-triage/SKILL.md",
       "computedHash": "97c6d647ee684c8f4b173b3946c5cf79291e87015e22f4295983eca572175478"
     },
+    "gemini-carousel": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gemini-carousel/SKILL.md",
+      "computedHash": "b46840ed0ca940b56e3c4cd6ffb5c198e87892c481d5bfd43c2ca5347af574c8"
+    },
+    "gemini-infographic": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gemini-infographic/SKILL.md",
+      "computedHash": "c6011f2f40898aa2e42f654ff3192497a4bd7abb05284ca9c07e012f0f840d66"
+    },
     "genre-craft": {
       "source": "danjdewhurst/story-skills",
       "sourceType": "github",
       "skillPath": "skills/genre-craft/SKILL.md",
       "computedHash": "dc779ce0a0bd8c55c20c1b6cdf8816ab62af169bc16a5659c262f8d4e326db6d"
+    },
+    "graphic-designer": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/graphic-designer/SKILL.md",
+      "computedHash": "5a67963bbc1217fa7c3b4461210d1a68b0d5ac13333b6b7417f02de9c608ff7e"
+    },
+    "hook-generator": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/hook-generator/SKILL.md",
+      "computedHash": "d1f64dbf11b1d6c27d41885064bbd4e973d21e75fdce910ea1b3bdb2f5926ccd"
     },
     "line-editing": {
       "source": "danjdewhurst/story-skills",
@@ -49,11 +85,47 @@
       "skillPath": "skills/line-editing/SKILL.md",
       "computedHash": "13479e794ca683216a07e29dfc631f7719bbb05df6bcfb3e2e5f3678e385cd56"
     },
+    "newsletter-voice": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/newsletter-voice/SKILL.md",
+      "computedHash": "9063aefa544c3dde6bca7386324b06918115fcbfd3124110ca0177b3a6194f5d"
+    },
+    "niche-research": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/niche-research/SKILL.md",
+      "computedHash": "61464705daa9b72cfdc7521b881d8387740a2fcd30d36792a76836e0094676fd"
+    },
+    "pinned-comment": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pinned-comment/SKILL.md",
+      "computedHash": "693072a5aa7ff5156d9c75b1190f18364628a1f68e48a746bf5f64a7b5cfb5c5"
+    },
     "plot-structure": {
       "source": "danjdewhurst/story-skills",
       "sourceType": "github",
       "skillPath": "skills/plot-structure/SKILL.md",
       "computedHash": "9fcd9495536290e8553e9111c1b815a4310cff010b862f23a384630c48e9f464"
+    },
+    "post-formatter": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/post-formatter/SKILL.md",
+      "computedHash": "695212ba01ac901d77ae2e8a45ba1f9b778de05a878673ec7607f94a92f3ee5e"
+    },
+    "post-scorer": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/post-scorer/SKILL.md",
+      "computedHash": "d1c3d6d8ec6cb32843b9965c2d3aec35d5cfb25142ada6928d62f1bd5a1fe5a2"
+    },
+    "post-writer": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/post-writer/SKILL.md",
+      "computedHash": "2acc3d86ecbf9c20a62a5007f79151027444250c29a4dbca4af8bc79b3948570"
     },
     "premise-workshop": {
       "source": "danjdewhurst/story-skills",
@@ -61,11 +133,29 @@
       "skillPath": "skills/premise-workshop/SKILL.md",
       "computedHash": "7a9664927488110b394577ca6b2d325f5e50c38deabf3fe441d09cb1a1356621"
     },
+    "profile-optimizer": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/profile-optimizer/SKILL.md",
+      "computedHash": "06f374f8b4668637c0b16b088b07cbe59ccec3f3ed8e77ba9a063fcd85cc3068"
+    },
     "publishing": {
       "source": "danjdewhurst/story-skills",
       "sourceType": "github",
       "skillPath": "skills/publishing/SKILL.md",
       "computedHash": "5ae0e3d25316dcf8c14c6ed9f2b964e948a5b6662fac7245d74c85367683d6be"
+    },
+    "quote-post": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/quote-post/SKILL.md",
+      "computedHash": "30bfb520a9dd3243630fbbb475eb7fd199738e55d03d10f1cc760f9e3fa5787a"
+    },
+    "reels-scripting": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/reels-scripting/SKILL.md",
+      "computedHash": "ad253e372431db0872334dcde96f84d483fad33311d66ee13b8fc38621d60d75"
     },
     "research": {
       "source": "danjdewhurst/story-skills",
@@ -120,6 +210,12 @@
       "sourceType": "github",
       "skillPath": "skills/verse-craft/SKILL.md",
       "computedHash": "dedfca8301916eb53b229412f53c16ec877794a91bfe0a229a543c4800bdf3ae"
+    },
+    "voice-builder": {
+      "source": "charlie947/social-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/voice-builder/SKILL.md",
+      "computedHash": "d8b89424120d94f2309cd48b02b58cacd8855fa02b09a0765e2da055178b738d"
     },
     "voice-style": {
       "source": "danjdewhurst/story-skills",

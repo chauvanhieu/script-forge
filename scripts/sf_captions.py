@@ -135,18 +135,20 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
     timeline = build_timeline(story)
     placement = {lid: slide["visual"]["text_placement"] for slide in story["slides"] for lid in slide["line_ids"]}
     events = []
+    last_event_end = 0
     for line in story["lines"]:
         start = timeline.line_start_ms[line["id"]]
+        line_end = timeline.line_end_ms[line["id"]]
         where = placement[line["id"]]
         margin_v = round(style["margin_v_pct"][aspect][where] * height)
         chunks = [[w] for w in line["words"]] if animation == "word_by_word" else _chunk(line["words"], max_chars, style["max_lines"], spaced)
         for cue in chunks:
             rows = _split_lines(cue, max_chars, spaced)
-            cue_start = start + cue[0]["start_ms"]
-            cue_end = max(start + cue[-1]["end_ms"], cue_start + 10)
+            cue_start = max(start, start + cue[0]["start_ms"])
+            cue_end = min(line_end, max(start + cue[-1]["end_ms"], cue_start + 10))
             if animation == "word_by_word":
-                cue_start = max(0, cue_start - 40)
-                cue_end = max(10, cue_end - 40)
+                cue_start = max(start, cue_start - 40)
+                cue_end = min(line_end, max(cue_start + 10, cue_end - 40))
             
             is_karaoke = (mode == "karaoke") and (animation != "word_by_word")
             if is_karaoke:
@@ -161,22 +163,22 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
                     w_start_orig = start + word["start_ms"]
                     w_end_orig = start + word["end_ms"]
                     
-                    w_start = max(0, w_start_orig - PRE_ROLL)
+                    w_start = max(start, max(last_event_end, w_start_orig - PRE_ROLL))
                     
                     next_start_orig = start + flat[index + 1]["start_ms"] if index + 1 < len(flat) else None
                     
                     # Determine active event duration and gap handling
                     if next_start_orig is not None:
-                        next_start = max(0, next_start_orig - PRE_ROLL)
+                        next_start = max(start, next_start_orig - PRE_ROLL)
                         gap = next_start_orig - w_end_orig
                         if gap > 80:  # Perceptual gap threshold
-                            w_end = w_end_orig
+                            w_end = min(line_end, max(w_start + 10, w_end_orig))
                             has_gap = True
                         else:
-                            w_end = next_start
+                            w_end = min(line_end, max(w_start + 10, next_start))
                             has_gap = False
                     else:
-                        w_end = max(w_end_orig, w_start + 10)
+                        w_end = min(line_end, max(w_end_orig, w_start + 10))
                         has_gap = False
                         next_start = None
                         
@@ -184,14 +186,21 @@ def run(project_dir: Path, only: set[str] | None = None, styles_dir: Path = STYL
                     text_content = _active_word_text(rows, id(word), speaker_color, unsung_color, spaced)
                     text = f"{{\\an{ALIGNMENT[where]}}}" + text_content
                     events.append(f"Dialogue: 0,{ass_time(w_start)},{ass_time(w_end)},{line['speaker']},{line['id']},0,0,{margin_v},,{text}")
+                    last_event_end = w_end
                     
                     # Create the REST event if there's a significant gap
-                    if has_gap and next_start is not None:
+                    if has_gap and next_start is not None and next_start > w_end:
+                        rest_start = w_end
+                        rest_end = min(line_end, max(rest_start + 10, next_start))
                         rest_content = _active_word_text(rows, -1, speaker_color, unsung_color, spaced)
                         rest_text = f"{{\\an{ALIGNMENT[where]}}}" + rest_content
-                        events.append(f"Dialogue: 0,{ass_time(w_end)},{ass_time(next_start)},{line['speaker']},{line['id']},0,0,{margin_v},,{rest_text}")
+                        events.append(f"Dialogue: 0,{ass_time(rest_start)},{ass_time(rest_end)},{line['speaker']},{line['id']},0,0,{margin_v},,{rest_text}")
+                        last_event_end = rest_end
                 continue
 
+            cue_start = max(start, max(last_event_end, cue_start))
+            cue_end = min(line_end, max(cue_start + 10, cue_end))
+            last_event_end = cue_end
             base_text = _cue_text(rows, spaced)
             cue_dur = cue_end - cue_start
             anim_tags = ""

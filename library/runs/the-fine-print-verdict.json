@@ -1,0 +1,38 @@
+[
+  {
+    "run_id": "830e218f895992a5",
+    "date": "2026-10-01",
+    "log_lines": 13,
+    "line_hashes": [
+      "c970a200472b46a1",
+      "881937c14d43dfd3",
+      "1627433917d3ae01",
+      "ff9739ad1248673c",
+      "2fa2a148600b6e7a",
+      "309c2761ac41c1fb",
+      "abbe827eefa16a02",
+      "a1780e67f52bdd73",
+      "75525b0fca01cf0b",
+      "d25e18ad234ed091",
+      "edc6b5f88bd70787",
+      "c19a78996b9b3883"
+    ],
+    "target_s": 50,
+    "actual_s": 58.64,
+    "predicted_s": null,
+    "images_generated": 0,
+    "voice_lines_generated": 10,
+    "needs_human": 2,
+    "untrusted_timings": 1,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.007,
+      "sf_contact_sheet": 0.82,
+      "sf_voice": 97.176,
+      "sf_align": 0.371,
+      "sf_captions": 0.009,
+      "sf_render": 25.391,
+      "sf_qc": 20.036
+    }
+  }
+]

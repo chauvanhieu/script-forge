@@ -34,7 +34,7 @@ characters without spaces and `chars_per_s` is `calibration.speaking_rate[<lang>
 without calibration use `references/speaking-rates.md`. Aim within ±5 % of the budget.
 
 ## story.json
-- Follow `schemas/story.schema.json`; copy structure from `projects/den-ong-sao/story.json` (fiction) or `projects/smoke-test/story.json` (factual). All asset entries start `pending`.
+- **Initialization & Scaffolding:** ALWAYS initialize a new production via `uv run scripts/sf_init.py projects/<slug> [--type factual|fiction|adaptation]`. NEVER read, list, or inspect past productions in `projects/`. All asset entries start `pending`. Follow `schemas/story.schema.json`.
 - Metadata: Record `platform_target`, `hook_archetype`, and `text_hook` in the story or project notes.
 - Lines: Written natively in `brief.language`; narration and dialogue on separate lines; short sentences; Line 1 is the Verbal Hook within ~1.5 s; punctuation where the voice should pause; `pause_after_ms` 250–600 (longer at scene turns); only allowed tags (`[pause]`, `[pause 500ms]`, `[pause 1.5s]`, the OmniVoice non-verbal tags in `scripts/sflib/text.py`, `[[written|spoken]]`), prefer none.
 - Slides: 9:16 → slides of 2–4 s, one drawable moment each; Slide 1 visual prompt must execute the `Visual Hook`; `source` = canon scene id; no two consecutive slides share scene, pose and shot; vary `motion` (static, push_in, pull_out, pan_left, pan_right) every 3-5 s; `text_placement` lower_third. Visual prompts are written by `sf-visual` rules. **Pacing Note:** A single voice segment can and should be applied to multiple different image slides for faster transitions, increasing video pacing to retain viewers.
