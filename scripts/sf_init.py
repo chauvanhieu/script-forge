@@ -22,7 +22,8 @@ def parse_slug(name_or_path: str) -> str:
 
 
 def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str = "9:16",
-                         language: str = "vi", target_seconds: int = 60, idea: str = "") -> dict:
+                         language: str = "vi", target_seconds: int = 60, idea: str = "",
+                         channel: str = "") -> dict:
     hook_text = "Điều kỳ lạ này có thể thay đổi hoàn toàn cách bạn nhìn nhận vấn đề." if language == "vi" else "This counterintuitive truth changes everything."
     
     research = {
@@ -55,24 +56,54 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
         "no text, no letters, no logos, no watermarks"
     )
 
+    clean_channel = parse_slug(channel) if channel else ""
+    channel_author = clean_channel.replace("-", " ").title() if clean_channel else "StoryForge"
+
+    brief_dict: dict = {
+        "idea": idea or f"A high-retention {content_type} story on {slug.replace('-', ' ')}",
+        "language": language,
+        "aspect": aspect,
+        "content_type": content_type,
+        "genre": "health" if content_type == "factual" else "drama",
+        "target_seconds": target_seconds,
+        "captions": {
+            "mode": "karaoke",
+            "style": "karaoke-bold",
+            "animation": "none"
+        },
+        "review_mode": "auto"
+    }
+    if clean_channel:
+        brief_dict["channel"] = clean_channel
+
+    cast_voice: dict = {
+        "source": "design",
+        "design_prompt": "female, young adult, moderate pitch",
+        "instruct": "female, young adult, moderate pitch",
+        "profile_id": None
+    }
+    caption_color = "#00F0FF"
+
+    if clean_channel:
+        vp_path = ROOT / "channels" / clean_channel / "voice-profile.md"
+        if vp_path.exists():
+            vp_text = vp_path.read_text(encoding="utf-8")
+            m_profile = re.search(r'profile_id:\s*"([^"]+)"', vp_text)
+            if m_profile:
+                cast_voice["profile_id"] = m_profile.group(1)
+            m_prompt = re.search(r'design_prompt:\s*"([^"]+)"', vp_text)
+            if m_prompt:
+                cast_voice["design_prompt"] = m_prompt.group(1)
+                cast_voice["instruct"] = m_prompt.group(1)
+            m_color = re.search(r'caption_color:\s*"([^"]+)"', vp_text)
+            if m_color:
+                caption_color = m_color.group(1)
+
     story: dict = {
         "schema_version": "1.0",
         "slug": slug,
         "canon": None,
-        "brief": {
-            "idea": idea or f"A high-retention {content_type} story on {slug.replace('-', ' ')}",
-            "language": language,
-            "aspect": aspect,
-            "content_type": content_type,
-            "genre": "health" if content_type == "factual" else "drama",
-            "target_seconds": target_seconds,
-            "captions": {
-                "mode": "karaoke",
-                "style": "karaoke-bold",
-                "animation": "none"
-            },
-            "review_mode": "auto"
-        },
+        "brief": brief_dict,
         "state": {
             "stage": "brief",
             "gates": {
@@ -106,13 +137,8 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
                 "canon_id": None,
                 "name": "Người dẫn chuyện" if language == "vi" else "Narrator",
                 "role": "narrator",
-                "caption_color": "#00F0FF",
-                "voice": {
-                    "source": "design",
-                    "design_prompt": "female, young adult, moderate pitch",
-                    "instruct": "female, young adult, moderate pitch",
-                    "profile_id": None
-                }
+                "caption_color": caption_color,
+                "voice": cast_voice
             }
         ],
         "locations": [],
@@ -176,15 +202,15 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
             "title": idea[:80] if idea else re.sub(r"^\d{8}(-\d{6})?-", "", slug).replace("-", " ").title(),
             "description": f"Khám phá sự thật đằng sau {re.sub(r'^\d{8}(-\d{6})?-', '', slug).replace('-', ' ')} cùng StoryForge.",
             "keywords": [re.sub(r"^\d{8}(-\d{6})?-", "", slug).replace("-", " "), content_type, "shorts", "storyforge"],
-            "author": "StoryForge"
+            "author": channel_author
         },
         "output": {
-            "video": "out/final.mp4",
+            "video": f"out/{re.sub(r'^\d{8}(-\d{6})?-', '', slug).strip('-')}.mp4",
             "captions": "out/captions.ass",
             "contact_sheet": "out/contact_sheet.png",
             "qc": "out/qc.json",
-            "thumbnail": "out/thumbnail.jpg",
-            "thumbnail_16_9": "out/thumbnail_16_9.jpg"
+            "thumbnail": "out/thumbnail.jpg" if aspect == "9:16" else None,
+            "thumbnail_16_9": "out/thumbnail_16_9.jpg" if aspect == "16:9" else None
         }
     }
     return story
@@ -223,7 +249,7 @@ def build_skeleton_script(slug: str, title: str) -> str:
 
 def init_project(target: Path, content_type: str = "factual", aspect: str = "9:16",
                  language: str = "vi", target_seconds: int = 60, idea: str = "", force: bool = False,
-                 with_timestamp: bool = False) -> tuple[dict, int]:
+                 with_timestamp: bool = False, channel: str = "") -> tuple[dict, int]:
     project_dir = target if target.is_absolute() else (ROOT / target).resolve()
     dir_name = project_dir.name
 
@@ -244,7 +270,7 @@ def init_project(target: Path, content_type: str = "factual", aspect: str = "9:1
     if story_file.exists() and not force:
         return {"ok": True, "slug": slug, "project": str(project_dir), "status": "already_exists"}, EXIT_OK
 
-    story = build_skeleton_story(slug, content_type, aspect, language, target_seconds, idea)
+    story = build_skeleton_story(slug, content_type, aspect, language, target_seconds, idea, channel=channel)
     save_story(project_dir, story)
 
     if not script_file.exists() or force:
@@ -262,6 +288,7 @@ def main() -> None:
     parser.add_argument("--language", default="vi", help="Audio/caption language (default: vi)")
     parser.add_argument("--seconds", type=int, default=60, help="Target duration in seconds (default: 60)")
     parser.add_argument("--idea", default="", help="Initial idea or premise")
+    parser.add_argument("--channel", default="", help="Target channel slug (e.g. the-grey-verdict)")
     parser.add_argument("--force", action="store_true", help="Overwrite existing story.json")
     parser.add_argument("--no-timestamp", action="store_true", help="Do not prepend timestamp to project directory")
 
@@ -273,6 +300,7 @@ def main() -> None:
         language=args.language,
         target_seconds=args.seconds,
         idea=args.idea,
+        channel=args.channel,
         force=args.force,
         with_timestamp=not args.no_timestamp
     )

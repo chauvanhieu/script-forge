@@ -170,9 +170,13 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
         "-metadata", f"date={date_str}",
     ]
 
-    if has_explicit_seo_title:
-        seo_slug = sanitize_seo_filename(seo_title)
-        video_filename = f"{seo_slug}.mp4"
+    output_video = (story.get("output") or {}).get("video")
+    base_slug = re.sub(r"^\d{8}(-\d{6})?-", "", story.get("slug", "")).strip("-")
+    if output_video and output_video != "out/final.mp4":
+        video_rel = output_video
+        video_filename = Path(video_rel).name
+    elif base_slug and base_slug != "demo-ch01-916-en":
+        video_filename = f"{base_slug}.mp4"
         video_rel = f"out/{video_filename}"
     else:
         video_filename = "final.mp4"
@@ -183,13 +187,20 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
 
     # Clean up obsolete video if filename changed
     old_video = story["output"].get("video")
-    if old_video and old_video != video_rel and old_video != "out/final.mp4":
+    if old_video and old_video != video_rel:
         old_path = project_dir / old_video
-        if old_path.is_file():
+        if old_path.is_file() or old_path.is_symlink():
             try:
                 old_path.unlink()
             except OSError:
                 pass
+
+    # Ensure no leftover final.mp4 duplicate when outputting slug.mp4
+    if target_video != final_video and (final_video.is_file() or final_video.is_symlink()):
+        try:
+            final_video.unlink()
+        except OSError:
+            pass
 
     args = ["-f", "concat", "-safe", "0", "-i", "clips/concat.txt", "-i", "clips/timeline.wav"]
     if captions:
@@ -201,19 +212,10 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
              "-movflags", "+faststart", video_rel]
     run_ffmpeg(args, cwd=project_dir)
 
-    if target_video != final_video:
-        try:
-            if final_video.is_symlink() or final_video.is_file():
-                final_video.unlink()
-            final_video.symlink_to(video_filename)
-        except OSError:
-            shutil.copy2(target_video, final_video)
-
     story["output"]["video"] = video_rel
     save_story(project_dir, story)
     summary.update(
         video=video_rel,
-        final_alias="out/final.mp4" if video_rel != "out/final.mp4" else None,
         seo_title=seo_title,
         metadata_tags={"title": seo_title, "artist": author, "genre": genre, "keywords": keywords_str},
         frames=timeline.total_frames,

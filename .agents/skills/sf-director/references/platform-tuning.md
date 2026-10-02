@@ -65,23 +65,33 @@ Mỗi video chỉ được chọn đúng **1 mục tiêu duy nhất**:
 
 ---
 
-## 4. Gói Xuất Bản Hoàn Chỉnh (Publishing Package Blueprint)
+## 4. Gói Xuất Bản Hoàn Chỉnh (Publishing Package Blueprint - T016)
 
-Ở Stage 9 của `sf-director`, đạo diễn phải xuất bản tài liệu metadata theo mẫu sau:
+Ở Stage 10 của `sf-director`, đạo diễn phải xuất bản tài liệu metadata theo mẫu sau:
 
 ```markdown
 ### 📦 Gói Xuất Bản (Publishing Package) - [Tên Slug]
 - **Nền tảng mục tiêu:** [youtube_shorts | tiktok | instagram_reels]
-- **Tiêu đề Video (Title):** [Tiêu đề giật tò mò, < 60 ký tự, có từ khóa chính]
+- **File Video Final:** `out/<base_slug>.mp4` (Duy nhất 1 file, không tạo clone/final.mp4)
+- **Thumbnail:** `out/thumbnail.jpg` (9:16) hoặc `out/thumbnail_16_9.jpg` (16:9) (Chỉ 1 file đúng tỷ lệ)
+- **Tiêu đề Video (Title):** [Tiêu đề giật tò mò, < 60-70 ký tự, chứa từ khóa chính]
 
-#### 1. Caption Xuất Bản
-[Đoạn mở đầu giật hook]
-[Nội dung tóm tắt giá trị hoặc câu hỏi khơi mào tranh luận]
+#### 1. Description (Kèm Hashtags ở cuối - T016)
+```text
+[Đoạn mô tả ngắn gọn giật hook và bối cảnh sự việc]
+[Tóm tắt giá trị hoặc câu hỏi mở]
 [Lời kêu gọi hành động Single-Action CTA]
 
-#### 2. Hashtags Chuẩn Ngách (3 - 5 thẻ)
-#[TừKhóaChính] #[ThểLoại] #[ĐốiTượngMụcTiêu] #[StoryForge]
+#Hashtag1 #Hashtag2 #Hashtag3 #Hashtag4 #Hashtag5
+```
+
+#### 2. Tags (Dãy từ khóa phân cách bởi dấu phẩy, 1-click copy dán thẳng vào YouTube Studio Tags - T016)
+```text
+tag 1,tag 2,tag 3,tag 4,tag 5,...
+```
 
 #### 3. Pinned Comment (Bình luận ghim đầu trang)
+```text
 [Câu hỏi dẫn dắt hoặc gợi mở góc nhìn đa chiều để thúc đẩy cộng đồng thảo luận ngay dưới video]
+```
 ```

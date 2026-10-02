@@ -68,6 +68,7 @@ def test_corrupt_clip_manifest_is_rebuilt(tmp_path):
 def test_render_with_seo_title_and_metadata(tmp_path):
     import subprocess
     story = make_story()
+    story["slug"] = "20261002-120000-legal-loophole"
     story["brief"]["captions"]["mode"] = "none"
     story["seo"] = {
         "title": "The Shocking Legal Loophole That Broke The System",
@@ -79,10 +80,10 @@ def test_render_with_seo_title_and_metadata(tmp_path):
     summary, code = sf_render.run(project, size=SMALL)
     assert code == 0
 
-    expected_file = "out/the-shocking-legal-loophole-that-broke-the-system.mp4"
+    expected_file = "out/legal-loophole.mp4"
     assert summary["video"] == expected_file
     assert (project / expected_file).is_file()
-    assert (project / "out/final.mp4").exists()
+    assert not (project / "out/final.mp4").exists()
 
     # Probe embedded metadata tags with ffprobe
     res = subprocess.run([

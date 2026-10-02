@@ -1,12 +1,12 @@
 # Word-by-word highlight. Unsung words use unsung_color; sung words take the speaker's caption_color.
 font: Montserrat
 bold: true
-font_size: {"9:16": 120, "16:9": 85}
-outline: 10
+font_size: {"9:16": 76, "16:9": 54}
+outline: 6
 shadow: 0
 unsung_color: "#FFFFFF"
-max_chars_per_line: {"9:16": 18, "16:9": 36}
+max_chars_per_line: {"9:16": 22, "16:9": 40}
 max_lines: 2
 margin_v_pct:
-  "9:16": {lower_third: 0.22, center: 0.0, upper_third: 0.14}
-  "16:9": {lower_third: 0.10, center: 0.0, upper_third: 0.10}
+  "9:16": {lower_third: 0.15, center: 0.0, upper_third: 0.12}
+  "16:9": {lower_third: 0.08, center: 0.0, upper_third: 0.08}

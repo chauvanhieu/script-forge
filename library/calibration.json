@@ -6,22 +6,22 @@
       "lines": 229
     },
     "en": {
-      "chars_per_s": 15.024663903801395,
-      "lines": 38
+      "chars_per_s": 14.054719426014747,
+      "lines": 59
     }
   },
   "stage_seconds": {
     "render": {
-      "mean": 14.682,
-      "n": 28
+      "mean": 14.461,
+      "n": 31
     },
     "image": {
       "mean": 24.406,
       "n": 222
     },
     "voice_line": {
-      "mean": 6.632,
-      "n": 167
+      "mean": 6.579,
+      "n": 190
     }
   }
 }

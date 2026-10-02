@@ -72,3 +72,23 @@ def test_init_with_timestamp_prefix_and_seo(tmp_path):
     assert val_code == 0
     assert val_summary["errors"] == []
 
+
+def test_init_with_channel(tmp_path):
+    project_dir = tmp_path / "projects" / "slug-channel-test"
+    summary, code = sf_init.init_project(project_dir, channel="the-grey-verdict", idea="A legal paradox video")
+    assert code == 0
+    assert summary["ok"] is True
+
+    story_path = project_dir / "story.json"
+    story = json.loads(story_path.read_text(encoding="utf-8"))
+    assert story["brief"]["channel"] == "the-grey-verdict"
+    assert story["seo"]["author"] == "The Grey Verdict"
+    assert story["cast"][0]["voice"]["profile_id"] == "6d80d98d"
+    assert story["cast"][0]["caption_color"] == "#F5A623"
+
+    # Must pass schema validation cleanly
+    val_summary, val_code = sf_validate.run(project_dir, root=tmp_path)
+    assert val_code == 0
+    assert val_summary["errors"] == []
+
+

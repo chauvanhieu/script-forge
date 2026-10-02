@@ -1,12 +1,12 @@
 # Classic subtitles in the speaker's caption_color.
 font: Arial
 bold: false
-font_size: {"9:16": 64, "16:9": 48}
+font_size: {"9:16": 58, "16:9": 44}
 outline: 3
 shadow: 0
 unsung_color: "#FFFFFF"
-max_chars_per_line: {"9:16": 22, "16:9": 42}
+max_chars_per_line: {"9:16": 24, "16:9": 42}
 max_lines: 2
 margin_v_pct:
-  "9:16": {lower_third: 0.20, center: 0.0, upper_third: 0.12}
+  "9:16": {lower_third: 0.15, center: 0.0, upper_third: 0.10}
   "16:9": {lower_third: 0.08, center: 0.0, upper_third: 0.08}

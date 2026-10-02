@@ -7,8 +7,7 @@ description: Writes StoryForge style bibles, character/location plate prompts an
 
 ## Prompts
 - Formula: style → subject/appearance → action → setting → shot → light → continuity → exclusions.
-- The image model sees only the prompt plus the slide's character **face** plates and location plate
-  (max 4). Repeat each visible character's key appearance words verbatim in every slide prompt.
+- **Character Visual Continuity (T020):** Every recurring character MUST have an immutable set of visual anchor traits (exact age, hairstyle/hair color, facial structure, consistent wardrobe and signature accessories) defined in `cast`. Repeat these descriptive anchor tokens verbatim in every slide prompt where the character appears. Leverage character face/half plates (`plates/c_*.png` or passed via `ImagePaths` in Gemini `generate_image` calls) to maintain unmistakable cross-shot character fidelity throughout the story.
 - Face plates: "head-and-shoulders portrait, face fills the frame". Half: waist up. Full: head to toe, neutral background.
 - State counts explicitly (people, moons, lanterns). End every prompt with: full-frame dynamic composition, no text, no letters, no logos, no watermarks (per T002: do not mandate an empty lower third or text section at the bottom).
 - Apply every matching image check in `library/checks.md` and every visual taste rule while writing, not only when reviewing.
