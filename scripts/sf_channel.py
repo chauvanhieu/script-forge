@@ -40,12 +40,15 @@ def list_channels() -> list[dict]:
         niche = "N/A"
         if blueprint_file.exists():
             content = blueprint_file.read_text(encoding="utf-8")
-            m_name = re.search(r"Tên kênh \(Brand Name\):\s*\*\*([^\*]+)\*\*", content)
-            if m_name:
+            m_title = re.search(r"^#\s*Channel Blueprint:\s*(.+)$", content, re.MULTILINE)
+            if m_title:
+                name = m_title.group(1).strip()
+            m_name = re.search(r"(?:Tên kênh \(Brand Name\)|Brand Name):\s*\*{0,2}([^\*\n\r]+)\*{0,2}", content)
+            if m_name and m_name.group(1).strip():
                 name = m_name.group(1).strip()
-            m_niche = re.search(r"Ngách nội dung:\s*([^\n\r]+)", content)
+            m_niche = re.search(r"(?:Ngách nội dung|Niche Category):\s*([^\n\r]+)", content)
             if m_niche:
-                niche = m_niche.group(1).strip()
+                niche = m_niche.group(1).strip().strip("*").strip()
 
         try:
             rel_path = str(item.relative_to(ROOT))

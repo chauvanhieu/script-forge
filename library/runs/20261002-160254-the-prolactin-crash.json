@@ -1,0 +1,105 @@
+[
+  {
+    "run_id": "055625754d194b0d",
+    "date": "2026-10-02",
+    "log_lines": 11,
+    "line_hashes": [
+      "ce73bff8505e6ec5",
+      "ca981df126e6472d",
+      "bb1fbdd6c908a621",
+      "da3e64dc4f8e7589",
+      "407541f5702d5d1b",
+      "6b53f397c917ab2d",
+      "879713d7159248b5",
+      "111e2f430e62fd88",
+      "2809d9530894348d",
+      "405d02c44d3f2e72",
+      "c34e25de49574c5a"
+    ],
+    "target_s": 52,
+    "actual_s": 67.22,
+    "predicted_s": 66.9,
+    "images_generated": 0,
+    "voice_lines_generated": 11,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.009,
+      "sf_contact_sheet": 0.731,
+      "sf_voice": 64.667,
+      "sf_align": 0.354,
+      "sf_captions": 0.005,
+      "sf_render": 19.244,
+      "sf_qc": 14.533
+    }
+  },
+  {
+    "run_id": "70362429aac0985a",
+    "date": "2026-10-02",
+    "log_lines": 8,
+    "line_hashes": [
+      "8329f130c374b279",
+      "f8161a1c75a138b4",
+      "0669742097e09c73",
+      "16a98fdccf9f0e30",
+      "672923c2f22068a2",
+      "37bcf35c633e9434",
+      "a533867120f13eda",
+      "165aa771495ec600",
+      "f22462c18aec4249",
+      "2f67b4b70a911bc0",
+      "e1479cb2aa310a1e"
+    ],
+    "target_s": 52,
+    "actual_s": 56.77,
+    "predicted_s": 67.87,
+    "images_generated": 0,
+    "voice_lines_generated": 11,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.012,
+      "sf_voice": 58.825,
+      "sf_align": 0.299,
+      "sf_captions": 0.004,
+      "sf_render": 17.323,
+      "sf_qc": 6.109
+    }
+  },
+  {
+    "run_id": "fbb112d1e2582ea8",
+    "date": "2026-10-02",
+    "log_lines": 7,
+    "line_hashes": [
+      "99e0d86c901ca9da",
+      "a9c637698cfa64cb",
+      "be21a2c0207fc43f",
+      "0dd2af0c3ffb4b02",
+      "f9c82a0a2e0802bc",
+      "037b72afae2c533c",
+      "997c9ad639f1ba1f",
+      "18b5db90f0a4eb62",
+      "d33b7a058ab7b775",
+      "140148a99e93a216",
+      "1472950b71571f31"
+    ],
+    "target_s": 52,
+    "actual_s": 54.42,
+    "predicted_s": 57.73,
+    "images_generated": 0,
+    "voice_lines_generated": 11,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.006,
+      "sf_voice": 64.936,
+      "sf_align": 0.299,
+      "sf_captions": 0.004,
+      "sf_render": 15.502,
+      "sf_qc": 5.86
+    }
+  }
+]
