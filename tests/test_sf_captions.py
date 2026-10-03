@@ -33,14 +33,14 @@ def test_helpers():
 def test_karaoke_ass(tmp_path):
     project = _project(tmp_path)
     summary, code = sf_captions.run(project, styles_dir=STYLES)
-    assert code == 0 and summary["cues"] == 3
+    assert code == 0 and summary["cues"] == 12
     ass = (project / "out/captions.ass").read_text(encoding="utf-8")
     assert "PlayResX: 1080\nPlayResY: 1920" in ass
-    assert "Style: narrator,Arial,78,&H00FFFFFF,&H009A9A9A,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,0,2,60,60,0,1" in ass
-    assert "Style: C01,Arial,78,&H0066D1FF,&H009A9A9A," in ass
-    assert ("Dialogue: 0,0:00:00.00,0:00:01.50,narrator,L001,0,0,422,,"
-            "{\\an2}{\\kf30}Every {\\kf30}night {\\kf20}for\\N{\\kf40}eleven {\\kf30}years.") in ass
-    assert "Dialogue: 0,0:00:02.65,0:00:03.95,C01,L003,0,0,422,,{\\an2}{\\kf60}No. {\\kf30}Not {\\kf40}again." in ass
+    assert "Style: narrator,Montserrat,66,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,0,2,60,60,0,1" in ass
+    assert "Style: C01,Montserrat,66,&H0066D1FF,&H00FFFFFF," in ass
+    assert ("Dialogue: 0,0:00:00.00,0:00:00.26,narrator,L001,0,0,326,,"
+            "{\\an2}{\\c&H00FFFFFF}{\\c&HFFFFFF&\\t(0,60,\\c&H00FFFFFF)}Every{\\c&H00FFFFFF} night for\\Neleven years.") in ass
+    assert "Dialogue: 0,0:00:03.51,0:00:03.95,C01,L003,0,0,326,,{\\an2}{\\c&H00FFFFFF}No. Not {\\c&HFFFFFF&\\t(0,60,\\c&H0066D1FF)}again.{\\c&H00FFFFFF}" in ass
     assert load_story(project)["output"]["captions"] == "out/captions.ass"
 
 
@@ -115,4 +115,4 @@ def test_tag_only_line_is_aligned_once_and_captioned(tmp_path):
     summary, _ = sf_align.run(project)
     assert summary["aligned"] == [] and summary["skipped"] == 3
     summary, code = sf_captions.run(project, styles_dir=STYLES)
-    assert code == 0 and summary["cues"] == 2
+    assert code == 0 and summary["cues"] == 8

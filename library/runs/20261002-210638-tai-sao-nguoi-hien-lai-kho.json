@@ -1,0 +1,95 @@
+[
+  {
+    "run_id": "bb16042444f802b2",
+    "date": "2026-10-02",
+    "log_lines": 9,
+    "line_hashes": [
+      "8f2a969c353b1208",
+      "b73b3bc80c8da9b6",
+      "e369e5cbb7aa02ff",
+      "13ec106715fdcbda",
+      "cf8550c6a9aaf537",
+      "99b80c9125415bad",
+      "37ba3737e8e7b668",
+      "354be5b12c0031ea",
+      "3e95664629b9780d",
+      "7e966c3b41e6a50f",
+      "f82a0dd3f88b93dd"
+    ],
+    "target_s": 50,
+    "actual_s": 50.68,
+    "predicted_s": 57.98,
+    "images_generated": 0,
+    "voice_lines_generated": 11,
+    "needs_human": 0,
+    "untrusted_timings": 11,
+    "qc_failed": [
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_validate": 0.004,
+      "sf_voice": 69.478,
+      "sf_contact_sheet": 0.738,
+      "sf_align": 0.348,
+      "sf_captions": 0.005,
+      "sf_render": 15.389,
+      "sf_qc": 5.821
+    }
+  },
+  {
+    "run_id": "818e86331555a3a3",
+    "date": "2026-10-02",
+    "log_lines": 5,
+    "line_hashes": [],
+    "target_s": 50,
+    "actual_s": 50.68,
+    "predicted_s": 51.52,
+    "images_generated": 0,
+    "voice_lines_generated": 0,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_contact_sheet": 0.879,
+      "sf_validate": 0.006,
+      "sf_render": 8.159,
+      "sf_qc": 5.776
+    }
+  },
+  {
+    "run_id": "e077676152ecda61",
+    "date": "2026-10-02",
+    "log_lines": 5,
+    "line_hashes": [
+      "b7b4411c2389ea7a",
+      "9ecd2ac2d6873e5a",
+      "4ea0f82eb0630401",
+      "65c078f3b1be82fe",
+      "f4e74e7b0fd5d966",
+      "4e6bac5ade7c881b",
+      "0a883826ec6c71e8",
+      "2deae2514c2d2574",
+      "351a4d630da8b03f",
+      "e1798c7230ab968a",
+      "3b4011dd1cf57e96"
+    ],
+    "target_s": 50,
+    "actual_s": 49.61,
+    "predicted_s": 51.52,
+    "images_generated": 0,
+    "voice_lines_generated": 11,
+    "needs_human": 0,
+    "untrusted_timings": 11,
+    "qc_failed": [
+      "silence"
+    ],
+    "stage_wall_s": {
+      "sf_voice": 113.959,
+      "sf_align": 0.304,
+      "sf_captions": 0.005,
+      "sf_render": 15.943
+    }
+  }
+]

@@ -51,3 +51,29 @@ Toàn bộ hình ảnh và thumbnail của kênh phải được neo chặt vào
    * *Góc máy:* Wide Cinematic Master Shot đối lập với Cận cảnh ánh mắt nhân vật.
    * *Ánh sáng:* Warm Tungsten Spotlight cắt xuyên qua màn đêm đen sâu thẳm.
    * *Chi tiết biểu cảm:* Đỉnh điểm biểu đạt tâm lý của các bên đối đầu, chuyển động dứt khoát của hành động đưa ra quyết định, vật thể xúc tác chịu tác động trực tiếp tại thời khắc phán quyết.
+
+---
+
+## 5. Quy Chuẩn Lịch Sử Thời Kỳ & Chống Lệch Vai Tác Chiến (Era Anchoring & Role Sanitization - T022)
+
+Các vụ án của kênh The Grey Verdict thường diễn ra trong các bối cảnh lịch sử có thật (thập niên 1960–1990 hoặc tiền án lệ thế kỷ 20). Để triệt tiêu hoàn toàn lỗi AI vẽ sai thành cảnh sát đặc nhiệm SWAT hay đồ công nghệ hiện đại:
+
+1. **Khóa Mốc Thời Kỳ & Đạo Cụ Lịch Sử (Era Anchoring):**
+   - Luôn neo rõ mốc thời gian trong prompt: ví dụ `1970s vintage era`, `period-accurate 1971 Midwest America`.
+   - Đạo cụ phải phù hợp cơ học cổ điển: Đèn pin vỏ sắt dùng bóng sợi đốt ánh vàng cam (`vintage metal flashlight with warm incandescent yellow beam`), dây thừng gai sợi thô (`hemp rope/cord`), khóa cơ khí gỉ sét (`rusty iron latch/tumbler`), kính thủy tinh dày.
+   - Tuyệt đối cấm đồ công nghệ hiện đại: `no LED light bars, no modern flashlights, no plastic tools, no digital gadgets, no modern vehicles`.
+2. **Bộ Lọc Loại Trừ Tác Chiến Hiện Đại (Negative Archetype Filters):**
+   - Khi tạo hình nhân vật trộm vặt, người đột nhập, nạn nhân hoặc nông dân:
+   - Dùng từ vựng dân sự: `petty prowler`, `civilian trespasser`, `vintage burglar in worn jacket`, `Iowa farmer in denim chore coat`.
+   - Cấm triệt để từ vựng đặc nhiệm: `no tactical gear, no SWAT team, no modern police armor, no helmets, no Kevlar vest, no modern weaponry, no balaclava`.
+
+---
+
+## 6. Tính Hợp Lý Cơ Học Trong Chứng Cứ & Hiện Trường (Physical Plausibility & 2-Shot Mechanics - T023)
+
+Đối với các vụ án liên quan đến bẫy cơ học (spring-gun, tripwire), vũ khí tự chế hoặc chứng cứ hiện trường:
+- Không bao giờ bắt AI vẽ toàn bộ một hệ thống truyền động cơ học phức tạp trong 1 khung hình duy nhất (tránh lỗi dây buộc ngược phía trước cò súng, dây bay lơ lửng).
+- **Áp dụng Cặp Cảnh Nguyên Nhân - Kết Quả (2-Shot Cause-and-Effect):**
+  - *Shot 1 (Điểm Tỳ Lực):* Macro cận cảnh điểm tiếp xúc cơ học cụ thể với hướng lực rõ ràng (ví dụ: sợi dây gai luồn phía sau vấu cò súng, tỳ qua cọc gỗ chân giường). Mô tả chuẩn xác: `"taut hemp cord looped securely behind the curved iron trigger shoe, passing firmly around an anchor post"`.
+  - *Shot 2 (Góc Đón Lõng):* Cận cảnh góc thấp từ họng súng chĩa dốc xuống sàn gỗ đón lõng vị trí cánh cửa khép hờ ở tầm mắt cá chân.
+- Não bộ người xem sẽ tự ghép 2 shot này thành một hệ thống cơ học hoàn hảo, tạo cảm giác thuyết phục tuyệt đối.

@@ -21,6 +21,12 @@ File này lưu trữ toàn bộ các phản hồi, bài học tiến hóa và qu
 - **T-GV05 [voice · signature-profile]** Cố định giọng đọc chính thức của kênh theo cấu hình giọng nam trung niên trầm ấm của video the-good-samaritan-trap (`source: design`, `design_prompt: "male, middle-aged, low pitch"`, `profile_id: "6d80d98d"`, caption color: `#F5A623`) cho mọi video của The Grey Verdict.
   ← the-good-samaritan-trap · 2026-10-02 · "tôi thích giọng trong video này, dùng làm giọng của kênh được đấy"
 
+- **T-GV06 [visual · era-sanitization]** Chống triệt để hiện tượng AI biến tội phạm vặt thành đặc nhiệm SWAT. Luôn neo mốc thời gian lịch sử thập niên 60-70 (`1970s vintage era`), dùng từ vựng dân sự (`petty prowler`, `civilian trespasser`), cấm từ khóa tác chiến (`tactical`, `breach`, `raid`), và bổ sung bộ lọc loại trừ: `(no SWAT, no tactical gear, no bulletproof armor, no modern police badges, no combat helmets)`.
+  ← the-deadly-trespasser-verdict · 2026-10-03 · "tìm giải pháp đồng nhất nhân vật/bối cảnh. ví dụ trong video mới có cảnh tên cướp vào nhà, nhưng giây sau lại xuất hiện ảnh cảnh sát swat đột nhập vào nhà thì bị sai."
+
+- **T-GV07 [visual · mechanical-plausibility]** Bắt buộc dùng Cặp Cảnh Nguyên Nhân - Kết Quả (2-Shot Cause-and-Effect Pair) cho các chi tiết bẫy súng (spring-gun) hoặc đạo cụ hiện trường: Shot 1 cận cảnh điểm tỳ lực (dây gai luồn sau cò súng, tỳ vào cọc gỗ) + Shot 2 góc đón lõng từ họng súng chĩa dốc xuống sàn cửa. Tuyệt đối không nhồi nhét cả hệ thống cơ học vào 1 ảnh khiến AI vẽ dây buộc ngược hoặc lơ lửng làm mất khả năng hình dung câu chuyện.
+  ← the-deadly-trespasser-verdict · 2026-10-03 · "cộng thêm những chi tiết cực kì nhỏ nhưng bị sai khiến tính hợp lý tan vỡ, ví dụ như sợi dây buộc cò súng bị sai cách khiến mất khả năng hình dung câu chuyện"
+
 ---
 
 ## 2. Nhật Ký Phản Hồi Video (Video Feedback History)
@@ -32,3 +38,8 @@ File này lưu trữ toàn bộ các phản hồi, bài học tiến hóa và qu
   - Sửa lỗi text overlay trên thumbnail bị khuất chữ mép trên (chừa 10%–15% headroom).
   - Tách bạch nhận diện thương hiệu (màu sắc/typography) khỏi bối cảnh hình ảnh để tránh rập khuôn.
   - **Giọng đọc chuẩn (Signature Voice):** Người dùng yêu thích giọng đọc trong video này (`profile_id: "6d80d98d"`) và chọn làm giọng đại diện chính thức cho toàn bộ kênh The Grey Verdict.
+* **2026-10-03 (`the-deadly-trespasser-verdict`):**
+  - **Nâng phụ đề 2 dòng:** Tăng `margin_v_pct` từ 8% lên 17%–18% (~326px) trên khung 9:16 để tránh bị title/UI của MXH che khuất.
+  - **Cơ chế tự sửa lỗi (Self-Healing T021):** Auto-heal schema aliases và auto-tolerate CER format do Whisper đọc số thành chữ/ký hiệu.
+  - **Đồng nhất nhân vật & Khóa vai diễn (T022 / T-GV06):** Chặn đứng lỗi AI biến trộm vặt thành lính SWAT bằng Semantic Substitution, Negative Archetype Filters và Era Anchoring.
+  - **Tính hợp lý cơ học (T023 / T-GV07):** Áp dụng quy tắc 2-Shot Cause-Effect cho bẫy súng/dây cò, loại bỏ hoàn toàn các chi tiết cơ học gãy vỡ logic.

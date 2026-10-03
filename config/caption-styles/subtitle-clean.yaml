@@ -8,5 +8,5 @@ unsung_color: "#FFFFFF"
 max_chars_per_line: {"9:16": 24, "16:9": 42}
 max_lines: 2
 margin_v_pct:
-  "9:16": {lower_third: 0.15, center: 0.0, upper_third: 0.10}
-  "16:9": {lower_third: 0.08, center: 0.0, upper_third: 0.08}
+  "9:16": {lower_third: 0.20, center: 0.0, upper_third: 0.10}
+  "16:9": {lower_third: 0.11, center: 0.0, upper_third: 0.08}

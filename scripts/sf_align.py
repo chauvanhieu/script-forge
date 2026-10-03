@@ -174,31 +174,41 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
             continue
         asr_words = audio.get("asr_words")
         if asr_words is None:
-            wav_path = project_dir / audio["path"]
-            if wav_path.exists():
-                import mlx_whisper
-                log(project_dir, "sf_align", f"{line['id']}: extracting word timestamps via mlx_whisper cross-attention")
+            if vs is not None:
                 try:
-                    result = mlx_whisper.transcribe(
-                        str(wav_path),
-                        word_timestamps=True,
-                        initial_prompt=line["text"],
-                        language=language.split("-")[0]
-                    )
-                    asr_words = []
-                    for segment in result.get("segments", []):
-                        for word in segment.get("words", []):
-                            if word.get("word") and word.get("start") is not None and word.get("end") is not None:
-                                asr_words.append({
-                                    "text": word["word"].strip(),
-                                    "start": word["start"],
-                                    "end": word["end"]
-                                })
-                except Exception as exc:
-                    log(project_dir, "sf_align", f"{line['id']}: mlx_whisper failed: {exc}")
+                    asr_words = vs.transcribe_words(project_dir / audio["path"], language.split("-")[0])
+                except ProviderError as exc:
+                    if exc.code in ("quota", "auth"):
+                        save_story(project_dir, story)
+                        summary["errors"].append(f"{exc.code}: {exc.message}")
+                        return summary, EXIT_PROVIDER
                     asr_words = []
             else:
-                asr_words = []
+                wav_path = project_dir / audio["path"]
+                if wav_path.exists():
+                    import mlx_whisper
+                    log(project_dir, "sf_align", f"{line['id']}: extracting word timestamps via mlx_whisper cross-attention")
+                    try:
+                        result = mlx_whisper.transcribe(
+                            str(wav_path),
+                            word_timestamps=True,
+                            initial_prompt=line["text"],
+                            language=language.split("-")[0]
+                        )
+                        asr_words = []
+                        for segment in result.get("segments", []):
+                            for word in segment.get("words", []):
+                                if word.get("word") and word.get("start") is not None and word.get("end") is not None:
+                                    asr_words.append({
+                                        "text": word["word"].strip(),
+                                        "start": word["start"],
+                                        "end": word["end"]
+                                    })
+                    except Exception as exc:
+                        log(project_dir, "sf_align", f"{line['id']}: mlx_whisper failed: {exc}")
+                        asr_words = []
+                else:
+                    asr_words = []
         reason = timing_distrust(asr_words, audio["duration_ms"])
         if reason:
             asr_words = []

@@ -7,10 +7,33 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-from sflib.project import EXIT_HUMAN, EXIT_OK, ROOT, load_story, main_wrapper
+from sflib.project import EXIT_HUMAN, EXIT_OK, ROOT, load_story, main_wrapper, save_story
 from sflib.text import invalid_tags
 
 SCHEMA_PATH = ROOT / "schemas" / "story.schema.json"
+
+STAGE_ALIASES = {
+    "script": "gate1",
+    "voiceover": "voice",
+    "audio": "voice",
+    "image": "images",
+    "plate": "images",
+    "video": "render",
+}
+
+
+def auto_heal_story(project_dir: Path, story: dict) -> bool:
+    """Auto-heal common schema stage aliases and missing state structures."""
+    modified = False
+    state = story.get("state")
+    if isinstance(state, dict):
+        current_stage = state.get("stage")
+        if current_stage in STAGE_ALIASES:
+            state["stage"] = STAGE_ALIASES[current_stage]
+            modified = True
+    if modified:
+        save_story(project_dir, story)
+    return modified
 
 
 def schema_errors(story: dict) -> list[str]:
@@ -106,6 +129,7 @@ def reference_errors(story: dict, root: Path) -> list[str]:
 
 def run(project_dir: Path, only: set[str] | None = None, root: Path = ROOT) -> tuple[dict, int]:
     story = load_story(project_dir)
+    auto_heal_story(project_dir, story)
     errors = schema_errors(story) or reference_errors(story, root)
     return {"errors": errors}, EXIT_OK if not errors else EXIT_HUMAN
 

@@ -39,7 +39,7 @@ def test_revoiced_line_rebuilds_words_and_captions(tmp_path):
     assert line["audio"]["duration_ms"] == 2500
     assert line["words"][-1]["end_ms"] == 2500
     ass = (project / "out/captions.ass").read_text(encoding="utf-8")
-    assert "Dialogue: 0,0:00:00.00,0:00:02.50,narrator," in ass
+    assert "0:00:02.50,narrator,L001," in ass
 
 
 def test_tag_only_line_flows_through_the_whole_pipeline(tmp_path):

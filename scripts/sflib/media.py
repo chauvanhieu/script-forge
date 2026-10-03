@@ -14,7 +14,7 @@ TRIM_PAD_MS = 50
 
 
 def _probe(path: Path, args: list[str]) -> dict:
-    proc = subprocess.run(["ffprobe", "-v", "error", *args, "-of", "json", str(path)], capture_output=True, text=True)
+    proc = subprocess.run(["ffprobe", "-v", "error", *args, "-of", "json", str(path)], capture_output=True, text=True, errors="replace")
     if proc.returncode != 0:
         raise RuntimeError(f"ffprobe failed on {path}: {proc.stderr.strip()}")
     return json.loads(proc.stdout)
@@ -51,7 +51,7 @@ def has_encoder(name: str) -> bool:
 
 def run_ffmpeg(args: list[str], cwd: Path | None = None) -> None:
     proc = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *args],
-                          capture_output=True, text=True, cwd=cwd)
+                          capture_output=True, text=True, errors="replace", cwd=cwd)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg failed: {' '.join(args)}\n{proc.stderr.strip()}")
 
@@ -100,7 +100,7 @@ def silences(path: Path, noise_db: int = -45, min_s: float = 0.3) -> list[tuple[
     """(start_s, duration_s) of every silence ffmpeg detects."""
     proc = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af",
                            f"silencedetect=noise={noise_db}dB:d={min_s}", "-f", "null", "-"],
-                          capture_output=True, text=True)
+                          capture_output=True, text=True, errors="replace")
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg silence detection failed on {path}: {proc.stderr.strip()}")
     found = re.findall(r"silence_end: (-?[0-9.]+) \| silence_duration: ([0-9.]+)", proc.stderr)

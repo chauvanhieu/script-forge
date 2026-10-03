@@ -144,12 +144,17 @@ def _slide_refs(story: dict, slide: dict, max_refs: int) -> list[str]:
     cast = {member["id"]: member for member in story["cast"]}
     locations = {location["id"]: location for location in story["locations"]}
     refs = []
+    # Single-Hero Plate Injection (T020): Inject at most ONE character plate to prevent cross-blending
     for character in slide["brief"]["characters"]:
-        plates = cast[character].get("plates")
-        if plates:
+        plates = cast.get(character, {}).get("plates")
+        if plates and plates.get("face", {}).get("path"):
             refs.append(plates["face"]["path"])
-    if slide["brief"]["location"]:
-        refs.append(locations[slide["brief"]["location"]]["plate"]["path"])
+            break
+    loc_id = slide["brief"].get("location")
+    if loc_id and locations.get(loc_id):
+        loc_plate = locations[loc_id].get("plate", {})
+        if loc_plate.get("path"):
+            refs.append(loc_plate["path"])
     return refs[:max_refs]
 
 

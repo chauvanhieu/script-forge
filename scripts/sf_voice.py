@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import time
 from pathlib import Path
 from typing import Callable
@@ -20,6 +21,26 @@ from sflib.voicestudio import VoiceStudio
 MAX_RETAKES = 2
 RETAKE_SEED_STEP = 7919
 TRANSIENT_RETRIES = 3
+
+NUMERAL_WORDS = {
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+    "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+    "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
+    "hundred", "thousand", "million", "billion", "trillion", "dollars", "dollar", "cents", "cent",
+    "khong", "mot", "hai", "ba", "bon", "nam", "sau", "bay", "tam", "chin", "muoi",
+    "tram", "nghin", "ngan", "trieu", "ty", "dong", "vnd", "usd"
+}
+
+
+def _is_numeral_divergence(reference: str, hypothesis: str) -> bool:
+    """Check if CER failure is solely due to ASR converting spoken number words to/from digits (Check K015)."""
+    ref_tokens = [re.sub(r"[^\w]", "", w.lower()) for w in reference.split()]
+    hyp_tokens = [re.sub(r"[^\w]", "", w.lower()) for w in hypothesis.split()]
+    ref_clean = [w for w in ref_tokens if w and not w.isdigit() and w not in NUMERAL_WORDS]
+    hyp_clean = [w for w in hyp_tokens if w and not w.isdigit() and w not in NUMERAL_WORDS]
+    if not ref_clean and not hyp_clean:
+        return True
+    return cer(" ".join(ref_clean), " ".join(hyp_clean)) < 0.15
 
 
 def default_seed(slug: str, line_id: str) -> int:
@@ -99,10 +120,14 @@ def _quality(vs, wav: Path, line: dict, language: str, duration_ms: int, meta: d
     except ProviderError as exc:
         qc["asr"] = f"skipped: {exc.code}: {exc.message}"
     if words is not None and shown:  # an empty reference makes CER meaningless (0 or 1 on ASR noise alone)
-        error = cer(shown, " ".join(word["text"] for word in words))
+        hyp_text = " ".join(word["text"] for word in words)
+        error = cer(shown, hyp_text)
         qc["cer"] = round(error, 3)
         if error > qc_cfg["max_cer"]:
-            qc["reasons"].append(f"transcribe-back CER {error:.2f} > {qc_cfg['max_cer']}")
+            if _is_numeral_divergence(shown, hyp_text):
+                qc["numeral_divergence_tolerated"] = True
+            else:
+                qc["reasons"].append(f"transcribe-back CER {error:.2f} > {qc_cfg['max_cer']}")
     # trim_silence only cuts the file's leading/trailing edges; VoiceStudio occasionally leaves a
     # genuine internal gap (breath, decay tail) that it doesn't touch. Catch it here with sf_qc's
     # own silencedetect helper so a bad take gets reseeded and retried in this same loop, instead

@@ -19,12 +19,14 @@ SIZES = {"1:1": (1024, 1024), "3:4": (768, 1024), "9:16": (1080, 1920), "16:9": 
 
 def find_brain_dirs() -> list[Path]:
     base = Path.home() / ".gemini" / "antigravity-ide" / "brain"
-    if not base.is_dir():
+    try:
+        if not base.is_dir():
+            return []
+        subdirs = [d for d in base.iterdir() if d.is_dir() and not d.name.startswith(".")]
+        subdirs.sort(key=lambda d: d.stat().st_mtime, reverse=True)
+        return subdirs
+    except (PermissionError, OSError):
         return []
-    # return subdirectories sorted by mtime descending
-    subdirs = [d for d in base.iterdir() if d.is_dir() and not d.name.startswith(".")]
-    subdirs.sort(key=lambda d: d.stat().st_mtime, reverse=True)
-    return subdirs
 
 
 def find_candidate_file(brain_dirs: list[Path], slug: str, slide_id: str) -> Path | None:

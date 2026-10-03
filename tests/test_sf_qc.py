@@ -43,7 +43,7 @@ def test_overlapping_cues_fail_caption_timing(tmp_path):
     project = _rendered(tmp_path)
     ass = project / "out/captions.ass"
     # prepare_media durations [1000, 700, 1300] put L003 at 1950–3250 ms; pull its cue back over L001's
-    ass.write_text(ass.read_text().replace("0:00:01.95,0:00:03.25", "0:00:00.50,0:00:03.25"), encoding="utf-8")
+    ass.write_text(ass.read_text().replace("0:00:01.95,0:00:02.17", "0:00:00.50,0:00:02.17"), encoding="utf-8")
     summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
     assert code == 2 and summary["failed"] == ["caption_timing"]
 
@@ -67,7 +67,7 @@ def test_cue_past_its_own_line_fails_caption_timing(tmp_path):
     project = _rendered(tmp_path)
     ass = project / "out/captions.ass"
     # L001 ends at 1000 ms; L002 starts at 1250 ms, so this cue overlaps nothing and ends before the video does
-    ass.write_text(ass.read_text().replace("0:00:00.00,0:00:01.00", "0:00:00.00,0:00:01.20"), encoding="utf-8")
+    ass.write_text(ass.read_text().replace("0:00:00.75,0:00:01.00", "0:00:00.75,0:00:01.20"), encoding="utf-8")
     summary, code = sf_qc.run(project, size=SMALL, styles_dir=STYLES)
     assert code == 2 and summary["failed"] == ["caption_timing"]
     report = json.loads((project / "out/qc.json").read_text())
