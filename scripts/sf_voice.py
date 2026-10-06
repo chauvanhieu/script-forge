@@ -73,10 +73,19 @@ def _with_retries(call: Callable, sleep: Callable[[float], None]):
 
 def _ensure_profiles(story: dict, vs, root: Path, project_dir: Path, summary: dict, recast: set[str]) -> None:
     language = story["brief"]["language"].split("-")[0]
+    try:
+        existing_profiles = {p.get("id"): p for p in vs.list_profiles()}
+    except Exception:
+        existing_profiles = {}
+
     for member in story["cast"]:
         voice = member["voice"]
-        if voice.get("profile_id") and member["id"] not in recast:
-            continue
+        pid = voice.get("profile_id")
+        if pid and member["id"] not in recast:
+            if not existing_profiles or pid in existing_profiles:
+                continue
+            log(project_dir, "sf_voice", f"profile_id {pid} not found in VoiceStudio, regenerating profile")
+            voice["profile_id"] = None
         name = f"{story['slug']}-{member['id']}"
         if voice["source"] == "library":
             ref = root / "library" / "cast" / voice["library_ref"] / "voice.json"

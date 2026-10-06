@@ -23,10 +23,10 @@ $$\text{Xung Đột} = \text{Hệ Thống Quy Chuẩn (System Axiom)} \iff \text
 
 ## 2. Tiến Trình Cảm Xúc 4 Pha (The 4-Phase Tension Architecture)
 
-Tổng thời lượng chuẩn: **45 – 55 giây**. Phân bổ chính xác theo 4 pha:
+Tổng thời lượng chuẩn (Hyper-Lean Sweet Spot - T-GV12): **40 – 48 giây (tối đa 50s | 115 – 130 từ)**. Phân bổ chính xác theo 4 pha:
 
 ```
-[0s ------------ 4s] -> [5s -------------------- 28s] -> [29s ----------------- 44s] -> [45s ---------- 50s+]
+[0s ------------ 4s] -> [4s -------------------- 24s] -> [25s ----------------- 38s] -> [39s ---------- 45s+]
      Pha 1:                   Pha 2:                          Pha 3:                         Pha 4:
   COGNITIVE SHOCK       ESCALATION & SYSTEM TRAP       INSTITUTIONAL REVERSAL       THE IRRESOLVABLE FORK
  (Phá vỡ kỳ vọng)       (Bẫy logic & Leo thang)        (Đảo chiều tiền lệ)           (Bẫy nhị phân kết thúc)

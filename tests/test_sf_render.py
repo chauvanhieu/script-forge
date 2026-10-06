@@ -96,3 +96,31 @@ def test_render_with_seo_title_and_metadata(tmp_path):
     assert tags.get("artist") == "The Grey Verdict"
     assert "legal paradox" in tags.get("comment", "") or "legal paradox" in tags.get("description", "") or "legal paradox" in tags.get("keywords", "")
 
+
+def test_render_with_sound_design_mixing(tmp_path):
+    story = make_story()
+    story["brief"]["captions"]["mode"] = "none"
+    project = prepare_media(tmp_path, story, [1000, 700, 1300])
+
+    # Add custom audio assets in project/audio
+    audio_dir = project / "audio"
+    audio_dir.mkdir(parents=True, exist_ok=True)
+    import wave, struct
+    for name in ["bgm_track.wav", "sfx_whoosh.wav"]:
+        with wave.open(str(audio_dir / name), "wb") as w:
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(48000)
+            # 0.5s of low tone
+            raw = bytearray()
+            for i in range(24000):
+                raw.extend(struct.pack("<h", int(1000 * ((i % 100) / 100.0))))
+            w.writeframes(raw)
+
+    summary, code = sf_render.run(project, size=SMALL)
+    assert code == 0
+    assert "bgm" in summary.get("audio_design", [])
+    assert "whoosh" not in summary.get("audio_design", [])
+    timeline = build_timeline(load_story(project))
+    assert abs(probe_audio_ms(project / summary["video"]) - timeline.total_ms) <= round(1000 / FPS)
+

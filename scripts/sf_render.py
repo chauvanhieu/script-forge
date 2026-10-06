@@ -2,6 +2,7 @@
 """Render out/final.mp4: per-slide motion clips, a sample-exact audio timeline, and burned-in captions."""
 from __future__ import annotations
 
+import array
 from datetime import datetime
 import json
 import os
@@ -12,8 +13,82 @@ import unicodedata
 import wave
 
 from sflib.media import decode_pcm, has_encoder, has_filter, run_ffmpeg
-from sflib.project import EXIT_HUMAN, EXIT_OK, file_hash, input_hash, load_story, main_wrapper, save_story
+from sflib.project import EXIT_HUMAN, EXIT_OK, ROOT, file_hash, input_hash, load_story, main_wrapper, save_story
 from sflib.timeline import FPS, build_timeline
+
+
+def _find_audio_assets(story: dict, project_dir: Path) -> dict[str, Path]:
+    """Find channel or project audio assets (BGM background music only; no sound effects per system policy)."""
+    assets: dict[str, Path] = {}
+    channel_slug = (story.get("brief") or {}).get("channel")
+    candidates = []
+    if project_dir and (project_dir / "audio").is_dir():
+        candidates.append(project_dir / "audio")
+    if channel_slug:
+        ch_audio = ROOT / "channels" / channel_slug / "assets" / "audio"
+        if ch_audio.is_dir():
+            candidates.append(ch_audio)
+
+    for audio_dir in candidates:
+        try:
+            for f in sorted(audio_dir.iterdir()):
+                if not f.is_file() or f.suffix.lower() not in {".wav", ".mp3", ".ogg", ".aac", ".flac"}:
+                    continue
+                name = f.stem.lower()
+                if "bgm" in name and "bgm" not in assets:
+                    assets["bgm"] = f
+        except OSError:
+            pass
+    return assets
+
+
+def _mix_soundtrack(story: dict, timeline, project_dir: Path, vocal_buffer: bytearray) -> bytearray:
+    """Mix speech vocal timeline with ducked background music (BGM). Sound effects (SFX) are permanently disabled."""
+    assets = _find_audio_assets(story, project_dir)
+    if not assets or "bgm" not in assets:
+        return vocal_buffer
+
+    vocal_samples = array.array("h")
+    vocal_samples.frombytes(vocal_buffer)
+    n_samples = len(vocal_samples)
+    if n_samples == 0:
+        return vocal_buffer
+
+    mixed = [float(s) for s in vocal_samples]
+
+    # Background Music (BGM) with intelligent speech ducking
+    try:
+        bgm_bytes = decode_pcm(assets["bgm"], RATE)
+        bgm_raw = array.array("h")
+        bgm_raw.frombytes(bgm_bytes)
+        if bgm_raw:
+            bgm_len = len(bgm_raw)
+            for i in range(n_samples):
+                # Duck BGM down during active speech; swell during breath/silence pauses
+                is_speech = abs(vocal_samples[i]) > 350
+                gain = 0.05 if is_speech else 0.12
+                mixed[i] += bgm_raw[i % bgm_len] * gain
+    except Exception:
+        pass
+
+    output_samples = array.array("h", (max(-32768, min(32767, int(s))) for s in mixed))
+    return bytearray(output_samples.tobytes())
+
+
+def _write_timeline_wav(story: dict, timeline, project_dir: Path, out: Path) -> None:
+    buffer = bytearray(round(timeline.total_ms * RATE / 1000) * 2)
+    for line in story["lines"]:
+        pcm = decode_pcm(project_dir / line["audio"]["path"], RATE)
+        offset = round(timeline.line_start_ms[line["id"]] * RATE / 1000) * 2
+        end = min(offset + len(pcm), len(buffer))
+        buffer[offset:end] = pcm[: end - offset]
+    soundtrack = _mix_soundtrack(story, timeline, project_dir, buffer)
+    with wave.open(str(out), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(RATE)
+        wav.writeframes(bytes(soundtrack))
+
 
 SIZE = {"9:16": (1080, 1920), "16:9": (1920, 1080)}
 ZOOM = 0.08
@@ -64,18 +139,6 @@ def _missing(story: dict, project_dir: Path) -> list[str]:
     return missing
 
 
-def _write_timeline_wav(story: dict, timeline, project_dir: Path, out: Path) -> None:
-    buffer = bytearray(round(timeline.total_ms * RATE / 1000) * 2)
-    for line in story["lines"]:
-        pcm = decode_pcm(project_dir / line["audio"]["path"], RATE)
-        offset = round(timeline.line_start_ms[line["id"]] * RATE / 1000) * 2
-        end = min(offset + len(pcm), len(buffer))
-        buffer[offset:end] = pcm[: end - offset]
-    with wave.open(str(out), "wb") as wav:
-        wav.setnchannels(1)
-        wav.setsampwidth(2)
-        wav.setframerate(RATE)
-        wav.writeframes(bytes(buffer))
 
 
 def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] | None = None) -> tuple[dict, int]:
@@ -219,7 +282,8 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
         seo_title=seo_title,
         metadata_tags={"title": seo_title, "artist": author, "genre": genre, "keywords": keywords_str},
         frames=timeline.total_frames,
-        duration_ms=timeline.total_ms
+        duration_ms=timeline.total_ms,
+        audio_design=list(_find_audio_assets(story, project_dir).keys())
     )
     return summary, EXIT_OK
 

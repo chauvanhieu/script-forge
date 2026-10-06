@@ -18,17 +18,17 @@ Tài liệu này định nghĩa hệ thống âm thanh, lựa chọn giọng đ�
 
 ## 2. Thông Số Kỹ Thuật (Audio Calibration)
 
-* **Tốc độ phát âm khuyến nghị:** ~14.0 – 15.0 ký tự/giây (Tiếng Anh).
-* **Khoảng ngắt nghỉ (`pause_after_ms`):**
-  - Giữa các câu thoại liền mạch: 200ms – 300ms.
-  - Tại bước ngoặt chuyển cảnh (Scene turns): 400ms – 600ms.
+* **Tốc độ phát âm khuyến nghị:** ~15.2 – 16.0 ký tự/giây (Tiếng Anh nhịp độ nhanh dứt khoát).
+* **Khoảng ngắt nghỉ (`pause_after_ms` - Triệt tiêu Dead Air T024/T-GV10):**
+  - Giữa các câu thoại liền mạch: 60ms – 100ms (hoặc 0ms giữa 2 câu cùng 1 mạch ý).
+  - Sau con số chấn động hoặc phán quyết gây sốc: Tối đa 200ms để tạo độ lắng tâm lý.
 * **Quy chuẩn thoại liền mạch (T004):** Triệt tiêu hoàn toàn dấu phẩy ngắt dòng sai, loại bỏ `...` hoặc ngoặc kép giữa các vế câu liền mạch để công cụ TTS đọc một mạch tự nhiên, không bị vấp.
 
 ---
 
 ## 3. Cấu Hình Cast Giọng Chính Thức Của Kênh (Official Channel Signature Voice)
 
-Giọng đọc chính thức của kênh The Grey Verdict được chốt chuẩn từ video `the-good-samaritan-trap` (VoiceStudio / Kokoro TTS):
+Giọng đọc chính thức của kênh The Grey Verdict áp dụng phong cách **Investigative Judicial Noir & Visceral Truth** (Tường thuật điều tra tư pháp ám ảnh, giàu cảm xúc và kịch tính):
 
 ```json
 {
@@ -39,7 +39,7 @@ Giọng đọc chính thức của kênh The Grey Verdict được chốt chuẩ
   "voice": {
     "source": "design",
     "design_prompt": "male, middle-aged, low pitch",
-    "instruct": "male, middle-aged, low pitch",
+    "instruct": "chilling investigative noir, gripping psychological tension, razor-sharp cadence, brooding authority with sudden dynamic emotional shifts between quiet tension and devastating institutional power, no smiling, zero hesitation",
     "profile_id": "6d80d98d"
   }
 }
@@ -50,10 +50,12 @@ voice_casting:
   provider: voicestudio
   source: design
   design_prompt: "male, middle-aged, low pitch"
-  instruct: "male, middle-aged, low pitch"
+  instruct: "chilling investigative noir, gripping psychological tension, razor-sharp cadence, brooding authority with sudden dynamic emotional shifts between quiet tension and devastating institutional power, no smiling, zero hesitation"
   profile_id: "6d80d98d"
   caption_color: "#F5A623"
-  speed: 1.05
+  speed: 1.08
   pitch: 0.98
-  target_speaking_rate_chars_per_s: 14.5
+  target_speaking_rate_chars_per_s: 15.5
+  target_duration_seconds: 40-48
 ```
+

@@ -141,7 +141,26 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
                 "voice": cast_voice
             }
         ],
-        "locations": [],
+        "locations": [
+            {
+                "id": "LOC01",
+                "canon_id": None,
+                "name": "Main Setting" if language == "en" else "Bối cảnh chính",
+                "appearance": "Atmospheric cinematic environment matching the narrative world",
+                "era_anchors": "Period-accurate era details, no modern digital devices or out-of-era artifacts",
+                "architectural_dna": "Defined textures, structural materials, architectural geometry",
+                "lighting_palette": "Signature color temperature, volumetric shadows, key light source",
+                "negative_filters": ["modern artifacts", "digital clocks", "synthetic LED light"],
+                "plate": {
+                    "path": "plates/LOC01.png",
+                    "input_hash": None,
+                    "status": "pending",
+                    "attempts": 0,
+                    "last_error": None,
+                    "prompt": "Cinematic establishing master shot of the environment, atmospheric lighting, full-frame composition, no text, no watermarks"
+                }
+            }
+        ],
         "slides": [
             {
                 "id": "S01",
@@ -150,7 +169,15 @@ def build_skeleton_story(slug: str, content_type: str = "factual", aspect: str =
                 "brief": {
                     "moment": "Opening visual hook establishing immediate intrigue",
                     "characters": [],
-                    "location": None,
+                    "location": "LOC01",
+                    "spatial_physics": {
+                        "has_mechanical_action": False,
+                        "shot_pair_type": "none",
+                        "paired_slide_id": None,
+                        "contact_point": None,
+                        "force_direction": None,
+                        "physics_negatives": ["no floating objects", "no inverted physics", "no impossible mechanics"]
+                    },
                     "must_show": [],
                     "must_not_show": ["text"],
                     "continuity": [],
@@ -261,7 +288,7 @@ def init_project(target: Path, content_type: str = "factual", aspect: str = "9:1
     slug = parse_slug(project_dir.name)
 
     # Subdirectories
-    for sub in ["audio", "images", "clips", "logs", "out", "prompts"]:
+    for sub in ["audio", "images", "clips", "logs", "out", "prompts", "plates"]:
         (project_dir / sub).mkdir(parents=True, exist_ok=True)
 
     story_file = project_dir / "story.json"

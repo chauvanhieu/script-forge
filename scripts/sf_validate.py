@@ -90,6 +90,31 @@ def _canon_errors(story: dict, root: Path) -> list[str]:
     return errors
 
 
+def _physics_and_consistency_errors(story: dict) -> list[str]:
+    errors: list[str] = []
+    slide_ids = {s["id"] for s in story.get("slides", [])}
+
+    for slide in story.get("slides", []):
+        sid = slide["id"]
+        brief = slide.get("brief", {})
+        physics = brief.get("spatial_physics")
+        if physics and isinstance(physics, dict):
+            if physics.get("has_mechanical_action"):
+                pair_type = physics.get("shot_pair_type")
+                paired_id = physics.get("paired_slide_id")
+                if pair_type in ("trigger_setup", "vector_threat"):
+                    if not paired_id or paired_id not in slide_ids or paired_id == sid:
+                        errors.append(
+                            f"{sid}: spatial_physics has shot_pair_type '{pair_type}' but paired_slide_id "
+                            f"'{paired_id}' is missing, invalid, or self-referencing"
+                        )
+                if not physics.get("contact_point") and not physics.get("force_direction"):
+                    errors.append(
+                        f"{sid}: spatial_physics with has_mechanical_action=True requires at least contact_point or force_direction"
+                    )
+    return errors
+
+
 def reference_errors(story: dict, root: Path) -> list[str]:
     cast_ids = [c["id"] for c in story["cast"]]
     location_ids = [loc["id"] for loc in story["locations"]]
@@ -124,6 +149,7 @@ def reference_errors(story: dict, root: Path) -> list[str]:
     errors += _factual_errors(story) if content_type == "factual" else _canon_errors(story, root)
     if content_type == "adaptation" and not (story.get("source_work") or {}).get("rights_basis"):
         errors.append("adaptation requires source_work.rights_basis")
+    errors += _physics_and_consistency_errors(story)
     return errors
 
 

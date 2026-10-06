@@ -36,13 +36,21 @@ def find_candidate_file(brain_dirs: list[Path], slug: str, slide_id: str) -> Pat
     num_str = f"{num:02d}"
     single_num = str(num)
     base_slug = re.sub(r"^\d{8}(-\d{6})?-", "", slug)
+    base_slug_underscore = base_slug.replace("-", "_")
+    slug_underscore = slug.replace("-", "_")
+
+    slug_words = [w for w in base_slug.split("-") if len(w) >= 4 and w not in ["with", "from", "that"]]
+    word_patterns = [re.compile(rf"{re.escape(w)}.*s0*{single_num}[._-]", re.IGNORECASE) for w in slug_words]
 
     patterns = [
-        re.compile(rf"{re.escape(slug)}.*s0*{single_num}[._]", re.IGNORECASE),
-        re.compile(rf"{re.escape(base_slug)}.*s0*{single_num}[._]", re.IGNORECASE),
-        re.compile(rf"^s0*{single_num}[._]", re.IGNORECASE),
-        re.compile(rf"[._]s0*{single_num}[._]", re.IGNORECASE),
-        re.compile(rf"slide[._-]?0*{single_num}[._]", re.IGNORECASE),
+        re.compile(rf"{re.escape(slug)}.*s0*{single_num}[._-]", re.IGNORECASE),
+        re.compile(rf"{re.escape(slug_underscore)}.*s0*{single_num}[._-]", re.IGNORECASE),
+        re.compile(rf"{re.escape(base_slug)}.*s0*{single_num}[._-]", re.IGNORECASE),
+        re.compile(rf"{re.escape(base_slug_underscore)}.*s0*{single_num}[._-]", re.IGNORECASE),
+    ] + word_patterns + [
+        re.compile(rf"^s0*{single_num}[._-]", re.IGNORECASE),
+        re.compile(rf"[._-]s0*{single_num}[._-]", re.IGNORECASE),
+        re.compile(rf"slide[._-]?0*{single_num}[._-]", re.IGNORECASE),
         re.compile(rf"s{num_str}", re.IGNORECASE),
     ]
 
@@ -52,6 +60,34 @@ def find_candidate_file(brain_dirs: list[Path], slug: str, slide_id: str) -> Pat
             if not file.is_file() or file.suffix.lower() not in [".jpg", ".jpeg", ".png", ".webp"]:
                 continue
             name = file.stem
+            for prio, pat in enumerate(patterns):
+                if pat.search(name):
+                    candidates.append((prio, -file.stat().st_mtime, file))
+                    break
+        if candidates:
+            candidates.sort(key=lambda c: (c[0], c[1]))
+            return candidates[0][2]
+    return None
+
+
+def find_candidate_plate_file(brain_dirs: list[Path], slug: str, plate_key: str) -> Path | None:
+    base_slug = re.sub(r"^\d{8}(-\d{6})?-", "", slug)
+    clean_key = plate_key.lower().replace("-", "_")
+
+    patterns = [
+        re.compile(rf"{re.escape(slug)}.*{re.escape(clean_key)}", re.IGNORECASE),
+        re.compile(rf"{re.escape(base_slug)}.*{re.escape(clean_key)}", re.IGNORECASE),
+        re.compile(rf"^{re.escape(clean_key)}[._]", re.IGNORECASE),
+        re.compile(rf"[._]{re.escape(clean_key)}[._]", re.IGNORECASE),
+        re.compile(rf"{re.escape(clean_key)}", re.IGNORECASE),
+    ]
+
+    for brain in brain_dirs:
+        candidates = []
+        for file in brain.iterdir():
+            if not file.is_file() or file.suffix.lower() not in [".jpg", ".jpeg", ".png", ".webp"]:
+                continue
+            name = file.stem.lower()
             for pat in patterns:
                 if pat.search(name):
                     candidates.append((file.stat().st_mtime, file))
@@ -66,6 +102,8 @@ def sync_images(project_dir: Path, brain_dir: Path | None = None, only: set[str]
     project_dir = project_dir if project_dir.is_absolute() else (ROOT / project_dir).resolve()
     images_dir = project_dir / "images"
     images_dir.mkdir(parents=True, exist_ok=True)
+    plates_dir = project_dir / "plates"
+    plates_dir.mkdir(parents=True, exist_ok=True)
 
     story = load_story(project_dir)
     slug = story["slug"]
@@ -79,6 +117,74 @@ def sync_images(project_dir: Path, brain_dir: Path | None = None, only: set[str]
     synced: list[str] = []
     missing: list[str] = []
 
+    # 1. Sync Cast Plates
+    for member in story.get("cast", []):
+        member_id = member.get("id")
+        plates = member.get("plates")
+        if plates and isinstance(plates, dict):
+            for kind in ["face", "half", "full"]:
+                plate_key = f"{member_id}_{kind}"
+                if only and plate_key not in only:
+                    continue
+                candidate = find_candidate_plate_file(brain_dirs, slug, plate_key)
+                if candidate:
+                    plate_aspect = "1:1" if kind == "face" else ("3:4" if kind == "half" else "9:16")
+                    pw, ph = SIZES.get(plate_aspect, (1024, 1024))
+                    target_plate = plates_dir / f"{plate_key}.png"
+                    try:
+                        with Image.open(candidate) as img:
+                            rgb_img = img.convert("RGB")
+                            if rgb_img.size != (pw, ph):
+                                rgb_img = rgb_img.resize((pw, ph), Image.Resampling.LANCZOS)
+                            rgb_img.save(target_plate, format="PNG")
+                        p_hash = input_hash({"prompt": plates[kind].get("prompt", ""), "aspect": plate_aspect, "provider": "gemini"})
+                        plates[kind].update(
+                            path=f"plates/{plate_key}.png",
+                            input_hash=p_hash,
+                            status="done",
+                            attempts=plates[kind].get("attempts", 0) + 1,
+                            last_error=None
+                        )
+                        synced.append(plate_key)
+                    except Exception as exc:
+                        if only and plate_key in only:
+                            missing.append(f"{plate_key} (error: {exc})")
+                elif only and plate_key in only:
+                    missing.append(plate_key)
+
+    # 2. Sync Location Plates
+    for loc in story.get("locations", []):
+        loc_id = loc.get("id")
+        plate_key = loc_id
+        if only and plate_key not in only and f"{plate_key}_master" not in only:
+            continue
+        plate = loc.get("plate")
+        if plate and isinstance(plate, dict):
+            candidate = find_candidate_plate_file(brain_dirs, slug, plate_key) or find_candidate_plate_file(brain_dirs, slug, f"{plate_key}_master")
+            if candidate:
+                target_plate = plates_dir / f"{plate_key}.png"
+                try:
+                    with Image.open(candidate) as img:
+                        rgb_img = img.convert("RGB")
+                        if rgb_img.size != (target_width, target_height):
+                            rgb_img = rgb_img.resize((target_width, target_height), Image.Resampling.LANCZOS)
+                        rgb_img.save(target_plate, format="PNG")
+                    p_hash = input_hash({"prompt": plate.get("prompt", ""), "aspect": aspect, "provider": "gemini"})
+                    plate.update(
+                        path=f"plates/{plate_key}.png",
+                        input_hash=p_hash,
+                        status="done",
+                        attempts=plate.get("attempts", 0) + 1,
+                        last_error=None
+                    )
+                    synced.append(plate_key)
+                except Exception as exc:
+                    if only and (plate_key in only or f"{plate_key}_master" in only):
+                        missing.append(f"{plate_key} (error: {exc})")
+            elif only and (plate_key in only or f"{plate_key}_master" in only):
+                missing.append(plate_key)
+
+    # 3. Sync Slides
     for slide in story.get("slides", []):
         slide_id = slide["id"]
         if only and slide_id not in only:

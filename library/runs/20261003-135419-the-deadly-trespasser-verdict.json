@@ -34,5 +34,28 @@
       "sf_render": 18.982,
       "sf_qc": 7.538
     }
+  },
+  {
+    "run_id": "dbe227546ce4aa1b",
+    "date": "2026-10-03",
+    "log_lines": 14,
+    "line_hashes": [],
+    "target_s": 50,
+    "actual_s": 65.23,
+    "predicted_s": 64.05,
+    "images_generated": 0,
+    "voice_lines_generated": 0,
+    "needs_human": 0,
+    "untrusted_timings": 0,
+    "qc_failed": [],
+    "stage_wall_s": {
+      "sf_validate": 0.02,
+      "sf_captions": 0.008,
+      "sf_render": 27.113,
+      "sf_qc": 14.722,
+      "sf_contact_sheet": 1.085,
+      "sf_voice": 0.024,
+      "sf_align": 0.002
+    }
   }
 ]

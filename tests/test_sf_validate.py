@@ -121,3 +121,49 @@ def test_review_mode_accepts_auto_and_rejects_unknown(tmp_path):
     assert sf_validate.schema_errors(story) == []
     story["brief"]["review_mode"] = "yolo"
     assert sf_validate.schema_errors(story) != []
+
+
+def test_spatial_physics_pair_validation(tmp_path):
+    story = make_story()
+    story["slides"][0]["brief"]["spatial_physics"] = {
+        "has_mechanical_action": True,
+        "shot_pair_type": "trigger_setup",
+        "paired_slide_id": "S99",  # Non-existent
+        "contact_point": "cord looped behind trigger",
+        "force_direction": "pulling backward",
+        "physics_negatives": ["no floating ropes"]
+    }
+    errors, code = _errors(tmp_path, story)
+    assert code == 2
+    assert any("spatial_physics has shot_pair_type 'trigger_setup' but paired_slide_id 'S99' is missing, invalid" in e for e in errors)
+
+    # Self-referencing paired slide
+    story["slides"][0]["brief"]["spatial_physics"]["paired_slide_id"] = "S01"
+    errors, code = _errors(tmp_path / "self", story)
+    assert code == 2
+    assert any("self-referencing" in e for e in errors)
+
+    # Valid pairing with S02
+    story["slides"][0]["brief"]["spatial_physics"]["paired_slide_id"] = "S02"
+    errors, code = _errors(tmp_path / "valid", story)
+    assert code == 0
+    assert errors == []
+
+
+def test_anchor_traits_and_location_dna_validation(tmp_path):
+    story = make_story()
+    story["cast"][1]["anchor_traits"] = {
+        "entity_type": "human",
+        "tokens": "40yo rugged lighthouse keeper, short dark hair, grey oilskin coat",
+        "signature_clothing": "grey oilskin coat",
+        "negative_archetypes": ["no modern clothes", "no tactical gear"]
+    }
+    story["locations"][0]["era_anchors"] = "19th century maritime, oil lamps, no modern electronics"
+    story["locations"][0]["architectural_dna"] = "granite masonry, rusted iron railing, spiral stairs"
+    story["locations"][0]["lighting_palette"] = "harsh revolving lantern beam, dark sea mist"
+    story["locations"][0]["negative_filters"] = ["no LED lights", "no modern antennas"]
+
+    errors, code = _errors(tmp_path, story)
+    assert code == 0
+    assert errors == []
+

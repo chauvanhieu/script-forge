@@ -133,6 +133,27 @@
         {"if": {"properties": {"source": {"const": "clone"}}}, "then": {"required": ["ref_audio"]}}
       ]
     },
+    "anchor_traits": {
+      "type": "object",
+      "required": ["entity_type", "tokens"],
+      "properties": {
+        "entity_type": {"enum": ["human", "organism", "mechanical", "conceptual"]},
+        "tokens": {"type": "string", "minLength": 1},
+        "signature_clothing": {"type": "string"},
+        "negative_archetypes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "spatial_physics": {
+      "type": "object",
+      "properties": {
+        "has_mechanical_action": {"type": "boolean"},
+        "shot_pair_type": {"enum": ["trigger_setup", "vector_threat", "none"]},
+        "paired_slide_id": {"type": ["string", "null"]},
+        "contact_point": {"type": ["string", "null"]},
+        "force_direction": {"type": ["string", "null"]},
+        "physics_negatives": {"type": "array", "items": {"type": "string"}}
+      }
+    },
     "cast_member": {
       "type": "object",
       "required": ["id", "canon_id", "name", "role", "voice", "caption_color"],
@@ -143,6 +164,11 @@
         "role": {"enum": ["narrator", "protagonist", "antagonist", "deuteragonist", "supporting", "minor"]},
         "appearance": {"type": "string"},
         "pronunciation": {"type": "string"},
+        "anchor_traits": {"$ref": "#/$defs/anchor_traits"},
+        "wardrobe_states": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        },
         "voice": {"$ref": "#/$defs/voice"},
         "caption_color": {"$ref": "#/$defs/color"},
         "plates": {
@@ -165,6 +191,10 @@
         "canon_id": {"type": ["string", "null"]},
         "name": {"type": "string", "minLength": 1},
         "appearance": {"type": "string", "minLength": 1},
+        "era_anchors": {"type": "string"},
+        "architectural_dna": {"type": "string"},
+        "lighting_palette": {"type": "string"},
+        "negative_filters": {"type": "array", "items": {"type": "string"}},
         "plate": {"$ref": "#/$defs/plate"}
       }
     },
@@ -185,7 +215,8 @@
             "must_show": {"type": "array", "items": {"type": "string"}},
             "must_not_show": {"type": "array", "items": {"type": "string"}},
             "continuity": {"type": "array", "items": {"type": "string"}},
-            "beat": {"enum": ["setup", "question", "reveal", "reversal", "emotional", "resolution"]}
+            "beat": {"enum": ["setup", "question", "reveal", "reversal", "emotional", "resolution"]},
+            "spatial_physics": {"$ref": "#/$defs/spatial_physics"}
           }
         },
         "visual": {

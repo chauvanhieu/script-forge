@@ -39,18 +39,25 @@ Toàn bộ hình ảnh và thumbnail của kênh phải được neo chặt vào
 
 ## 4. Ma Trận Phối Cảnh Trừu Tượng Theo Tiến Trình (Visual Grammar)
 
-1. **Giai đoạn Mở màn (Shock 0s–4s):**
-   * *Góc máy:* Extreme Close-up hoặc Low-angle Dutch Tilt.
-   * *Ánh sáng:* Hard Chiaroscuro, tương phản gắt.
-   * *Màu sắc:* Đơn sắc lạnh điểm xuyết ánh sáng vàng hổ phách định hướng.
-2. **Giai đoạn Bằng chứng & Hệ thống (Build-up 5s–28s):**
+1. **Giai đoạn Mở màn (Shock 0s–6s - Hyper-Fast Visual Cuts & Ultra-Contrast Chiaroscuro T025/T027/T-GV08):**
+   * *Nhịp chuyển cảnh:* **Cắt cảnh siêu nhanh 1.0s – 1.5s / slide cut**. Bắt buộc gán **3 đến 4 slide hình ảnh biến đổi góc máy liên tục** cho câu thoại mở đầu (Line 1):
+     - *Slide 1 (0.0s - 1.3s):* Extreme Macro Close-up vật thể xúc tác hoặc hành động xung đột giật gân.
+     - *Slide 2 (1.3s - 2.6s):* Wide Cinematic Dutch Tilt hiện trường nghẹt thở trong màn đêm.
+     - *Slide 3 (2.6s - 4.0s):* Cận cảnh ánh mắt / biểu cảm bàng hoàng tột độ của nhân vật trung tâm.
+     - *Slide 4 (4.0s - 5.5s):* Góc chéo thể chế / vật phẩm pháp lý mang tính phán quyết.
+   * *Ngôn ngữ Ánh sáng:* Ultra-High Contrast Chiaroscuro Noir. Tỷ lệ quang học bắt buộc: 80% bóng tối Obsidian (`#0B0E14`) đối kháng rực rỡ với 20% ánh sáng vàng hổ phách (`#F5A623`) hoặc vệt đèn pha chém rách bóng đêm.
+   * *Tokens bắt buộc cho Slide Hook:* `ultra-high contrast chiaroscuro noir, blinding amber rim lighting against ink obsidian black, extreme macro focus, visceral tension, hyper-crisp 8k documentary still, no washed-out tones, zero flat lighting`.
+2. **Giai đoạn Bằng chứng & Hệ thống (Build-up 6s–28s):**
+   * *Nhịp chuyển cảnh:* 1.8s – 2.2s / slide cut.
    * *Góc máy:* Symmetrical Medium Shot hoặc Over-the-shoulder phối cảnh kiến trúc lớn.
    * *Ánh sáng:* Overhead Fluorescent / Cold Institutional Shadow.
    * *Không gian:* Bối cảnh chứa đựng nguồn gốc sự kiện hoặc trung tâm vận hành hệ thống, tái hiện độ sâu kiến trúc và chiều sâu không gian điện ảnh.
 3. **Giai đoạn Phán quyết & Bùng nổ (Climax 29s–44s):**
+   * *Nhịp chuyển cảnh:* 1.5s – 2.0s / slide cut.
    * *Góc máy:* Wide Cinematic Master Shot đối lập với Cận cảnh ánh mắt nhân vật.
    * *Ánh sáng:* Warm Tungsten Spotlight cắt xuyên qua màn đêm đen sâu thẳm.
    * *Chi tiết biểu cảm:* Đỉnh điểm biểu đạt tâm lý của các bên đối đầu, chuyển động dứt khoát của hành động đưa ra quyết định, vật thể xúc tác chịu tác động trực tiếp tại thời khắc phán quyết.
+
 
 ---
 
