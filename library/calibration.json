@@ -2,26 +2,26 @@
   "version": 1,
   "speaking_rate": {
     "vi": {
-      "chars_per_s": 13.952462721767274,
-      "lines": 295
+      "chars_per_s": 15.93726579983309,
+      "lines": 311
     },
     "en": {
-      "chars_per_s": 16.99742169749072,
-      "lines": 224
+      "chars_per_s": 10.05337000765182,
+      "lines": 702
     }
   },
   "stage_seconds": {
     "render": {
-      "mean": 14.325,
-      "n": 62
+      "mean": 29.595,
+      "n": 82
     },
     "image": {
-      "mean": 24.406,
-      "n": 222
+      "mean": 24.061,
+      "n": 398
     },
     "voice_line": {
-      "mean": 9.118,
-      "n": 376
+      "mean": 13.499,
+      "n": 829
     }
   }
 }

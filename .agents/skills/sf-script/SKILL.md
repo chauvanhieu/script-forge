@@ -13,13 +13,36 @@ Brief (including `platform_target`: `youtube_shorts` | `tiktok` | `instagram_ree
 
 ## Viral Scripting Workflow
 Before writing, plan the 4 segments of the **Retention Spine**:
-1. **Hook Selection:** Pick 1 of the 10 archetypes from `references/hook-archetypes-storyforge.md`. Construct the **3-Layer Hook**:
-   - `Verbal Hook`: Line 1 (< 1.5 s of speech, concise, provocative).
-   - `Visual Hook`: Slide 1 prompt (frozen action, intense angle, high contrast chiaroscuro).
-   - `Text Hook`: On-screen overlay text providing complementary context.
+1. **Hook Selection & Anti-Template Architecture (T034):**
+   - Strictly rotate between 4 distinct Hook Archetypes (never repeat the previous video's archetype):
+     - `Hook A (In Media Res / Clinical Trial Forensic Shock)`: Start inside a laboratory scanner, medical examination, or dramatic evidentiary breakthrough.
+     - `Hook B (Sensory Shock / Physical Disruption)`: Open with an involuntary physiological reflex or bodily reaction (e.g. the sudden revulsion of "The Ick", pupil dilation in deceit).
+     - `Hook C (Evolutionary Counter-Strike)`: Demolish a romantic assumption through brutal prehistoric survival economics.
+     - `Hook D (High-Stakes Biological Tradeoff)`: Highlight the severe biochemical consequence of a modern pill, behavior, or habit.
+   - **BANNED PHRASING:** Strictly FORBID the "Biology Absolution" sentence frame:
+     - ❌ `If you [pain], it was not [weakness]. An [X] surge literally disabled...`
+     - ❌ `You were never [foolish/weak], your biology was hijacked. Have you felt this? Share below.`
+     - ❌ `Society calls X [myth], but its true purpose is...`
+     - Any script containing these phrases FAILS Gate 1 immediately.
+   - Construct the **3-Layer Hook**:
+     - `Verbal Hook`: Line 1 (< 1.5 s of speech, concise, provocative).
+     - `Visual Hook`: Slide 1 prompt (frozen action, intense angle, high contrast chiaroscuro).
+     - `Text Hook`: On-screen overlay text providing complementary context.
 2. **Escalation Engine:** Map the story progression strictly with **"But..."** (obstacle/conflict) and **"Therefore..."** (reaction/consequence) per `references/viral-storytelling.md`. Eliminate all linear "And then..." transitions.
-3. **Payoff Delivery:** Ensure the climax/ending resolves the question or tension promised in the hook without clickbait.
-4. **Platform-Tuned CTA:** Apply a single-action CTA matching `brief.platform_target` (or seamless loop for Shorts) per `../sf-director/references/platform-tuning.md`.
+3. **Payoff Delivery & Novel Outro (T034):** Ensure the climax/ending resolves the question or tension promised in the hook without clickbait. Banish generic outro questions ("Have you felt this? Share below"). Replace with:
+   - *Actionable Neuro-Intervention:* A 60-second behavioral counter-hack.
+   - *Evolutionary Paradox Dilemma:* A razor-sharp tension between primitive instinct and modern society.
+   - *The Seamless Loop:* Final clause links back grammatically to Slide 1.
+4. **Platform-Tuned CTA:** Apply a single-action CTA matching `brief.platform_target` per `../sf-director/references/platform-tuning.md`.
+
+## Visual Trope Quarantine (T035)
+When drafting slide visual briefs and prompts, verify against the **Quarantined Tropes Blacklist**:
+- ❌ **No consecutive Macro Eye / Dilating Pupil opening shots**: If the prior video started with a macro eye, Slide 1 MUST use a human encounter, clinical tool, or architectural space.
+- ❌ **No Ancient Campfires**: Strictly ban "ancient hunter-gatherers around a nighttime campfire" to explain evolution. Replace with cave petroglyphs, fossil excavations, ancient clay tokens, or daylight blizzard tracking.
+- ❌ **No Translucent 3D Glowing Brains**: Strictly ban cliché 3D holographic glowing brains. Replace with scanning electron microscope (SEM) micrographs, histological tissue slices, retro fMRI thermography displays, or living capillary beds.
+- ❌ **No Shattering Embers / Marionette Strings**: Ban abstract crumbling chains and glowing strings. Replace with physical biochemistry (precipitate reactions, protein coagulation, muscle fiber contraction).
+- ❌ **No Duplicate Climax Closeups**: Never place two near-identical close-up portraits within 2 slides of each other (e.g. S19 and S21).
+- ❌ **No Walking into Light Outros**: Ban solitary figures walking into light beams. Conclude with decisive, grounded physical actions (turning away in the rain, closing a ledger, buttoning a trenchcoat, looking into a microscope).
 
 ## Canon (fiction/adaptation)
 - Create `stories/<slug>/` with `story-init` conventions (read `.agents/skills/story-init/SKILL.md`).
@@ -36,17 +59,34 @@ without calibration use `references/speaking-rates.md`. Aim within ±5 % of the 
 
 ## story.json
 - **Initialization & Scaffolding:** ALWAYS initialize a new production via `uv run scripts/sf_init.py projects/<slug> [--type factual|fiction|adaptation]`. `sf_init` will automatically prepend a timestamp `YYYYMMDD-HHMMSS-<slug>`. NEVER read, list, or inspect past productions in `projects/`. All asset entries start `pending`. Follow `schemas/story.schema.json`.
-- **SEO & Search Indexing Metadata:** Populate `story.seo` with:
-  - `title`: High-CTR, curiosity-driven title (< 60 chars) containing the primary search keyword.
-  - `description`: Compelling 2-3 sentence overview + key question to stimulate engagement.
-  - `keywords`: 4-8 niche keywords for YouTube algorithm indexing matching the video's topic and target channel blueprint (`channels/<channel-slug>.md`).
-  - `author`: Channel name or creator brand as defined in the target channel's blueprint in `channels/<channel-slug>.md` (or story brief).
+- **SEO & 3-Zone Search Indexing Metadata:** Populate `story.seo` using the **3-Zone SEO Architecture**:
+  - `title`: High-CTR title (< 65 chars) with primary keyword in first 5 words + power word (SHOCKING, SECRET, DEADLY, IMPOSSIBLE).
+  - `hook_title_variants`: 3 ranked variants using proven formulas (Question hook, Statement shock, Number + Stakes).
+  - `description`: Structured into 3 zones:
+    - **Zone 1 (Above the fold, < 150 chars):** Hook sentence restating title promise + CTA (like/subscribe).
+    - **Zone 2 (Body):** Story narrative synopsis, key takeaways, and chapter timestamps.
+    - **Zone 3 (Footer Compliance & Discoverability):** Transparent AI disclosure statement (`"Visuals and audio recreated with AI; based on historical records and factual accounts"`), followed by relevant hashtags.
+  - `keywords`: 8-15 high-intent niche keywords matching target channel blueprint (`channels/<channel-slug>.md`).
+  - `tags_block`: Dedicated comma-separated string (`tag1,tag2,tag3...`) formatted for 1-click copy-pasting directly into YouTube Studio Tags box (< 500 chars).
+  - `author`: Channel name or creator brand per channel blueprint.
 - Metadata: Record `platform_target`, `hook_archetype`, and `text_hook` in the story or project notes.
-- Cast & Character Continuity (T020/T022): Define immutable visual anchor traits in `story.cast[].anchor_traits` with:
-  - `entity_type`: `human` | `organism` | `mechanical` | `conceptual`
+- **Entity Taxonomy & Character Continuity (T020/T022):** Define immutable visual anchor traits in `story.cast[].anchor_traits`:
+  - `entity_type`: Categorize into 6 precise types:
+    - `character`: Human or humanoid individual (base look in ONE outfit only; scene variants come from slide prompts).
+    - `location`: Specific setting, architectural space, or landscape.
+    - `creature`: Animal, mythical beast, organism, or monster.
+    - `visual_asset`: Key prop, vehicle, weapon, evidence item, or relic.
+    - `generic_troop`: Crowd, army regiment, civilian gathering, or police unit.
+    - `faction`: Organization, government body, clan, or corporation.
   - `tokens`: Concise micro-anchors under 15 words (exact age, facial structure, hair color/style, core clothing, signature prop) repeated verbatim in prompt subjects.
   - `signature_clothing`: Base outfit tokens.
   - `negative_archetypes`: Explicit forbidden roles/gear (e.g. `["no SWAT", "no tactical gear", "no modern police badges", "no combat helmets"]`). Strictly use grounded civilian descriptors (`petty prowler`, `civilian trespasser`) instead of combat triggers (`breach`, `tactical raid`).
+- **Real-People & Historical Figures Safety Escalation Ladder:**
+  When depicting recognizable real people (presidents, military leaders, historical celebrities), AI safety filters may trigger `PUBLIC_ERROR_UNSAFE_GENERATION`. Follow the battle-tested 4-level escalation:
+  1. *Level 1 (Angle Concealment — Recommended Default):* `role_alias` in English (e.g. `The Commander`, `The Iron Premier`). Reference plates and slide prompts MUST specify back view or profile: `"seen from behind"` or `"seen from the left side three-quarter profile"`. Viewers identify the leader from silhouette, posture, and context without showing full facial features. Real names are strictly spoken in voiceover narration, NEVER in image prompts.
+  2. *Level 2 (Strip Names):* Remove alias from prompt text; describe physical appearance only (`"distinguished older leader in dark navy suit standing at podium"`).
+  3. *Level 3 (Remove Ref Plates):* Clear reference plates on the scene (`character_names: []`) and generate from prompt text alone.
+  4. *Level 4 (Negative Archetype Sanitization):* Remove all political/combat trigger words and iconic context.
 - Location Catalog & Consistency: Populate `story.locations` with concrete environmental DNA for every unique setting:
   - `era_anchors`: Concrete era markers & prohibited era elements (e.g. `1970s rural midwest, vintage analog era, no modern LED lights, no modern electronics`).
   - `architectural_dna`: Materials, textures, wall/floor finishes, architectural layout.

@@ -31,6 +31,9 @@ NUMERAL_WORDS = {
     "tram", "nghin", "ngan", "trieu", "ty", "dong", "vnd", "usd"
 }
 
+_CLOSING_MARKS = "\"'”’»)]"
+_SENTENCE_BREAK_RE = re.compile(r"[,.!?…;:]+[" + re.escape(_CLOSING_MARKS) + r"]*\s+\S")
+
 
 def _is_numeral_divergence(reference: str, hypothesis: str) -> bool:
     """Check if CER failure is solely due to ASR converting spoken number words to/from digits (Check K015)."""
@@ -142,8 +145,11 @@ def _quality(vs, wav: Path, line: dict, language: str, duration_ms: int, meta: d
     # own silencedetect helper so a bad take gets reseeded and retried in this same loop, instead
     # of surfacing only after a full align+captions+render+qc round trip.
     longest = max((dur for _, dur in silences(wav)), default=0.0)
-    if longest > qc_cfg["max_trailing_silence_s"]:
-        qc["reasons"].append(f"internal silence {longest:.2f}s > {qc_cfg['max_trailing_silence_s']}s")
+    allowed_silence = qc_cfg["max_trailing_silence_s"]
+    if _SENTENCE_BREAK_RE.search(shown):
+        allowed_silence = max(allowed_silence, 0.8)
+    if longest > allowed_silence:
+        qc["reasons"].append(f"internal silence {longest:.2f}s > {allowed_silence}s")
     return qc, words
 
 
@@ -173,8 +179,13 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
             base_seed = audio["seed"] if audio.get("seed") is not None else default_seed(story["slug"], line["id"])
             whisper = bool(line.get("whisper"))
             instruct = ", ".join(p for p in (member["voice"].get("instruct"), "whisper") if p) if whisper else None
-            new_hash = input_hash({"text": line["text"], "profile": profile_id, "whisper": whisper,
-                                   "language": language, "engine": engine, "seed": base_seed})
+            speed = member["voice"].get("speed")  # e.g. 0.6 for slow sleep narration; None = engine default
+            hash_input = {"text": line["text"], "profile": profile_id, "whisper": whisper,
+                          "language": language, "engine": engine, "seed": base_seed}
+            if speed:
+                hash_input["speed"] = speed
+            new_hash = input_hash(hash_input)
+            speed_kw = {"speed": speed} if speed else {}
             if only is None and not needs_work(audio, new_hash, project_dir):
                 summary["skipped"] += 1
                 continue
@@ -188,7 +199,8 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
                 for take in range(MAX_RETAKES + 1):
                     seed = (base_seed + take * RETAKE_SEED_STEP) % 2_147_483_647
                     data, meta = _with_retries(lambda: vs.generate(text=line["text"], language=language, profile_id=profile_id,
-                                                                    seed=seed, engine=engine, instruct=instruct), sleep)
+                                                                    seed=seed, engine=engine, instruct=instruct,
+                                                                    **speed_kw), sleep)
                     take_wav.write_bytes(data)
                     trim_silence(take_wav)  # cut VoiceStudio's lead/trail padding so pause_after_ms is the audible gap
                     duration = probe_duration_ms(take_wav)
@@ -219,4 +231,5 @@ def run(project_dir: Path, only: set[str] | None = None, config: dict | None = N
 
 
 if __name__ == "__main__":
+    main_wrapper(run, __doc__)
     main_wrapper(run, __doc__)

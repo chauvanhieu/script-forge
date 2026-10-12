@@ -65,33 +65,48 @@ Mỗi video chỉ được chọn đúng **1 mục tiêu duy nhất**:
 
 ---
 
-## 4. Gói Xuất Bản Hoàn Chỉnh (Publishing Package Blueprint - T016)
+## 4. Gói Xuất Bản Hoàn Chỉnh (3-Zone Publishing Package Blueprint - T016)
 
-Ở Stage 10 của `sf-director`, đạo diễn phải xuất bản tài liệu metadata theo mẫu sau:
+Ở Stage 10 của `sf-director`, đạo diễn phải xuất bản tài liệu metadata theo mẫu 3-Zone SEO chuẩn thuật toán 2026:
 
 ```markdown
 ### 📦 Gói Xuất Bản (Publishing Package) - [Tên Slug]
 - **Nền tảng mục tiêu:** [youtube_shorts | tiktok | instagram_reels]
 - **File Video Final:** `out/<base_slug>.mp4` (Duy nhất 1 file, không tạo clone/final.mp4)
 - **Thumbnail:** `out/thumbnail.jpg` (9:16) hoặc `out/thumbnail_16_9.jpg` (16:9) (Chỉ 1 file đúng tỷ lệ)
-- **Tiêu đề Video (Title):** [Tiêu đề giật tò mò, < 60-70 ký tự, chứa từ khóa chính]
+- **Watermark:** [Đã nhúng logo kênh từ channels/<slug>/logo.png | Không sử dụng]
+- **Tiêu đề Chính Thức (Primary Title):** [Tiêu đề giật tò mò, < 65 ký tự, từ khóa chính ở 5 từ đầu]
+- **Các Biến Thể Tiêu Đề Dự Phòng (3 Title Variants):**
+  1. *Question Hook:* [Tại sao...? / Liệu...?]
+  2. *Statement Shock:* [Sự thật chấn động / Tuyên bố gây sốc]
+  3. *Number + Stakes:* [Con số cụ thể vs Nguy cơ cực hạn]
 
-#### 1. Description (Kèm Hashtags ở cuối - T016)
+#### 1. Description (Cấu Trúc 3-Zone SEO Chuẩn 2026)
 ```text
-[Đoạn mô tả ngắn gọn giật hook và bối cảnh sự việc]
-[Tóm tắt giá trị hoặc câu hỏi mở]
-[Lời kêu gọi hành động Single-Action CTA]
+[ZONE 1: ABOVE THE FOLD - 150 KÝ TỰ ĐẦU TIÊN HIỂN THỊ TRƯỚC NÚT 'XEM THÊM']
+[Hook sentence chứa trọn vẹn từ khóa chính và tái khẳng định lời hứa ở tiêu đề]
+[Lời kêu gọi hành động Single-Action CTA: bấm đăng ký / xem tiếp]
+
+[ZONE 2: BODY & TIMESTAMPS]
+[Tóm tắt cốt truyện kịch tính 2-3 câu, nêu bật nút thắt và bài học]
+00:00 - [Hook giật gân]
+00:08 - [Nguồn cơn sự việc]
+00:25 - [Bất ngờ đảo chiều]
+00:45 - [Phán quyết / Kết cục]
+
+[ZONE 3: COMPLIANCE FOOTER & HASHTAGS]
+[Tuyên bố nội dung AI minh bạch (tuân thủ chính sách YouTube 2026): "Hình ảnh và giọng đọc được tái hiện bằng AI dựa trên sự kiện và tư liệu lịch sử có thật."]
 
 #Hashtag1 #Hashtag2 #Hashtag3 #Hashtag4 #Hashtag5
 ```
 
-#### 2. Tags (Dãy từ khóa phân cách bởi dấu phẩy, 1-click copy dán thẳng vào YouTube Studio Tags - T016)
+#### 2. Tags (Dãy từ khóa phân cách bởi dấu phẩy viết liền, 1-click copy dán thẳng vào YouTube Studio Tags - T016)
 ```text
 tag 1,tag 2,tag 3,tag 4,tag 5,...
 ```
 
-#### 3. Pinned Comment (Bình luận ghim đầu trang)
+#### 3. Pinned Comment (Bình luận ghim đầu trang kích hoạt thảo luận)
 ```text
-[Câu hỏi dẫn dắt hoặc gợi mở góc nhìn đa chiều để thúc đẩy cộng đồng thảo luận ngay dưới video]
+[Câu hỏi dẫn dắt hoặc gợi mở góc nhìn đạo đức/tranh luận để thúc đẩy người xem bình luận]
 ```
 ```

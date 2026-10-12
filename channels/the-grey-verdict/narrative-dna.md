@@ -18,6 +18,13 @@ $$\text{Xung Đột} = \text{Hệ Thống Quy Chuẩn (System Axiom)} \iff \text
    * Động cơ: Duy trì tính nghiêm minh của tiền lệ, bảo vệ hệ thống trước sự sụp đổ dây chuyền, hoặc cưỡng chế tuân thủ theo câu chữ tuyệt đối.
 3. **Vùng Xám Phân Cực (The Polarizing Grey Zone):**
    * Tỷ lệ đồng thuận lý tưởng của khán giả đối với phán quyết phải dao động trong khoảng $45\% - 55\%$. Không có đáp án hoàn hảo đúng 100%.
+4. **Archetype Người dẫn chuyện (The Cynical Jurist & Institutional Deadpan — T-GV17):**
+   * Tuyệt đối không tự dìm mình nhí nhố như chú hề cá nhân; thay vào đó, chuyển hóa sự châm biếm thành **Institutional Irony (Châm biếm sự phi lý của hệ thống tư pháp)**.
+   * **4 Trụ cột văn phong Noir-Deadpan:**
+     1. *Juridical Deadpan:* Đọc những điều luật kỳ quặc hoặc phán quyết điên rồ với vẻ bình thản đến lạnh gáy, như thể việc một người bị xử thua vì một dấu phẩy đặt sai là điều tự nhiên nhất hành tinh.
+     2. *Systemic Sarcasm:* Dùng ngôn từ trang trọng để lột trần sự vô lý ("The court, in its infinite technical wisdom, decided...").
+     3. *Hyperbolic Rigidity:* Phóng đại sự đối lập giữa Lương tri thường thức vs Sự bảo thủ của câu chữ văn bản.
+     4. *Cold Fourth-Wall Break:* Cú tát nước lạnh vào niềm tin ngây thơ của khán giả ("You probably think common sense won. Welcome to corporate law").
 
 ---
 
@@ -32,9 +39,11 @@ Tổng thời lượng chuẩn (Hyper-Lean Sweet Spot - T-GV12): **40 – 48 gi�
  (Phá vỡ kỳ vọng)       (Bẫy logic & Leo thang)        (Đảo chiều tiền lệ)           (Bẫy nhị phân kết thúc)
 ```
 
-### Pha 1: Cognitive Shock (0.0s – 4.0s | 2–3 Slides)
-* **Mục tiêu:** Cắt đứt hoàn toàn quán tính lướt màn hình bằng một nghịch đề logic.
-* **Ngôn ngữ:** Dòng 1 nêu một thực tế trái ngược với lẽ thường nhưng được xác nhận bởi thẩm quyền tối cao; Dòng 2 chỉ ra nguyên nhân đằng sau chính là sự tuân thủ quy tắc đến mức phi lý.
+### Pha 1: Cognitive Shock (0.0s – 4.0s | 2–3 Slides | Quy tắc Nghịch Đề 2 Giây - T-GV14)
+* **Mục tiêu:** Cắt đứt hoàn toàn quán tính lướt màn hình bằng một nghịch đề logic và cú sốc nhận thức trong đúng 2.0s – 2.5s đầu tiên (Kéo Stay Rate lên > 60%).
+* **Nguyên tắc vàng:** Triệt tiêu vĩnh viễn các mở đầu kiểu niên đại lịch sử hoặc kể lể xa xôi (`"In [năm], [nhân vật] made a decision..."`). Mở màn trực diện bằng phương trình: $[\text{Hành động/Quyền hiển nhiên}] + [\text{Nghịch lý phán quyết ngược đời tột độ}] + [\text{Hậu quả ngay lập tức}]$.
+* **Ngôn ngữ:** Dòng 1 nêu ngay một thực tế trái ngược với lẽ thường được tòa án/thể chế tuyên bố; Dòng 2 chỉ ra nguyên nhân đằng sau chính là sự tuân thủ quy tắc đến mức phi lý.
+* **Nhịp độ thị giác (T-GV08):** Đẩy nhịp chuyển cảnh 1.0s – 1.5s / slide trong 6 giây đầu, gán 3 đến 4 slide tương phản gắt cho câu hook mở màn.
 
 ### Pha 2: Escalation & System Trap (5.0s – 28.0s | 10–12 Slides)
 * **Mục tiêu:** Thiết lập chuỗi logic chặt chẽ chứng minh Chủ Thể $\alpha$ đã hành động đúng quy trình, đẩy xung đột leo thang bằng logic nhân quả liên hoàn "But... / Therefore...".

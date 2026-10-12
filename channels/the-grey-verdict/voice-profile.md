@@ -6,13 +6,13 @@ Tài liệu này định nghĩa hệ thống âm thanh, lựa chọn giọng đ�
 
 ## 1. Persona Giọng Đọc (The Analytical Inquisitor)
 
-* **Phong cách:** Deep, calm, authoritative, cold analytical documentary narrator (Người dẫn chuyện tài liệu sâu lắng, điềm tĩnh, uy quyền và phân tích sắc lạnh).
+* **Phong cách:** Deep, calm, authoritative, cold analytical documentary narrator with bone-dry deadpan irony (Người dẫn chuyện tài liệu sâu lắng, điềm tĩnh, uy quyền và phân tích sắc lạnh với sự châm biếm tỉnh bơ khô khốc).
 * **Ngôn ngữ:** English (Neutral Global Accent - Giọng Anh-Mỹ hoặc Anh-Quốc tế trung tính, phát âm chuẩn xác, không dùng từ lóng địa phương).
-* **Nguyên tắc cảm xúc:**
-  - Không thiên vị hay thể hiện sự phán xét chủ quan.
+* **Nguyên tắc cảm xúc & Juridical Deadpan:**
+  - Không thiên vị hay thể hiện sự phán xét chủ quan; sự châm biếm đến từ sự lạnh lùng tuyệt đối trước các điều luật và phán quyết phi lý.
   - Đoạn mở đầu (Line 1): Đọc dứt khoát, cắt nhịp bất ngờ, kích hoạt sự tò mò trong 1.5s đầu.
-  - Đoạn cao trào (Pha 3): Nhấn mạnh vào những tình tiết đảo ngược và con số chấn động.
-  - Đoạn kết (Pha 4): Giọng hạ trầm, để ngỏ câu hỏi nhị phân đầy sức nặng.
+  - Đoạn cao trào (Pha 3): Nhấn mạnh vào những tình tiết đảo ngược, tiền lệ quái đản và con số chấn động với vẻ thản nhiên như một thủ tục hiển nhiên.
+  - Đoạn kết (Pha 4): Giọng hạ trầm, bẻ lái lạnh lùng phá vỡ sự ngây thơ của khán giả, để ngỏ câu hỏi nhị phân đầy sức nặng.
 
 ---
 
@@ -28,7 +28,7 @@ Tài liệu này định nghĩa hệ thống âm thanh, lựa chọn giọng đ�
 
 ## 3. Cấu Hình Cast Giọng Chính Thức Của Kênh (Official Channel Signature Voice)
 
-Giọng đọc chính thức của kênh The Grey Verdict áp dụng phong cách **Investigative Judicial Noir & Visceral Truth** (Tường thuật điều tra tư pháp ám ảnh, giàu cảm xúc và kịch tính):
+Giọng đọc chính thức của kênh The Grey Verdict áp dụng phong cách **Investigative Judicial Noir & Bone-Dry Deadpan** (Tường thuật điều tra tư pháp ám ảnh, châm biếm thể chế sắc lạnh và kịch tính):
 
 ```json
 {
@@ -39,7 +39,7 @@ Giọng đọc chính thức của kênh The Grey Verdict áp dụng phong cách
   "voice": {
     "source": "design",
     "design_prompt": "male, middle-aged, low pitch",
-    "instruct": "chilling investigative noir, gripping psychological tension, razor-sharp cadence, brooding authority with sudden dynamic emotional shifts between quiet tension and devastating institutional power, no smiling, zero hesitation",
+    "instruct": "chilling investigative noir, gripping psychological tension, razor-sharp cadence, brooding authority, bone-dry deadpan delivery with subtle institutional irony, no smiling, zero hesitation",
     "profile_id": "6d80d98d"
   }
 }
@@ -50,7 +50,7 @@ voice_casting:
   provider: voicestudio
   source: design
   design_prompt: "male, middle-aged, low pitch"
-  instruct: "chilling investigative noir, gripping psychological tension, razor-sharp cadence, brooding authority with sudden dynamic emotional shifts between quiet tension and devastating institutional power, no smiling, zero hesitation"
+  instruct: "chilling investigative noir, gripping psychological tension, razor-sharp cadence, brooding authority, bone-dry deadpan delivery with subtle institutional irony, no smiling, zero hesitation"
   profile_id: "6d80d98d"
   caption_color: "#F5A623"
   speed: 1.08

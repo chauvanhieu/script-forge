@@ -21,7 +21,7 @@ CHECK_CAP = 30
 _TASTE_TAGS = {"global", "brief", "script", "visual", "audio", "captions", "9:16", "16:9"}
 _TASTE = re.compile(r"^- (T\d{3,}) \[([^\]]+)\] (\S.*)$")
 _SOURCE = re.compile(r'^  ← \S+ · \d{4}-\d{2}-\d{2} · ".+"$')
-_CHECK = re.compile(r"^- (K\d{3,}) \[([^\]]+)\] (\S.*?)  hits: (\d+) · \S+$")
+_CHECK = re.compile(r"^- (K\d{3,}) \[([^\]]+)\] (\S.*?) {1,2}hits: (\d+) · \S+$")
 
 
 def speech_chars(text: str) -> int:
@@ -182,6 +182,21 @@ def run(project_dir: Path, only: set[str] | None = None, library_dir: Path = LIB
     })
     _write_json(history_path, history)
     _write_json(library_dir / "calibration.json", calibration)
+    # Auto-sync channel topic ledger if channel is defined
+    channel_slug = story.get("brief", {}).get("channel")
+    if channel_slug:
+        try:
+            from sf_ledger import sync_channel
+            sync_channel(channel_slug)
+        except ImportError:
+            try:
+                from scripts.sf_ledger import sync_channel
+                sync_channel(channel_slug)
+            except Exception:
+                pass
+        except Exception:
+            pass
+
     summary.update(recorded=True, speaking_rate={k: round(v["chars_per_s"], 2) for k, v in calibration["speaking_rate"].items()})
     return summary, EXIT_HUMAN if problems else EXIT_OK
 

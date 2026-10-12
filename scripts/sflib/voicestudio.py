@@ -113,12 +113,15 @@ class VoiceStudio:
         return response.json()["id"]
 
     def generate(self, *, text: str, language: str, profile_id: str, seed: int,
-                 engine: str | None = None, instruct: str | None = None) -> tuple[bytes, dict]:
+                 engine: str | None = None, instruct: str | None = None,
+                 speed: float | None = None) -> tuple[bytes, dict]:
         data = {"text": text, "language": language, "profile_id": profile_id, "seed": str(seed)}
         if engine:
             data["engine"] = engine
         if instruct:
             data["instruct"] = instruct
+        if speed:
+            data["speed"] = str(speed)
         response = self._request("POST", "/generate", data=data)
         meta = {
             "seed": response.headers.get("X-Seed"),

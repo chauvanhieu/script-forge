@@ -8,7 +8,8 @@ Tài liệu này định nghĩa hệ thống thiết kế ảnh Thumbnail nhận
 
 Sự đồng bộ của kênh nằm ở **Bảng Màu (Color Palette)** và **Phong Cách Ánh Sáng (Lighting Mood)**, KHÔNG nằm ở việc bắt buộc có chung một đạo cụ:
 1. **Nền Tối Chiaroscuro Noir:** Obsidian Black (`#0B0E14`) kết hợp Ánh Sáng Lạnh Xanh Thép (`#8E9AA8` / Ice Cyan / Midnight Rain) bao phủ không gian câu chuyện.
-2. **Điểm Nhấn Phát Sáng:** Verdict Amber Gold (`#F5A623`) bao phủ viền sáng chủ thể (rim lighting), các quầng sáng định hướng (spotlight glow) và toàn bộ Text Hook.
+2. **Điểm Nhấn Phát Sáng:** Verdict Amber Gold (`#F5A623`) bao phủ viền sáng chủ thể (rim lighting) và các quầng sáng định hướng (spotlight glow).
+3. **Tuyệt Đối Tối Giản Chữ (Character-Driven Cinematic Focal Point):** KHÔNG sử dụng Text Hook khổng lồ che lấp màn hình. Thay vào đó, tập trung hoàn toàn vào một chủ thể duy nhất với ánh sáng Chiaroscuro kịch tính. Nếu có chữ, tối đa 1-2 từ cực ngắn (VD: "GUILTY?", "TRAPPED") đặt nhỏ ở góc dưới. Nhường nhiệm vụ giải thích cho tiêu đề video.
 3. **Độ Tương Phản Điện Ảnh:** Tối sâu, sáng sắc nét, chất lượng 35mm film still chân thực, tuyệt đối không dùng màu pastel hay ánh sáng phẳng.
 
 ---
@@ -29,9 +30,9 @@ Sự đồng bộ của kênh nằm ở **Bảng Màu (Color Palette)** và **Ph
 
 ## 3. Bản Đồ Vùng An Toàn & Vùng Cấm (Safety Exclusion Bounds)
 
-* **VÙNG AN TOÀN ĐỈNH TRÊN (Top Safe Margin 10%–15% - T017):** BẮT BUỘC chừa lề trống an toàn (headroom màu tối) 10%–15% ở mép đỉnh trên cùng của ảnh 9:16. Text Hook phải được bố trí ở 1/3 phía trên nhưng TUYỆT ĐỐI KHÔNG chạm sát mép đỉnh, nhằm triệt tiêu hoàn toàn nguy cơ bị bo góc container hoặc khung card thumbnail của YouTube Shorts cắt cụt chữ ("bị khuất chữ ở trên").
+* **VÙNG AN TOÀN ĐỈNH TRÊN (Top Safe Margin 10%–15% - T017):** BẮT BUỘC chừa lề trống an toàn (headroom màu tối) 10%–15% ở mép đỉnh trên cùng của ảnh 9:16.
 * **VÙNG CẤM (Dead Zone):** **Góc dưới bên phải (Bottom-Right 20% x 20%)** BẮT BUỘC để trống hoàn toàn (chỉ có nền tối mờ hoặc không gian trống không chứa tiêu điểm). Tuyệt đối KHÔNG đặt chữ, logo, khuôn mặt hay đạo cụ quan trọng tại đây vì sẽ bị YouTube che phủ bởi biểu tượng đếm thời lượng video (`0:58` / `Shorts`).
-* **VÙNG AN TOÀN SHORTS (9:16):** Nửa trên dành cho Text Hook (dưới Top Safe Margin) và Chủ thể chính. 25% phía dưới cùng để thoáng nhằm tránh bị che bởi Tiêu đề video và nút bấm giao diện của TikTok/Shorts.
+* **VÙNG AN TOÀN SHORTS (9:16):** Chủ thể chính chiếm trọn không gian khung hình một cách điện ảnh (Cinematic Standoff hoặc Cận cảnh cảm xúc). 25% phía dưới cùng để thoáng nhằm tránh bị che bởi Tiêu đề video và nút bấm giao diện của TikTok/Shorts.
 * **XUẤT DUY NHẤT 1 THUMBNAIL (Single Output - T015):** Chỉ sinh DUY NHẤT 1 ảnh thumbnail theo đúng tỷ lệ của video (`out/thumbnail.jpg` cho 9:16 hoặc `out/thumbnail_16_9.jpg` cho 16:9), tuyệt đối không sinh thừa file cho tỷ lệ không dùng.
 
 ---
@@ -44,11 +45,9 @@ Sự đồng bộ của kênh nằm ở **Bảng Màu (Color Palette)** và **Ph
 ```text
 A viral high-CTR vertical YouTube Shorts cover thumbnail for a documentary titled [CASE_TITLE]. 
 
-CRITICAL TOP SAFE MARGIN: Maintain a mandatory 10% to 15% dark empty headroom at the very top edge of the frame. The typography must never touch or hug the top border, ensuring platform UI elements and rounded card containers never clip the lettering.
+CRITICAL RULE: NO TEXT OVERSTUFFING. The image must rely entirely on visual storytelling ("Character-Driven Cinematic Focal Point"). Do NOT include large title-card text. If absolutely necessary, use a maximum of 1-2 very short abstract words (e.g., "GUILTY?", "TRAPPED") placed small and unobtrusively at the bottom, using a minimal stencil sans-serif font. Otherwise, NO TEXT at all.
 
-In the upper portion, positioned with generous headroom below the top edge, the bold hook phrase "[HOOK_TEXT_2_TO_4_WORDS]" is rendered in massive, heavy embossed golden-amber sans-serif typography (#F5A623) with a sharp black drop-shadow outline, optimized for high legibility at small mobile feed sizes.
-
-Below the typography, occupying 35% to 45% of the frame, [FOCAL_ENTITY_SPECIFICATION: The primary subject at the climax of psychological tension, with intense facial expression and posture capturing the central dilemma].
+Occupying a strong focal point on the rule of thirds, [FOCAL_ENTITY_SPECIFICATION: A single primary subject (e.g., protagonist or critical object) at the climax of psychological tension, with intense facial micro-expression (raw human emotion) and posture capturing the central dilemma. The subject should look directly at the camera or intensely off-camera].
 
 In the surrounding environment, [STORY_SPECIFIC_ENVIRONMENT: The atmospheric physical setting directly embodying the origin or turning point of the dispute, rendered with cinematic depth and spatial storytelling].
 
@@ -61,9 +60,9 @@ Color grading and lighting: Signature two-color dominant scheme featuring intens
 ```text
 A viral high-CTR widescreen YouTube video thumbnail for a documentary titled [CASE_TITLE].
 
-On the left side, occupying 35% to 45% of the frame, [FOCAL_ENTITY_SPECIFICATION: The primary subject at the climax of psychological tension, with intense facial expression and posture capturing the central dilemma].
+Occupying a strong focal point on the rule of thirds (left or right), [FOCAL_ENTITY_SPECIFICATION: A single primary subject at the climax of psychological tension, with intense facial micro-expression (raw human emotion) capturing the central dilemma. The subject should look directly at the camera or intensely off-camera].
 
-In the upper center-right, the bold hook phrase "[HOOK_TEXT_2_TO_4_WORDS]" appears in massive, thick 3D golden-yellow uppercase block typography (#F5A623) with a deep black outline and sharp rim glow, ultra-readable at thumbnail size.
+CRITICAL RULE: NO TEXT OVERSTUFFING. Do NOT include large title-card text. The visual must carry the entire narrative weight. If absolutely necessary, use a maximum of 1-2 very short abstract words (e.g., "GUILTY?", "TRAPPED") placed small and unobtrusively at the bottom. Otherwise, NO TEXT at all.
 
 Across the wider background, [STORY_SPECIFIC_ENVIRONMENT: The atmospheric physical setting directly embodying the origin or turning point of the dispute, rendered with cinematic architectural depth and spatial storytelling].
 

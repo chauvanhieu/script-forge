@@ -2,7 +2,6 @@
 """Render out/final.mp4: per-slide motion clips, a sample-exact audio timeline, and burned-in captions."""
 from __future__ import annotations
 
-import array
 from datetime import datetime
 import json
 import os
@@ -17,6 +16,23 @@ from sflib.project import EXIT_HUMAN, EXIT_OK, ROOT, file_hash, input_hash, load
 from sflib.timeline import FPS, build_timeline
 
 
+def _find_channel_logo(story: dict) -> Path | None:
+    """Find channel branding logo (PNG with transparency) from channel blueprint assets."""
+    channel_slug = (story.get("brief") or {}).get("channel")
+    if not channel_slug:
+        return None
+    candidates = [
+        ROOT / "channels" / channel_slug / "logo.png",
+        ROOT / "channels" / channel_slug / "assets" / "logo.png",
+        ROOT / "channels" / channel_slug / f"{channel_slug}_icon.png",
+        ROOT / "channels" / channel_slug / "icon.png",
+    ]
+    for c in candidates:
+        if c.is_file():
+            return c
+    return None
+
+
 def _find_audio_assets(story: dict, project_dir: Path) -> dict[str, Path]:
     """Find channel or project audio assets (BGM background music only; no sound effects per system policy)."""
     assets: dict[str, Path] = {}
@@ -28,6 +44,9 @@ def _find_audio_assets(story: dict, project_dir: Path) -> dict[str, Path]:
         ch_audio = ROOT / "channels" / channel_slug / "assets" / "audio"
         if ch_audio.is_dir():
             candidates.append(ch_audio)
+        ch_audio2 = ROOT / "channels" / channel_slug / "audio"
+        if ch_audio2.is_dir():
+            candidates.append(ch_audio2)
 
     for audio_dir in candidates:
         try:
@@ -48,31 +67,33 @@ def _mix_soundtrack(story: dict, timeline, project_dir: Path, vocal_buffer: byte
     if not assets or "bgm" not in assets:
         return vocal_buffer
 
-    vocal_samples = array.array("h")
-    vocal_samples.frombytes(vocal_buffer)
-    n_samples = len(vocal_samples)
-    if n_samples == 0:
+    import numpy as np  # installed with mlx-whisper; vectorised so hour-long sleep videos mix in seconds
+
+    vocal = np.frombuffer(bytes(vocal_buffer), dtype=np.int16).astype(np.float32)
+    if vocal.size == 0:
+        return vocal_buffer
+    try:
+        bgm = np.frombuffer(decode_pcm(assets["bgm"], RATE), dtype=np.int16).astype(np.float32)
+    except Exception:
+        return vocal_buffer
+    if bgm.size == 0:
         return vocal_buffer
 
-    mixed = [float(s) for s in vocal_samples]
+    # Duck BGM under speech, swell in pauses. Speech is detected per 20 ms block (a per-sample test flips
+    # at every zero crossing), then the gain is smoothed over ~300 ms so the bed breathes instead of clicking.
+    block = RATE // 50
+    n_blocks = -(-vocal.size // block)
+    padded = np.zeros(n_blocks * block, dtype=np.float32)
+    padded[: vocal.size] = np.abs(vocal)
+    speech = padded.reshape(n_blocks, block).max(axis=1) > 350
+    gain = np.where(speech, 0.05, 0.12).astype(np.float32)
+    kernel = np.ones(15, dtype=np.float32) / 15
+    gain = np.convolve(gain, kernel, mode="same")
+    gain = np.repeat(gain, block)[: vocal.size]
 
-    # Background Music (BGM) with intelligent speech ducking
-    try:
-        bgm_bytes = decode_pcm(assets["bgm"], RATE)
-        bgm_raw = array.array("h")
-        bgm_raw.frombytes(bgm_bytes)
-        if bgm_raw:
-            bgm_len = len(bgm_raw)
-            for i in range(n_samples):
-                # Duck BGM down during active speech; swell during breath/silence pauses
-                is_speech = abs(vocal_samples[i]) > 350
-                gain = 0.05 if is_speech else 0.12
-                mixed[i] += bgm_raw[i % bgm_len] * gain
-    except Exception:
-        pass
-
-    output_samples = array.array("h", (max(-32768, min(32767, int(s))) for s in mixed))
-    return bytearray(output_samples.tobytes())
+    bed = np.resize(bgm, vocal.size)  # loops the track to the timeline length
+    mixed = np.clip(vocal + bed * gain, -32768, 32767).astype(np.int16)
+    return bytearray(mixed.tobytes())
 
 
 def _write_timeline_wav(story: dict, timeline, project_dir: Path, out: Path) -> None:
@@ -110,6 +131,18 @@ def sanitize_seo_filename(title: str, max_len: int = 80) -> str:
 def motion_filter(motion: str, frames: int, width: int, height: int) -> str:
     n = frames
     center_x, center_y = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+    motion = {
+        "dolly_in": "push_in",
+        "dolly_out": "pull_out",
+        "tilt_up": "push_in",
+        "tilt_down": "pull_out",
+        "tracking": "pan_right",
+        "gimbal_glide": "push_in",
+        "handheld": "push_in",
+        "whip_pan": "pan_left",
+        "arc_shot": "pan_left",
+    }.get(motion, motion)
+
     if motion == "static":
         z, x, y = "1", center_x, center_y
     elif motion == "push_in":
@@ -121,7 +154,7 @@ def motion_filter(motion: str, frames: int, width: int, height: int) -> str:
     elif motion == "pan_right":
         z, x, y = f"{1 + ZOOM}", f"(iw-iw/zoom)*on/{n}", center_y
     else:
-        raise ValueError(f"unknown motion {motion!r}")
+        raise ValueError(f"unknown motion {motion}")
     return (f"scale={width * 2}:{height * 2}:force_original_aspect_ratio=increase,crop={width * 2}:{height * 2},"
             f"zoompan=z='{z}':x='{x}':y='{y}':d={n}:s={width}x{height}:fps={FPS},setsar=1,format=yuv420p")
 
@@ -265,12 +298,36 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
         except OSError:
             pass
 
+    logo_path = _find_channel_logo(story)
     args = ["-f", "concat", "-safe", "0", "-i", "clips/concat.txt", "-i", "clips/timeline.wav"]
-    if captions:
-        args += ["-vf", f"ass={captions}"]
-    args += ["-map", "0:v", "-map", "1:a", *final_codec,
-             "-pix_fmt", "yuv420p", "-r", str(FPS), "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
-             "-ar", str(RATE), "-c:a", "aac", "-b:a", "192k", "-t", f"{timeline.total_ms / 1000:.3f}",
+
+    # Long-form sleep channels set a quieter target and a slow fade to black; Shorts keep -16 LUFS, no fade.
+    loudness = brief.get("loudness_lufs", -16)
+    audio_filter = f"loudnorm=I={loudness}:TP=-1.5:LRA=11"
+    post_filters = [f"ass={captions}"] if captions else []
+    fade_s = float(brief.get("outro_fade_s") or 0)
+    if fade_s:
+        fade_start = max(0.0, timeline.total_ms / 1000 - fade_s)
+        audio_filter += f",afade=t=out:st={fade_start:.3f}:d={fade_s:.3f}"
+        post_filters.append(f"fade=t=out:st={fade_start:.3f}:d={fade_s:.3f}")
+
+    if logo_path:
+        args += ["-i", str(logo_path)]
+        is_vertical = height >= width
+        logo_w = max(32, round(width * (0.12 if is_vertical else 0.07)))
+        pad_x = max(16, round(width * (0.05 if is_vertical else 0.03)))
+        pad_y = max(24, round(height * (0.06 if is_vertical else 0.05)))
+        logo_filter = f"[2:v]scale={logo_w}:-1,format=rgba,colorchannelmixer=aa=0.85[logo];[0:v][logo]overlay={pad_x}:{pad_y}[vlogo]"
+        filter_complex = f"{logo_filter};[vlogo]{','.join(post_filters) or 'null'}[vout]"
+        args += ["-filter_complex", filter_complex, "-map", "[vout]", "-map", "1:a"]
+    else:
+        if post_filters:
+            args += ["-vf", ",".join(post_filters)]
+        args += ["-map", "0:v", "-map", "1:a"]
+
+    args += [*final_codec,
+             "-pix_fmt", "yuv420p", "-r", str(FPS), "-af", audio_filter,
+             "-ar", str(RATE), "-ac", "2", "-c:a", "aac", "-b:a", "192k", "-t", f"{timeline.total_ms / 1000:.3f}",
              *metadata_args,
              "-movflags", "+faststart", video_rel]
     run_ffmpeg(args, cwd=project_dir)
@@ -283,7 +340,8 @@ def run(project_dir: Path, only: set[str] | None = None, size: tuple[int, int] |
         metadata_tags={"title": seo_title, "artist": author, "genre": genre, "keywords": keywords_str},
         frames=timeline.total_frames,
         duration_ms=timeline.total_ms,
-        audio_design=list(_find_audio_assets(story, project_dir).keys())
+        audio_design=list(_find_audio_assets(story, project_dir).keys()),
+        watermark=bool(logo_path)
     )
     return summary, EXIT_OK
 

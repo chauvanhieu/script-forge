@@ -37,6 +37,17 @@ def test_render_matches_the_timeline_and_caches_clips(tmp_path):
     assert summary["rendered"] == [] and summary["cached"] == 2
 
 
+def test_sleep_longform_loudness_and_outro_fade(tmp_path):
+    story = make_story()
+    story["brief"]["captions"]["mode"] = "none"
+    story["brief"].update(loudness_lufs=-20, outro_fade_s=1.0)
+    project = prepare_media(tmp_path, story, [1000, 700, 1300])
+    summary, code = sf_render.run(project, size=SMALL)
+    assert code == 0
+    timeline = build_timeline(load_story(project))
+    assert probe_video(project / summary["video"])["frames"] == timeline.total_frames  # fade must not change length
+
+
 def test_render_burns_captions(tmp_path):
     project = prepare_media(tmp_path, make_story(), [1000, 700, 1300])
     sf_captions.run(project, styles_dir=ROOT / "config" / "caption-styles")
@@ -123,4 +134,25 @@ def test_render_with_sound_design_mixing(tmp_path):
     assert "whoosh" not in summary.get("audio_design", [])
     timeline = build_timeline(load_story(project))
     assert abs(probe_audio_ms(project / summary["video"]) - timeline.total_ms) <= round(1000 / FPS)
+
+
+def test_render_with_channel_watermark(tmp_path, monkeypatch):
+    story = make_story()
+    story["brief"]["channel"] = "mock-channel"
+    story["brief"]["captions"]["mode"] = "none"
+    project = prepare_media(tmp_path, story, [1000, 700, 1300])
+
+    mock_channel_dir = tmp_path / "mock_root" / "channels" / "mock-channel"
+    mock_channel_dir.mkdir(parents=True, exist_ok=True)
+    monkeypatch.setattr(sf_render, "ROOT", tmp_path / "mock_root")
+
+    # Generate a dummy 64x64 PNG logo using ffmpeg
+    from sflib.media import run_ffmpeg
+    logo_file = mock_channel_dir / "logo.png"
+    run_ffmpeg(["-f", "lavfi", "-i", "color=red:size=64x64:duration=1", "-vframes", "1", str(logo_file)])
+
+    summary, code = sf_render.run(project, size=SMALL)
+    assert code == 0
+    assert summary["watermark"] is True
+    assert (project / summary["video"]).is_file()
 

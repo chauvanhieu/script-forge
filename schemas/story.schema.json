@@ -39,7 +39,9 @@
             "animation": {"enum": ["none", "pop_up", "slide_blur", "word_by_word"]}
           }
         },
-        "review_mode": {"enum": ["gated", "auto"]}
+        "review_mode": {"enum": ["gated", "auto"]},
+        "loudness_lufs": {"type": "number", "minimum": -30, "maximum": -10},
+        "outro_fade_s": {"type": "number", "minimum": 0, "maximum": 60}
       }
     },
     "state": {
@@ -77,7 +79,14 @@
         "title": {"type": "string", "minLength": 1},
         "description": {"type": "string"},
         "keywords": {"type": "array", "items": {"type": "string"}},
-        "author": {"type": "string"}
+        "author": {"type": "string"},
+        "hook_title_variants": {"type": "array", "items": {"type": "string"}},
+        "zone1_hook": {"type": "string"},
+        "zone2_body": {"type": "string"},
+        "zone3_footer": {"type": "string"},
+        "tags_block": {"type": "string"},
+        "ai_disclosure": {"type": "string"},
+        "pinned_comment": {"type": "string"}
       },
       "additionalProperties": false
     },
@@ -124,6 +133,7 @@
         "library_ref": {"type": "string"},
         "design_prompt": {"type": "string"},
         "instruct": {"type": "string"},
+        "speed": {"type": "number", "minimum": 0.5, "maximum": 2.0},
         "ref_audio": {"type": "string"},
         "ref_text": {"type": "string"}
       },
@@ -137,10 +147,11 @@
       "type": "object",
       "required": ["entity_type", "tokens"],
       "properties": {
-        "entity_type": {"enum": ["human", "organism", "mechanical", "conceptual"]},
+        "entity_type": {"enum": ["human", "organism", "mechanical", "conceptual", "character", "location", "creature", "visual_asset", "generic_troop", "faction"]},
         "tokens": {"type": "string", "minLength": 1},
         "signature_clothing": {"type": "string"},
-        "negative_archetypes": {"type": "array", "items": {"type": "string"}}
+        "negative_archetypes": {"type": "array", "items": {"type": "string"}},
+        "safety_filters": {"type": "array", "items": {"type": "string"}}
       }
     },
     "spatial_physics": {
@@ -164,6 +175,9 @@
         "role": {"enum": ["narrator", "protagonist", "antagonist", "deuteragonist", "supporting", "minor"]},
         "appearance": {"type": "string"},
         "pronunciation": {"type": "string"},
+        "role_alias": {"type": "string"},
+        "safety_view": {"enum": ["front", "back_view", "side_profile", "silhouette", "unrestricted"]},
+        "safety_level": {"type": "integer", "minimum": 1, "maximum": 4},
         "anchor_traits": {"$ref": "#/$defs/anchor_traits"},
         "wardrobe_states": {
           "type": "object",
@@ -225,8 +239,11 @@
           "properties": {
             "prompt": {"type": "string", "minLength": 1},
             "shot": {"enum": ["extreme-close", "close-up", "medium", "wide", "extreme-wide"]},
-            "motion": {"enum": ["static", "push_in", "pull_out", "pan_left", "pan_right"]},
-            "text_placement": {"enum": ["lower_third", "center", "upper_third"]}
+            "motion": {"enum": ["static", "push_in", "pull_out", "pan_left", "pan_right", "dolly_in", "dolly_out", "tilt_up", "tilt_down", "tracking", "gimbal_glide", "handheld", "whip_pan", "arc_shot"]},
+            "text_placement": {"enum": ["lower_third", "center", "upper_third"]},
+            "camera_movement": {"type": "string"},
+            "focal_length": {"type": "string"},
+            "camera_angle": {"type": "string"}
           }
         },
         "image": {

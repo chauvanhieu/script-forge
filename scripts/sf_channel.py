@@ -18,6 +18,7 @@ REQUIRED_MODULES = [
     "thumbnail-system.md",
     "voice-profile.md",
     "taste.md",
+    "topic-ledger.md",
 ]
 
 

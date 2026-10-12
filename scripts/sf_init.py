@@ -304,7 +304,30 @@ def init_project(target: Path, content_type: str = "factual", aspect: str = "9:1
         title = idea[:60] if idea else slug.replace("-", " ").title()
         script_file.write_text(build_skeleton_script(slug, title), encoding="utf-8")
 
-    return {"ok": True, "slug": slug, "project": str(project_dir), "status": "initialized"}, EXIT_OK
+    # Topic similarity pre-flight check against channel ledger
+    clean_channel = parse_slug(channel) if channel else ""
+    warning = None
+    if clean_channel:
+        check_func = None
+        try:
+            from sf_ledger import check_similarity
+            check_func = check_similarity
+        except ImportError:
+            try:
+                from scripts.sf_ledger import check_similarity
+                check_func = check_similarity
+            except ImportError:
+                pass
+        if check_func:
+            check_res = check_func(clean_channel, idea, slug)
+            if check_res.get("warning"):
+                warning = check_res["warning"]
+
+    res_dict: dict = {"ok": True, "slug": slug, "project": str(project_dir), "status": "initialized"}
+    if warning:
+        res_dict["warning"] = warning
+
+    return res_dict, EXIT_OK
 
 
 def main() -> None:

@@ -6,7 +6,7 @@ def test_list_and_validate_channels():
     channels = sf_channel.list_channels()
     assert len(channels) >= 1
     tgv = next(c for c in channels if c["slug"] == "the-grey-verdict")
-    assert tgv["modules_present"] == 6
+    assert tgv["modules_present"] == len(sf_channel.REQUIRED_MODULES)
     assert tgv["status"] == "valid"
 
     val_res, val_code = sf_channel.validate_channel("the-grey-verdict")

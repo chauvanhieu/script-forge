@@ -1,0 +1,18 @@
+# StoryForge provider settings for LONG-FORM sleep narration (e.g. channels/the-night-scribe).
+# Slow narration (voice.speed ~0.6) has natural breath pauses between sentences inside a line, so the
+# internal-silence limit is relaxed from 0.4 s (Shorts) to 1.2 s. Images use local FLUX like
+# providers.local-image.yaml.  Use: SF_CONFIG=config/providers.longform.yaml uv run scripts/sf_voice.py <project>
+voice:
+  base_url: http://localhost:3900
+  engine: null
+  qc:
+    max_cer: 0.25
+    min_cps: 2
+    max_cps: 30
+    max_trailing_silence_s: 1.2
+image:
+  provider: command
+  command: ["uv", "run", "--quiet", "--project", "/Users/irondev/Desktop/Projects/chauvanhieu/yt/tools/local-image",
+            "python", "/Users/irondev/Desktop/Projects/chauvanhieu/yt/tools/local-image/generate.py"]
+  timeout_s: 1200
+  max_refs: 4
